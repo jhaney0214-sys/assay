@@ -1,0 +1,24 @@
+{
+  "name": "V-Dem democracy indices 2024",
+  "data": "vdem-2024.csv",
+  "entity_col": "country",
+  "score_cols": [
+    "Electoral democracy index",
+    "Liberal democracy index",
+    "Participatory democracy index",
+    "Deliberative democracy index",
+    "Egalitarian democracy index"
+  ],
+  "claimed_dimensions": 5,
+  "orient": true,
+  "source": "V-Dem via Our World in Data, https://ourworldindata.org/grapher/<index>.csv",
+  "shared_construction": {
+    "columns": [
+      "Liberal democracy index",
+      "Participatory democracy index",
+      "Deliberative democracy index",
+      "Egalitarian democracy index"
+    ],
+    "note": "V-Dem's liberal, participatory, deliberative and egalitarian\nindices each INCORPORATE the electoral democracy index by\nconstruction. Four of these five columns contain the fifth.\nTheir correlation is therefore a property of the formula, not\na measurement, and this table cannot support a claim that the\nfive varieties of democracy are really one. Testing that needs\nthe component indices with the shared electoral term removed."
+  }
+}

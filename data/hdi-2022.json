@@ -1,0 +1,17 @@
+{
+  "name": "UNDP Human Development Index 2022",
+  "data": "hdi-2022.csv",
+  "entity_col": "country",
+  "score_cols": [
+    "Life expectancy at birth",
+    "Expected years of schooling",
+    "Mean years of schooling",
+    "GNI per capita (log)"
+  ],
+  "published_col": "HDI",
+  "claimed_dimensions": 3,
+  "orient": true,
+  "aggregation_form": "geometric mean of three sub-indices, education being the mean of the two schooling indicators - not a weighted sum",
+  "source": "UNDP Human Development Report 2023-24 composite indices, https://hdr.undp.org/sites/default/files/2023-24_HDR/HDR23-24_Composite_indices_complete_time_series.csv",
+  "note": "HDI declares three dimensions - a long and healthy life, knowledge, and a decent standard of living - built from four indicators. The two schooling indicators belong to one declared dimension, so four columns against three claimed dimensions is the documented design and not itself a finding."
+}

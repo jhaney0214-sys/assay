@@ -1,0 +1,21 @@
+{
+  "name": "UNDP Human Development Index panel",
+  "data": "hdi-panel.csv",
+  "entity_col": "country",
+  "year_col": "year",
+  "score_cols": [
+    "log Health index",
+    "log Education index",
+    "log Income index"
+  ],
+  "published_col": "HDI",
+  "weights": {
+    "log Health index": 0.3333333333333333,
+    "log Education index": 0.3333333333333333,
+    "log Income index": 0.3333333333333333
+  },
+  "claimed_dimensions": 3,
+  "orient": false,
+  "aggregation_form": "geometric mean; columns are LOGS of HDI's own normalised sub-indices, so a weighted sum of them is HDI's own arithmetic",
+  "source": "UNDP Human Development Report 2023-24, https://hdr.undp.org/sites/default/files/2023-24_HDR/HDR23-24_Composite_indices_complete_time_series.csv"
+}

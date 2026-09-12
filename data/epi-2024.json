@@ -1,0 +1,37 @@
+{
+  "name": "Yale Environmental Performance Index 2024",
+  "data": "epi-2024.csv",
+  "entity_col": "country",
+  "score_cols": [
+    "Biodiversity & Habitat (BDH)",
+    "Forests (ECS)",
+    "Fisheries (FSH)",
+    "Air Pollution (APO)",
+    "Agriculture (AGR)",
+    "Water Resources (WRS)",
+    "Air Quality (AIR)",
+    "Sanitation & Drinking Water (H2O)",
+    "Heavy Metals (HMT)",
+    "Solid Waste (WMG)",
+    "Climate Change Mitigation (CCH)"
+  ],
+  "published_col": "EPI",
+  "weights": {
+    "Biodiversity & Habitat (BDH)": 25.0,
+    "Forests (ECS)": 5.0,
+    "Fisheries (FSH)": 2.0,
+    "Air Pollution (APO)": 6.0,
+    "Agriculture (AGR)": 3.0,
+    "Water Resources (WRS)": 4.0,
+    "Air Quality (AIR)": 17.0,
+    "Sanitation & Drinking Water (H2O)": 5.0,
+    "Heavy Metals (HMT)": 2.0,
+    "Solid Waste (WMG)": 1.0,
+    "Climate Change Mitigation (CCH)": 30.0
+  },
+  "claimed_dimensions": 3,
+  "aggregation_form": "linear",
+  "orient": true,
+  "source": "Yale EPI 2024, https://epi.yale.edu/downloads/epi2024results.csv and https://epi.yale.edu/downloads/epi2024weights.csv",
+  "note": "Eleven issue categories weighted into three policy objectives (Climate Change Mitigation, Environmental Health, Ecosystem Vitality) and then into the EPI. Weights are Yale's own published 'EPI Percent' shares. A corrigendum revised two INDICATOR weights below this level (Wastewater Collected and Treated, 1.5% not 2%)."
+}

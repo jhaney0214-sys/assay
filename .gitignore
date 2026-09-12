@@ -1,0 +1,12 @@
+# Caches and build artefacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+.DS_Store
+Thumbs.db
+
+# Fetched source data and generated reports. Re-fetchable with tools/fetch_*.py;
+# V-Dem, UNDP and EPI are not ours to redistribute.
+data/raw/
+out/

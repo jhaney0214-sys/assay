@@ -1,0 +1,22 @@
+{
+  "name": "Yale EPI 2024 - backcast baseline vs current",
+  "data": "epi-panel.csv",
+  "entity_col": "country",
+  "year_col": "year",
+  "score_cols": [
+    "Ecosystem Vitality (ECO)",
+    "Environmental Health (HLT)",
+    "Climate Change (PCC)"
+  ],
+  "published_col": "EPI",
+  "weights": {
+    "Ecosystem Vitality (ECO)": 0.45,
+    "Environmental Health (HLT)": 0.25,
+    "Climate Change (PCC)": 0.3
+  },
+  "claimed_dimensions": 3,
+  "aggregation_form": "linear",
+  "orient": false,
+  "source": "Yale EPI 2024, https://epi.yale.edu/downloads/epi2024results.csv and https://epi.yale.edu/downloads/epi2024weights.csv",
+  "note": "Periods are labelled 2014 and 2024 but the baseline is Yale's backcast on data 'approximately ten years prior', not a calendar year. The gap is ONE ten-year change, not a series of annual ones, so it is not comparable to HDI's year-over-year pairs without saying so."
+}
