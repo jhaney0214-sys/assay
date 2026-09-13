@@ -1,0 +1,213 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>:root{
+  --paper:#FCFCFA; --paper-sunk:#F4F5F2; --ink:#191C1A; --ink-muted:#5F645F;
+  --rule:#DCE0DA; --accent:#1F6F5C; --accent-sunk:#E9F1ED;
+  --font-display:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --font-body:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#121413; --paper-sunk:#1A1D1B; --ink:#E8EAE5; --ink-muted:#9AA098;
+    --rule:#2C302D; --accent:#6FBFA3; --accent-sunk:#182420;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#121413; --paper-sunk:#1A1D1B; --ink:#E8EAE5; --ink-muted:#9AA098;
+  --rule:#2C302D; --accent:#6FBFA3; --accent-sunk:#182420;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--font-body); font-size:clamp(17px,0.5vw + 15.6px,19px);
+  line-height:1.6; margin:0;
+  font-feature-settings:"kern","liga";
+  -webkit-font-smoothing:antialiased;
+}
+.page{max-width:68ch; margin:0 auto; padding:64px 24px 96px}
+@media (min-width:78rem){ .page{max-width:none; width:min(68ch,100%); margin-left:max(24px,calc(50% - 34ch - 13rem)); } }
+
+h1,h2,h3{font-family:var(--font-display); font-weight:600; text-wrap:balance; margin:0}
+h1{font-size:clamp(2.1rem,4.2vw,3rem); line-height:1.08; letter-spacing:-0.021em}
+h2{font-size:clamp(1.35rem,2.1vw,1.6rem); line-height:1.16; letter-spacing:-0.012em;
+   margin:64px 0 16px; padding-bottom:8px; border-bottom:1px solid var(--rule)}
+h3{font-size:1.08rem; line-height:1.3; margin:40px 0 8px}
+p{margin:0 0 16px}
+.standfirst{font-size:1.16em; color:var(--ink-muted); margin:16px 0 40px; line-height:1.5}
+.meta{font-family:var(--font-mono); font-size:0.76rem; color:var(--ink-muted);
+  letter-spacing:0.02em; margin:0 0 8px}
+a{color:var(--accent); text-decoration:underline; text-underline-offset:2px;
+  text-decoration-thickness:1px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+strong{font-weight:600}
+code{font-family:var(--font-mono); font-size:0.86em; background:var(--paper-sunk); padding:1px 4px}
+pre{font-family:var(--font-mono); font-size:0.82rem; background:var(--paper-sunk);
+  padding:16px; overflow-x:auto; border-radius:2px; line-height:1.5; margin:0 0 16px}
+pre code{background:none; padding:0}
+
+.table-wrap{overflow-x:auto; margin:0 0 24px}
+table{border-collapse:collapse; width:100%; font-size:0.88rem;
+  font-variant-numeric:tabular-nums lining-nums}
+th,td{text-align:left; padding:8px 16px 8px 0; vertical-align:top}
+thead th{font-weight:600; font-size:0.76rem; color:var(--ink-muted);
+  letter-spacing:0.03em; text-transform:none; border-bottom:1.5px solid var(--ink)}
+tbody tr{border-bottom:1px solid var(--rule)}
+tbody tr:last-child{border-bottom:1.5px solid var(--ink)}
+.num{text-align:right; font-family:var(--font-mono); font-size:0.82rem}
+
+.stat{margin:40px 0; }
+.stat b{display:block; font-family:var(--font-display); font-weight:600;
+  font-size:2.5rem; line-height:1.05; color:var(--accent);
+  font-variant-numeric:tabular-nums lining-nums}
+.stat span{display:block; font-size:0.82rem; color:var(--ink-muted); margin-top:4px; max-width:44ch}
+
+.callout{border-left:2px solid var(--accent); background:var(--accent-sunk);
+  padding:16px 24px; margin:0 0 24px}
+.callout p:last-child{margin-bottom:0}
+
+ul{margin:0 0 16px; padding-left:24px}
+li{margin-bottom:4px}
+
+.sn{position:relative}
+.sn-toggle{position:absolute; opacity:0; width:0; height:0}
+.sn-mark::after{counter-increment:sn; content:counter(sn);
+  font-family:var(--font-mono); font-size:0.62em; vertical-align:super;
+  color:var(--accent); cursor:pointer; padding:0 1px}
+body{counter-reset:sn}
+.sn-body{display:none; font-size:0.78rem; line-height:1.45; color:var(--ink-muted)}
+@media (min-width:78rem){
+  .sn-body{display:block; position:absolute; left:calc(100% + 2.5rem); top:0;
+    width:12rem; text-align:left}
+}
+@media (max-width:77.99rem){
+  .sn-toggle:checked ~ .sn-body{display:block; background:var(--accent-sunk);
+    border-left:2px solid var(--accent); padding:8px 12px; margin:8px 0}
+  .sn-mark::after{background:var(--accent-sunk); padding:1px 4px; border-radius:2px}
+}
+
+footer{margin-top:96px; padding-top:16px; border-top:1px solid var(--rule);
+  font-size:0.78rem; color:var(--ink-muted)}
+
+@media print{
+  :root{--paper:#fff;--ink:#000;--ink-muted:#333;--rule:#bbb;--accent:#000;--accent-sunk:#f2f2f2;--paper-sunk:#f2f2f2}
+  body{font-size:11pt}
+  .sn-body{display:block !important; position:static; width:auto}
+  table,figure,pre{break-inside:avoid}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none !important; transition:none !important}}
+</style>
+
+<main class="page">
+
+<p class="meta">Measurement — production</p>
+<h1>Assay</h1>
+<p class="standfirst">Tests whether a published index measures what it says it measures. Named for the metallurgical test that tells you what an ore is actually made of, rather than what the seller called it.</p>
+
+<p>An index that names six pillars is making two claims at once: that the pillars are distinct things, and that the weights trading them off are the right ones. Both are testable. Neither is usually tested.</p>
+
+<p>There are over a hundred environmental, social and governance rating systems, each with its own weights. The academic response to university rankings has moved to arguing that single-score aggregation implies a precision the underlying data cannot support. The critique exists in journals. It does not exist as something you can run.</p>
+
+<h2>What it tests</h2>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>Question</th><th>Method</th><th>The failure it catches</th></tr></thead>
+<tbody>
+<tr><td>How many dimensions are really there?</td><td>Horn's parallel analysis and Velicer's minimum average partial, on the sub-score correlations</td><td>Six pillars that are one pillar with six names</td></tr>
+<tr><td>Which pillars are the same pillar?</td><td>Pairwise correlation above 0.90</td><td>A thing counted twice, and so weighted twice, silently</td></tr>
+<tr><td>Does the published score follow from the published weights?</td><td>Recompute and compare</td><td>Undocumented processing between inputs and headline</td></tr>
+<tr><td>Do the weights beat one unweighted component?</td><td>Correlation of the published score with the first principal component</td><td>Weights that are decorative — a committee's deliberation that changed no ranking</td></tr>
+<tr><td>How much of a rank is the entity?</td><td>Rank envelope over thousands of weightings the author could also have defended</td><td>A rank reported as a property of a country when it is a property of a choice</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>The trap it is built around</h2>
+
+<div class="callout">
+<p>A ranking that barely moves under reweighting looks robust, and has a second explanation that looks identical in the output: the sub-scores are so correlated that no weighting could have separated them. Stability is evidence of robustness only when the pillars are actually distinct.</p>
+</div>
+
+<p>Nothing in the tool reports one without the other, and a test named <code>test_stability_is_not_robustness</code> fails if that ever stops being true.</p>
+
+<h2>The worked example that is not a finding</h2>
+
+<p>Auditing V-Dem's five democracy indices across 174 countries returns 97.1% of variance on a single component, and ten sub-score pairs correlating above 0.94. That looks like a devastating result about the "five varieties of democracy".</p>
+
+<p>It is not a result at all. V-Dem's liberal, participatory, deliberative and egalitarian indices each incorporate the electoral democracy index by construction — four of the five columns contain the fifth. They would correlate if the world contained no pattern whatsoever.</p>
+
+<p>So a specification can declare <code>shared_construction</code>, and the report then refuses to call the collapse a finding, in a warning printed above every number. This is the shape of the instrument masquerading as the shape of the world, and it is the same error as reading questionnaire structure as opinion structure.</p>
+
+<p>One thing in that run does survive. Even among indices correlating above 0.95, which one you weight moves Belarus from 117th to 169th and Singapore from 81st to 127th. Rank differences smaller than that spread are not differences between countries.</p>
+
+<h2>The validation</h2>
+
+<p>A real finding needs an index whose sub-scores are built from independent inputs. The Human Development Index provides one: its four indicators are measured by four different institutions from four unrelated instruments — life expectancy from civil registration, the two schooling measures from education ministries and household surveys, gross national income from national accounts. None contains any of the others.</p>
+
+<div class="stat">
+  <b>84.1%</b>
+  <span>Share of variance on a single component across 193 countries in 2022, against the three dimensions HDI claims. The published literature reports 78–90% across 1975–2005.</span>
+</div>
+
+<p>That the number is not new is the entire point. McGillivray argued in 1991 that HDI is redundant with its own components, and the principal-components literature has reported that range for decades. Assay's 84.1% for 2022 falls inside it, computed from raw United Nations Development Programme indicators by code that had never seen those papers.<span class="sn"><input type="checkbox" id="sn1" class="sn-toggle" aria-label="Show note 1"><label for="sn1" class="sn-mark"></label><span class="sn-body">An external anchor, not another internal consistency test. It is the only kind of check that means anything, and it is the thing the revenue model in the games work still lacks.</span></span></p>
+
+<p>Two honest caveats on the number. The correlation of HDI with its first component, 0.9976, is not independent evidence — once four indicators are collinear, any sensible weighting tracks the first component, so "the weights are decorative" restates the collinearity rather than adding to it. And the ranks are volatile despite the single dimension: the median country moves 41 places of 193 under reweighting, because one factor sets the broad ordering while the remaining 16% decides who sits above whom in a densely packed field.</p>
+
+<h2>The first index where every test fires</h2>
+
+<p>Yale's Environmental Performance Index publishes eleven issue categories, their scores, and a machine-readable file giving each category's share of the total. The categories are measured from unrelated instruments — satellite aerosol retrievals, fisheries landings, protected-area registries, greenhouse gas inventories — and aggregate linearly. So all four tests apply at once, and the answers differ from HDI's in ways that matter.</p>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>Test</th><th>Result</th><th>Reading</th></tr></thead>
+<tbody>
+<tr><td>Dimensionality</td><td>One factor retained, explaining 45%</td><td>Neither the three dimensions claimed nor a clean single one. The other 55% is spread across components too weak to retain — what loosely related measurements look like when they do not resolve into named dimensions.</td></tr>
+<tr><td>Are the weights decorative?</td><td>r with first component = 0.921</td><td>Below the 0.95 line, so the published ranking is not recoverable from an unweighted component. Yale's weighting is load-bearing, unlike HDI's.</td></tr>
+<tr><td>Does the score follow from the weights?</td><td>r = 0.9962, typical error 2.2 points</td><td>The ordering reproduces; the score does not. That error is 19% of one standard deviation, with rank disagreements up to 10 places.</td></tr>
+<tr><td>Rank envelope</td><td>Median country moves 28 places of 105</td><td>Computed by perturbing Yale's own published weights rather than inventing a range.</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Reporting only the correlation would have called the recomputation exact. Reporting only the score error would have called it broken. It is neither: a weighted sum of the published categories is a good model of the index, not the index itself.</p>
+
+<p>Two limits on all of it. Seventy-five of 180 countries are dropped, and not at random — forests data is missing for 49 and fisheries for 39, so the audited sample is biased toward countries that have both a coastline and forests. And fisheries runs against its own index: it correlates negatively with the total, so a country scoring well on fisheries tends to score worse overall.</p>
+
+<h2>Is a reported rank change real?</h2>
+
+<p>Rank movements are reported as events. "Country X climbed four places" is a headline and sometimes a policy argument. The move is computed under one weighting, chosen by a committee, and nobody checks what the same two years would have said under a weighting the same committee could equally have defended.</p>
+
+<p>The test is paired, which is what makes it work. Comparing a change against the static rank envelope would be wrong — a country whose rank is uncertain by twenty places can still have moved up robustly, because the same uncertainty applies to both years and cancels. So each candidate weighting is applied to both years and the change recomputed.</p>
+
+<p>There is no single percentage to report, and that is the first result. Two choices have to be made and neither has a right answer: how much weight disagreement counts as defensible, and how often a change must keep its sign to be called robust. Both are swept.</p>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>Weights vary by</th><th class="num">Bar 0.75</th><th class="num">Bar 0.90</th><th class="num">Bar 0.99</th></tr></thead>
+<tbody>
+<tr><td>±1.0 points</td><td class="num">88.1%</td><td class="num">77.1%</td><td class="num">65.1%</td></tr>
+<tr><td>±2.0</td><td class="num">79.4%</td><td class="num">63.2%</td><td class="num">49.1%</td></tr>
+<tr><td>±5.0</td><td class="num">64.9%</td><td class="num">45.0%</td><td class="num">26.9%</td></tr>
+<tr><td>±10.0</td><td class="num">54.8%</td><td class="num">33.4%</td><td class="num">15.7%</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Sixteen per cent to eighty-eight. Anyone quoting one cell is reporting their own settings. An earlier version of this project's own documentation quoted 27.4%, then 53.4%; both were true of one corner and neither was a fact about HDI.</p>
+
+<p>Robustness falls monotonically in both parameters, so the surface describes one phenomenon rather than noise. Two things survive all of it. A move of fewer than two places is never reliable, at any setting. And robustness rises with the gap between the compared years, at every corner tested — same index, same countries, only the distance changes.</p>
+
+<h2>Status</h2>
+
+<p>Production. Sixty-six tests pass. The dimensionality path is validated against a published result; the rank-envelope path has no external anchor, and that asymmetry is stated rather than smoothed over.</p>
+
+<footer>
+<p>HDI figures: UNDP, 2022, 193 countries. EPI figures: Yale, 2024, 105 countries after listwise deletion from 180. Rank envelopes at 2,000 draws, drift surface at 600. Checked 2026-09-12.</p>
+</footer>
+
+</main>
