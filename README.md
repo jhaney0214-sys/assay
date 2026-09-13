@@ -338,5 +338,15 @@ paid data.
 
 ## Data
 
-V-Dem via Our World in Data, fetched over plain HTTP with no key. Assay
-redistributes none of it.
+Three sources, all public, all fetched over plain HTTP with no key and no
+registration: V-Dem via Our World in Data, the Human Development Index from the
+United Nations Development Programme, and the Environmental Performance Index
+from Yale.
+
+`data/` ships the derived tables those fetches produce - national-level
+indicator and sub-score columns, a few hundred rows each - so a clone can
+reproduce every result in this file without re-fetching. They are published
+summary statistics rather than microdata, and each is rebuildable from scratch
+with the matching `tools/fetch_*.py`. Attribution belongs to the three
+publishers named above; nothing here is offered under a licence Assay is in a
+position to grant.

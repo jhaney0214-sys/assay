@@ -1,0 +1,24 @@
+Copyright (c) 2026 Jhane. All rights reserved.
+
+This software is proprietary and is not licensed for redistribution, modification
+or commercial use by others.
+
+Deliberately not an open-source licence, for the same reason as Farewatch and
+Greenlight: this was built as a side project with the intention that it might
+eventually earn money, and a permissive licence would let anyone stand up a
+competing service from the same code. If that stops being the goal, MIT is a
+one-file change.
+
+This notice covers the code. It does not cover the data in data/, which is
+derived from three public sources and remains subject to their terms:
+
+  * V-Dem democracy indices, via Our World in Data.
+  * Human Development Index indicators, from the United Nations Development
+    Programme.
+  * Environmental Performance Index categories and weights, from Yale.
+
+Those tables are national-level published statistics rather than microdata, and
+each is rebuildable from its source with the matching tools/fetch_*.py. They are
+included so a clone can reproduce the results in the README without re-fetching.
+Attribution for them belongs to the three publishers above, and nothing in this
+notice grants rights over their data that Assay does not hold.
