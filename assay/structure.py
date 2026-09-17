@@ -28,8 +28,23 @@ import sys
 
 import numpy as np
 
-_SEXTANT = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(
-    os.path.abspath(__file__)))), "Sextant")
+_WORKSPACE = os.path.dirname(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))))
+
+# Both spellings, deliberately. The directory is "Sextant" in the workstation
+# and "sextant" when the repository is cloned by its GitHub name, and Windows
+# cannot tell those apart while Linux and macOS can. Hard-coding the capital
+# meant Assay imported fine on the machine it was written on and raised
+# ImportError on every case-sensitive filesystem - so the public repository did
+# not run for anyone who cloned it, and the error named a path that was right
+# apart from one letter. An environment variable wins over both, for a checkout
+# that lives somewhere else entirely.
+_CANDIDATES = [os.environ.get("SEXTANT_PATH")] + [
+    os.path.join(_WORKSPACE, name) for name in ("Sextant", "sextant")]
+_SEXTANT = next(
+    (p for p in _CANDIDATES
+     if p and os.path.isdir(os.path.join(p, "sextant"))),
+    os.path.join(_WORKSPACE, "Sextant"))
 if _SEXTANT not in sys.path:
     sys.path.insert(0, _SEXTANT)
 
@@ -39,6 +54,7 @@ except ImportError as exc:                                      # pragma: no cov
     raise ImportError(
         "Assay reuses Sextant's factor machinery and could not import it from\n"
         "  %s\n"
+        "(tried both 'Sextant' and 'sextant'; set SEXTANT_PATH to override)\n"
         "Keep the two projects as siblings in the workstation, or fix the path "
         "here. The code is deliberately not duplicated: a second copy drifts "
         "from the first the moment either is corrected." % _SEXTANT) from exc
