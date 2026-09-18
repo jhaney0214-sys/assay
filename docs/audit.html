@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Assay — audit a published index</title>
+<meta name="description" content="Test whether a published index measures what it says it measures. Runs in your browser; nothing is uploaded.">
+<style>
+:root{--bg:#fff;--fg:#1a1a1a;--muted:#5d5d5d;--line:#e0e0e0;--accent:#8a5a00;
+      --warn-bg:#fff6e5;--warn-line:#d08700;--card:#fafafa}
+@media(prefers-color-scheme:dark){:root{--bg:#141414;--fg:#e9e9e9;--muted:#a6a6a6;
+      --line:#333;--accent:#e0a94a;--warn-bg:#2b2410;--warn-line:#a87a1f;--card:#1c1c1c}}
+*{box-sizing:border-box}
+body{font:16px/1.6 system-ui,-apple-system,Segoe UI,sans-serif;margin:0 auto;
+     max-width:56rem;padding:16px;background:var(--bg);color:var(--fg)}
+h1{font-size:1.6rem;margin:.6rem 0 .2rem}
+h2{font-size:1.15rem;margin-top:2rem;border-bottom:1px solid var(--line);padding-bottom:.3rem}
+h3{font-size:1rem;margin:1.2rem 0 .4rem}
+.sub{color:var(--muted);margin-top:0}
+textarea{width:100%;min-height:9rem;font:13px/1.45 ui-monospace,Menlo,Consolas,monospace;
+         padding:.6rem;border:1px solid var(--line);border-radius:6px;
+         background:var(--card);color:var(--fg)}
+button{font:inherit;padding:.5rem .9rem;border:1px solid var(--line);border-radius:6px;
+       background:var(--card);color:var(--fg);cursor:pointer}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+button:disabled{opacity:.5;cursor:not-allowed}
+table{border-collapse:collapse;width:100%;margin:.6rem 0}
+th,td{text-align:left;padding:.35rem .5rem;border-bottom:1px solid var(--line);font-size:.93rem}
+th{font-weight:600;color:var(--muted)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.warn{background:var(--warn-bg);border-left:4px solid var(--warn-line);
+      padding:.8rem 1rem;margin:1rem 0;border-radius:0 6px 6px 0}
+.card{border:1px solid var(--line);border-radius:8px;padding:1rem;margin:1rem 0;background:var(--card)}
+.muted{color:var(--muted)}
+.hidden{display:none}
+select{font:inherit;padding:.25rem;background:var(--bg);color:var(--fg);
+       border:1px solid var(--line);border-radius:4px}
+.verdict{font-weight:600}
+.row{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin:.6rem 0}
+code{background:var(--card);padding:.1rem .3rem;border-radius:3px;font-size:.9em}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--line);
+       color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+
+<h1>Assay</h1>
+<p class="sub">Tests whether a published index measures what it says it measures.
+Named for the metallurgical test that tells you what an ore is actually made of,
+rather than what the seller called it.</p>
+
+<div class="warn">
+<strong>Nothing leaves your browser.</strong> The CSV is parsed and analysed on
+this page. There is no server, no account and no upload — you can load this file
+from disk with the network off and it still works.
+</div>
+
+<h2>1 · Your data</h2>
+<p class="muted">One row per entity (country, university, company), one column
+per sub-score, plus whatever identifier and published-score columns the index
+carries. Paste it, or try a worked example.</p>
+
+<div class="row">
+  <button data-example="hdi">Example: UNDP HDI 2022</button>
+  <button data-example="vdem">Example: V-Dem 2024</button>
+  <button data-example="epi">Example: EPI 2024</button>
+</div>
+
+<textarea id="csv" placeholder="country,Pillar A,Pillar B,Pillar C,Published score
+Albania,76.8,14.5,10.1,0.789
+..."></textarea>
+<div class="row">
+  <input type="file" id="file" accept=".csv,text/csv">
+  <button class="primary" id="parse">Read columns</button>
+</div>
+
+<div id="mapping" class="hidden">
+  <h2>2 · Confirm what each column is</h2>
+  <div class="warn">
+    <strong>This step is not automatic on purpose.</strong> Guessing which
+    columns are sub-scores and which are identifiers is ambiguous for an
+    arbitrary file, and a wrong guess produces a confidently wrong report —
+    which is the exact failure this tool exists to catch in other people's
+    work. Two minutes here beats a clean-looking answer about the wrong
+    columns.
+  </div>
+  <table id="maptable"><thead><tr>
+    <th>Column</th><th>First values</th><th>Treat as</th>
+  </tr></thead><tbody></tbody></table>
+
+  <h3>Do these sub-scores share construction?</h3>
+  <div class="card">
+    <label><input type="checkbox" id="shared">
+    <strong>Some sub-scores are built from each other.</strong></label>
+    <p class="muted" style="margin:.5rem 0 0">
+    Tick this if any pillar is an input to another — V-Dem's liberal,
+    participatory, deliberative and egalitarian indices each incorporate the
+    electoral democracy index, so four of five columns contain the fifth.
+    Columns like that would correlate if the world contained no pattern
+    whatsoever. <strong>When this is ticked, a dimensional collapse is not
+    reported as a finding</strong>, because it is arithmetic rather than
+    evidence.</p>
+  </div>
+  <div class="row"><button class="primary" id="run">Run the audit</button></div>
+</div>
+
+<div id="results" class="hidden"></div>
+
+<footer>
+<p><strong>What this is not.</strong> It is not a general statistics tool. It
+answers five questions about data shaped like a published index and nothing
+else. It cannot tell you an index is <em>wrong</em> — only whether its own
+structure supports the claims made for it.</p>
+<p>The same five checks Assay's Python engine runs, ported to the browser and
+verified against it: <code>tools/conform_browser.py</code> compares both over
+three indices and fails on disagreement beyond 1e-9.</p>
+</footer>
+
+<script src="audit.js"></script>
+<script>
+"use strict";
+const $ = (s) => document.querySelector(s);
+let parsed = null;
+
+/* ---------- CSV ---------- */
+function parseCSV(text) {
+  const rows = [];
+  let row = [], field = "", inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQ) {
+      if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+      else if (c === '"') inQ = false;
+      else field += c;
+    } else if (c === '"') inQ = true;
+    else if (c === ",") { row.push(field); field = ""; }
+    else if (c === "\n") { row.push(field); rows.push(row); row = []; field = ""; }
+    else if (c !== "\r") field += c;
+  }
+  if (field.length || row.length) { row.push(field); rows.push(row); }
+  return rows.filter((r) => r.some((v) => v.trim() !== ""));
+}
+
+function looksNumeric(values) {
+  const usable = values.filter((v) => v.trim() !== "");
+  if (!usable.length) return false;
+  const ok = usable.filter((v) => isFinite(parseFloat(v))).length;
+  return ok / usable.length > 0.8;
+}
+
+$("#parse").addEventListener("click", () => {
+  const rows = parseCSV($("#csv").value.trim());
+  if (rows.length < 3) { alert("Need a header row and at least two data rows."); return; }
+  const header = rows[0].map((h) => h.trim());
+  const body = rows.slice(1);
+  parsed = { header, body };
+
+  const tbody = $("#maptable tbody");
+  tbody.innerHTML = "";
+  header.forEach((name, i) => {
+    const col = body.map((r) => (r[i] || "").trim());
+    const numeric = looksNumeric(col);
+    // The DEFAULT is a suggestion and the visitor overrides it. Numeric
+    // columns default to sub-score, text to identifier, and the last numeric
+    // column is offered as the published score because that is where indices
+    // usually put it - offered, not assumed.
+    const tr = document.createElement("tr");
+    tr.innerHTML = "<td><strong>" + name.replace(/[<>&]/g, "") + "</strong></td>" +
+      "<td class='muted'>" + col.slice(0, 3).join(", ").slice(0, 40) + "</td>" +
+      "<td><select data-col='" + i + "'>" +
+      "<option value='score'>sub-score</option>" +
+      "<option value='id'>identifier</option>" +
+      "<option value='published'>published score</option>" +
+      "<option value='ignore'>ignore</option></select></td>";
+    tbody.appendChild(tr);
+    tr.querySelector("select").value = numeric ? "score" : "id";
+  });
+  // NO POSITIONAL GUESS about which column is the published total. The
+  // obvious rule - "it is the last numeric one" - is right for HDI and wrong
+  // for V-Dem, which publishes five sibling indices and no aggregate, so the
+  // rule silently deleted a real pillar and reported four. Every numeric
+  // column starts as a sub-score and the detector below argues from the data
+  // instead of from position.
+  $("#mapping").classList.remove("hidden");
+  $("#mapping").scrollIntoView({ behavior: "smooth" });
+});
+
+$("#file").addEventListener("change", (e) => {
+  const f = e.target.files[0];
+  if (!f) return;
+  const r = new FileReader();
+  r.onload = () => { $("#csv").value = r.result; $("#parse").click(); };
+  r.readAsText(f);
+});
+
+/* ---------- audit ---------- */
+$("#run").addEventListener("click", () => {
+  const roles = Array.from(document.querySelectorAll("#maptable select"))
+    .map((s) => s.value);
+  const scoreIdx = roles.map((r, i) => r === "score" ? i : -1).filter((i) => i >= 0);
+  const pubIdx = roles.indexOf("published");
+
+  if (scoreIdx.length < 3) {
+    alert("Mark at least three columns as sub-scores. Below three there is no " +
+          "dimensional question to ask.");
+    return;
+  }
+
+  const keep = [];
+  parsed.body.forEach((r) => {
+    const vals = scoreIdx.map((i) => parseFloat((r[i] || "").trim()));
+    const pub = pubIdx >= 0 ? parseFloat((r[pubIdx] || "").trim()) : null;
+    if (vals.every((v) => isFinite(v)) && (pubIdx < 0 || isFinite(pub)))
+      keep.push({ vals, pub });
+  });
+  const dropped = parsed.body.length - keep.length;
+  if (keep.length < 10) {
+    alert("Only " + keep.length + " complete rows. That is too few to say " +
+          "anything about structure.");
+    return;
+  }
+
+  const columns = scoreIdx.map((_, c) => keep.map((r) => r.vals[c]));
+  const names = scoreIdx.map((i) => parsed.header[i]);
+  const published = pubIdx >= 0 ? keep.map((r) => r.pub) : null;
+
+  const suspect = aggregateAmongScores(columns, names);
+  const out = Assay.analyse(columns, names, { published, seed: 0, iters: 500 });
+  render(out, names, dropped, $("#shared").checked, published !== null, suspect);
+});
+
+/* An index total is a function of its own pillars, so it correlates with
+   their mean far more tightly than the pillars correlate with each other.
+   0.95 is above anything observed between genuine pillars in the three
+   worked examples and below HDI's own 0.998 against its inputs. */
+const AGGREGATE_AT = 0.95;
+
+function aggregateAmongScores(columns, names) {
+  if (columns.length < 4) return null;
+  let worst = null;
+  for (let c = 0; c < columns.length; c++) {
+    const others = columns.filter((_, i) => i !== c);
+    const mean = columns[c].map((_, t) =>
+      others.reduce((a, col) => a + col[t], 0) / others.length);
+    const r = Math.abs(Assay.pearson(columns[c], mean));
+    if (r >= AGGREGATE_AT && (!worst || r > worst.r))
+      worst = { name: names[c], r };
+  }
+  return worst;
+}
+
+function pct(x) { return (100 * x).toFixed(1) + "%"; }
+
+function render(a, names, dropped, shared, hasPublished, suspect) {
+  const d = a.dimensions;
+  const parts = [];
+
+  if (shared) parts.push("<div class='warn'><strong>Shared construction " +
+    "declared, so the dimensional result below is not a finding.</strong> " +
+    "Sub-scores that contain each other correlate by arithmetic. Everything " +
+    "here describes the data faithfully; none of it is evidence about the " +
+    "world until the overlapping columns are separated.</div>");
+
+  if (suspect && !shared) parts.push("<div class='warn'><strong>“" +
+    esc(suspect.name) + "” correlates " + suspect.r.toFixed(3) + " with the " +
+    "average of the other sub-scores.</strong> Two things look like that, and " +
+    "they need opposite corrections. It may be the index's own published " +
+    "<em>total</em> left marked as a pillar — mark it as the published score " +
+    "and run again. Or it may genuinely share construction with the others, " +
+    "the way V-Dem's liberal index contains its electoral index — tick the " +
+    "shared-construction box, which stops the collapse below being read as a " +
+    "finding. Analysing a total as a pillar makes an index appear to measure " +
+    "fewer things than it does.</div>");
+
+  parts.push("<h2>3 · What the structure says</h2>");
+  parts.push("<p class='muted'>" + a.n + " complete rows, " + a.k +
+    " sub-scores" + (dropped ? ", " + dropped + " rows dropped for missing values" : "") +
+    ".</p>");
+
+  /* Q1 dimensions */
+  const range = d.low === d.high ? String(d.low) : d.low + "–" + d.high;
+  parts.push("<h3>How many dimensions are really there?</h3>");
+  parts.push("<p class='verdict'>" + range + " of " + a.k + "</p>");
+  parts.push("<p class='muted'>Horn's parallel analysis retains " + d.parallel +
+    ". " + (d.mapUsable
+      ? "Velicer's MAP retains " + d.map + "."
+      : "Velicer's MAP is not reported: it is unreliable below " +
+        Assay.MIN_COLUMNS_FOR_MAP + " columns, because there is almost " +
+        "nothing left to partial out.") + "</p>");
+  if (!shared && d.high === 1 && a.k >= 3)
+    parts.push("<div class='warn'>One component. The named pillars are not " +
+      "separable in this data — whatever they are called, the entities are " +
+      "ordered on a single underlying quantity.</div>");
+
+  /* Q2 first component share */
+  parts.push("<h3>How much is one component?</h3>");
+  parts.push("<p class='verdict'>" + pct(a.pc1Share) +
+    " of variance on the first component</p>");
+  parts.push("<table><thead><tr><th>Component</th><th class='num'>Variance</th>" +
+    "<th class='num'>Cumulative</th></tr></thead><tbody>");
+  let cum = 0;
+  a.varianceExplained.forEach((v, i) => {
+    cum += v;
+    if (i < 6) parts.push("<tr><td>" + (i + 1) + "</td><td class='num'>" +
+      pct(v) + "</td><td class='num'>" + pct(cum) + "</td></tr>");
+  });
+  parts.push("</tbody></table>");
+
+  /* Q3 redundancy */
+  parts.push("<h3>Which pillars are the same pillar?</h3>");
+  if (!a.redundant.length) {
+    parts.push("<p>No pair correlates at 0.90 or above.</p>");
+  } else {
+    parts.push("<p class='verdict'>" + a.redundant.length +
+      " pair" + (a.redundant.length === 1 ? "" : "s") + " at |r| ≥ 0.90</p>");
+    parts.push("<table><thead><tr><th>Pair</th><th class='num'>r</th></tr></thead><tbody>");
+    a.redundant.slice(0, 12).forEach((p) => {
+      parts.push("<tr><td>" + esc(p.a) + " &amp; " + esc(p.b) +
+        "</td><td class='num'>" + p.r.toFixed(3) + "</td></tr>");
+    });
+    parts.push("</tbody></table>");
+    if (!shared) parts.push("<p class='muted'>A pair this close is one thing " +
+      "counted twice, and so weighted twice, unless the index says why not.</p>");
+  }
+
+  /* Q4 weights */
+  parts.push("<h3>Do the weights beat one unweighted component?</h3>");
+  if (!hasPublished) {
+    parts.push("<p class='muted'>No published-score column was marked, so this " +
+      "question was not asked.</p>");
+  } else {
+    const r = a.weightsVsPc1;
+    parts.push("<p class='verdict'>r(published, PC1) = " + r.toFixed(4) + "</p>");
+    parts.push(Math.abs(r) >= 0.99
+      ? "<div class='warn'>The published score is all but identical to an " +
+        "unweighted first component. Whatever the weighting scheme was " +
+        "deliberating about, it did not change the ordering.</div>"
+      : "<p class='muted'>The weighting moves the result away from a plain " +
+        "first component by a visible amount.</p>");
+  }
+
+  /* The trap */
+  parts.push("<h3>Before you use any of this</h3>");
+  parts.push("<div class='warn'><strong>A ranking that barely moves under " +
+    "reweighting looks robust, and has a second explanation that looks " +
+    "identical: the sub-scores are so correlated that no weighting could have " +
+    "separated them.</strong> Stability is evidence of robustness only when " +
+    "the pillars were distinguishable in the first place. Read the " +
+    "dimensional result above before reading stability as strength.</div>");
+
+  $("#results").innerHTML = parts.join("\n");
+  $("#results").classList.remove("hidden");
+  $("#results").scrollIntoView({ behavior: "smooth" });
+}
+
+function esc(s) {
+  return String(s).replace(/[<>&"]/g, (c) =>
+    ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;" }[c]));
+}
+
+/* ---------- worked examples ---------- */
+document.querySelectorAll("[data-example]").forEach((b) => {
+  b.addEventListener("click", async () => {
+    const name = { hdi: "hdi-2022", vdem: "vdem-2024", epi: "epi-2024" }[b.dataset.example];
+    b.disabled = true;
+    try {
+      const res = await fetch("examples/" + name + ".csv");
+      if (!res.ok) throw new Error(res.status);
+      $("#csv").value = await res.text();
+      $("#parse").click();
+      if (b.dataset.example === "vdem") {
+        $("#shared").checked = true;      // four of five contain the fifth
+      }
+    } catch (e) {
+      alert("Could not load the example (" + e.message + "). Paste a CSV instead.");
+    } finally { b.disabled = false; }
+  });
+});
+</script>
+</body>
+</html>
