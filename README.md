@@ -1,6 +1,6 @@
 # Assay
 
-**Status: production.** 66 tests; the dimensionality path is validated against a published HDI result, the rank-envelope path has no external anchor. See [PRODUCTION.md](../PRODUCTION.md).
+**Status: production.** 73 tests (66 Python, 7 driving the browser page); the dimensionality path is validated against a published HDI result, the rank-envelope path has no external anchor. See [PRODUCTION.md](../PRODUCTION.md).
 
 Tests whether a published index measures what it says it measures. Named for
 the metallurgical test that tells you what an ore is actually made of, rather
@@ -322,7 +322,7 @@ assay/      load.py  structure.py  aggregation.py  report.py
             drift.py  driftreport.py
 tools/      fetch_vdem.py  fetch_undp.py  fetch_epi.py
             build_hdi_panel.py  build_epi_panel.py
-tests/      66 tests
+tests/      73 tests (7 of them drive docs/audit.html in a browser)
 ax.py       the CLI
 ```
 
