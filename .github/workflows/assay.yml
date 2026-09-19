@@ -1,0 +1,39 @@
+# Runs the test suite. Nothing here builds a report, fetches data or deploys
+# anything - no network call, no secret, and nothing written back to the repo.
+#
+# Read before making this repository public: a workflow can publish something
+# other than the page you meant. This one uploads nothing.
+
+name: tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install numpy scipy pandas
+
+      # The browser tests skip themselves when playwright or a chromium is
+      # missing, so without this step the suite passes while proving less than
+      # it looks like it proved. Installed on purpose, not for convenience.
+      - name: Install playwright chromium
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Test
+        run: python -m unittest discover -s tests
