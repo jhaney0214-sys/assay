@@ -1,18 +1,30 @@
-# Runs the test suite. Nothing here builds a report, fetches data or deploys
-# anything - no network call, no secret, and nothing written back to the repo.
+# Runs the part of the test suite a runner can honestly run.
 #
-# Read before making this repository public: a workflow can publish something
-# other than the page you meant. This one uploads nothing.
+# Assay imports Sextant's factor machinery from a sibling directory on purpose
+# (assay/structure.py says why: a second copy drifts from the first the moment
+# either is corrected). A GitHub runner has no sibling, so test_structure,
+# test_aggregation and test_report cannot import and do not run here. That was
+# found on this workflow's first run, which failed.
+#
+# They are not skipped quietly. They run two other ways: Sextant's own CI runs
+# all 342 of its tests on every push, which is where that machinery lives, and
+# the full 73 run locally where the two projects are siblings - the run that
+# matters before a publish. Checking Sextant out here would need a token with
+# read access to a private repository, stored on a public one; that was
+# considered on 2026-09-19 and declined as a poor trade for a second run of
+# code Sextant already tests.
+#
+# What runs here: 32 tests - test_drift and test_browser_page, the latter
+# against a real chromium, because its seven cover the page this repository
+# actually serves and they skip themselves when chromium is missing.
+#
+# Nothing here fetches data, uploads an artifact, or writes back to the repo.
 
 name: tests
 
-# PAUSED 2026-09-19, on its first run. Assay imports Sextant's factor
-# machinery from a sibling directory on purpose (assay/structure.py says why:
-# a second copy drifts from the first). A GitHub runner has no sibling, so
-# three test modules fail to import and 38 of 73 tests never run. Until that
-# is settled, this runs only when somebody asks for it, rather than failing on
-# every push or passing while testing half of what it claims.
 on:
+  push:
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -39,5 +51,12 @@ jobs:
           pip install playwright
           python -m playwright install --with-deps chromium
 
-      - name: Test
-        run: python -m unittest discover -s tests
+      - name: Test what does not need the sibling
+        run: python -m unittest tests.test_drift tests.test_browser_page -v
+
+      - name: Say what did not run
+        run: |
+          echo "test_structure, test_aggregation and test_report were NOT run."
+          echo "They import Sextant's factor machinery from a sibling checkout"
+          echo "that does not exist on a runner. Sextant's own CI covers it."
+
