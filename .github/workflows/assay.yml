@@ -6,9 +6,13 @@
 
 name: tests
 
+# PAUSED 2026-09-19, on its first run. Assay imports Sextant's factor
+# machinery from a sibling directory on purpose (assay/structure.py says why:
+# a second copy drifts from the first). A GitHub runner has no sibling, so
+# three test modules fail to import and 38 of 73 tests never run. Until that
+# is settled, this runs only when somebody asks for it, rather than failing on
+# every push or passing while testing half of what it claims.
 on:
-  push:
-  pull_request:
   workflow_dispatch:
 
 permissions:
