@@ -331,6 +331,15 @@ the same parallel analysis, MAP, principal axis and promax, already tested there
 against synthetic structures with known answers. A second copy would drift from
 the first the moment either was fixed. Keep the two projects as siblings.
 
+**What that costs, found 2026-09-19 by CI's first run.** A clone of this
+repository alone runs 32 of its 73 tests: `test_structure`, `test_aggregation`
+and `test_report` import Sextant through `structure.py` and cannot load without
+a sibling checkout. The suite passes in a working directory that has one and
+fails in a fresh clone, so **a clone, not the working directory, is the honest
+check before trusting a green run.** `.github/workflows/assay.yml` runs the 32
+and prints the three it did not run; the machinery those three exercise is
+Sextant's own, and Sextant's CI runs all 342 of its tests on every push.
+
 ## Dependencies
 
 numpy, scipy, pandas (via Sextant). All free. No API keys, no registration, no
