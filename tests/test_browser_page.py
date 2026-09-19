@@ -28,9 +28,17 @@ CHROMIUM_CANDIDATES = [
 ]
 
 
+@functools.cache
 def _chromium():
     for path in CHROMIUM_CANDIDATES:
         if pathlib.Path(path).exists():
+            return path
+    # Otherwise the one `playwright install chromium` put in its own cache,
+    # which is where it lives on any machine that is not the container.
+    if HAVE_PLAYWRIGHT:
+        with sync_playwright() as pw:
+            path = pw.chromium.executable_path
+        if path and pathlib.Path(path).exists():
             return path
     return None
 
