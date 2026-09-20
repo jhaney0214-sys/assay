@@ -1,0 +1,101 @@
+{
+  "_": [
+    "Every hard number this repository publishes about its own HDI result,",
+    "with what it was computed from and when it was last checked. Verified by",
+    "tools/claims.py; see tests/test_claims_ledger.py for what runs where.",
+    "",
+    "`raw` is exactly what the engine returns, never a display-scaled copy of",
+    "it, so tests/test_claims_ledger.py can compare the two without either",
+    "side knowing how the other is written. `scale` and `format` turn it into",
+    "the published string.",
+    "",
+    "Nothing here asserts a number is CORRECT. `status` is this project's own",
+    "claim about how it knows the number and `anchor` is where a reader goes",
+    "to disagree; the checks keep those consistent everywhere they appear."
+  ],
+  "claims": [
+    {
+      "id": "hdi_pc1_share",
+      "claim": "Share of HDI 2022 variance on the first principal component",
+      "value": "84.1%",
+      "raw": 0.8409571221535493,
+      "scale": 100,
+      "format": "%.1f%%",
+      "status": "measured",
+      "anchor": "UNDP HDI 2022, 193 complete rows; structure.analyse(). Externally anchored against the 78-90% the PCA literature reports for 1975-2005, which is the only external check this project has.",
+      "checked_on": "2026-09-20",
+      "recheck_by": "2027-03-31",
+      "appears_in": [
+        "README.md",
+        "docs/index.html",
+        "tests/test_browser_page.py",
+        "tests/test_claims.py"
+      ],
+      "near": [
+        "84.1%"
+      ],
+      "notes": "The headline result. Re-check horizon is the next UNDP HDI release, which is annual."
+    },
+    {
+      "id": "hdi_r_with_pc1",
+      "claim": "Correlation between the published HDI score and its first component",
+      "value": "0.9976",
+      "raw": 0.9975743676413303,
+      "format": "%.4f",
+      "status": "measured",
+      "anchor": "UNDP HDI 2022; aggregation.weights_are_decorative(). Not independent evidence - once four indicators are collinear any sensible weighting tracks PC1, which the README says in the same breath.",
+      "checked_on": "2026-09-20",
+      "recheck_by": "2027-03-31",
+      "appears_in": [
+        "README.md",
+        "docs/index.html",
+        "tests/test_browser_page.py",
+        "tests/test_claims.py"
+      ],
+      "near": [
+        "0.9976"
+      ]
+    },
+    {
+      "id": "hdi_countries",
+      "claim": "Complete HDI 2022 rows the analysis actually ran on",
+      "value": "193 countries",
+      "raw": 193,
+      "format": "%d countries",
+      "status": "measured",
+      "anchor": "load.from_spec('data/hdi-2022.json'); 194 rows in, one incomplete.",
+      "checked_on": "2026-09-20",
+      "recheck_by": "2027-03-31",
+      "appears_in": [
+        "README.md",
+        "docs/index.html"
+      ],
+      "near": [
+        "193 countries"
+      ],
+      "allow": {
+        "105 countries": "EPI's own denominator, after listwise deletion from 180. docs/index.html states both indices' figures in one methods note, so a second country count sitting beside this one is correct rather than a half-finished edit."
+      },
+      "notes": "The denominator. A share of variance means something different over 193 rows than over 40, and this workstation has recorded five instruments that published a figure without one."
+    },
+    {
+      "id": "hdi_median_rank_move",
+      "claim": "Places the median country moves under plausible reweighting",
+      "value": "41 places of 193",
+      "raw": 41.0,
+      "format": "%d places of 193",
+      "status": "modeled",
+      "anchor": "aggregation.rank_envelope() over its default draws, seed 0. Modeled rather than measured: it is a median over simulated reweightings, not an observed quantity, and it moves if the draw count or the concentration changes.",
+      "checked_on": "2026-09-20",
+      "recheck_by": "2027-03-31",
+      "appears_in": [
+        "README.md",
+        "docs/index.html"
+      ],
+      "near": [
+        "under reweighting"
+      ],
+      "notes": "Hard-wrapped across a line break in README.md, which is why the checker normalises whitespace before looking."
+    }
+  ]
+}

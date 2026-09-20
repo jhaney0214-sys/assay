@@ -14,9 +14,17 @@
 # considered on 2026-09-19 and declined as a poor trade for a second run of
 # code Sextant already tests.
 #
-# What runs here: 32 tests - test_drift and test_browser_page, the latter
-# against a real chromium, because its seven cover the page this repository
-# actually serves and they skip themselves when chromium is missing.
+# What runs here: test_drift and test_browser_page, the latter against a real
+# chromium, because its seven cover the page this repository actually serves
+# and they skip themselves when chromium is missing.
+#
+# Since 2026-09-20, test_claims_ledger as well. It checks claims.json against
+# README.md, docs/index.html and tests/test_browser_page.py, and needs no
+# import from this project at all - comparing a JSON file against prose is
+# text against text. That is the point of the ledger being a file: it moves
+# two of the three links in the guard onto a runner that cannot import the
+# engine. Its one engine-facing class skips itself here, loudly, for the same
+# sibling reason as the four below.
 #
 # Nothing here fetches data, uploads an artifact, or writes back to the repo.
 
@@ -52,8 +60,15 @@ jobs:
           python -m playwright install --with-deps chromium
 
       - name: Test what does not need the sibling
-        run: python -m unittest tests.test_drift tests.test_browser_page -v
+        run: |
+          python -m unittest tests.test_drift tests.test_browser_page \
+                             tests.test_claims_ledger -v
 
+      # A skip prints as a dot. The one class in test_claims_ledger that needs
+      # the engine skips itself here, and a suite that goes green having never
+      # run its only engine check is the exact shape of failure this project
+      # has already been bitten by - seven browser tests that skipped
+      # everywhere and looked like they passed. So it is named, not counted.
       - name: Say what did not run
         run: |
           echo "test_structure, test_aggregation, test_report and test_claims"
@@ -61,7 +76,13 @@ jobs:
           echo "sibling checkout that does not exist on a runner. Sextant's"
           echo "own CI covers that machinery."
           echo ""
-          echo "test_claims is the one that pins 84.1% and 0.9976 to the"
-          echo "engine. The browser half of that guard DID run above; the"
-          echo "engine half runs only where Sextant is a sibling."
+          echo "test_claims_ledger DID run, except its class"
+          echo "TheLedgerAgreesWithTheEngine, which skipped for the same"
+          echo "sibling reason. So what ran here is: claims.json against"
+          echo "README.md, docs/index.html and tests/test_browser_page.py,"
+          echo "plus claims.json against test_claims.py's own constants."
+          echo "What did NOT run here is claims.json against the engine."
+          echo ""
+          echo "The chain is engine -> claims.json -> prose. Only the first"
+          echo "link is missing on a runner; before 2026-09-20 two were."
 

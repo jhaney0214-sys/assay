@@ -1,6 +1,6 @@
 # Assay
 
-**Status: production.** 83 tests (76 Python, 7 driving the browser page); the dimensionality path is validated against a published HDI result, the rank-envelope path has no external anchor. See [PRODUCTION.md](../PRODUCTION.md).
+**Status: production.** 100 tests (93 Python, 7 driving the browser page); the dimensionality path is validated against a published HDI result, the rank-envelope path has no external anchor. Every hard number below is recorded in [`claims.json`](claims.json) with how it is known and when it was last checked. See [PRODUCTION.md](../PRODUCTION.md).
 
 Tests whether a published index measures what it says it measures. Named for
 the metallurgical test that tells you what an ore is actually made of, rather
@@ -278,12 +278,21 @@ A spec is a small JSON file recording what the index claims about itself:
 Everything is compared against that, so the audit tests the index against its
 own account of itself rather than against an assumption of ours.
 
-Tests are `unittest`; there is no pytest here and `unittest discover` fails
-because `tests/` has no `__init__.py`:
+Tests are `unittest`; there is no pytest here.
 
 ```bash
-for t in tests/test_*.py; do PYTHONPATH=. python "$t"; done
+PYTHONPATH=. python -m unittest discover -s tests
 ```
+
+*(Corrected 2026-09-20. This block used to say `unittest discover` fails
+because `tests/` has no `__init__.py`, and recommended
+`for t in tests/test_*.py; do PYTHONPATH=. python "$t"; done` instead. Both
+halves were wrong to leave standing. Bare `discover` does not fail — it reports
+`NO TESTS RAN`, and `discover -s tests` runs all 100. The per-file loop is the
+idiom `METHOD.md` records as the carrier of a real miscount: a file whose
+`unittest.main()` guard sits above some of its classes runs only the classes
+defined before it and still prints a green `OK`. `PRODUCTION.md`'s own re-check
+block was moved off that loop for this reason and this file was not.)*
 
 ## What is not established
 
@@ -322,7 +331,8 @@ assay/      load.py  structure.py  aggregation.py  report.py
             drift.py  driftreport.py
 tools/      fetch_vdem.py  fetch_undp.py  fetch_epi.py
             build_hdi_panel.py  build_epi_panel.py
-tests/      83 tests (7 of them drive docs/audit.html in a browser)
+tests/      100 tests (7 of them drive docs/audit.html in a browser)
+claims.json every hard number this README publishes, graded and dated
 ax.py       the CLI
 ```
 
@@ -332,20 +342,61 @@ against synthetic structures with known answers. A second copy would drift from
 the first the moment either was fixed. Keep the two projects as siblings.
 
 **What that costs, found 2026-09-19 by CI's first run.** A clone of this
-repository alone runs 32 of its 83 tests: `test_structure`, `test_aggregation`,
+repository alone runs 46 of its 100 tests: `test_structure`, `test_aggregation`,
 `test_report` and `test_claims` import Sextant through `structure.py` and cannot
 load without a sibling checkout. The suite passes in a working directory that has one and
 fails in a fresh clone, so **a clone, not the working directory, is the honest
-check before trusting a green run.** `.github/workflows/assay.yml` runs the 32
-and prints the four it did not run; the machinery those four exercise is
+check before trusting a green run.** `.github/workflows/assay.yml` runs the 46
+and prints what it did not run; the machinery those four exercise is
 Sextant's own, and Sextant's CI runs all 342 of its tests on every push.
 
-`test_claims` is the newest of the four and the one worth naming here: it
-recomputes the `84.1%` and `0.9976` this README leans on and fails if the
-engine, the prose or `test_browser_page.py` stops agreeing with the other two.
-Until 2026-09-19 those numbers were asserted against the rendered page and
-written in prose, but pinned to the engine nowhere, so an engine that moved
-would have left both repositories green and this README wrong.
+`test_claims` recomputes the `84.1%` and `0.9976` this README leans on and
+fails if the engine, the prose or `test_browser_page.py` stops agreeing with
+the other two. Until 2026-09-19 those numbers were asserted against the
+rendered page and written in prose, but pinned to the engine nowhere, so an
+engine that moved would have left both repositories green and this README
+wrong.
+
+### `claims.json`, and why the guard is a file
+
+`test_claims` closed the hole and could not run on a runner, for the sibling
+reason above. So **the numbers were pinned only where the pin could not be
+checked automatically.**
+
+`claims.json` splits that chain in two:
+
+```
+engine --(test_claims_ledger, needs the sibling)--> claims.json
+       --(test_claims_ledger, needs nothing)--> README.md, docs/index.html
+```
+
+Comparing a JSON file against prose imports nothing, so **two of the three
+links now run on the runner**, including `docs/index.html` — checked in CI
+without a browser. Only the engine link still needs a sibling, and the workflow
+prints that it skipped rather than letting a green run imply otherwise.
+
+It also does three things `test_claims` does not:
+
+- **catches a wrong number sitting beside a right one.** `assertIn` asks
+  whether the published share is present. It says nothing about a second,
+  different share also being present three paragraphs down, which is what
+  editing one sentence and not the next leaves behind.
+- **finds a file nobody pinned.** A new page quoting the headline share is
+  guarded by nothing, and checking the files that are listed can never find it.
+- **grades the numbers.** `84.1%`, `0.9976` and `193 countries` are `measured`.
+  The rank envelope's `41 places of 193` is `modeled` — a median over simulated
+  reweightings, not an observed quantity — and saying so in a machine-readable
+  file is the point, not a formality.
+
+```bash
+python tools/claims.py verify . --scan "**/*.md" "**/*.html"
+python tools/claims.py render . --format md
+```
+
+`tools/claims.py` is vendored from `AI Workstation/tools/`, which holds the
+copy with the tests. What it does **not** do is discover claims — they are
+declared — and its presence check is file-level, so it sees a file losing a
+number and not a single sentence being reworded around one.
 
 ## Dependencies
 
