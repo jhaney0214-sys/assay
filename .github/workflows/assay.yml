@@ -56,7 +56,12 @@ jobs:
 
       - name: Say what did not run
         run: |
-          echo "test_structure, test_aggregation and test_report were NOT run."
-          echo "They import Sextant's factor machinery from a sibling checkout"
-          echo "that does not exist on a runner. Sextant's own CI covers it."
+          echo "test_structure, test_aggregation, test_report and test_claims"
+          echo "were NOT run. They import Sextant's factor machinery from a"
+          echo "sibling checkout that does not exist on a runner. Sextant's"
+          echo "own CI covers that machinery."
+          echo ""
+          echo "test_claims is the one that pins 84.1% and 0.9976 to the"
+          echo "engine. The browser half of that guard DID run above; the"
+          echo "engine half runs only where Sextant is a sibling."
 
