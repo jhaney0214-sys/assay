@@ -43,6 +43,10 @@ repository on a public one was declined on 2026-09-19. Splitting the chain at
                   parse, ids that are unique, a horizon after its own check date
   rounding        `format % raw` still renders `value` — a rounding change is a
                   change to a published claim, not a tolerance
+  evidence        for a number that cannot be recomputed, the line in a
+                  committed transcript it was read off is still there. This is
+                  provenance, not verification — it proves the number was
+                  produced, not that it is right
   presence        every path in `appears_in` exists and contains `value`
   contradiction   a DIFFERENT number of the same shape sitting next to the
                   claim, which is what a half-finished edit leaves behind.
@@ -98,7 +102,8 @@ STATUSES = ("measured", "estimated", "modeled", "unconfirmed")
 
 REQUIRED = ("id", "claim", "value", "status", "anchor", "checked_on")
 OPTIONAL = ("recheck_by", "appears_in", "raw", "format", "scale", "near",
-            "window", "allow", "durable", "notes", "tolerance")
+            "window", "allow", "durable", "notes", "tolerance", "evidence",
+            "also_written")
 
 ID_PATTERN = re.compile(r"^[a-z0-9][a-z0-9_]*$")
 NUMBER = re.compile(r"\d+(?:\.\d+)?")
@@ -166,6 +171,51 @@ def load(path):
     return data
 
 
+def load_meta(path):
+    """The ledger's top-level keys other than `claims`.
+
+    Only `exempt` today: files the coverage sweep must not report, each with a
+    reason. Forced by Outcrop's `ROADMAP.md`, which is a research log whose
+    purpose is recording the numbers the project got wrong on the way, and
+    which therefore contains dozens of superseded figures shaped exactly
+    like the current claim. Scanning it produces a flood; not scanning it
+    silently produces nothing. Neither is a decision anybody can disagree with,
+    so it is written down instead, the way `project_rows.py` requires an
+    exemption to carry a reason rather than be a quiet skip.
+    """
+    path = pathlib.Path(path)
+    if not path.exists():
+        raise LedgerError("no ledger at %s" % path)
+    with io.open(str(path), encoding="utf-8") as handle:
+        data = json.load(handle)
+    if not isinstance(data, dict):
+        return {}
+    return {key: value for key, value in data.items() if key != "claims"}
+
+
+def check_exemptions(meta, root):
+    """Every exempt path exists and says why it is exempt."""
+    findings = []
+    exempt = meta.get("exempt")
+    if exempt is None:
+        return findings
+    if not isinstance(exempt, dict):
+        return [Finding("exempt", "-",
+                        "`exempt` maps each path to WHY the sweep skips it; a "
+                        "bare list is a skip nobody can disagree with")]
+    root = pathlib.Path(root)
+    for relative, reason in sorted(exempt.items()):
+        if not str(reason).strip():
+            findings.append(Finding(
+                "exempt", "-", "exempts %r with no reason" % relative))
+        if not (root / relative).exists():
+            findings.append(Finding(
+                "exempt", "-",
+                "exempts a path that does not exist; a stale exemption is a "
+                "hole nobody is looking through", path=relative))
+    return findings
+
+
 def shape_of(value):
     """A regex matching any number written the same way `value` is.
 
@@ -228,6 +278,26 @@ def excerpt(text, start, end, margin=60):
     right = min(len(text), end + margin)
     return "%s%s%s" % ("..." if left else "", text[left:right],
                        "..." if right < len(text) else "")
+
+
+def written_forms(claim):
+    """Every rendering that counts as this claim being stated.
+
+    One number, written two ways. Forced by a project whose README states a
+    ratio in plain ASCII while its designed findings page uses a typographic
+    multiplication sign. Neither is wrong and neither is a second
+    claim, so the ledger holds one entry with both renderings rather than two
+    entries that could drift apart — which would be this tool's own failure
+    mode, one level up.
+
+    `value` stays the canonical form: it is what `format` must produce and what
+    a report prints.
+    """
+    forms = [claim["value"]]
+    for other in claim.get("also_written") or []:
+        if other not in forms:
+            forms.append(other)
+    return forms
 
 
 def windows(text, phrases, width):
@@ -332,6 +402,27 @@ def check_schema(claims):
                 "`scale` converts `raw` into published units and there is no "
                 "`raw` to convert"))
 
+        evidence = claim.get("evidence")
+        if evidence is not None:
+            if not isinstance(evidence, dict) or not evidence.get("file") \
+                    or not evidence.get("line"):
+                findings.append(Finding(
+                    "schema", claim_id,
+                    "`evidence` needs a `file` and the `line` in it that the "
+                    "claim was read off"))
+        elif "raw" not in claim:
+            # The rule this enforces: a published number must be traceable to
+            # something other than the ledger. Either code can produce it
+            # again (`raw`), or a committed file records the run that did
+            # (`evidence`). With neither, the ledger is the number's only
+            # provenance, and a ledger that is its own evidence is a
+            # restatement rather than a check.
+            findings.append(Finding(
+                "schema", claim_id,
+                "has neither `raw` (recomputable) nor `evidence` (a line in a "
+                "committed file it was read off); this file would be the only "
+                "record that the number was ever produced"))
+
         allow = claim.get("allow")
         if allow is not None:
             if not isinstance(allow, dict):
@@ -434,7 +525,8 @@ def check_prose(claims, root):
                 "says it is written down anywhere", fatal=False))
             continue
 
-        shape = shape_of(value)
+        forms = written_forms(claim)
+        shapes = [shape_of(form) for form in forms]
         near = claim.get("near") or []
         width = claim.get("window") or DEFAULT_WINDOW
         fired = set()
@@ -446,10 +538,11 @@ def check_prose(claims, root):
                     "presence", claim_id, "file does not exist",
                     path=relative))
                 continue
-            if value not in text:
+            if not any(form in text for form in forms):
                 findings.append(Finding(
                     "presence", claim_id,
-                    "does not contain %r" % value, path=relative))
+                    "does not contain %s"
+                    % " or ".join(repr(f) for f in forms), path=relative))
                 continue
 
             if not near:
@@ -473,20 +566,31 @@ def check_prose(claims, root):
             allow = claim.get("allow") or {}
             wrong = []
             for start, end in spans:
-                for match in shape.finditer(text, start, end):
-                    found = match.group(0)
-                    if found == value:
-                        continue
-                    if found in allow:
-                        fired.add(found)
-                        continue
-                    wrong.append((found, excerpt(text, match.start(),
-                                                 match.end())))
+                for shape in shapes:
+                    for match in shape.finditer(text, start, end):
+                        found = match.group(0)
+                        if found in forms:
+                            continue
+                        if found in allow:
+                            fired.add(found)
+                            continue
+                        wrong.append((found, excerpt(text, match.start(),
+                                                     match.end())))
             for found, context in sorted(set(wrong)):
                 findings.append(Finding(
                     "contradiction", claim_id,
                     "the ledger publishes %r and %r sits beside it: %s"
                     % (value, found, context), path=relative))
+            # `near` is matched case-insensitively and the forms are not, so a
+            # window can open on a phrase whose number is written a way this
+            # claim does not declare. Saying nothing would be a pass.
+            if not any(form in text[s:e] for s, e in spans for form in forms):
+                findings.append(Finding(
+                    "contradiction", claim_id,
+                    "the `near` phrases open a window here that contains none "
+                    "of %s, so the scan looked somewhere the claim is not"
+                    % " or ".join(repr(f) for f in forms),
+                    path=relative, fatal=False))
 
         for excused in sorted(set(claim.get("allow") or {}) - fired):
             findings.append(Finding(
@@ -497,7 +601,48 @@ def check_prose(claims, root):
     return findings
 
 
-def check_coverage(claims, root, patterns):
+def check_evidence(claims, root):
+    """The line a claim was read off is still in the file it was read from.
+
+    Not every number a project publishes can be recomputed on demand. Some come
+    from a one-shot analysis over a warm cache that is too large to commit, and
+    what the repository keeps is the run's transcript. That is a weaker anchor
+    than code — it proves the number was produced, not that it is right — and
+    weaker is not the same as absent. A transcript in version control is
+    checkable, deterministic, and needs no network.
+
+    So this is deliberately provenance and not verification, and the difference
+    is written into the finding rather than left for a reader to assume.
+    """
+    root = pathlib.Path(root)
+    findings = []
+    for claim in claims:
+        evidence = claim.get("evidence")
+        if not isinstance(evidence, dict):
+            continue
+        claim_id = claim.get("id", "?")
+        relative = evidence.get("file")
+        wanted = evidence.get("line")
+        if not relative or not wanted:
+            continue
+        target = root / relative
+        if not target.exists():
+            findings.append(Finding(
+                "evidence", claim_id,
+                "the file this number was read off is gone", path=relative))
+            continue
+        with io.open(str(target), encoding="utf-8",
+                     errors="replace") as handle:
+            text = normalise(handle.read())
+        if normalise(wanted) not in text:
+            findings.append(Finding(
+                "evidence", claim_id,
+                "no longer contains the line this number was read off: %r"
+                % wanted, path=relative))
+    return findings
+
+
+def check_coverage(claims, root, patterns, exempt=None):
     """Files that quote a claim and are not pinned to it.
 
     This is the direction `project_rows.py` had to add for the same reason: a
@@ -517,12 +662,13 @@ def check_coverage(claims, root, patterns):
         if not value:
             continue
         claim_id = claim.get("id", "?")
+        forms = written_forms(claim)
         pinned = set(claim.get("appears_in") or [])
         for target in sorted(set(candidates)):
             if not target.is_file():
                 continue
             relative = target.relative_to(root).as_posix()
-            if relative in pinned:
+            if relative in pinned or relative in (exempt or {}):
                 continue
             try:
                 with io.open(str(target), encoding="utf-8",
@@ -530,23 +676,29 @@ def check_coverage(claims, root, patterns):
                     text = normalise(handle.read())
             except OSError:
                 continue
-            if value in text:
+            hit = next((form for form in forms if form in text), None)
+            if hit:
                 findings.append(Finding(
                     "coverage", claim_id,
                     "quotes %r and is not in `appears_in`, so nothing checks "
-                    "it" % value, path=relative))
+                    "it" % hit, path=relative))
     return findings
 
 
 def verify(root, ledger_path=None, scan=None):
     """Every check, against one project directory. Returns a list of Findings."""
     root = pathlib.Path(root)
-    claims = load(ledger_path or root / "claims.json")
+    path = ledger_path or root / "claims.json"
+    claims = load(path)
+    meta = load_meta(path)
     findings = check_schema(claims)
+    findings.extend(check_exemptions(meta, root))
     findings.extend(check_rounding(claims))
+    findings.extend(check_evidence(claims, root))
     findings.extend(check_prose(claims, root))
     if scan:
-        findings.extend(check_coverage(claims, root, scan))
+        findings.extend(check_coverage(claims, root, scan,
+                                       meta.get("exempt")))
     return claims, findings
 
 
@@ -701,8 +853,14 @@ def main(argv=None):
         if not args.scan:
             print("note  coverage       NOT CHECKED: pass --scan to sweep for "
                   "files that quote a claim and are not pinned to it")
-        print("%d claims, %d failures, %d notes"
-              % (len(claims), len(fatal), len(notes)))
+        # How a number is anchored is worth printing every run. A ledger that
+        # slid from recomputable to transcript-only would otherwise look
+        # identical from here, and that slide is a real weakening.
+        recomputable = len([c for c in claims if "raw" in c])
+        traced = len([c for c in claims if c.get("evidence")])
+        print("%d claims: %d recomputable, %d anchored to a transcript"
+              % (len(claims), recomputable, traced))
+        print("%d failures, %d notes" % (len(fatal), len(notes)))
         return 1 if fatal else 0
 
     if args.command == "stale":
