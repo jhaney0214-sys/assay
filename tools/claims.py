@@ -54,11 +54,52 @@ repository on a public one was declined on 2026-09-19. Splitting the chain at
                   than passing silently
   coverage        (with --scan) a file that quotes `value` and is not listed in
                   `appears_in` — the occurrence nobody remembered to pin
+  derived         for a claim with `derive`, the number is read out of the
+                  project's own files - a constant, or a count of matches -
+                  and must still render as `value`. See below.
 
 The contradiction scan is the half that a bare `assertIn(value, text)` cannot
 do. `assertIn` asks whether the right number is present; it says nothing about a
 wrong one being present too, and "12.5% here, 12.4% three paragraphs down" is
 exactly what a partial edit produces.
+
+## `derive` - the first link, for numbers that are counts
+
+`raw` closes the chain only if a project writes a test comparing it against the
+engine, and for one kind of number nobody ever does: counts of the project
+itself. "523 checks", "363 tests", "19 obstacles a side". No engine returns
+them, so no test recomputes them, so the ledger would hold a hand-copied figure
+- the same restatement it exists to replace. Every one of the stale counts
+corrected across this workstation in one week (477, 506, 518, 66 for 73, 5 for
+16) was that kind of number.
+
+A count usually *is* written in the source, though, so it can be read rather
+than recomputed:
+
+    "derive": {"files": ["tests/AutoTest.gd"],
+               "capture": "const EXPECTED_CHECKS := (\\d+)"}
+    "derive": {"files": ["tests/test_*.py"], "tests": "python"}
+    "derive": {"files": ["scripts/Maps.gd"], "count": "^\\t\\t\\[-?\\d"}
+
+`capture` takes the one group of a regex that must match exactly once across
+the files - twice is ambiguous, and it fails rather than picking one. `count`
+counts matches, line-anchored. `tests: "python"` counts test methods on classes
+by parsing, not by grep, because a test file that embeds a test file as a
+fixture string (`test_mutate.py` does) counts two tests that do not exist.
+Measured against `unittest discover` in six repositories before it was trusted.
+
+A derived claim takes `format` and no `raw`: the source is the raw number, and
+a second copy of it in the ledger is exactly what drifts. A glob that matches
+nothing is a failure, never a zero - a test directory that moved reads as "0
+tests", which renders, which is wrong.
+
+`project` reads another repository's files: `"project": "Sextant"` is looked
+for inside this root and beside it, case-insensitively, because the workstation
+nests projects on one machine and clones them side by side on another. That is
+the gap PRODUCTION.md recorded on 2026-09-18 - it quotes other repositories'
+figures, and a check within one document cannot see them move. Where the
+project is not checked out (CI, which has none of them) the claim says **NOT
+CHECKED** instead of passing, and says it every run.
 
 ## What it does not do, on purpose
 
@@ -86,6 +127,7 @@ it rather than hand-patching both.
 """
 
 import argparse
+import ast
 import datetime
 import io
 import json
@@ -103,7 +145,7 @@ STATUSES = ("measured", "estimated", "modeled", "unconfirmed")
 REQUIRED = ("id", "claim", "value", "status", "anchor", "checked_on")
 OPTIONAL = ("recheck_by", "appears_in", "raw", "format", "scale", "near",
             "window", "allow", "durable", "notes", "tolerance", "evidence",
-            "also_written")
+            "also_written", "derive")
 
 ID_PATTERN = re.compile(r"^[a-z0-9][a-z0-9_]*$")
 NUMBER = re.compile(r"\d+(?:\.\d+)?")
@@ -390,7 +432,10 @@ def check_schema(claims):
                 "no recheck_by and no `durable` reason; a claim with neither "
                 "is a claim nobody has decided how long to trust"))
 
-        if ("raw" in claim) != ("format" in claim):
+        derive = claim.get("derive")
+        if derive is not None:
+            findings.extend(_check_derive_spec(claim_id, claim, derive))
+        elif ("raw" in claim) != ("format" in claim):
             findings.append(Finding(
                 "schema", claim_id,
                 "`raw` and `format` only mean anything together; one without "
@@ -410,7 +455,7 @@ def check_schema(claims):
                     "schema", claim_id,
                     "`evidence` needs a `file` and the `line` in it that the "
                     "claim was read off"))
-        elif "raw" not in claim:
+        elif "raw" not in claim and "derive" not in claim:
             # The rule this enforces: a published number must be traceable to
             # something other than the ledger. Either code can produce it
             # again (`raw`), or a committed file records the run that did
@@ -447,6 +492,176 @@ def check_schema(claims):
                 "schema", claim_id,
                 "`window` sets the width of the `near` scan, and there is no "
                 "`near` to scan", fatal=False))
+    return findings
+
+
+DERIVE_MODES = ("capture", "count", "tests")
+
+
+def _check_derive_spec(claim_id, claim, derive):
+    """A `derive` block names its files, one way of reading them, and a format."""
+    findings = []
+    if not isinstance(derive, dict):
+        return [Finding("schema", claim_id,
+                        "`derive` is an object: files, and one of %s"
+                        % ", ".join(DERIVE_MODES))]
+    files = derive.get("files")
+    if not isinstance(files, list) or not files \
+            or not all(isinstance(f, str) and f for f in files):
+        findings.append(Finding(
+            "schema", claim_id, "`derive` needs `files`, a list of globs"))
+    modes = [m for m in DERIVE_MODES if m in derive]
+    if len(modes) != 1:
+        findings.append(Finding(
+            "schema", claim_id,
+            "`derive` takes exactly one of %s, and has %s"
+            % (", ".join(DERIVE_MODES), ", ".join(modes) or "none")))
+    unknown = set(derive) - set(DERIVE_MODES) - {"files", "project"}
+    for field in sorted(unknown):
+        findings.append(Finding(
+            "schema", claim_id, "unknown `derive` field %r" % field))
+    if derive.get("tests") not in (None, "python"):
+        findings.append(Finding(
+            "schema", claim_id,
+            "`derive.tests` knows only \"python\", not %r" % derive["tests"]))
+    for mode in ("capture", "count"):
+        if mode in derive:
+            try:
+                compiled = re.compile(derive[mode])
+            except (re.error, TypeError) as exc:
+                findings.append(Finding(
+                    "schema", claim_id,
+                    "`derive.%s` is not a regex: %s" % (mode, exc)))
+                continue
+            if mode == "capture" and compiled.groups != 1:
+                findings.append(Finding(
+                    "schema", claim_id,
+                    "`derive.capture` needs exactly one group, the number"))
+    if "format" not in claim:
+        findings.append(Finding(
+            "schema", claim_id,
+            "a derived claim needs `format`, to say how the number is written"))
+    if "raw" in claim:
+        findings.append(Finding(
+            "schema", claim_id,
+            "a derived claim has no `raw`: the source is the number, and a "
+            "second copy of it here is what drifts"))
+    return findings
+
+
+def find_project(root, name):
+    """`name` inside `root` or beside it, matched case-insensitively."""
+    root = pathlib.Path(root).resolve()
+    for base in (root, root.parent):
+        exact = base / name
+        if exact.is_dir():
+            return exact
+        if base.is_dir():
+            for child in sorted(base.iterdir()):
+                if child.is_dir() and child.name.lower() == name.lower():
+                    return child
+    return None
+
+
+def count_python_tests(text):
+    """Test methods defined on classes, the way unittest's loader names them.
+
+    Parsed rather than grepped: a string holding a test file is not tests.
+    """
+    tree = ast.parse(text)
+    total = 0
+    for node in ast.walk(tree):
+        if isinstance(node, ast.ClassDef):
+            for item in node.body:
+                if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef)) \
+                        and item.name.startswith("test"):
+                    total += 1
+    return total
+
+
+class NotDerived(Exception):
+    """A number could not be read. `fatal` is False only for a project that is
+    not checked out here - a gap in what this run can see, not evidence that
+    the claim is wrong."""
+
+    def __init__(self, message, fatal=True):
+        Exception.__init__(self, message)
+        self.fatal = fatal
+
+
+def derive_number(root, derive):
+    """Read a claim's number out of files, or raise NotDerived saying why."""
+    base = pathlib.Path(root)
+    if derive.get("project"):
+        found = find_project(root, derive["project"])
+        if found is None:
+            raise NotDerived("NOT CHECKED: project %r is not checked out "
+                             "beside or inside %s"
+                             % (derive["project"], base.resolve()),
+                             fatal=False)
+        base = found
+    paths = []
+    for pattern in derive["files"]:
+        paths.extend(p for p in base.glob(pattern) if p.is_file())
+    paths = sorted(set(paths))
+    if not paths:
+        raise NotDerived("%s matches no files; a source that moved must not "
+                         "read as zero" % ", ".join(derive["files"]))
+    texts = []
+    for path in paths:
+        with io.open(str(path), encoding="utf-8", errors="replace") as handle:
+            texts.append((path, handle.read()))
+
+    if "tests" in derive:
+        total = 0
+        for path, text in texts:
+            try:
+                total += count_python_tests(text)
+            except SyntaxError as exc:
+                raise NotDerived("%s does not parse: %s" % (path.name, exc))
+        return total
+    if "count" in derive:
+        pattern = re.compile(derive["count"], re.MULTILINE)
+        return sum(len(pattern.findall(text)) for _p, text in texts)
+    pattern = re.compile(derive["capture"], re.MULTILINE)
+    hits = [m.group(1) for _p, text in texts for m in pattern.finditer(text)]
+    if len(hits) != 1:
+        raise NotDerived("`capture` must match exactly once and matched %d "
+                         "times" % len(hits))
+    for kind in (int, float):
+        try:
+            return kind(hits[0])
+        except ValueError:
+            pass
+    raise NotDerived("`capture` read %r, which is not a number" % hits[0])
+
+
+def check_derived(claims, root):
+    """The number read from the project's own files still renders as `value`."""
+    findings = []
+    for claim in claims:
+        claim_id = claim.get("id", "?")
+        derive = claim.get("derive")
+        if derive is None or _check_derive_spec(claim_id, claim, derive):
+            continue   # the schema check has already said what is wrong
+        try:
+            number = derive_number(root, derive)
+        except NotDerived as exc:
+            findings.append(Finding("derived", claim_id, str(exc),
+                                    fatal=exc.fatal))
+            continue
+        try:
+            rendered = claim["format"] % (number * claim.get("scale", 1))
+        except (TypeError, ValueError) as exc:
+            findings.append(Finding(
+                "derived", claim_id, "format %r cannot render %r: %s"
+                % (claim["format"], number, exc)))
+            continue
+        if rendered != claim["value"]:
+            findings.append(Finding(
+                "derived", claim_id,
+                "the source now says %r; the ledger publishes %r"
+                % (rendered, claim["value"])))
     return findings
 
 
@@ -695,6 +910,7 @@ def verify(root, ledger_path=None, scan=None):
     findings.extend(check_exemptions(meta, root))
     findings.extend(check_rounding(claims))
     findings.extend(check_evidence(claims, root))
+    findings.extend(check_derived(claims, root))
     findings.extend(check_prose(claims, root))
     if scan:
         findings.extend(check_coverage(claims, root, scan,
@@ -858,8 +1074,9 @@ def main(argv=None):
         # identical from here, and that slide is a real weakening.
         recomputable = len([c for c in claims if "raw" in c])
         traced = len([c for c in claims if c.get("evidence")])
-        print("%d claims: %d recomputable, %d anchored to a transcript"
-              % (len(claims), recomputable, traced))
+        derived = len([c for c in claims if c.get("derive")])
+        print("%d claims: %d recomputable, %d read from source, %d anchored "
+              "to a transcript" % (len(claims), recomputable, derived, traced))
         print("%d failures, %d notes" % (len(fatal), len(notes)))
         return 1 if fatal else 0
 
