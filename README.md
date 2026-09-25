@@ -331,6 +331,7 @@ assay/      load.py  structure.py  aggregation.py  report.py
             drift.py  driftreport.py
 tools/      fetch_vdem.py  fetch_undp.py  fetch_epi.py
             build_hdi_panel.py  build_epi_panel.py
+            conform_browser.py  claims.py
 tests/      100 tests (7 of them drive docs/audit.html in a browser)
 claims.json every hard number this README publishes, graded and dated
 ax.py       the CLI
@@ -340,6 +341,23 @@ ax.py       the CLI
 the same parallel analysis, MAP, principal axis and promax, already tested there
 against synthetic structures with known answers. A second copy would drift from
 the first the moment either was fixed. Keep the two projects as siblings.
+
+**The browser page is the exception, and it is checked instead.** `docs/audit.js`
+is a second, JavaScript implementation of the same analysis - it has to be, to
+run in a page - so it can drift from the Python one the moment either is
+corrected. `tools/conform_browser.py` runs both over the bundled HDI, V-Dem and
+EPI data and diffs them:
+
+```bash
+python tools/conform_browser.py      # needs node; exits non-zero on disagreement
+```
+
+The correlation matrix, eigenvalues, variance explained, redundant pairs,
+`r(published, PC1)` and MAP's count must agree to 1e-9. Parallel analysis can
+only agree on the **count**, because its random draws come from numpy's
+generator, which JavaScript cannot reproduce; the percentile gap is printed so a
+run drifting toward the retention boundary is visible before it flips. Run it
+after any change to `structure.py` or `docs/audit.js`.
 
 **What that costs, found 2026-09-19 by CI's first run.** A clone of this
 repository alone runs 46 of its 100 tests: `test_structure`, `test_aggregation`,
