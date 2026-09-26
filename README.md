@@ -1,6 +1,6 @@
 # Assay
 
-**Status: production.** 100 tests (93 Python, 7 driving the browser page); the dimensionality path is validated against a published HDI result, the rank-envelope path has no external anchor. Every hard number below is recorded in [`claims.json`](claims.json) with how it is known and when it was last checked. See [PRODUCTION.md](../PRODUCTION.md).
+**Status: production.** 101 tests (93 Python, 7 driving the browser page); the dimensionality path is validated against a published HDI result, the rank-envelope path has no external anchor. Every hard number below is recorded in [`claims.json`](claims.json) with how it is known and when it was last checked. See [PRODUCTION.md](../PRODUCTION.md).
 
 Tests whether a published index measures what it says it measures. Named for
 the metallurgical test that tells you what an ore is actually made of, rather
@@ -331,8 +331,8 @@ assay/      load.py  structure.py  aggregation.py  report.py
             drift.py  driftreport.py
 tools/      fetch_vdem.py  fetch_undp.py  fetch_epi.py
             build_hdi_panel.py  build_epi_panel.py
-            conform_browser.py  claims.py
-tests/      100 tests (7 of them drive docs/audit.html in a browser)
+            conform_browser.py  docclaims.py
+tests/      101 tests (7 of them drive docs/audit.html in a browser)
 claims.json every hard number this README publishes, graded and dated
 ax.py       the CLI
 ```
@@ -360,11 +360,11 @@ run drifting toward the retention boundary is visible before it flips. Run it
 after any change to `structure.py` or `docs/audit.js`.
 
 **What that costs, found 2026-09-19 by CI's first run.** A clone of this
-repository alone runs 46 of its 100 tests: `test_structure`, `test_aggregation`,
+repository alone runs 50 of its 101 tests: `test_structure`, `test_aggregation`,
 `test_report` and `test_claims` import Sextant through `structure.py` and cannot
 load without a sibling checkout. The suite passes in a working directory that has one and
 fails in a fresh clone, so **a clone, not the working directory, is the honest
-check before trusting a green run.** `.github/workflows/assay.yml` runs the 46
+check before trusting a green run.** `.github/workflows/assay.yml` runs the 50
 and prints what it did not run; the machinery those four exercise is
 Sextant's own, and Sextant's CI runs all 342 of its tests on every push.
 
@@ -407,13 +407,15 @@ It also does three things `test_claims` does not:
   file is the point, not a formality.
 
 ```bash
-python tools/claims.py verify . --scan "**/*.md" "**/*.html"
-python tools/claims.py render . --format md
+python tools/docclaims.py verify . --scan "**/*.md" "**/*.html"
+python tools/docclaims.py render . --format md
 ```
 
-`tools/claims.py` is vendored from `AI Workstation/tools/`, which holds the
-copy with the tests. What it does **not** do is discover claims — they are
-declared — and its presence check is file-level, so it sees a file losing a
+`tools/docclaims.py` is [docclaims](https://github.com/jhaney0214-sys/docclaims)
+v0.3.3, vendored byte for byte and pinned to that release by a test. What it
+does **not** do is decide what a claim is: `docclaims suggest` drafts
+candidates, but nothing is checked until it is declared. Its presence check
+is file-level, so it sees a file losing a
 number and not a single sentence being reworded around one.
 
 ## Dependencies
