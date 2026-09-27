@@ -22,3 +22,20 @@ each is rebuildable from its source with the matching tools/fetch_*.py. They are
 included so a clone can reproduce the results in the README without re-fetching.
 Attribution for them belongs to the three publishers above, and nothing in this
 notice grants rights over their data that Assay does not hold.
+
+The tables are adapted (selected, reshaped and renamed) from each source, and
+are licensed under that source's own terms, read 2026-09-27:
+
+  * data/vdem-2024.*  - V-Dem Dataset, Varieties of Democracy Institute, via
+    Our World in Data. CC BY-SA 4.0. These files are shared under CC BY-SA 4.0.
+  * data/hdi-*        - Human Development Report data, UNDP Human Development
+    Report Office. CC BY 3.0 IGO.
+  * data/epi-*        - 2024 Environmental Performance Index, Yale Center for
+    Environmental Law & Policy and Columbia CIESIN. CC BY-NC-SA 4.0: these files
+    are shared under CC BY-NC-SA 4.0 and may not be used commercially. If Assay
+    is ever sold or run for profit, the EPI tables and any result built on them
+    must come out, or Yale's permission be obtained.
+
+Licence texts: https://creativecommons.org/licenses/by-sa/4.0/,
+https://creativecommons.org/licenses/by/3.0/igo/ and
+https://creativecommons.org/licenses/by-nc-sa/4.0/.
