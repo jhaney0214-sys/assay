@@ -436,4 +436,6 @@ reproduce every result in this file without re-fetching. They are published
 summary statistics rather than microdata, and each is rebuildable from scratch
 with the matching `tools/fetch_*.py`. Attribution belongs to the three
 publishers named above; nothing here is offered under a licence Assay is in a
-position to grant.
+position to grant. Each dataset's own licence, with its conditions (EPI's
+is non-commercial and share-alike, V-Dem's share-alike), is in
+[`data/LICENSES.md`](data/LICENSES.md), copied beside the page's examples.
