@@ -332,6 +332,7 @@ assay/      load.py  structure.py  aggregation.py  report.py
 tools/      fetch_vdem.py  fetch_undp.py  fetch_epi.py
             build_hdi_panel.py  build_epi_panel.py
             conform_browser.py  docclaims.py
+            rawcache.py  netcache.py (downloads, cached under data/cache/)
 tests/      101 tests (7 of them drive docs/audit.html in a browser)
 claims.json every hard number this README publishes, graded and dated
 ax.py       the CLI
