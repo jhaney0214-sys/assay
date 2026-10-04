@@ -25,7 +25,8 @@ import csv
 import io
 import math
 import os
-import urllib.request
+
+import rawcache
 
 URL = ("https://hdr.undp.org/sites/default/files/2023-24_HDR/"
        "HDR23-24_Composite_indices_complete_time_series.csv")
@@ -77,16 +78,9 @@ def main():
 
     here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     cache = os.path.join(here, args.cache)
-    os.makedirs(os.path.dirname(cache), exist_ok=True)
-
-    if os.path.exists(cache):
-        raw = open(cache, "rb").read()
-        print("using cached %s" % cache)
-    else:
-        req = urllib.request.Request(URL, headers={"User-Agent": "Assay (research; urllib)"})
-        raw = urllib.request.urlopen(req, timeout=120).read()
-        open(cache, "wb").write(raw)          # bytes, undecoded - see below
-        print("downloaded %s" % cache)
+    # `--cache` names where this used to be saved; an existing copy is adopted.
+    # Cached as bytes, undecoded - see below.
+    raw = rawcache.get("undp", URL, "Assay (research; urllib)", legacy=cache, timeout=120)
     body = decode(raw)
 
     rows = list(csv.DictReader(io.StringIO(body)))

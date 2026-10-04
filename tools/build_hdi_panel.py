@@ -30,7 +30,8 @@ import json
 import math
 import os
 import re
-import urllib.request
+
+import rawcache
 
 URL = ("https://hdr.undp.org/sites/default/files/2023-24_HDR/"
        "HDR23-24_Composite_indices_complete_time_series.csv")
@@ -82,13 +83,8 @@ def main():
     here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     cache = os.path.join(here, args.cache)
 
-    if os.path.exists(cache):
-        raw = open(cache, "rb").read()
-    else:
-        os.makedirs(os.path.dirname(cache), exist_ok=True)
-        raw = urllib.request.urlopen(urllib.request.Request(
-            URL, headers={"User-Agent": "Assay (research; urllib)"}), timeout=120).read()
-        open(cache, "wb").write(raw)
+    # `--cache` names where this used to be saved; an existing copy is adopted.
+    raw = rawcache.get("undp", URL, "Assay (research; urllib)", legacy=cache, timeout=120)
     rows = list(csv.DictReader(io.StringIO(decode(raw))))
 
     years = sorted(int(m.group(1)) for c in rows[0]

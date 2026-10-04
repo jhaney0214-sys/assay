@@ -22,7 +22,8 @@ import argparse
 import csv
 import json
 import os
-import urllib.request
+
+import rawcache
 
 BASE = "https://ourworldindata.org/grapher/%s.csv"
 
@@ -42,10 +43,9 @@ def is_country(row):
 
 
 def fetch(slug):
-    req = urllib.request.Request(BASE % slug,
-                                 headers={"User-Agent": "Assay (research; urllib)"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        body = r.read().decode("utf-8", "replace")
+    # Kept a day: re-running the build is free, and a new edition still arrives.
+    body = rawcache.get("vdem", BASE % slug, "Assay (research; urllib)",
+                        max_age=86400, timeout=60).decode("utf-8", "replace")
     return list(csv.DictReader(body.splitlines()))
 
 

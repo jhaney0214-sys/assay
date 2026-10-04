@@ -31,7 +31,8 @@ import csv
 import io
 import json
 import os
-import urllib.request
+
+import rawcache
 
 RESULTS = "https://epi.yale.edu/downloads/epi2024results.csv"
 WEIGHTS = "https://epi.yale.edu/downloads/epi2024weights.csv"
@@ -52,13 +53,9 @@ def decode(raw):
     raise SystemExit("could not decode an EPI file")
 
 
-def grab(url, cache):
-    if os.path.exists(cache):
-        return decode(open(cache, "rb").read())
-    raw = urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=90).read()
-    os.makedirs(os.path.dirname(cache), exist_ok=True)
-    open(cache, "wb").write(raw)
-    return decode(raw)
+def grab(url, legacy):
+    # `legacy` is where this used to be saved; an existing copy is adopted.
+    return decode(rawcache.get("epi", url, UA["User-Agent"], legacy=legacy, timeout=90))
 
 
 def to_float(v):

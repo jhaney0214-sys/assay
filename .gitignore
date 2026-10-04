@@ -9,4 +9,5 @@ Thumbs.db
 # Fetched source data and generated reports. Re-fetchable with tools/fetch_*.py;
 # V-Dem, UNDP and EPI are not ours to redistribute.
 data/raw/
+data/cache/
 out/
