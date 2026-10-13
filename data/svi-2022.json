@@ -1,0 +1,16 @@
+{
+  "name": "CDC/ATSDR Social Vulnerability Index 2022, US counties",
+  "data": "svi-2022.csv",
+  "entity_col": "county",
+  "score_cols": [
+    "Socioeconomic status",
+    "Household characteristics",
+    "Racial and ethnic minority status",
+    "Housing type and transportation"
+  ],
+  "published_col": "SVI",
+  "claimed_dimensions": 4,
+  "aggregation_form": "percentile rank of the sum of the four themes' sums of variable percentile ranks - not a weighted sum of the theme ranks",
+  "source": "CDC/ATSDR Social Vulnerability Index 2022, county file, https://svi.cdc.gov/Documents/Data/2022/csv/states_counties/SVI_2022_US_county.csv",
+  "note": "The four theme columns are each theme's percentile rank among counties, as published. All four are computed from one survey, the American Community Survey, so unlike HDI's indicators they share an instrument."
+}

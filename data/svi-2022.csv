@@ -1,0 +1,3145 @@
+county,Socioeconomic status,Household characteristics,Racial and ethnic minority status,Housing type and transportation,SVI
+"Autauga County, Alabama",0.2367,0.3675,0.6354,0.2358,0.2663
+"Baldwin County, Alabama",0.3433,0.2883,0.489,0.4308,0.3487
+"Barbour County, Alabama",0.9399,0.9399,0.8941,0.9959,0.9927
+"Bibb County, Alabama",0.8893,0.4954,0.6185,0.8931,0.8451
+"Blount County, Alabama",0.6866,0.7884,0.413,0.3532,0.6166
+"Bullock County, Alabama",0.8654,0.5138,0.9809,0.9491,0.8985
+"Butler County, Alabama",0.8441,0.6106,0.8661,0.217,0.6872
+"Calhoun County, Alabama",0.854,0.65,0.658,0.7114,0.8145
+"Chambers County, Alabama",0.7171,0.5317,0.8396,0.9469,0.8295
+"Cherokee County, Alabama",0.6077,0.6494,0.2628,0.1152,0.406
+"Chilton County, Alabama",0.5924,0.6837,0.5425,0.2698,0.5336
+"Choctaw County, Alabama",0.6901,0.798,0.8151,0.2539,0.6548
+"Clarke County, Alabama",0.8412,0.7264,0.8641,0.6462,0.8365
+"Clay County, Alabama",0.7235,0.3688,0.5269,0.5851,0.6223
+"Cleburne County, Alabama",0.4938,0.6739,0.1985,0.5482,0.5196
+"Coffee County, Alabama",0.6497,0.9488,0.6806,0.2323,0.6802
+"Colbert County, Alabama",0.4944,0.6984,0.5644,0.16,0.4467
+"Conecuh County, Alabama",0.5272,0.5332,0.8727,0.2482,0.5122
+"Coosa County, Alabama",0.3513,0.328,0.7321,0.6427,0.4808
+"Covington County, Alabama",0.7509,0.7821,0.4839,0.5075,0.7121
+"Crenshaw County, Alabama",0.7588,0.6201,0.6656,0.4575,0.685
+"Cullman County, Alabama",0.5323,0.713,0.2587,0.3341,0.4909
+"Dale County, Alabama",0.8648,0.9014,0.7003,0.2736,0.7766
+"Dallas County, Alabama",0.9555,0.867,0.9698,0.594,0.9189
+"DeKalb County, Alabama",0.7996,0.8139,0.5425,0.5017,0.756
+"Elmore County, Alabama",0.3185,0.3869,0.6373,0.5667,0.4397
+"Escambia County, Alabama",0.9462,0.7353,0.7814,0.4986,0.8473
+"Etowah County, Alabama",0.7961,0.7544,0.574,0.2911,0.672
+"Fayette County, Alabama",0.8514,0.4788,0.4556,0.6914,0.7458
+"Franklin County, Alabama",0.6675,0.9491,0.6045,0.4846,0.7576
+"Geneva County, Alabama",0.6729,0.6427,0.5161,0.3509,0.5822
+"Greene County, Alabama",0.9211,0.8425,0.9857,0.7254,0.9157
+"Hale County, Alabama",0.9341,0.5072,0.9259,0.8148,0.8826
+"Henry County, Alabama",0.6519,0.5695,0.6726,0.4677,0.6195
+"Houston County, Alabama",0.7703,0.7499,0.7251,0.3936,0.7175
+"Jackson County, Alabama",0.8552,0.8136,0.328,0.3783,0.7194
+"Jefferson County, Alabama",0.6802,0.6109,0.8766,0.6017,0.7251
+"Lamar County, Alabama",0.5654,0.4718,0.413,0.3395,0.4731
+"Lauderdale County, Alabama",0.4687,0.4219,0.4636,0.5568,0.4919
+"Lawrence County, Alabama",0.4652,0.3878,0.5867,0.1833,0.3624
+"Lee County, Alabama",0.5609,0.2046,0.7038,0.9023,0.6446
+"Limestone County, Alabama",0.3,0.2574,0.6115,0.399,0.3233
+"Lowndes County, Alabama",0.9679,0.7642,0.9755,0.5813,0.9042
+"Macon County, Alabama",0.9618,0.6185,0.9866,0.9765,0.9656
+"Madison County, Alabama",0.2813,0.3369,0.7423,0.3723,0.3509
+"Marengo County, Alabama",0.5434,0.7741,0.8953,0.4932,0.6691
+"Marion County, Alabama",0.8565,0.4368,0.2587,0.6507,0.6946
+"Marshall County, Alabama",0.6223,0.9087,0.5425,0.2504,0.6201
+"Mobile County, Alabama",0.8629,0.623,0.8212,0.7095,0.8304
+"Monroe County, Alabama",0.9119,0.2997,0.8473,0.4871,0.7416
+"Montgomery County, Alabama",0.9036,0.8762,0.9542,0.8069,0.929
+"Morgan County, Alabama",0.5396,0.8142,0.6179,0.6258,0.6787
+"Perry County, Alabama",0.9456,0.7976,0.9653,0.7324,0.9214
+"Pickens County, Alabama",0.7646,0.9268,0.8482,0.8387,0.8918
+"Pike County, Alabama",0.8218,0.2634,0.8279,0.8906,0.8002
+"Randolph County, Alabama",0.4998,0.6857,0.6128,0.4598,0.559
+"Russell County, Alabama",0.9504,0.8925,0.8976,0.4897,0.8963
+"St. Clair County, Alabama",0.3048,0.1893,0.4378,0.3287,0.2587
+"Shelby County, Alabama",0.0735,0.2453,0.5927,0.1842,0.1238
+"Sumter County, Alabama",0.9185,0.6997,0.9736,0.9004,0.9255
+"Talladega County, Alabama",0.889,0.8291,0.7579,0.8689,0.908
+"Tallapoosa County, Alabama",0.8139,0.9526,0.6847,0.6637,0.8692
+"Tuscaloosa County, Alabama",0.6319,0.1371,0.776,0.8584,0.651
+"Walker County, Alabama",0.741,0.8352,0.3649,0.3166,0.6398
+"Washington County, Alabama",0.5962,0.1158,0.72,0.1145,0.3217
+"Wilcox County, Alabama",0.9609,0.9691,0.9685,0.8479,0.9819
+"Winston County, Alabama",0.6946,0.8352,0.1928,0.4079,0.6125
+"Aleutians East Borough, Alaska",0.651,0.1184,0.987,0.9898,0.7754
+"Aleutians West Census Area, Alaska",0.2555,0.0159,0.9787,0.9955,0.5033
+"Anchorage Municipality, Alaska",0.4044,0.3901,0.8291,0.8241,0.6052
+"Bethel Census Area, Alaska",0.8963,0.6392,0.9949,0.9777,0.9424
+"Bristol Bay Borough, Alaska",0.1171,0.0019,0.896,0.9516,0.2332
+"Chugach Census Area, Alaska",0.4292,0.3627,0.658,0.9844,0.6876
+"Copper River Census Area, Alaska",0.4881,0.6017,0.8571,0.3019,0.5247
+"Denali Borough, Alaska",0.0013,0.0003,0.6045,0.7009,0.0353
+"Dillingham Census Area, Alaska",0.7798,0.7436,0.9895,0.9278,0.8931
+"Fairbanks North Star Borough, Alaska",0.3493,0.2319,0.6949,0.77,0.4925
+"Haines Borough, Alaska",0.2717,0.2759,0.6332,0.7916,0.4594
+"Hoonah-Angoon Census Area, Alaska",0.5698,0.2743,0.8727,0.7534,0.6376
+"Juneau City and Borough, Alaska",0.1365,0.0531,0.7617,0.9313,0.3528
+"Kenai Peninsula Borough, Alaska",0.5345,0.1985,0.5581,0.5307,0.4725
+"Ketchikan Gateway Borough, Alaska",0.3331,0.1047,0.7607,0.908,0.5027
+"Kodiak Island Borough, Alaska",0.364,0.2529,0.8877,0.9644,0.637
+"Kusilvak Census Area, Alaska",0.9042,0.5679,0.9994,0.7035,0.8568
+"Lake and Peninsula Borough, Alaska",0.6923,0.6246,0.9857,0.7623,0.7926
+"Matanuska-Susitna Borough, Alaska",0.552,0.4082,0.5797,0.3474,0.4792
+"Nome Census Area, Alaska",0.8785,0.3449,0.9898,0.9214,0.8683
+"North Slope Borough, Alaska",0.4283,0.4604,0.9551,0.9946,0.7747
+"Northwest Arctic Borough, Alaska",0.8304,0.3611,0.9943,0.9602,0.8734
+"Petersburg Borough, Alaska",0.3929,0.7445,0.8352,0.8072,0.6857
+"Prince of Wales-Hyder Census Area, Alaska",0.5978,0.6341,0.9001,0.9523,0.818
+"Sitka City and Borough, Alaska",0.3029,0.0827,0.7843,0.8237,0.4442
+"Skagway Municipality, Alaska",0.3042,0.0283,0.5829,0.7875,0.3328
+"Southeast Fairbanks Census Area, Alaska",0.4906,0.6939,0.6449,0.7798,0.6755
+"Wrangell City and Borough, Alaska",0.4187,0.6806,0.825,0.3939,0.5342
+"Yakutat City and Borough, Alaska",0.1416,0.1079,0.9577,0.8116,0.3723
+"Yukon-Koyukuk Census Area, Alaska",0.839,0.7394,0.98,0.8037,0.8807
+"Apache County, Arizona",0.8902,0.9284,0.9841,0.9402,0.965
+"Cochise County, Arizona",0.7121,0.9574,0.8473,0.9714,0.9325
+"Coconino County, Arizona",0.8097,0.0595,0.8533,0.9917,0.8031
+"Gila County, Arizona",0.8466,0.6131,0.7668,0.8352,0.847
+"Graham County, Arizona",0.7,0.6596,0.8702,0.9513,0.8486
+"Greenlee County, Arizona",0.0974,0.6726,0.8934,0.4407,0.3598
+"La Paz County, Arizona",0.9236,0.9701,0.818,0.5775,0.9195
+"Maricopa County, Arizona",0.6201,0.5705,0.8521,0.6907,0.713
+"Mohave County, Arizona",0.8285,0.8419,0.5994,0.762,0.8489
+"Navajo County, Arizona",0.8902,0.9863,0.9103,0.9446,0.9806
+"Pima County, Arizona",0.7493,0.7356,0.8711,0.9663,0.888
+"Pinal County, Arizona",0.6347,0.8374,0.833,0.7521,0.797
+"Santa Cruz County, Arizona",0.987,0.9395,0.9879,0.4092,0.9383
+"Yavapai County, Arizona",0.5752,0.5488,0.546,0.6026,0.5991
+"Yuma County, Arizona",0.9819,0.9736,0.9612,0.98,0.9978
+"Arkansas County, Arkansas",0.6787,0.5078,0.6901,0.7585,0.7226
+"Ashley County, Arkansas",0.8171,0.9262,0.6971,0.5062,0.8237
+"Baxter County, Arkansas",0.6131,0.3618,0.2109,0.3366,0.4333
+"Benton County, Arkansas",0.182,0.5892,0.7286,0.3115,0.3268
+"Boone County, Arkansas",0.4053,0.4563,0.1508,0.1674,0.2647
+"Bradley County, Arkansas",0.8778,0.895,0.8365,0.6901,0.8864
+"Calhoun County, Arkansas",0.5205,0.6545,0.6487,0.2307,0.4967
+"Carroll County, Arkansas",0.6618,0.6608,0.6287,0.4722,0.6421
+"Chicot County, Arkansas",0.98,0.9866,0.9243,0.9889,0.9987
+"Clark County, Arkansas",0.6583,0.5422,0.6971,0.9908,0.8339
+"Clay County, Arkansas",0.7168,0.5135,0.0932,0.1101,0.3929
+"Cleburne County, Arkansas",0.5406,0.4792,0.1861,0.1785,0.3532
+"Cleveland County, Arkansas",0.1782,0.6888,0.4537,0.2574,0.286
+"Columbia County, Arkansas",0.5192,0.6596,0.7929,0.9163,0.7598
+"Conway County, Arkansas",0.6879,0.9634,0.5218,0.427,0.7461
+"Craighead County, Arkansas",0.7369,0.8836,0.6316,0.7824,0.8342
+"Crawford County, Arkansas",0.6822,0.9532,0.5011,0.4944,0.7531
+"Crittenden County, Arkansas",0.9345,0.8368,0.9192,0.7461,0.9205
+"Cross County, Arkansas",0.9128,0.9504,0.6402,0.7801,0.9227
+"Dallas County, Arkansas",0.3366,0.6179,0.8603,0.9421,0.6885
+"Desha County, Arkansas",0.9173,0.999,0.9007,0.7369,0.9749
+"Drew County, Arkansas",0.4028,0.8263,0.7245,0.9548,0.7668
+"Faulkner County, Arkansas",0.4585,0.2071,0.5444,0.8266,0.5326
+"Franklin County, Arkansas",0.6688,0.6678,0.3446,0.5317,0.6198
+"Fulton County, Arkansas",0.72,0.7,0.1572,0.6262,0.6535
+"Garland County, Arkansas",0.713,0.9723,0.5161,0.8326,0.8661
+"Grant County, Arkansas",0.154,0.4588,0.2399,0.223,0.1852
+"Greene County, Arkansas",0.7932,0.6898,0.2692,0.5654,0.6917
+"Hempstead County, Arkansas",0.748,0.9914,0.8508,0.6927,0.8998
+"Hot Spring County, Arkansas",0.5278,0.4458,0.4998,0.868,0.6437
+"Howard County, Arkansas",0.8342,0.9949,0.7521,0.4423,0.8797
+"Independence County, Arkansas",0.7655,0.7843,0.4314,0.8912,0.8241
+"Izard County, Arkansas",0.8043,0.3541,0.3592,0.6885,0.671
+"Jackson County, Arkansas",0.8667,0.4534,0.5927,0.4874,0.7101
+"Jefferson County, Arkansas",0.7951,0.8015,0.931,0.9453,0.9096
+"Johnson County, Arkansas",0.8769,0.98,0.5679,0.6478,0.895
+"Lafayette County, Arkansas",0.8622,0.6408,0.8031,0.6064,0.8075
+"Lawrence County, Arkansas",0.763,0.7636,0.1572,0.6408,0.7003
+"Lee County, Arkansas",0.958,0.9144,0.917,0.8829,0.9714
+"Lincoln County, Arkansas",0.6058,0.1409,0.749,0.7372,0.5864
+"Little River County, Arkansas",0.3643,0.538,0.6468,0.3255,0.4197
+"Logan County, Arkansas",0.4967,0.6802,0.335,0.5603,0.5444
+"Lonoke County, Arkansas",0.3684,0.7063,0.4445,0.2536,0.4063
+"Madison County, Arkansas",0.6096,0.6411,0.5953,0.2405,0.5272
+"Marion County, Arkansas",0.6726,0.5495,0.182,0.2246,0.4588
+"Miller County, Arkansas",0.908,0.7136,0.7028,0.9812,0.9354
+"Mississippi County, Arkansas",0.9007,0.9456,0.8151,0.7878,0.9335
+"Monroe County, Arkansas",0.9147,0.7773,0.8447,0.9275,0.9341
+"Montgomery County, Arkansas",0.7455,0.8314,0.2959,0.1954,0.5765
+"Nevada County, Arkansas",0.7913,0.8731,0.7502,0.7448,0.8527
+"Newton County, Arkansas",0.4359,0.2275,0.2109,0.0961,0.1985
+"Ouachita County, Arkansas",0.6767,0.8912,0.8377,0.4298,0.7464
+"Perry County, Arkansas",0.286,0.6284,0.2692,0.5991,0.4292
+"Phillips County, Arkansas",0.9526,0.9402,0.9453,0.7633,0.9628
+"Pike County, Arkansas",0.4706,0.7598,0.4248,0.6449,0.5972
+"Poinsett County, Arkansas",0.8234,0.8546,0.4273,0.4127,0.7381
+"Polk County, Arkansas",0.7506,0.8447,0.377,0.4174,0.6863
+"Pope County, Arkansas",0.7817,0.8727,0.489,0.727,0.8171
+"Prairie County, Arkansas",0.4178,0.7674,0.4496,0.2844,0.4601
+"Pulaski County, Arkansas",0.6573,0.8011,0.8702,0.6844,0.7811
+"Randolph County, Arkansas",0.7696,0.7941,0.2816,0.5336,0.7051
+"St. Francis County, Arkansas",0.9421,0.943,0.924,0.9284,0.9777
+"Saline County, Arkansas",0.1502,0.6459,0.5011,0.3312,0.2864
+"Scott County, Arkansas",0.7146,0.9001,0.4658,0.5759,0.7537
+"Searcy County, Arkansas",0.6847,0.5011,0.3484,0.3086,0.517
+"Sebastian County, Arkansas",0.7957,0.9675,0.6962,0.6491,0.8696
+"Sevier County, Arkansas",0.8256,0.8864,0.833,0.4804,0.825
+"Sharp County, Arkansas",0.728,0.7808,0.2364,0.2959,0.5838
+"Stone County, Arkansas",0.7731,0.8336,0.2733,0.7299,0.7709
+"Union County, Arkansas",0.5485,0.7668,0.7798,0.5479,0.6682
+"Van Buren County, Arkansas",0.8101,0.8661,0.2164,0.6678,0.7763
+"Washington County, Arkansas",0.7407,0.4871,0.7178,0.8094,0.7658
+"White County, Arkansas",0.7716,0.7878,0.4057,0.9488,0.8482
+"Woodruff County, Arkansas",0.7859,0.6767,0.6752,0.6303,0.7671
+"Yell County, Arkansas",0.5714,0.8276,0.6211,0.8591,0.7738
+"Alameda County, California",0.2962,0.0862,0.9605,0.9205,0.5129
+"Alpine County, California",0.1429,0.6402,0.8008,0.5352,0.4044
+"Amador County, California",0.4477,0.398,0.6096,0.7725,0.5647
+"Butte County, California",0.7706,0.4843,0.6806,0.9437,0.8225
+"Calaveras County, California",0.5425,0.4706,0.552,0.0614,0.3357
+"Colusa County, California",0.8931,0.9026,0.9465,0.3315,0.84
+"Contra Costa County, California",0.3223,0.4343,0.917,0.5113,0.4785
+"Del Norte County, California",0.7814,0.6395,0.7735,0.9927,0.9004
+"El Dorado County, California",0.1836,0.2008,0.5994,0.2186,0.1896
+"Fresno County, California",0.943,0.8772,0.9685,0.875,0.9618
+"Glenn County, California",0.945,0.6443,0.8734,0.5937,0.8622
+"Humboldt County, California",0.7805,0.6538,0.6475,0.8851,0.8269
+"Imperial County, California",0.9682,0.9392,0.9943,0.979,0.9936
+"Inyo County, California",0.4162,0.5234,0.7881,0.7716,0.6147
+"Kern County, California",0.957,0.8339,0.9545,0.9265,0.9685
+"Kings County, California",0.9354,0.839,0.9593,0.8753,0.9507
+"Lake County, California",0.8696,0.9236,0.7089,0.7999,0.9055
+"Lassen County, California",0.861,0.3748,0.7464,0.8769,0.8231
+"Los Angeles County, California",0.895,0.2825,0.9736,0.9176,0.8629
+"Madera County, California",0.9567,0.9036,0.9532,0.7859,0.9593
+"Marin County, California",0.1616,0.3637,0.6764,0.6682,0.37
+"Mariposa County, California",0.6542,0.922,0.5711,0.9465,0.8613
+"Mendocino County, California",0.8934,0.9803,0.749,0.9418,0.9726
+"Merced County, California",0.973,0.888,0.9736,0.8517,0.973
+"Modoc County, California",0.693,0.8998,0.5927,0.7852,0.8186
+"Mono County, California",0.4143,0.02,0.7321,0.7375,0.3891
+"Monterey County, California",0.8272,0.581,0.964,0.8724,0.8686
+"Napa County, California",0.4983,0.4127,0.8702,0.8692,0.6831
+"Nevada County, California",0.3013,0.2444,0.4699,0.1632,0.2148
+"Orange County, California",0.5412,0.1791,0.9252,0.6605,0.5692
+"Placer County, California",0.1212,0.3182,0.6793,0.2469,0.1992
+"Plumas County, California",0.3659,0.3672,0.4948,0.4903,0.4088
+"Riverside County, California",0.7948,0.6736,0.9504,0.6822,0.8199
+"Sacramento County, California",0.6255,0.636,0.9084,0.7343,0.7509
+"San Benito County, California",0.5072,0.6685,0.9564,0.1639,0.5094
+"San Bernardino County, California",0.8896,0.7563,0.9726,0.7464,0.8858
+"San Diego County, California",0.6281,0.2202,0.9007,0.8759,0.7057
+"San Francisco County, California",0.2876,0.0302,0.9284,0.9561,0.482
+"San Joaquin County, California",0.8075,0.8174,0.9637,0.7509,0.8718
+"San Luis Obispo County, California",0.4254,0.2256,0.7038,0.7553,0.5227
+"San Mateo County, California",0.1292,0.0655,0.9351,0.7121,0.2899
+"Santa Barbara County, California",0.8419,0.3401,0.9065,0.9599,0.8667
+"Santa Clara County, California",0.1349,0.0859,0.9612,0.8206,0.3614
+"Santa Cruz County, California",0.4948,0.1327,0.8225,0.9182,0.6131
+"Shasta County, California",0.6096,0.833,0.5679,0.7919,0.7649
+"Sierra County, California",0.5994,0.2599,0.3888,0.1654,0.3522
+"Siskiyou County, California",0.7649,0.7458,0.6185,0.7206,0.7884
+"Solano County, California",0.4499,0.5186,0.9415,0.6787,0.6201
+"Sonoma County, California",0.4108,0.4025,0.7706,0.7146,0.5562
+"Stanislaus County, California",0.8482,0.8323,0.9252,0.5889,0.8511
+"Sutter County, California",0.8444,0.8874,0.9036,0.5883,0.8641
+"Tehama County, California",0.8253,0.9892,0.7213,0.7728,0.9271
+"Trinity County, California",0.769,0.7388,0.5444,0.5107,0.7206
+"Tulare County, California",0.9602,0.8524,0.9707,0.5705,0.9147
+"Tuolumne County, California",0.5501,0.622,0.5415,0.6876,0.6319
+"Ventura County, California",0.5921,0.3312,0.9017,0.6293,0.6249
+"Yolo County, California",0.6198,0.1572,0.8966,0.9653,0.7366
+"Yuba County, California",0.8651,0.9109,0.8616,0.8651,0.9268
+"Adams County, Colorado",0.6825,0.6758,0.8832,0.545,0.7264
+"Alamosa County, Colorado",0.5721,0.7658,0.889,0.9411,0.8253
+"Arapahoe County, Colorado",0.4101,0.4038,0.8031,0.4117,0.4661
+"Archuleta County, Colorado",0.5237,0.1473,0.5969,0.2304,0.3484
+"Baca County, Colorado",0.5463,0.4566,0.4839,0.5832,0.5472
+"Bent County, Colorado",0.8937,0.2692,0.8377,0.9838,0.8804
+"Boulder County, Colorado",0.2202,0.0169,0.5892,0.5962,0.209
+"Broomfield County, Colorado",0.0353,0.0557,0.6128,0.1088,0.0436
+"Chaffee County, Colorado",0.5657,0.693,0.4378,0.5915,0.6096
+"Cheyenne County, Colorado",0.0843,0.4197,0.5294,0.0334,0.0837
+"Clear Creek County, Colorado",0.3245,0.0356,0.4018,0.1677,0.1394
+"Conejos County, Colorado",0.8062,0.8311,0.8931,0.608,0.8377
+"Costilla County, Colorado",0.8511,0.9965,0.9462,0.2466,0.8727
+"Crowley County, Colorado",0.8823,0.5864,0.8571,0.8059,0.86
+"Custer County, Colorado",0.2905,0.0404,0.377,0.083,0.1012
+"Delta County, Colorado",0.6312,0.7086,0.5383,0.3344,0.581
+"Denver County, Colorado",0.546,0.057,0.8447,0.8486,0.5603
+"Dolores County, Colorado",0.0923,0.2673,0.5819,0.3439,0.1858
+"Douglas County, Colorado",0.0083,0.078,0.5383,0.064,0.022
+"Eagle County, Colorado",0.4219,0.0719,0.7321,0.4445,0.3497
+"Elbert County, Colorado",0.0038,0.0127,0.4445,0.001,0.0006
+"El Paso County, Colorado",0.4168,0.3153,0.7038,0.5052,0.4604
+"Fremont County, Colorado",0.5889,0.4286,0.5542,0.8511,0.6688
+"Garfield County, Colorado",0.5002,0.5247,0.7191,0.6634,0.6058
+"Gilpin County, Colorado",0.2491,0.0064,0.4416,0.2727,0.0967
+"Grand County, Colorado",0.3891,0.0089,0.4932,0.2456,0.1565
+"Gunnison County, Colorado",0.2116,0.0022,0.4273,0.5997,0.1222
+"Hinsdale County, Colorado",0.2335,0.4419,0.2984,0.0054,0.0869
+"Huerfano County, Colorado",0.5778,0.5075,0.7636,0.3236,0.5383
+"Jackson County, Colorado",0.8781,0.049,0.3824,0.1085,0.3751
+"Jefferson County, Colorado",0.1193,0.0337,0.5829,0.2164,0.0948
+"Kiowa County, Colorado",0.5024,0.4785,0.2214,0.1724,0.3312
+"Kit Carson County, Colorado",0.5756,0.9211,0.5829,0.4604,0.6825
+"Lake County, Colorado",0.2342,0.0165,0.776,0.1368,0.1152
+"La Plata County, Colorado",0.2965,0.0108,0.5797,0.7031,0.258
+"Larimer County, Colorado",0.2676,0.0105,0.5161,0.3824,0.1524
+"Las Animas County, Colorado",0.8645,0.9065,0.8571,0.7706,0.9068
+"Lincoln County, Colorado",0.4197,0.0528,0.6045,0.6612,0.385
+"Logan County, Colorado",0.4327,0.2135,0.5867,0.9593,0.6004
+"Mesa County, Colorado",0.5772,0.6497,0.5371,0.6691,0.6462
+"Mineral County, Colorado",0.4878,0.0083,0.1654,0.0185,0.056
+"Moffat County, Colorado",0.7003,0.8944,0.5501,0.7913,0.8164
+"Montezuma County, Colorado",0.567,0.6382,0.6516,0.5164,0.6061
+"Montrose County, Colorado",0.6013,0.7337,0.6102,0.1591,0.5164
+"Morgan County, Colorado",0.706,0.8075,0.8116,0.8346,0.8371
+"Otero County, Colorado",0.8479,0.9551,0.8651,0.9211,0.9535
+"Ouray County, Colorado",0.307,0.064,0.2587,0.0423,0.0834
+"Park County, Colorado",0.1374,0.0092,0.3592,0.0013,0.0032
+"Phillips County, Colorado",0.4868,0.5348,0.6624,0.1775,0.4203
+"Pitkin County, Colorado",0.0897,0.0124,0.5119,0.266,0.0617
+"Prowers County, Colorado",0.8183,0.965,0.8151,0.966,0.9615
+"Pueblo County, Colorado",0.6914,0.8826,0.8686,0.8314,0.8533
+"Rio Blanco County, Colorado",0.5177,0.5937,0.4871,0.4184,0.5167
+"Rio Grande County, Colorado",0.5463,0.9214,0.8616,0.721,0.7868
+"Routt County, Colorado",0.1985,0.0395,0.4613,0.2596,0.1314
+"Saguache County, Colorado",0.8791,0.8177,0.7989,0.0652,0.6608
+"San Juan County, Colorado",0.7595,0.2179,0.5501,0.1168,0.4276
+"San Miguel County, Colorado",0.3758,0.0509,0.4378,0.5425,0.2911
+"Sedgwick County, Colorado",0.5059,0.9831,0.5978,0.3296,0.6729
+"Summit County, Colorado",0.2533,0.0095,0.5597,0.4725,0.1696
+"Teller County, Colorado",0.2256,0.0223,0.4416,0.0369,0.0496
+"Washington County, Colorado",0.2004,0.4928,0.4146,0.3805,0.2848
+"Weld County, Colorado",0.5269,0.5367,0.7391,0.5457,0.5889
+"Yuma County, Colorado",0.8202,0.601,0.6475,0.3411,0.6783
+"Capitol Planning Region, Connecticut",0.3952,0.427,0.7735,0.7891,0.5877
+"Greater Bridgeport Planning Region, Connecticut",0.7391,0.5924,0.791,0.8673,0.8142
+"Lower Connecticut River Valley Planning Region, Connecticut",0.1145,0.1467,0.5065,0.3229,0.1534
+"Naugatuck Valley Planning Region, Connecticut",0.4836,0.5746,0.7636,0.5142,0.5641
+"Northeastern Connecticut Planning Region, Connecticut",0.3894,0.2953,0.5065,0.0955,0.2409
+"Northwest Hills Planning Region, Connecticut",0.2558,0.3608,0.5597,0.2606,0.2727
+"South Central Connecticut Planning Region, Connecticut",0.4884,0.3681,0.7655,0.9039,0.6637
+"Southeastern Connecticut Planning Region, Connecticut",0.3541,0.4734,0.6128,0.6055,0.4865
+"Western Connecticut Planning Region, Connecticut",0.4034,0.3102,0.7751,0.5008,0.4664
+"Kent County, Delaware",0.6306,0.8676,0.7964,0.7881,0.8151
+"New Castle County, Delaware",0.3376,0.4018,0.8352,0.6561,0.5132
+"Sussex County, Delaware",0.4483,0.6904,0.6166,0.3948,0.5183
+"District of Columbia, District of Columbia",0.4394,0.1056,0.9386,0.9631,0.6262
+"Alachua County, Florida",0.629,0.0309,0.7881,0.9357,0.6099
+"Baker County, Florida",0.6118,0.4073,0.5558,0.7051,0.6188
+"Bay County, Florida",0.6405,0.8126,0.6083,0.6952,0.7407
+"Bradford County, Florida",0.9144,0.3198,0.6354,0.9901,0.8867
+"Brevard County, Florida",0.4833,0.4913,0.6424,0.3659,0.4817
+"Broward County, Florida",0.791,0.4935,0.9481,0.6777,0.7814
+"Calhoun County, Florida",0.7989,0.7124,0.6045,0.9628,0.8756
+"Charlotte County, Florida",0.5908,0.6554,0.489,0.5145,0.5953
+"Citrus County, Florida",0.7321,0.5857,0.3977,0.3264,0.5698
+"Clay County, Florida",0.2978,0.5087,0.6647,0.2857,0.3649
+"Collier County, Florida",0.588,0.4362,0.7636,0.5953,0.6141
+"Columbia County, Florida",0.8311,0.818,0.6487,0.9701,0.9138
+"DeSoto County, Florida",0.992,0.9656,0.8447,0.9876,0.9981
+"Dixie County, Florida",0.7681,0.4884,0.4699,0.8944,0.7719
+"Duval County, Florida",0.7105,0.6144,0.8711,0.8062,0.7935
+"Escambia County, Florida",0.783,0.644,0.7474,0.8801,0.839
+"Flagler County, Florida",0.4559,0.5597,0.6277,0.0554,0.3121
+"Franklin County, Florida",0.9644,0.6176,0.5711,0.8902,0.9017
+"Gadsden County, Florida",0.8855,0.971,0.9532,0.9405,0.9742
+"Gilchrist County, Florida",0.455,0.896,0.3697,0.9141,0.7337
+"Glades County, Florida",0.9516,0.7735,0.8088,0.7229,0.9058
+"Gulf County, Florida",0.6125,0.6252,0.5667,0.7856,0.7082
+"Hamilton County, Florida",0.9777,0.8622,0.8317,0.9574,0.9803
+"Hardee County, Florida",0.9876,0.8979,0.8899,0.9685,0.993
+"Hendry County, Florida",0.993,0.8575,0.9625,0.9761,0.9946
+"Hernando County, Florida",0.7537,0.7623,0.6185,0.3048,0.6602
+"Highlands County, Florida",0.818,0.8664,0.7286,0.7607,0.8673
+"Hillsborough County, Florida",0.7327,0.49,0.8871,0.7897,0.7789
+"Holmes County, Florida",0.7786,0.77,0.4248,0.833,0.8081
+"Indian River County, Florida",0.5975,0.5803,0.6249,0.2434,0.5145
+"Jackson County, Florida",0.7362,0.8947,0.7213,0.6223,0.8085
+"Jefferson County, Florida",0.7143,0.6325,0.776,0.6666,0.7439
+"Lafayette County, Florida",0.9214,0.4626,0.6726,0.7906,0.8409
+"Lake County, Florida",0.6128,0.6481,0.7086,0.4512,0.6214
+"Lee County, Florida",0.6507,0.6067,0.7299,0.671,0.7086
+"Leon County, Florida",0.6659,0.1021,0.8323,0.937,0.6952
+"Levy County, Florida",0.7184,0.9119,0.5616,0.5224,0.7582
+"Liberty County, Florida",0.8454,0.6077,0.636,0.8132,0.8266
+"Madison County, Florida",0.8011,0.5822,0.8403,0.9338,0.8638
+"Manatee County, Florida",0.6516,0.4906,0.6685,0.5622,0.6332
+"Marion County, Florida",0.7926,0.7891,0.6936,0.7143,0.8196
+"Martin County, Florida",0.4022,0.384,0.5797,0.5415,0.4642
+"Miami-Dade County, Florida",0.9049,0.4365,0.9901,0.8909,0.881
+"Monroe County, Florida",0.5247,0.3143,0.7378,0.9294,0.6822
+"Nassau County, Florida",0.2278,0.4076,0.4273,0.2724,0.2539
+"Okaloosa County, Florida",0.4238,0.573,0.6503,0.5358,0.5266
+"Okeechobee County, Florida",0.9481,0.9322,0.7617,0.8934,0.9637
+"Orange County, Florida",0.8018,0.3767,0.9332,0.7862,0.7951
+"Osceola County, Florida",0.8244,0.8043,0.9644,0.5399,0.8307
+"Palm Beach County, Florida",0.7779,0.6354,0.8613,0.7222,0.8008
+"Pasco County, Florida",0.6561,0.7811,0.6599,0.5387,0.7041
+"Pinellas County, Florida",0.5546,0.5851,0.6373,0.8568,0.7095
+"Polk County, Florida",0.8078,0.8062,0.8377,0.903,0.8912
+"Putnam County, Florida",0.9838,0.966,0.6599,0.9036,0.9835
+"St. Johns County, Florida",0.1677,0.1925,0.5294,0.104,0.1266
+"St. Lucie County, Florida",0.8136,0.8734,0.8466,0.3812,0.7906
+"Santa Rosa County, Florida",0.3379,0.189,0.5294,0.4353,0.3213
+"Sarasota County, Florida",0.2927,0.413,0.504,0.4566,0.3653
+"Seminole County, Florida",0.4111,0.3051,0.8075,0.2829,0.3996
+"Sumter County, Florida",0.2109,0.3945,0.4445,0.4744,0.3026
+"Suwannee County, Florida",0.7598,0.7518,0.615,0.9243,0.8457
+"Taylor County, Florida",0.6911,0.8132,0.6402,0.8177,0.8062
+"Union County, Florida",0.5081,0.4798,0.6548,0.8696,0.6669
+"Volusia County, Florida",0.5966,0.6914,0.678,0.6863,0.6987
+"Wakulla County, Florida",0.3198,0.0423,0.5616,0.6459,0.3058
+"Walton County, Florida",0.553,0.5208,0.4699,0.7703,0.6287
+"Washington County, Florida",0.8486,0.7665,0.5867,0.6188,0.8043
+"Appling County, Georgia",0.8546,0.8578,0.6911,0.9268,0.9122
+"Atkinson County, Georgia",0.9026,0.8081,0.8403,0.5199,0.8444
+"Bacon County, Georgia",0.7362,0.9755,0.6332,0.8463,0.889
+"Baker County, Georgia",0.922,0.4394,0.8584,0.2564,0.7162
+"Baldwin County, Georgia",0.9357,0.3363,0.86,0.9908,0.923
+"Banks County, Georgia",0.6207,0.3096,0.3961,0.1015,0.3373
+"Barrow County, Georgia",0.5956,0.7738,0.7066,0.0799,0.4887
+"Bartow County, Georgia",0.6529,0.3964,0.6045,0.1623,0.454
+"Ben Hill County, Georgia",0.8918,0.7378,0.8365,0.9535,0.9265
+"Berrien County, Georgia",0.8406,0.8406,0.5269,0.1769,0.6748
+"Bibb County, Georgia",0.9739,0.8619,0.9399,0.8422,0.9644
+"Bleckley County, Georgia",0.686,0.6363,0.686,0.6134,0.7063
+"Brantley County, Georgia",0.7763,0.0738,0.2485,0.2733,0.3974
+"Brooks County, Georgia",0.9704,0.7611,0.8492,0.7741,0.9275
+"Bryan County, Georgia",0.28,0.7101,0.6618,0.1104,0.3115
+"Bulloch County, Georgia",0.9297,0.2326,0.7521,0.8781,0.8374
+"Burke County, Georgia",0.8148,0.552,0.881,0.4967,0.7483
+"Butts County, Georgia",0.5896,0.392,0.72,0.4766,0.5565
+"Calhoun County, Georgia",0.9924,0.6344,0.9526,0.917,0.9688
+"Camden County, Georgia",0.587,0.6316,0.6793,0.6433,0.6618
+"Candler County, Georgia",0.8508,0.9281,0.7798,0.8381,0.916
+"Carroll County, Georgia",0.8794,0.8171,0.6885,0.6176,0.8428
+"Catoosa County, Georgia",0.3519,0.5733,0.3217,0.1979,0.3086
+"Charlton County, Georgia",0.9889,0.2262,0.776,0.8559,0.8855
+"Chatham County, Georgia",0.8056,0.5647,0.8858,0.7181,0.805
+"Chattahoochee County, Georgia",0.6675,0.1629,0.8377,0.776,0.6554
+"Chattooga County, Georgia",0.91,0.9246,0.4948,0.9625,0.9481
+"Cherokee County, Georgia",0.2787,0.4263,0.5892,0.0503,0.1969
+"Clarke County, Georgia",0.8972,0.1069,0.833,0.7547,0.7502
+"Clay County, Georgia",0.8387,0.9558,0.937,0.6685,0.9061
+"Clayton County, Georgia",0.9765,0.8151,0.9952,0.7334,0.9488
+"Clinch County, Georgia",0.7668,0.9265,0.7366,0.9819,0.9348
+"Cobb County, Georgia",0.4114,0.3525,0.8743,0.2227,0.3993
+"Coffee County, Georgia",0.9004,0.95,0.8116,0.9166,0.9609
+"Colquitt County, Georgia",0.964,0.9726,0.8377,0.8976,0.9847
+"Columbia County, Georgia",0.2494,0.6901,0.7165,0.0302,0.23
+"Cook County, Georgia",0.9742,0.8228,0.7521,0.7687,0.9338
+"Coweta County, Georgia",0.2479,0.4607,0.6742,0.1082,0.2402
+"Crawford County, Georgia",0.7782,0.3773,0.636,0.6128,0.6837
+"Crisp County, Georgia",0.9908,0.952,0.8775,0.7458,0.978
+"Dade County, Georgia",0.4932,0.1543,0.1985,0.7191,0.4388
+"Dawson County, Georgia",0.4276,0.1359,0.3166,0.0926,0.1861
+"Decatur County, Georgia",0.9726,0.7547,0.8743,0.9539,0.9679
+"DeKalb County, Georgia",0.7843,0.5453,0.9618,0.678,0.7903
+"Dodge County, Georgia",0.7741,0.7859,0.741,0.8734,0.8559
+"Dooly County, Georgia",0.8864,0.588,0.9115,0.9857,0.9313
+"Dougherty County, Georgia",0.9955,0.8826,0.9765,0.7674,0.9761
+"Douglas County, Georgia",0.7181,0.7235,0.943,0.3404,0.7012
+"Early County, Georgia",0.9672,0.6818,0.8982,0.853,0.9357
+"Echols County, Georgia",0.4935,0.5151,0.818,0.203,0.4623
+"Effingham County, Georgia",0.3688,0.2727,0.5994,0.1874,0.2851
+"Elbert County, Georgia",0.9373,0.8466,0.7474,0.8158,0.9224
+"Emanuel County, Georgia",0.9192,0.9586,0.7961,0.8101,0.9494
+"Evans County, Georgia",0.9634,0.9796,0.8225,0.8317,0.9784
+"Fannin County, Georgia",0.8641,0.6745,0.1457,0.2838,0.6172
+"Fayette County, Georgia",0.1317,0.5539,0.7989,0.0471,0.1686
+"Floyd County, Georgia",0.8336,0.8842,0.6685,0.964,0.9284
+"Forsyth County, Georgia",0.0687,0.3067,0.7127,0.0251,0.07
+"Franklin County, Georgia",0.931,0.7696,0.4948,0.5886,0.8314
+"Fulton County, Georgia",0.5571,0.2278,0.9259,0.8501,0.6599
+"Gilmer County, Georgia",0.5218,0.8307,0.4445,0.3245,0.545
+"Glascock County, Georgia",0.6211,0.2017,0.377,0.9615,0.6621
+"Glynn County, Georgia",0.7191,0.7095,0.7448,0.714,0.7744
+"Gordon County, Georgia",0.7875,0.7477,0.5924,0.482,0.7318
+"Grady County, Georgia",0.9443,0.9933,0.805,0.5157,0.944
+"Greene County, Georgia",0.7086,0.4251,0.7964,0.1425,0.5081
+"Gwinnett County, Georgia",0.6834,0.6965,0.9453,0.2485,0.6433
+"Habersham County, Georgia",0.7136,0.6376,0.6029,0.6853,0.728
+"Hall County, Georgia",0.7897,0.664,0.7941,0.7416,0.8136
+"Hancock County, Georgia",0.9806,0.6828,0.9733,0.9345,0.9666
+"Haralson County, Georgia",0.5708,0.2332,0.2914,0.1718,0.3089
+"Harris County, Georgia",0.1982,0.0878,0.5969,0.0197,0.0675
+"Hart County, Georgia",0.6748,0.5323,0.6166,0.9119,0.7681
+"Heard County, Georgia",0.7709,0.9357,0.4496,0.1444,0.6459
+"Henry County, Georgia",0.4817,0.5536,0.9348,0.071,0.4018
+"Houston County, Georgia",0.4139,0.6277,0.8447,0.286,0.4887
+"Irwin County, Georgia",0.9456,0.231,0.6949,0.8342,0.8282
+"Jackson County, Georgia",0.3996,0.5017,0.5476,0.1438,0.3264
+"Jasper County, Georgia",0.7432,0.6618,0.6115,0.1397,0.5492
+"Jeff Davis County, Georgia",0.8603,0.9672,0.672,0.602,0.8785
+"Jefferson County, Georgia",0.8985,0.93,0.9115,0.902,0.9583
+"Jenkins County, Georgia",0.9109,0.5791,0.8151,0.6532,0.8352
+"Johnson County, Georgia",0.9201,0.657,0.7693,0.9723,0.9322
+"Jones County, Georgia",0.3802,0.2494,0.6624,0.3729,0.3675
+"Lamar County, Georgia",0.5931,0.063,0.7146,0.3703,0.4092
+"Lanier County, Georgia",0.8457,0.4623,0.7127,0.7805,0.8011
+"Laurens County, Georgia",0.9284,0.9147,0.8066,0.6332,0.9014
+"Lee County, Georgia",0.1575,0.5046,0.6847,0.2415,0.2606
+"Liberty County, Georgia",0.8167,0.8431,0.9322,0.86,0.9007
+"Lincoln County, Georgia",0.6227,0.6529,0.6993,0.2272,0.5488
+"Long County, Georgia",0.8298,0.9233,0.8225,0.7267,0.8851
+"Lowndes County, Georgia",0.8753,0.4655,0.8591,0.9192,0.8702
+"Lumpkin County, Georgia",0.7728,0.0121,0.2914,0.4057,0.3608
+"McDuffie County, Georgia",0.7353,0.5002,0.854,0.4076,0.6567
+"McIntosh County, Georgia",0.9112,0.3287,0.756,0.3952,0.7098
+"Macon County, Georgia",0.9994,0.7305,0.9494,0.9147,0.9866
+"Madison County, Georgia",0.9338,0.7251,0.5383,0.2622,0.7423
+"Marion County, Georgia",0.8072,0.9548,0.8008,0.7203,0.8877
+"Meriwether County, Georgia",0.9434,0.706,0.8139,0.8002,0.9074
+"Miller County, Georgia",0.9462,0.8285,0.7105,0.9189,0.945
+"Mitchell County, Georgia",0.9914,0.9316,0.8883,0.924,0.9914
+"Monroe County, Georgia",0.3964,0.1031,0.6389,0.4168,0.329
+"Montgomery County, Georgia",0.8858,0.5756,0.7191,0.4518,0.7547
+"Morgan County, Georgia",0.231,0.3131,0.6332,0.2813,0.266
+"Murray County, Georgia",0.7852,0.6061,0.525,0.4909,0.6847
+"Muscogee County, Georgia",0.9227,0.8705,0.9259,0.8581,0.9446
+"Newton County, Georgia",0.8059,0.7483,0.9084,0.1311,0.6577
+"Oconee County, Georgia",0.0299,0.2475,0.4741,0.0035,0.0137
+"Oglethorpe County, Georgia",0.4846,0.3936,0.615,0.3993,0.4645
+"Paulding County, Georgia",0.2603,0.3385,0.7165,0.0118,0.1429
+"Peach County, Georgia",0.8584,0.7171,0.8925,0.8202,0.8772
+"Pickens County, Georgia",0.489,0.4505,0.1753,0.2256,0.3392
+"Pierce County, Georgia",0.5062,0.2374,0.4588,0.1651,0.3051
+"Pike County, Georgia",0.3484,0.0204,0.3847,0.0293,0.0665
+"Polk County, Georgia",0.9023,0.931,0.6567,0.3688,0.8285
+"Pulaski County, Georgia",0.8126,0.7127,0.8164,0.9971,0.9376
+"Putnam County, Georgia",0.538,0.6211,0.7191,0.4248,0.5679
+"Quitman County, Georgia",0.9125,0.5466,0.9084,0.5625,0.8202
+"Rabun County, Georgia",0.5784,0.3735,0.3503,0.328,0.441
+"Randolph County, Georgia",0.9863,0.853,0.9577,0.9532,0.9882
+"Richmond County, Georgia",0.9513,0.7324,0.9494,0.9061,0.9513
+"Rockdale County, Georgia",0.8536,0.7751,0.9695,0.3,0.777
+"Schley County, Georgia",0.8081,0.2459,0.6013,0.1626,0.4973
+"Screven County, Georgia",0.7471,0.4321,0.8279,0.5781,0.699
+"Seminole County, Georgia",0.903,0.8552,0.7626,0.693,0.8813
+"Spalding County, Georgia",0.9278,0.7553,0.818,0.4085,0.8206
+"Stephens County, Georgia",0.8708,0.826,0.5094,0.4855,0.7836
+"Stewart County, Georgia",0.9395,0.8126,0.9803,0.9717,0.9736
+"Sumter County, Georgia",0.9647,0.6713,0.923,0.9596,0.9631
+"Talbot County, Georgia",0.8731,0.2463,0.9176,0.4324,0.6923
+"Taliaferro County, Georgia",0.7098,0.6892,0.9418,0.3732,0.692
+"Tattnall County, Georgia",0.9313,0.7219,0.819,0.9217,0.9287
+"Taylor County, Georgia",0.9873,0.7381,0.8021,0.8339,0.9555
+"Telfair County, Georgia",0.7273,0.9978,0.8867,0.9841,0.9765
+"Terrell County, Georgia",0.9885,0.6853,0.9399,0.9704,0.9809
+"Thomas County, Georgia",0.8966,0.9408,0.805,0.2243,0.8158
+"Tift County, Georgia",0.8193,0.7388,0.8428,0.8727,0.8759
+"Toombs County, Georgia",0.9752,0.9777,0.7989,0.8743,0.9857
+"Towns County, Georgia",0.7607,0.2141,0.119,0.6911,0.5622
+"Treutlen County, Georgia",0.9943,0.8161,0.714,0.685,0.9389
+"Troup County, Georgia",0.8145,0.8613,0.8304,0.896,0.9023
+"Turner County, Georgia",0.9911,0.9768,0.8428,0.5581,0.9675
+"Twiggs County, Georgia",0.5625,0.6395,0.8304,0.566,0.6538
+"Union County, Georgia",0.448,0.3506,0.1572,0.7986,0.4932
+"Upson County, Georgia",0.7938,0.4642,0.7066,0.378,0.6468
+"Walker County, Georgia",0.8215,0.6624,0.2914,0.4776,0.6796
+"Walton County, Georgia",0.6656,0.4432,0.6503,0.0598,0.4095
+"Ware County, Georgia",0.9198,0.804,0.756,0.9825,0.9596
+"Warren County, Georgia",0.7836,0.8158,0.9259,0.5418,0.8123
+"Washington County, Georgia",0.8734,0.6573,0.9103,0.9485,0.9115
+"Wayne County, Georgia",0.9558,0.8473,0.658,0.8896,0.9434
+"Webster County, Georgia",0.9984,0.4305,0.9259,0.3035,0.8447
+"Wheeler County, Georgia",0.9653,0.0038,0.8263,0.9796,0.7716
+"White County, Georgia",0.4009,0.2195,0.2692,0.5049,0.3455
+"Whitfield County, Georgia",0.8766,0.8266,0.8139,0.7668,0.8836
+"Wilcox County, Georgia",0.8501,0.6262,0.7894,0.7044,0.8212
+"Wilkes County, Georgia",0.7954,0.5606,0.8632,0.1594,0.6083
+"Wilkinson County, Georgia",0.8228,0.8234,0.8279,0.412,0.784
+"Worth County, Georgia",0.938,0.8816,0.7019,0.4585,0.8571
+"Hawaii County, Hawaii",0.4502,0.7894,0.9602,0.4881,0.636
+"Honolulu County, Hawaii",0.2307,0.2638,0.9854,0.957,0.5708
+"Kalawao County, Hawaii",0.0983,0.0614,0.9723,0.4044,0.1871
+"Kauai County, Hawaii",0.2367,0.3446,0.9625,0.4566,0.3964
+"Maui County, Hawaii",0.2918,0.4003,0.9605,0.6032,0.4938
+"Ada County, Idaho",0.1559,0.161,0.4779,0.3767,0.1931
+"Adams County, Idaho",0.6268,0.1549,0.2959,0.0175,0.2017
+"Bannock County, Idaho",0.4403,0.4337,0.489,0.6125,0.4995
+"Bear Lake County, Idaho",0.2361,0.7105,0.182,0.0821,0.2024
+"Benewah County, Idaho",0.8123,0.6955,0.4588,0.3618,0.6717
+"Bingham County, Idaho",0.5517,0.7423,0.6249,0.2841,0.5469
+"Blaine County, Idaho",0.2523,0.6462,0.6516,0.385,0.4025
+"Boise County, Idaho",0.1578,0.1292,0.3961,0.1346,0.1075
+"Bonner County, Idaho",0.4655,0.3318,0.2692,0.4954,0.412
+"Bonneville County, Idaho",0.4101,0.5915,0.504,0.3703,0.4473
+"Boundary County, Idaho",0.657,0.5199,0.3388,0.3067,0.5037
+"Butte County, Idaho",0.5186,0.9959,0.328,0.4267,0.7009
+"Camas County, Idaho",0.5348,0.3824,0.5406,0.0907,0.3271
+"Canyon County, Idaho",0.5647,0.7311,0.6885,0.4623,0.6217
+"Caribou County, Idaho",0.2332,0.0512,0.3118,0.2039,0.1231
+"Cassia County, Idaho",0.5103,0.5367,0.6971,0.5208,0.56
+"Clark County, Idaho",0.8206,0.2068,0.8829,0.1607,0.5412
+"Clearwater County, Idaho",0.4709,0.5272,0.3388,0.8349,0.5912
+"Custer County, Idaho",0.4556,0.434,0.3166,0.3016,0.3713
+"Elmore County, Idaho",0.8804,0.6745,0.6538,0.6503,0.8155
+"Franklin County, Idaho",0.3035,0.1002,0.2879,0.0627,0.1101
+"Fremont County, Idaho",0.475,0.8002,0.4658,0.4333,0.5504
+"Gem County, Idaho",0.3054,0.9815,0.4356,0.5657,0.6153
+"Gooding County, Idaho",0.7477,0.8686,0.7165,0.6408,0.8059
+"Idaho County, Idaho",0.5915,0.5593,0.2816,0.4489,0.5199
+"Jefferson County, Idaho",0.1699,0.2313,0.4085,0.098,0.1212
+"Jerome County, Idaho",0.7057,0.6666,0.8005,0.1801,0.5826
+"Kootenai County, Idaho",0.3544,0.2071,0.3675,0.322,0.2746
+"Latah County, Idaho",0.4518,0.0035,0.3847,0.8097,0.2825
+"Lemhi County, Idaho",0.3579,0.5555,0.1985,0.5212,0.4073
+"Lewis County, Idaho",0.7261,0.9217,0.5183,0.3557,0.7146
+"Lincoln County, Idaho",0.7738,0.7146,0.7359,0.2784,0.6742
+"Madison County, Idaho",0.7264,0.0016,0.4057,0.8657,0.4318
+"Minidoka County, Idaho",0.6118,0.5931,0.7725,0.3913,0.5978
+"Nez Perce County, Idaho",0.4378,0.5565,0.4018,0.8333,0.5892
+"Oneida County, Idaho",0.1149,0.4814,0.182,0.0395,0.0792
+"Owyhee County, Idaho",0.5892,0.9828,0.6872,0.3968,0.7432
+"Payette County, Idaho",0.5689,0.9271,0.5927,0.4197,0.6713
+"Power County, Idaho",0.7747,0.8616,0.776,0.3926,0.762
+"Shoshone County, Idaho",0.8416,0.7359,0.3166,0.5877,0.7493
+"Teton County, Idaho",0.4041,0.0932,0.5294,0.1266,0.2052
+"Twin Falls County, Idaho",0.6185,0.6405,0.5854,0.3837,0.5756
+"Valley County, Idaho",0.482,0.043,0.0025,0.1196,0.1365
+"Washington County, Idaho",0.8186,0.9987,0.5501,0.6577,0.9093
+"Adams County, Illinois",0.1343,0.4849,0.2628,0.6481,0.2965
+"Alexander County, Illinois",0.9052,0.8521,0.7423,0.7509,0.8941
+"Bond County, Illinois",0.3159,0.2167,0.3888,0.9736,0.5253
+"Boone County, Illinois",0.5189,0.6465,0.658,0.174,0.4655
+"Brown County, Illinois",0.2469,0.2199,0.6013,0.9144,0.4753
+"Bureau County, Illinois",0.4069,0.5644,0.4057,0.1973,0.3544
+"Calhoun County, Illinois",0.043,0.2297,0.0474,0.188,0.0541
+"Carroll County, Illinois",0.3271,0.1133,0.3118,0.3519,0.2304
+"Cass County, Illinois",0.3519,0.8148,0.6277,0.356,0.4998
+"Champaign County, Illinois",0.4388,0.0395,0.7226,0.8269,0.4658
+"Christian County, Illinois",0.2329,0.2173,0.1508,0.3509,0.1966
+"Clark County, Illinois",0.1553,0.1642,0.015,0.1238,0.0745
+"Clay County, Illinois",0.5196,0.8673,0.0407,0.5956,0.5813
+"Clinton County, Illinois",0.0754,0.0951,0.2444,0.4664,0.1168
+"Coles County, Illinois",0.6892,0.0566,0.2984,0.8941,0.5574
+"Cook County, Illinois",0.7754,0.3926,0.9138,0.8298,0.7964
+"Crawford County, Illinois",0.1709,0.1635,0.2587,0.4467,0.1919
+"Cumberland County, Illinois",0.0347,0.1511,0.0191,0.0318,0.015
+"DeKalb County, Illinois",0.5087,0.2329,0.6166,0.7604,0.5523
+"De Witt County, Illinois",0.1941,0.0751,0.0881,0.0538,0.0493
+"Douglas County, Illinois",0.447,0.4454,0.3322,0.5492,0.4578
+"DuPage County, Illinois",0.1632,0.1667,0.7296,0.3579,0.2284
+"Edgar County, Illinois",0.3067,0.3875,0.0099,0.6402,0.343
+"Edwards County, Illinois",0.3789,0.8632,0.0299,0.1037,0.3058
+"Effingham County, Illinois",0.0452,0.6032,0.0455,0.6169,0.2081
+"Fayette County, Illinois",0.4391,0.6207,0.3118,0.7789,0.5644
+"Ford County, Illinois",0.3449,0.5667,0.2536,0.4263,0.3824
+"Franklin County, Illinois",0.6704,0.4948,0.0579,0.4025,0.4871
+"Fulton County, Illinois",0.4343,0.0754,0.2109,0.2399,0.2106
+"Gallatin County, Illinois",0.4572,0.8078,0.0932,0.3408,0.4521
+"Greene County, Illinois",0.2043,0.3996,0.0099,0.0592,0.1044
+"Grundy County, Illinois",0.0865,0.2043,0.4518,0.0891,0.0773
+"Hamilton County, Illinois",0.4213,0.6507,0.0474,0.1794,0.3029
+"Hancock County, Illinois",0.1285,0.5577,0.0474,0.0484,0.0885
+"Hardin County, Illinois",0.1696,0.5301,0.0073,0.4588,0.2383
+"Henderson County, Illinois",0.1543,0.1438,0.0821,0.0204,0.0391
+"Henry County, Illinois",0.0916,0.447,0.3388,0.1339,0.126
+"Iroquois County, Illinois",0.4092,0.6456,0.3388,0.0573,0.2673
+"Jackson County, Illinois",0.8225,0.3452,0.6316,0.9863,0.8479
+"Jasper County, Illinois",0.1352,0.3239,0.0115,0.1139,0.0875
+"Jefferson County, Illinois",0.503,0.8164,0.4445,0.8406,0.7117
+"Jersey County, Illinois",0.0541,0.1152,0.0407,0.0986,0.0318
+"Jo Daviess County, Illinois",0.092,0.272,0.1276,0.1295,0.076
+"Johnson County, Illinois",0.2969,0.3716,0.503,0.5259,0.3834
+"Kane County, Illinois",0.4823,0.5033,0.8263,0.3427,0.5084
+"Kankakee County, Illinois",0.5695,0.7206,0.6656,0.7652,0.7241
+"Kendall County, Illinois",0.0694,0.4537,0.7251,0.0331,0.0996
+"Knox County, Illinois",0.6074,0.4397,0.504,0.7731,0.644
+"Lake County, Illinois",0.3086,0.3847,0.7941,0.6118,0.475
+"LaSalle County, Illinois",0.301,0.5142,0.4588,0.4556,0.3894
+"Lawrence County, Illinois",0.6039,0.4995,0.434,0.5533,0.5657
+"Lee County, Illinois",0.2501,0.3745,0.4222,0.6332,0.3777
+"Livingston County, Illinois",0.1842,0.5301,0.3248,0.5606,0.328
+"Logan County, Illinois",0.1912,0.1409,0.3847,0.7238,0.2921
+"McDonough County, Illinois",0.6672,0.0646,0.3847,0.8123,0.539
+"McHenry County, Illinois",0.1403,0.2431,0.5472,0.041,0.0923
+"McLean County, Illinois",0.1168,0.0573,0.552,0.6029,0.1903
+"Macon County, Illinois",0.3971,0.511,0.6102,0.6755,0.5396
+"Macoupin County, Illinois",0.2386,0.2561,0.0525,0.1009,0.1161
+"Madison County, Illinois",0.2663,0.3175,0.4658,0.2625,0.2561
+"Marion County, Illinois",0.567,0.721,0.2816,0.6204,0.6036
+"Marshall County, Illinois",0.1467,0.2536,0.1572,0.0993,0.0894
+"Mason County, Illinois",0.2568,0.1823,0.021,0.1409,0.1254
+"Massac County, Illinois",0.5476,0.6389,0.3977,0.5444,0.5625
+"Menard County, Illinois",0.0522,0.3834,0.0474,0.0162,0.0283
+"Mercer County, Illinois",0.1419,0.2762,0.0932,0.048,0.064
+"Monroe County, Illinois",0.0016,0.0465,0.0299,0.0083,0.001
+"Montgomery County, Illinois",0.343,0.1492,0.1861,0.6382,0.3191
+"Morgan County, Illinois",0.5052,0.3156,0.3563,0.6421,0.4935
+"Moultrie County, Illinois",0.3926,0.4298,0.0229,0.8476,0.4827
+"Ogle County, Illinois",0.2539,0.5982,0.4378,0.28,0.3131
+"Peoria County, Illinois",0.5444,0.6446,0.6923,0.7041,0.6656
+"Perry County, Illinois",0.4677,0.545,0.4057,0.8263,0.6001
+"Piatt County, Illinois",0.0745,0.042,0.0299,0.0086,0.0045
+"Pike County, Illinois",0.2988,0.8091,0.0337,0.1581,0.2771
+"Pope County, Illinois",0.391,0.2657,0.3086,0.4114,0.3277
+"Pulaski County, Illinois",0.5256,0.7111,0.749,0.5428,0.6357
+"Putnam County, Illinois",0.014,0.2269,0.2536,0.0032,0.0048
+"Randolph County, Illinois",0.3077,0.6322,0.3939,0.6869,0.4897
+"Richland County, Illinois",0.189,0.8995,0.0881,0.5577,0.413
+"Rock Island County, Illinois",0.5816,0.8482,0.6701,0.7385,0.7556
+"St. Clair County, Illinois",0.4438,0.5902,0.7821,0.4505,0.532
+"Saline County, Illinois",0.5934,0.7372,0.2109,0.7506,0.6557
+"Sangamon County, Illinois",0.2437,0.4531,0.546,0.5978,0.4041
+"Schuyler County, Illinois",0.4674,0.7719,0.2323,0.4238,0.4957
+"Scott County, Illinois",0.0652,0.4976,0.0264,0.0455,0.0512
+"Shelby County, Illinois",0.0935,0.259,0.0099,0.2953,0.1069
+"Stark County, Illinois",0.2059,0.2351,0.1457,0.014,0.0579
+"Stephenson County, Illinois",0.4668,0.6621,0.5119,0.4537,0.5218
+"Tazewell County, Illinois",0.1075,0.1311,0.1572,0.3204,0.1085
+"Union County, Illinois",0.6631,0.4378,0.265,0.7063,0.602
+"Vermilion County, Illinois",0.5116,0.8231,0.5679,0.6904,0.6806
+"Wabash County, Illinois",0.2294,0.7712,0.1928,0.6045,0.4209
+"Warren County, Illinois",0.4661,0.7143,0.4973,0.4948,0.5441
+"Washington County, Illinois",0.0885,0.1168,0.0379,0.0585,0.0347
+"Wayne County, Illinois",0.4811,0.6468,0.0229,0.5772,0.4843
+"White County, Illinois",0.4209,0.6577,0.0191,0.4193,0.3999
+"Whiteside County, Illinois",0.2669,0.7652,0.4814,0.1661,0.3236
+"Will County, Illinois",0.2062,0.3904,0.7706,0.1559,0.244
+"Williamson County, Illinois",0.3038,0.6192,0.3388,0.4553,0.3948
+"Winnebago County, Illinois",0.7502,0.8591,0.7127,0.5227,0.7728
+"Woodford County, Illinois",0.0515,0.0795,0.0675,0.057,0.0175
+"Adams County, Indiana",0.6411,0.2055,0.1654,0.7569,0.5355
+"Allen County, Indiana",0.4426,0.699,0.6468,0.4435,0.5374
+"Bartholomew County, Indiana",0.167,0.5492,0.5415,0.3484,0.287
+"Benton County, Indiana",0.3738,0.9074,0.2587,0.0678,0.3369
+"Blackford County, Indiana",0.6748,0.5972,0.0675,0.2975,0.4801
+"Boone County, Indiana",0.0251,0.2526,0.3446,0.0366,0.0331
+"Brown County, Indiana",0.2055,0.3261,0.0544,0.2542,0.1712
+"Carroll County, Indiana",0.2097,0.2084,0.1753,0.0458,0.0821
+"Cass County, Indiana",0.4528,0.8479,0.5797,0.3961,0.5587
+"Clark County, Indiana",0.2654,0.4171,0.504,0.3411,0.3093
+"Clay County, Indiana",0.1444,0.4496,0.0675,0.2873,0.1718
+"Clinton County, Indiana",0.335,0.587,0.5202,0.2094,0.3443
+"Crawford County, Indiana",0.5899,0.1247,0.0407,0.3449,0.3124
+"Daviess County, Indiana",0.5304,0.4136,0.328,0.9077,0.6239
+"Dearborn County, Indiana",0.0662,0.1241,0.0337,0.071,0.0312
+"Decatur County, Indiana",0.0725,0.0229,0.1094,0.0659,0.0159
+"DeKalb County, Indiana",0.1667,0.2138,0.0821,0.2934,0.1384
+"Delaware County, Indiana",0.7226,0.2116,0.413,0.7903,0.6309
+"Dubois County, Indiana",0.0697,0.461,0.335,0.3067,0.1619
+"Elkhart County, Indiana",0.7245,0.7852,0.6287,0.819,0.8132
+"Fayette County, Indiana",0.7022,0.8454,0.1037,0.4703,0.6293
+"Floyd County, Indiana",0.1333,0.412,0.3888,0.2641,0.1915
+"Fountain County, Indiana",0.4629,0.7318,0.0821,0.0795,0.2924
+"Franklin County, Indiana",0.0872,0.2335,0.015,0.3996,0.1199
+"Fulton County, Indiana",0.6577,0.6293,0.2854,0.3802,0.5415
+"Gibson County, Indiana",0.0986,0.3548,0.2536,0.616,0.2342
+"Grant County, Indiana",0.6965,0.6666,0.4537,0.8683,0.7649
+"Greene County, Indiana",0.6491,0.5514,0.0299,0.5332,0.5275
+"Hamilton County, Indiana",0.0064,0.2682,0.5081,0.034,0.0302
+"Hancock County, Indiana",0.0598,0.1085,0.2781,0.0178,0.0185
+"Harrison County, Indiana",0.1117,0.09,0.0544,0.3815,0.1009
+"Hendricks County, Indiana",0.0334,0.2819,0.5148,0.168,0.0904
+"Henry County, Indiana",0.3414,0.3121,0.1696,0.4521,0.3045
+"Howard County, Indiana",0.4193,0.7238,0.4604,0.28,0.4505
+"Huntington County, Indiana",0.1766,0.2052,0.1152,0.2428,0.1362
+"Jackson County, Indiana",0.3134,0.5956,0.4057,0.5972,0.4556
+"Jasper County, Indiana",0.0939,0.4489,0.342,0.0659,0.1005
+"Jay County, Indiana",0.5762,0.5749,0.0881,0.3964,0.4626
+"Jefferson County, Indiana",0.4633,0.531,0.2062,0.8848,0.5832
+"Jennings County, Indiana",0.4645,0.497,0.0932,0.308,0.3573
+"Johnson County, Indiana",0.1451,0.1645,0.3977,0.1387,0.1117
+"Knox County, Indiana",0.2953,0.7938,0.265,0.6561,0.497
+"Kosciusko County, Indiana",0.314,0.5797,0.3917,0.4311,0.3926
+"LaGrange County, Indiana",0.4251,0.4782,0.1152,0.4862,0.3961
+"Lake County, Indiana",0.6258,0.7824,0.8549,0.4731,0.7031
+"LaPorte County, Indiana",0.4295,0.4155,0.5667,0.615,0.5046
+"Lawrence County, Indiana",0.2529,0.3866,0.0757,0.574,0.2981
+"Madison County, Indiana",0.5619,0.6643,0.4636,0.5689,0.5985
+"Marion County, Indiana",0.8132,0.7814,0.8565,0.6287,0.826
+"Marshall County, Indiana",0.4648,0.4617,0.3939,0.4473,0.4493
+"Martin County, Indiana",0.1909,0.1228,0.0675,0.4365,0.1613
+"Miami County, Indiana",0.5021,0.2479,0.3748,0.4038,0.3904
+"Monroe County, Indiana",0.5619,0.0076,0.4779,0.8877,0.4302
+"Montgomery County, Indiana",0.3948,0.6475,0.2816,0.4846,0.455
+"Morgan County, Indiana",0.1521,0.1712,0.0675,0.0566,0.0538
+"Newton County, Indiana",0.566,0.7331,0.3388,0.0226,0.3229
+"Noble County, Indiana",0.3828,0.5883,0.4085,0.7502,0.5418
+"Ohio County, Indiana",0.0869,0.4031,0.0579,0.4785,0.1734
+"Orange County, Indiana",0.4601,0.8384,0.1339,0.692,0.5791
+"Owen County, Indiana",0.574,0.188,0.0299,0.1241,0.238
+"Parke County, Indiana",0.7038,0.2307,0.0757,0.9472,0.6424
+"Perry County, Indiana",0.2084,0.0426,0.1457,0.9682,0.3182
+"Pike County, Indiana",0.1056,0.0436,0.0264,0.1944,0.0465
+"Porter County, Indiana",0.1473,0.1152,0.5148,0.2218,0.1374
+"Posey County, Indiana",0.0331,0.0439,0.0525,0.0547,0.0092
+"Pulaski County, Indiana",0.4257,0.5711,0.1753,0.3573,0.3866
+"Putnam County, Indiana",0.1129,0.0554,0.2364,0.6134,0.1502
+"Randolph County, Indiana",0.4321,0.881,0.2164,0.4101,0.5113
+"Ripley County, Indiana",0.2017,0.1654,0.0544,0.5447,0.2062
+"Rush County, Indiana",0.5791,0.1604,0.0525,0.0843,0.2125
+"St. Joseph County, Indiana",0.5167,0.5358,0.6567,0.6882,0.6134
+"Scott County, Indiana",0.6723,0.5052,0.0983,0.6662,0.5807
+"Shelby County, Indiana",0.2641,0.3427,0.2364,0.4528,0.2832
+"Spencer County, Indiana",0.0665,0.1063,0.1037,0.097,0.0369
+"Starke County, Indiana",0.4658,0.4413,0.2109,0.1355,0.2829
+"Steuben County, Indiana",0.2297,0.0538,0.1753,0.4582,0.1651
+"Sullivan County, Indiana",0.4992,0.5476,0.2536,0.7887,0.574
+"Switzerland County, Indiana",0.6379,0.7432,0.0757,0.5514,0.5886
+"Tippecanoe County, Indiana",0.5107,0.0477,0.6211,0.8594,0.5087
+"Tipton County, Indiana",0.1849,0.0617,0.0821,0.0325,0.0382
+"Union County, Indiana",0.3169,0.1903,0.0757,0.0267,0.0897
+"Vanderburgh County, Indiana",0.5415,0.4518,0.4948,0.636,0.5612
+"Vermillion County, Indiana",0.3777,0.7626,0.0264,0.3598,0.391
+"Vigo County, Indiana",0.776,0.3185,0.434,0.8711,0.7286
+"Wabash County, Indiana",0.1775,0.1947,0.1276,0.2905,0.147
+"Warren County, Indiana",0.0646,0.1849,0.0544,0.0477,0.0315
+"Warrick County, Indiana",0.0099,0.2084,0.2587,0.0465,0.0194
+"Washington County, Indiana",0.4594,0.4696,0.0229,0.3268,0.3382
+"Wayne County, Indiana",0.7035,0.9084,0.377,0.63,0.7515
+"Wells County, Indiana",0.064,0.293,0.1457,0.0878,0.0531
+"White County, Indiana",0.2851,0.6058,0.3484,0.0773,0.2221
+"Whitley County, Indiana",0.1588,0.2014,0.1339,0.0732,0.0735
+"Adair County, Iowa",0.1133,0.1861,0.0881,0.0872,0.0554
+"Adams County, Iowa",0.1257,0.3484,0.0821,0.1098,0.091
+"Allamakee County, Iowa",0.1505,0.5982,0.3166,0.2269,0.2164
+"Appanoose County, Iowa",0.6634,0.3783,0.1094,0.3738,0.4547
+"Audubon County, Iowa",0.0846,0.3843,0.0579,0.0706,0.0611
+"Benton County, Iowa",0.0092,0.125,0.0474,0.0283,0.007
+"Black Hawk County, Iowa",0.4308,0.441,0.5383,0.7992,0.5667
+"Boone County, Iowa",0.0204,0.0321,0.1152,0.252,0.0255
+"Bremer County, Iowa",0.0045,0.0894,0.1225,0.1766,0.021
+"Buchanan County, Iowa",0.077,0.2549,0.0407,0.1537,0.0655
+"Buena Vista County, Iowa",0.4123,0.6055,0.8263,0.7366,0.6258
+"Butler County, Iowa",0.0827,0.1747,0.0407,0.0375,0.0325
+"Calhoun County, Iowa",0.036,0.3398,0.1696,0.2593,0.092
+"Carroll County, Iowa",0.0344,0.2736,0.1409,0.2819,0.0815
+"Cass County, Iowa",0.2609,0.3738,0.0881,0.2704,0.2144
+"Cedar County, Iowa",0.0146,0.0694,0.0675,0.0496,0.0089
+"Cerro Gordo County, Iowa",0.0738,0.14,0.314,0.4531,0.1343
+"Cherokee County, Iowa",0.1002,0.2103,0.265,0.4318,0.1546
+"Chickasaw County, Iowa",0.0582,0.3961,0.0544,0.0436,0.0433
+"Clarke County, Iowa",0.6262,0.9141,0.552,0.8371,0.8107
+"Clay County, Iowa",0.14,0.7407,0.1985,0.1199,0.1826
+"Clayton County, Iowa",0.2883,0.6048,0.0407,0.2981,0.2752
+"Clinton County, Iowa",0.2949,0.6281,0.2914,0.3446,0.3446
+"Crawford County, Iowa",0.5231,0.979,0.7448,0.5186,0.7563
+"Dallas County, Iowa",0.0121,0.2186,0.4814,0.1394,0.0515
+"Davis County, Iowa",0.4508,0.5329,0.0337,0.6437,0.4585
+"Decatur County, Iowa",0.5234,0.1705,0.2364,0.8705,0.524
+"Delaware County, Iowa",0.0309,0.0805,0.0379,0.1406,0.0248
+"Des Moines County, Iowa",0.2192,0.7967,0.4273,0.4655,0.4174
+"Dickinson County, Iowa",0.0296,0.3395,0.1152,0.1505,0.055
+"Dubuque County, Iowa",0.1422,0.2148,0.3058,0.5762,0.2281
+"Emmet County, Iowa",0.1887,0.6338,0.4699,0.1791,0.2494
+"Fayette County, Iowa",0.3583,0.2851,0.2294,0.1629,0.2179
+"Floyd County, Iowa",0.0802,0.2542,0.3086,0.2501,0.1196
+"Franklin County, Iowa",0.2797,0.6487,0.4613,0.0414,0.2132
+"Fremont County, Iowa",0.0337,0.1896,0.1508,0.0124,0.0146
+"Greene County, Iowa",0.104,0.6214,0.1572,0.2125,0.1664
+"Grundy County, Iowa",0.0029,0.0948,0.0379,0.0216,0.0029
+"Guthrie County, Iowa",0.0484,0.1203,0.1094,0.0353,0.0178
+"Hamilton County, Iowa",0.0862,0.4146,0.3675,0.1712,0.1289
+"Hancock County, Iowa",0.0401,0.3392,0.2294,0.1467,0.0713
+"Hardin County, Iowa",0.119,0.2825,0.2399,0.3061,0.1514
+"Harrison County, Iowa",0.049,0.0643,0.0474,0.2024,0.0388
+"Henry County, Iowa",0.1174,0.4967,0.3847,0.273,0.2001
+"Howard County, Iowa",0.1282,0.2024,0.0474,0.1645,0.0846
+"Humboldt County, Iowa",0.0815,0.8285,0.2265,0.1868,0.1941
+"Ida County, Iowa",0.0496,0.1995,0.1457,0.0999,0.0445
+"Iowa County, Iowa",0.0261,0.3245,0.1457,0.1228,0.0484
+"Jackson County, Iowa",0.1225,0.0999,0.0627,0.2265,0.078
+"Jasper County, Iowa",0.1693,0.4423,0.1985,0.3134,0.2078
+"Jefferson County, Iowa",0.5339,0.5463,0.4683,0.9001,0.6774
+"Johnson County, Iowa",0.3408,0.0213,0.5829,0.8855,0.3863
+"Jones County, Iowa",0.0471,0.342,0.1985,0.2873,0.1082
+"Keokuk County, Iowa",0.1623,0.5542,0.0264,0.0095,0.0633
+"Kossuth County, Iowa",0.085,0.7168,0.1696,0.3099,0.203
+"Lee County, Iowa",0.2504,0.4114,0.2781,0.336,0.2631
+"Linn County, Iowa",0.1009,0.2984,0.4588,0.3999,0.1944
+"Louisa County, Iowa",0.2106,0.5393,0.5679,0.2113,0.2676
+"Lucas County, Iowa",0.3239,0.7302,0.0544,0.3328,0.3458
+"Lyon County, Iowa",0.0105,0.2965,0.0675,0.0881,0.0286
+"Madison County, Iowa",0.006,0.0869,0.0821,0.0194,0.0035
+"Mahaska County, Iowa",0.099,0.5161,0.182,0.2488,0.1575
+"Marion County, Iowa",0.0248,0.2784,0.1094,0.4375,0.099
+"Marshall County, Iowa",0.4149,0.6841,0.7003,0.8645,0.6799
+"Mills County, Iowa",0.07,0.3054,0.1276,0.1709,0.0811
+"Mitchell County, Iowa",0.1028,0.3433,0.0169,0.1362,0.085
+"Monona County, Iowa",0.0999,0.4066,0.0983,0.1234,0.0951
+"Monroe County, Iowa",0.0932,0.1018,0.0675,0.5002,0.1203
+"Montgomery County, Iowa",0.1744,0.5406,0.2062,0.0869,0.1432
+"Muscatine County, Iowa",0.2173,0.8212,0.6077,0.5329,0.4792
+"O'Brien County, Iowa",0.1234,0.6026,0.2733,0.784,0.3681
+"Osceola County, Iowa",0.2593,0.776,0.3939,0.0665,0.251
+"Page County, Iowa",0.3904,0.4327,0.265,0.4623,0.3878
+"Palo Alto County, Iowa",0.0745,0.371,0.2536,0.3188,0.1422
+"Plymouth County, Iowa",0.015,0.4664,0.3016,0.1158,0.0624
+"Pocahontas County, Iowa",0.2631,0.4836,0.2323,0.0417,0.1476
+"Polk County, Iowa",0.2431,0.5947,0.5994,0.595,0.4477
+"Pottawattamie County, Iowa",0.2864,0.7448,0.4085,0.6312,0.4944
+"Poweshiek County, Iowa",0.2132,0.0665,0.2364,0.6946,0.2348
+"Ringgold County, Iowa",0.1018,0.7556,0.0821,0.3261,0.2176
+"Sac County, Iowa",0.0605,0.1941,0.1152,0.1814,0.0614
+"Scott County, Iowa",0.1896,0.482,0.5581,0.4534,0.3252
+"Shelby County, Iowa",0.0783,0.1193,0.1654,0.036,0.029
+"Sioux County, Iowa",0.0509,0.2625,0.4057,0.3458,0.1311
+"Story County, Iowa",0.4521,0.001,0.4839,0.6974,0.2364
+"Tama County, Iowa",0.35,0.7292,0.5476,0.293,0.4384
+"Taylor County, Iowa",0.1187,0.567,0.3503,0.0741,0.1292
+"Union County, Iowa",0.3233,0.5991,0.1339,0.4887,0.3767
+"Van Buren County, Iowa",0.5724,0.4292,0.0229,0.2424,0.3608
+"Wapello County, Iowa",0.6478,0.922,0.5383,0.728,0.7852
+"Warren County, Iowa",0.0137,0.2389,0.1654,0.3761,0.0741
+"Washington County, Iowa",0.0948,0.6548,0.3016,0.1034,0.1397
+"Wayne County, Iowa",0.3105,0.8626,0.0881,0.405,0.4168
+"Webster County, Iowa",0.2039,0.2844,0.4273,0.6977,0.3439
+"Winnebago County, Iowa",0.0286,0.6258,0.2914,0.2832,0.1403
+"Winneshiek County, Iowa",0.0337,0.0821,0.0735,0.3423,0.0522
+"Woodbury County, Iowa",0.4804,0.8766,0.6752,0.7276,0.7197
+"Worth County, Iowa",0.0585,0.0802,0.1037,0.0675,0.0232
+"Wright County, Iowa",0.1464,0.9742,0.4814,0.2351,0.3971
+"Allen County, Kansas",0.5702,0.6433,0.3217,0.6115,0.5854
+"Anderson County, Kansas",0.5854,0.7595,0.1928,0.105,0.4085
+"Atchison County, Kansas",0.3859,0.3535,0.3824,0.7181,0.4728
+"Barber County, Kansas",0.42,0.7531,0.3847,0.476,0.5107
+"Barton County, Kansas",0.5562,0.9847,0.5269,0.3716,0.7006
+"Bourbon County, Kansas",0.4057,0.707,0.328,0.5647,0.5126
+"Brown County, Kansas",0.3188,0.3258,0.5183,0.0544,0.1893
+"Butler County, Kansas",0.0818,0.2173,0.3917,0.2927,0.1295
+"Chase County, Kansas",0.2246,0.482,0.3503,0.216,0.2358
+"Chautauqua County, Kansas",0.6557,0.5186,0.4613,0.4881,0.5781
+"Cherokee County, Kansas",0.4598,0.5816,0.4018,0.4346,0.4718
+"Cheyenne County, Kansas",0.4858,0.8056,0.3058,0.0213,0.2953
+"Clark County, Kansas",0.0528,0.9424,0.4445,0.1604,0.2354
+"Clay County, Kansas",0.1814,0.8743,0.1985,0.7086,0.4636
+"Cloud County, Kansas",0.4454,0.3611,0.2692,0.3137,0.3427
+"Coffey County, Kansas",0.2599,0.7477,0.1985,0.1798,0.2743
+"Comanche County, Kansas",0.125,0.8594,0.0264,0.3344,0.2577
+"Cowley County, Kansas",0.5441,0.9411,0.5616,0.8164,0.7871
+"Crawford County, Kansas",0.6023,0.4108,0.42,0.965,0.7213
+"Decatur County, Kansas",0.1747,0.3913,0.1985,0.0115,0.0681
+"Dickinson County, Kansas",0.168,0.4569,0.3166,0.1969,0.1884
+"Doniphan County, Kansas",0.238,0.0185,0.3166,0.5921,0.1861
+"Douglas County, Kansas",0.4738,0.007,0.574,0.7964,0.3602
+"Edwards County, Kansas",0.3726,0.9615,0.6179,0.0923,0.4639
+"Elk County, Kansas",0.4922,0.7041,0.3446,0.0624,0.336
+"Ellis County, Kansas",0.3557,0.0331,0.3446,0.4951,0.2393
+"Ellsworth County, Kansas",0.1721,0.0563,0.4356,0.4572,0.1731
+"Finney County, Kansas",0.8346,0.7366,0.9224,0.895,0.8966
+"Ford County, Kansas",0.5492,0.7283,0.9294,0.7187,0.7359
+"Franklin County, Kansas",0.2472,0.3347,0.3058,0.2558,0.224
+"Geary County, Kansas",0.5832,0.8556,0.8279,0.5797,0.7353
+"Gove County, Kansas",0.1441,0.3516,0.0821,0.0045,0.0372
+"Graham County, Kansas",0.49,0.6147,0.3697,0.0344,0.2765
+"Grant County, Kansas",0.3646,0.2208,0.8804,0.2332,0.3363
+"Gray County, Kansas",0.2685,0.35,0.5371,0.2825,0.2816
+"Greeley County, Kansas",0.1241,0.8969,0.5727,0.1254,0.2689
+"Greenwood County, Kansas",0.3229,0.7919,0.2536,0.1209,0.2978
+"Hamilton County, Kansas",0.3334,0.433,0.7251,0.2062,0.3398
+"Harper County, Kansas",0.5431,0.9905,0.363,0.2307,0.6316
+"Harvey County, Kansas",0.2739,0.6223,0.5119,0.4795,0.4193
+"Haskell County, Kansas",0.5132,0.2574,0.72,0.2625,0.4143
+"Hodgeman County, Kansas",0.0786,0.7404,0.2587,0.007,0.0646
+"Jackson County, Kansas",0.1371,0.8005,0.4741,0.1511,0.2472
+"Jefferson County, Kansas",0.1072,0.0522,0.1928,0.0261,0.0197
+"Jewell County, Kansas",0.1572,0.1677,0.1696,0.021,0.0455
+"Johnson County, Kansas",0.0439,0.1976,0.5542,0.0808,0.0605
+"Kearny County, Kansas",0.5641,0.9198,0.7591,0.0792,0.5358
+"Kingman County, Kansas",0.2631,0.0897,0.2485,0.1018,0.1079
+"Kiowa County, Kansas",0.2749,0.5425,0.3446,0.2498,0.2879
+"Labette County, Kansas",0.3341,0.8317,0.4445,0.4502,0.4941
+"Lane County, Kansas",0.1384,0.4502,0.4613,0.0073,0.0716
+"Leavenworth County, Kansas",0.2068,0.146,0.5581,0.4416,0.2475
+"Lincoln County, Kansas",0.1581,0.3481,0.1508,0.0805,0.1021
+"Linn County, Kansas",0.461,0.3315,0.2265,0.1731,0.2733
+"Logan County, Kansas",0.16,0.9787,0.3058,0.062,0.28
+"Lyon County, Kansas",0.6153,0.3325,0.6656,0.9376,0.7222
+"McPherson County, Kansas",0.1311,0.2469,0.2781,0.3462,0.1635
+"Marion County, Kansas",0.1619,0.3233,0.2234,0.1569,0.1355
+"Marshall County, Kansas",0.1397,0.4391,0.1339,0.308,0.181
+"Meade County, Kansas",0.2119,0.6697,0.6204,0.1174,0.2628
+"Miami County, Kansas",0.0729,0.2927,0.2294,0.1215,0.0757
+"Mitchell County, Kansas",0.1101,0.3815,0.1572,0.2059,0.1285
+"Montgomery County, Kansas",0.6993,0.8785,0.5616,0.825,0.8209
+"Morris County, Kansas",0.1534,0.5364,0.3016,0.1164,0.1569
+"Morton County, Kansas",0.3411,0.8549,0.6567,0.0245,0.3077
+"Nemaha County, Kansas",0.0426,0.181,0.0881,0.2106,0.057
+"Neosho County, Kansas",0.5367,0.8759,0.3503,0.7311,0.6911
+"Ness County, Kansas",0.1126,0.4858,0.4973,0.027,0.0999
+"Norton County, Kansas",0.3045,0.3277,0.3917,0.1546,0.223
+"Osage County, Kansas",0.2784,0.4302,0.182,0.1269,0.1909
+"Osborne County, Kansas",0.0716,0.517,0.1572,0.0515,0.0687
+"Ottawa County, Kansas",0.1336,0.1817,0.1409,0.0232,0.042
+"Pawnee County, Kansas",0.2475,0.1734,0.4658,0.5727,0.3019
+"Phillips County, Kansas",0.3423,0.6484,0.1753,0.2374,0.3137
+"Pottawatomie County, Kansas",0.0191,0.0993,0.3322,0.2889,0.0544
+"Pratt County, Kansas",0.252,0.7754,0.3917,0.2234,0.3341
+"Rawlins County, Kansas",0.1928,0.8772,0.335,0.4123,0.3958
+"Reno County, Kansas",0.4314,0.6153,0.4725,0.5072,0.5011
+"Republic County, Kansas",0.0445,0.2918,0.0881,0.0655,0.041
+"Rice County, Kansas",0.1387,0.5927,0.5148,0.1031,0.1823
+"Riley County, Kansas",0.5733,0.0503,0.5978,0.9287,0.567
+"Rooks County, Kansas",0.0277,0.224,0.1037,0.3185,0.071
+"Rush County, Kansas",0.2844,0.1164,0.3446,0.0296,0.0916
+"Russell County, Kansas",0.5857,0.3703,0.2914,0.1133,0.3226
+"Saline County, Kansas",0.3691,0.7248,0.5406,0.4642,0.5008
+"Scott County, Kansas",0.2841,0.9176,0.5953,0.1893,0.4349
+"Sedgwick County, Kansas",0.6596,0.8123,0.7098,0.5562,0.7292
+"Seward County, Kansas",0.7871,0.7429,0.966,0.7954,0.8578
+"Shawnee County, Kansas",0.3869,0.7095,0.6398,0.7486,0.6137
+"Sheridan County, Kansas",0.0404,0.5355,0.2234,0.0757,0.0706
+"Sherman County, Kansas",0.4082,0.8956,0.4741,0.2494,0.4992
+"Smith County, Kansas",0.0792,0.3128,0.1152,0.029,0.0404
+"Stafford County, Kansas",0.1782,0.8031,0.4814,0.0671,0.2272
+"Stanton County, Kansas",0.5603,0.3999,0.8225,0.063,0.3786
+"Stevens County, Kansas",0.63,0.7257,0.797,0.4992,0.6879
+"Sumner County, Kansas",0.3783,0.3929,0.3535,0.3124,0.3322
+"Thomas County, Kansas",0.1021,0.3948,0.2628,0.1572,0.1247
+"Trego County, Kansas",0.0506,0.0417,0.0089,0.0563,0.0105
+"Wabaunsee County, Kansas",0.0458,0.3761,0.2733,0.0859,0.0636
+"Wallace County, Kansas",0.0891,0.7865,0.3166,0.1219,0.1756
+"Washington County, Kansas",0.029,0.6013,0.1928,0.1126,0.0802
+"Wichita County, Kansas",0.3455,0.9583,0.6437,0.1473,0.4858
+"Wilson County, Kansas",0.3898,0.8533,0.2485,0.3207,0.4566
+"Woodson County, Kansas",0.4174,0.5877,0.1861,0.0681,0.2491
+"Wyandotte County, Kansas",0.9612,0.8941,0.9227,0.678,0.9386
+"Adair County, Kentucky",0.7461,0.2109,0.2265,0.7735,0.6026
+"Allen County, Kentucky",0.7563,0.7617,0.0932,0.5288,0.6484
+"Anderson County, Kentucky",0.2908,0.3968,0.1696,0.0051,0.0843
+"Ballard County, Kentucky",0.2574,0.2039,0.2164,0.4757,0.2507
+"Barren County, Kentucky",0.7916,0.9068,0.3118,0.6599,0.7919
+"Bath County, Kentucky",0.5075,0.5772,0.0544,0.7108,0.5269
+"Bell County, Kentucky",0.9319,0.4187,0.1339,0.818,0.7782
+"Boone County, Kentucky",0.0369,0.4731,0.4146,0.1877,0.1177
+"Bourbon County, Kentucky",0.6691,0.6583,0.4416,0.2122,0.5237
+"Boyd County, Kentucky",0.637,0.7585,0.1985,0.7315,0.6704
+"Boyle County, Kentucky",0.6402,0.5339,0.4407,0.357,0.5304
+"Bracken County, Kentucky",0.4432,0.2908,0.0337,0.2364,0.2568
+"Breathitt County, Kentucky",0.7111,0.4445,0.0169,0.9497,0.6962
+"Breckinridge County, Kentucky",0.7197,0.8279,0.1508,0.4976,0.6481
+"Bullitt County, Kentucky",0.1922,0.4648,0.1928,0.1728,0.1779
+"Butler County, Kentucky",0.7658,0.7996,0.1152,0.8043,0.7623
+"Caldwell County, Kentucky",0.6592,0.819,0.3058,0.7216,0.7184
+"Calloway County, Kentucky",0.6363,0.1301,0.3322,0.7996,0.5482
+"Campbell County, Kentucky",0.2001,0.1024,0.2444,0.5542,0.2103
+"Carlisle County, Kentucky",0.5918,0.5059,0.1928,0.2453,0.4225
+"Carroll County, Kentucky",0.8743,0.9609,0.3723,0.7894,0.8886
+"Carter County, Kentucky",0.7639,0.3808,0.0455,0.5708,0.5581
+"Casey County, Kentucky",0.9376,0.6122,0.0881,0.8886,0.8361
+"Christian County, Kentucky",0.929,0.9335,0.7276,0.854,0.9469
+"Clark County, Kentucky",0.4938,0.7175,0.3166,0.4235,0.51
+"Clay County, Kentucky",0.8377,0.5498,0.2323,0.952,0.8174
+"Clinton County, Kentucky",0.6888,0.7862,0.119,0.5994,0.6472
+"Crittenden County, Kentucky",0.5587,0.6927,0.0757,0.4922,0.518
+"Cumberland County, Kentucky",0.8797,0.496,0.1508,0.8018,0.7544
+"Daviess County, Kentucky",0.3443,0.8199,0.3888,0.8247,0.6109
+"Edmonson County, Kentucky",0.6446,0.1763,0.0455,0.3554,0.3697
+"Elliott County, Kentucky",0.8848,0.2113,0.0337,0.9742,0.7617
+"Estill County, Kentucky",0.8686,0.958,0.0191,0.4289,0.7604
+"Fayette County, Kentucky",0.5329,0.1639,0.672,0.7611,0.5542
+"Fleming County, Kentucky",0.7878,0.685,0.0735,0.6376,0.6771
+"Floyd County, Kentucky",0.8626,0.4811,0.0115,0.7544,0.7073
+"Franklin County, Kentucky",0.426,0.8295,0.5094,0.6933,0.6255
+"Fulton County, Kentucky",0.881,0.7897,0.6685,0.943,0.91
+"Gallatin County, Kentucky",0.7066,0.1126,0.3563,0.7401,0.5514
+"Garrard County, Kentucky",0.6316,0.42,0.1753,0.099,0.3312
+"Grant County, Kentucky",0.2819,0.4228,0.1753,0.4082,0.2876
+"Graves County, Kentucky",0.5393,0.518,0.4308,0.5803,0.5507
+"Grayson County, Kentucky",0.643,0.7025,0.0474,0.461,0.5428
+"Green County, Kentucky",0.8046,0.8918,0.1037,0.23,0.629
+"Greenup County, Kentucky",0.4079,0.4464,0.0407,0.1349,0.2351
+"Hancock County, Kentucky",0.3083,0.4181,0.0735,0.1289,0.1874
+"Hardin County, Kentucky",0.3697,0.714,0.6029,0.6742,0.5721
+"Harlan County, Kentucky",0.8495,0.8167,0.0757,0.9055,0.8336
+"Harrison County, Kentucky",0.2895,0.1753,0.1276,0.567,0.2714
+"Hart County, Kentucky",0.8291,0.7951,0.265,0.7757,0.8037
+"Henderson County, Kentucky",0.4785,0.8463,0.4314,0.6608,0.6386
+"Henry County, Kentucky",0.7025,0.7362,0.2781,0.3586,0.5845
+"Hickman County, Kentucky",0.1966,0.3586,0.4018,0.3058,0.2326
+"Hopkins County, Kentucky",0.5552,0.7961,0.3592,0.6239,0.6344
+"Jackson County, Kentucky",0.7464,0.7789,0.0041,0.6325,0.664
+"Jefferson County, Kentucky",0.468,0.6723,0.7226,0.6516,0.622
+"Jessamine County, Kentucky",0.3987,0.5574,0.3697,0.2148,0.3474
+"Johnson County, Kentucky",0.7687,0.6841,0.0099,0.9007,0.7509
+"Kenton County, Kentucky",0.2313,0.3856,0.3723,0.4935,0.308
+"Knott County, Kentucky",0.7248,0.4836,0.0115,0.973,0.7334
+"Knox County, Kentucky",0.9154,0.7757,0.0474,0.9316,0.8584
+"Larue County, Kentucky",0.4553,0.5437,0.2587,0.0522,0.2501
+"Laurel County, Kentucky",0.5826,0.4706,0.0407,0.6942,0.5285
+"Lawrence County, Kentucky",0.7445,0.5765,0.0115,0.2214,0.4744
+"Lee County, Kentucky",0.854,0.4407,0.2062,0.9968,0.8492
+"Leslie County, Kentucky",0.7041,0.1324,0.0057,0.9182,0.5746
+"Letcher County, Kentucky",0.7833,0.7512,0.0073,0.6962,0.7012
+"Lewis County, Kentucky",0.8002,0.503,0.0048,0.4038,0.5495
+"Lincoln County, Kentucky",0.7031,0.8155,0.1457,0.3455,0.5835
+"Livingston County, Kentucky",0.497,0.496,0.0735,0.0582,0.2374
+"Logan County, Kentucky",0.6274,0.4852,0.3503,0.2599,0.4671
+"Lyon County, Kentucky",0.1718,0.1616,0.3563,0.3576,0.1845
+"McCracken County, Kentucky",0.3436,0.4763,0.4913,0.8626,0.5517
+"McCreary County, Kentucky",0.7311,0.3077,0.314,0.9087,0.6965
+"McLean County, Kentucky",0.195,0.21,0.0627,0.4165,0.1839
+"Madison County, Kentucky",0.4843,0.1005,0.328,0.5982,0.3843
+"Magoffin County, Kentucky",0.8396,0.6872,0.0057,0.8062,0.7595
+"Marion County, Kentucky",0.6949,0.8791,0.3697,0.7957,0.7859
+"Marshall County, Kentucky",0.1833,0.3163,0.0191,0.3175,0.1699
+"Martin County, Kentucky",0.7079,0.1537,0.3592,0.9618,0.6869
+"Mason County, Kentucky",0.6042,0.8304,0.3535,0.5743,0.6542
+"Meade County, Kentucky",0.1839,0.2272,0.335,0.2084,0.1559
+"Menifee County, Kentucky",0.5469,0.6907,0.0191,0.7136,0.5676
+"Mercer County, Kentucky",0.2774,0.2323,0.2781,0.126,0.1591
+"Metcalfe County, Kentucky",0.6217,0.4108,0.0627,0.7194,0.5453
+"Monroe County, Kentucky",0.581,0.9112,0.1409,0.777,0.714
+"Montgomery County, Kentucky",0.6936,0.7,0.1753,0.4617,0.5896
+"Morgan County, Kentucky",0.5845,0.2256,0.1985,0.9297,0.5918
+"Muhlenberg County, Kentucky",0.5307,0.2584,0.182,0.3325,0.3535
+"Nelson County, Kentucky",0.1359,0.3532,0.2879,0.0496,0.0888
+"Nicholas County, Kentucky",0.6001,0.1868,0.0229,0.5345,0.4111
+"Ohio County, Kentucky",0.4158,0.9252,0.1225,0.1817,0.4251
+"Oldham County, Kentucky",0.0181,0.1702,0.3723,0.112,0.0398
+"Owen County, Kentucky",0.5507,0.3058,0.0932,0.133,0.2711
+"Owsley County, Kentucky",0.7082,0.2246,0.2323,0.5371,0.5078
+"Pendleton County, Kentucky",0.6252,0.3662,0.1225,0.6351,0.5221
+"Perry County, Kentucky",0.7566,0.7343,0.0932,0.6767,0.6901
+"Pike County, Kentucky",0.8673,0.5272,0.0229,0.8489,0.7506
+"Powell County, Kentucky",0.867,0.5651,0.0757,0.938,0.7992
+"Pulaski County, Kentucky",0.7483,0.8886,0.1339,0.3735,0.6456
+"Robertson County, Kentucky",0.7251,0.5339,0.0115,0.6246,0.587
+"Rockcastle County, Kentucky",0.6389,0.4178,0.0099,0.6621,0.5291
+"Rowan County, Kentucky",0.6927,0.014,0.0932,0.9586,0.5065
+"Russell County, Kentucky",0.6812,0.938,0.1572,0.2552,0.6029
+"Scott County, Kentucky",0.0544,0.5501,0.4018,0.2552,0.1572
+"Shelby County, Kentucky",0.2564,0.3789,0.5383,0.3007,0.2892
+"Simpson County, Kentucky",0.4779,0.0372,0.4314,0.2205,0.2259
+"Spencer County, Kentucky",0.1448,0.069,0.1276,0.0347,0.0356
+"Taylor County, Kentucky",0.2911,0.5654,0.3086,0.3789,0.3395
+"Todd County, Kentucky",0.7572,0.7455,0.4273,0.8533,0.7986
+"Trigg County, Kentucky",0.685,0.7846,0.377,0.5352,0.6672
+"Trimble County, Kentucky",0.419,0.3805,0.2062,0.4232,0.3633
+"Union County, Kentucky",0.2794,0.1829,0.3649,0.3468,0.2424
+"Warren County, Kentucky",0.6265,0.6029,0.5819,0.9415,0.7731
+"Washington County, Kentucky",0.3735,0.6373,0.3592,0.3818,0.4184
+"Wayne County, Kentucky",0.7941,0.9255,0.1696,0.3128,0.6812
+"Webster County, Kentucky",0.5317,0.9704,0.3484,0.5702,0.706
+"Whitley County, Kentucky",0.8918,0.5027,0.0407,0.9831,0.8365
+"Wolfe County, Kentucky",0.902,0.4728,0.0006,0.8995,0.776
+"Woodford County, Kentucky",0.1085,0.6659,0.4085,0.1378,0.1801
+"Acadia Parish, Louisiana",0.8867,0.8781,0.5759,0.7935,0.8832
+"Allen Parish, Louisiana",0.7525,0.9354,0.6647,0.944,0.903
+"Ascension Parish, Louisiana",0.2259,0.6717,0.7105,0.3274,0.384
+"Assumption Parish, Louisiana",0.7719,0.5854,0.7226,0.5635,0.7296
+"Avoyelles Parish, Louisiana",0.9545,0.9383,0.7299,0.9084,0.9682
+"Beauregard Parish, Louisiana",0.4744,0.5377,0.5415,0.6131,0.5498
+"Bienville Parish, Louisiana",0.8944,0.9612,0.8492,0.9695,0.9755
+"Bossier Parish, Louisiana",0.721,0.7381,0.7359,0.7019,0.7773
+"Caddo Parish, Louisiana",0.9033,0.8202,0.9017,0.8963,0.9329
+"Calcasieu Parish, Louisiana",0.616,0.5673,0.7105,0.7693,0.7149
+"Caldwell Parish, Louisiana",0.8568,0.6777,0.5775,0.986,0.9052
+"Cameron Parish, Louisiana",0.2644,0.5415,0.377,0.2899,0.2984
+"Catahoula Parish, Louisiana",0.8374,0.2911,0.7121,0.9876,0.8581
+"Claiborne Parish, Louisiana",0.7636,0.2876,0.8899,0.9395,0.8069
+"Concordia Parish, Louisiana",0.9561,0.9924,0.8088,0.9577,0.9949
+"De Soto Parish, Louisiana",0.7397,0.8988,0.7929,0.5784,0.8101
+"East Baton Rouge Parish, Louisiana",0.7903,0.6347,0.9017,0.8546,0.846
+"East Carroll Parish, Louisiana",0.9469,0.4897,0.9672,0.7496,0.8781
+"East Feliciana Parish, Louisiana",0.4741,0.056,0.8403,0.9609,0.5937
+"Evangeline Parish, Louisiana",0.9841,0.9955,0.7261,0.9895,0.999
+"Franklin Parish, Louisiana",0.9122,0.7525,0.7178,0.4337,0.8053
+"Grant Parish, Louisiana",0.6163,0.5908,0.6045,0.8231,0.7219
+"Iberia Parish, Louisiana",0.8409,0.9351,0.8059,0.9115,0.936
+"Iberville Parish, Louisiana",0.7308,0.7222,0.8842,0.8953,0.8501
+"Jackson Parish, Louisiana",0.6192,0.9173,0.7003,0.8524,0.8301
+"Jefferson Parish, Louisiana",0.8288,0.8559,0.8673,0.5148,0.8295
+"Jefferson Davis Parish, Louisiana",0.5113,0.7079,0.5759,0.4203,0.5549
+"Lafayette Parish, Louisiana",0.6344,0.5205,0.7321,0.8285,0.735
+"Lafourche Parish, Louisiana",0.6815,0.5609,0.5915,0.8384,0.7416
+"LaSalle Parish, Louisiana",0.3274,0.4547,0.5326,0.6456,0.4648
+"Lincoln Parish, Louisiana",0.7544,0.1712,0.8524,0.9507,0.7786
+"Livingston Parish, Louisiana",0.3344,0.6933,0.4378,0.5135,0.4709
+"Madison Parish, Louisiana",0.9663,0.964,0.9459,1.0,1.0
+"Morehouse Parish, Louisiana",0.9488,0.7601,0.8804,0.9354,0.9558
+"Natchitoches Parish, Louisiana",0.9017,0.4668,0.8661,0.9924,0.9281
+"Orleans Parish, Louisiana",0.9115,0.3595,0.9567,0.7381,0.8381
+"Ouachita Parish, Louisiana",0.882,0.5682,0.8116,0.9303,0.8845
+"Plaquemines Parish, Louisiana",0.4092,0.7197,0.7626,0.7451,0.651
+"Pointe Coupee Parish, Louisiana",0.8428,0.7521,0.7859,0.2138,0.7127
+"Rapides Parish, Louisiana",0.7744,0.9189,0.776,0.922,0.9071
+"Red River Parish, Louisiana",0.6742,0.7929,0.8225,0.3105,0.6662
+"Richland Parish, Louisiana",0.8737,0.5097,0.7751,0.9058,0.8632
+"Sabine Parish, Louisiana",0.8724,0.973,0.7121,0.5673,0.8848
+"St. Bernard Parish, Louisiana",0.9392,0.9516,0.7859,0.5173,0.9026
+"St. Charles Parish, Louisiana",0.3624,0.8244,0.7308,0.161,0.4451
+"St. Helena Parish, Louisiana",0.8021,0.9812,0.8953,0.8746,0.9478
+"St. James Parish, Louisiana",0.2189,0.2956,0.8762,0.2164,0.2701
+"St. John the Baptist Parish, Louisiana",0.7556,0.8209,0.9567,0.2284,0.7152
+"St. Landry Parish, Louisiana",0.9453,0.7531,0.8482,0.8505,0.9262
+"St. Martin Parish, Louisiana",0.7219,0.6612,0.7321,0.5078,0.7041
+"St. Mary Parish, Louisiana",0.8425,0.9469,0.8212,0.7719,0.9109
+"St. Tammany Parish, Louisiana",0.4537,0.8648,0.5953,0.1699,0.4868
+"Tangipahoa Parish, Louisiana",0.7992,0.8963,0.7626,0.7397,0.8651
+"Tensas Parish, Louisiana",0.9497,0.3471,0.9122,0.7111,0.8454
+"Terrebonne Parish, Louisiana",0.6452,0.7607,0.7156,0.8075,0.7821
+"Union Parish, Louisiana",0.798,0.8711,0.6742,0.8451,0.8724
+"Vermilion Parish, Louisiana",0.7006,0.8915,0.5711,0.6923,0.7875
+"Vernon Parish, Louisiana",0.7343,0.8412,0.6685,0.8088,0.832
+"Washington Parish, Louisiana",0.9383,0.9771,0.7308,0.9526,0.9822
+"Webster Parish, Louisiana",0.8476,0.7047,0.7617,0.8966,0.8775
+"West Baton Rouge Parish, Louisiana",0.4811,0.2704,0.8403,0.8721,0.6341
+"West Carroll Parish, Louisiana",0.6093,0.8241,0.5383,0.4149,0.6325
+"West Feliciana Parish, Louisiana",0.4531,0.0722,0.8591,0.6729,0.4668
+"Winn Parish, Louisiana",0.5886,0.797,0.7245,0.7235,0.7401
+"Androscoggin County, Maine",0.4725,0.5173,0.3166,0.8715,0.6007
+"Aroostook County, Maine",0.636,0.6771,0.1409,0.7677,0.6545
+"Cumberland County, Maine",0.1063,0.0401,0.3563,0.5721,0.1413
+"Franklin County, Maine",0.3993,0.315,0.0821,0.8215,0.4569
+"Hancock County, Maine",0.3608,0.0891,0.119,0.3955,0.2183
+"Kennebec County, Maine",0.2946,0.2934,0.1276,0.7082,0.357
+"Knox County, Maine",0.2759,0.0834,0.0757,0.3777,0.1724
+"Lincoln County, Maine",0.2065,0.132,0.1457,0.1578,0.1094
+"Oxford County, Maine",0.6465,0.0942,0.1276,0.3595,0.3452
+"Penobscot County, Maine",0.398,0.1365,0.1928,0.8699,0.4416
+"Piscataquis County, Maine",0.5749,0.4524,0.1654,0.4963,0.4804
+"Sagadahoc County, Maine",0.2972,0.0519,0.1276,0.1273,0.1015
+"Somerset County, Maine",0.5361,0.1228,0.0544,0.3856,0.3
+"Waldo County, Maine",0.4578,0.2647,0.1339,0.2908,0.2902
+"Washington County, Maine",0.7751,0.6147,0.3563,0.5498,0.6694
+"York County, Maine",0.1626,0.1174,0.2214,0.2879,0.1304
+"Allegany County, Maryland",0.532,0.3917,0.3847,0.7302,0.5552
+"Anne Arundel County, Maryland",0.0773,0.2027,0.7286,0.2962,0.1639
+"Baltimore County, Maryland",0.3653,0.5103,0.8428,0.6748,0.5571
+"Calvert County, Maryland",0.0095,0.0261,0.5978,0.0159,0.0057
+"Caroline County, Maryland",0.7318,0.868,0.6277,0.5218,0.7579
+"Carroll County, Maryland",0.0153,0.0662,0.3824,0.1285,0.0277
+"Cecil County, Maryland",0.2991,0.2539,0.4839,0.4661,0.322
+"Charles County, Maryland",0.0951,0.3894,0.9424,0.1028,0.174
+"Dorchester County, Maryland",0.6809,0.9513,0.7655,0.4766,0.7824
+"Frederick County, Maryland",0.063,0.2504,0.6726,0.1763,0.1234
+"Garrett County, Maryland",0.2389,0.448,0.0299,0.4356,0.2564
+"Harford County, Maryland",0.0531,0.1355,0.6233,0.1397,0.0789
+"Howard County, Maryland",0.027,0.4769,0.8785,0.1689,0.1483
+"Kent County, Maryland",0.3003,0.5931,0.5778,0.4674,0.4353
+"Montgomery County, Maryland",0.2711,0.4388,0.9122,0.623,0.4893
+"Prince George's County, Maryland",0.7159,0.5116,0.9914,0.8676,0.8161
+"Queen Anne's County, Maryland",0.1215,0.112,0.4496,0.0188,0.043
+"St. Mary's County, Maryland",0.0945,0.4057,0.6449,0.4244,0.2466
+"Somerset County, Maryland",0.797,0.4639,0.861,0.987,0.8794
+"Talbot County, Maryland",0.1852,0.7935,0.5854,0.2316,0.3338
+"Washington County, Maryland",0.4788,0.5867,0.5867,0.7846,0.6325
+"Wicomico County, Maryland",0.7178,0.5829,0.7735,0.8438,0.7916
+"Worcester County, Maryland",0.3933,0.3697,0.5437,0.4798,0.4305
+"Baltimore city, Maryland",0.811,0.6169,0.9698,0.8466,0.8565
+"Barnstable County, Massachusetts",0.1537,0.3003,0.3917,0.1107,0.1279
+"Berkshire County, Massachusetts",0.3242,0.4311,0.3939,0.6061,0.4235
+"Bristol County, Massachusetts",0.5148,0.6332,0.5558,0.699,0.6227
+"Dukes County, Massachusetts",0.3821,0.2704,0.5094,0.0064,0.133
+"Essex County, Massachusetts",0.3869,0.5584,0.7038,0.8024,0.6055
+"Franklin County, Massachusetts",0.3742,0.5619,0.3248,0.5037,0.4375
+"Hampden County, Massachusetts",0.6637,0.8638,0.7798,0.776,0.8177
+"Hampshire County, Massachusetts",0.2463,0.0582,0.4763,0.664,0.2708
+"Middlesex County, Massachusetts",0.1219,0.062,0.6885,0.8282,0.2854
+"Nantucket County, Massachusetts",0.1728,0.0442,0.6548,0.1199,0.1031
+"Norfolk County, Massachusetts",0.1378,0.126,0.6487,0.741,0.2959
+"Plymouth County, Massachusetts",0.1992,0.3605,0.5597,0.4715,0.3064
+"Suffolk County, Massachusetts",0.6853,0.1982,0.8988,0.978,0.7849
+"Worcester County, Massachusetts",0.3373,0.406,0.6268,0.7423,0.51
+"Alcona County, Michigan",0.4203,0.2234,0.1094,0.0274,0.1298
+"Alger County, Michigan",0.209,0.1075,0.4948,0.6866,0.2908
+"Allegan County, Michigan",0.1225,0.3694,0.3977,0.2278,0.1677
+"Alpena County, Michigan",0.4951,0.4617,0.0881,0.4563,0.4165
+"Antrim County, Michigan",0.1479,0.0904,0.1339,0.0977,0.0566
+"Arenac County, Michigan",0.4696,0.5052,0.1276,0.3306,0.377
+"Baraga County, Michigan",0.2975,0.202,0.6402,0.7006,0.4178
+"Barry County, Michigan",0.1604,0.1206,0.1753,0.0865,0.0668
+"Bay County, Michigan",0.371,0.3048,0.3248,0.2978,0.294
+"Benzie County, Michigan",0.2456,0.0547,0.1861,0.1056,0.0818
+"Berrien County, Michigan",0.6179,0.5743,0.6223,0.5737,0.6338
+"Branch County, Michigan",0.5883,0.6949,0.3248,0.8921,0.7181
+"Calhoun County, Michigan",0.5982,0.678,0.5867,0.6888,0.6815
+"Cass County, Michigan",0.3554,0.2097,0.4356,0.1324,0.2122
+"Charlevoix County, Michigan",0.1759,0.2542,0.1753,0.2418,0.1518
+"Cheboygan County, Michigan",0.4995,0.2281,0.2781,0.139,0.2599
+"Chippewa County, Michigan",0.5574,0.1769,0.6971,0.9112,0.6373
+"Clare County, Michigan",0.9068,0.5527,0.1094,0.5339,0.693
+"Clinton County, Michigan",0.0554,0.1136,0.3388,0.0802,0.0414
+"Crawford County, Michigan",0.5157,0.4276,0.182,0.2739,0.3707
+"Delta County, Michigan",0.3506,0.2402,0.2536,0.5463,0.335
+"Dickinson County, Michigan",0.0576,0.1798,0.1225,0.3589,0.0945
+"Eaton County, Michigan",0.1244,0.265,0.503,0.2886,0.1782
+"Emmet County, Michigan",0.1406,0.0706,0.3118,0.2994,0.1149
+"Genesee County, Michigan",0.6424,0.7369,0.6513,0.4683,0.6573
+"Gladwin County, Michigan",0.7133,0.4349,0.0821,0.4687,0.5202
+"Gogebic County, Michigan",0.3178,0.1686,0.2587,0.3506,0.2418
+"Grand Traverse County, Michigan",0.1737,0.0856,0.2214,0.6227,0.2033
+"Gratiot County, Michigan",0.3509,0.1839,0.4356,0.7251,0.4171
+"Hillsdale County, Michigan",0.4703,0.322,0.1225,0.7751,0.483
+"Houghton County, Michigan",0.5259,0.0216,0.2444,0.8778,0.4213
+"Huron County, Michigan",0.3703,0.2227,0.0757,0.2014,0.2046
+"Ingham County, Michigan",0.5326,0.1282,0.6911,0.8543,0.5759
+"Ionia County, Michigan",0.294,0.0786,0.4085,0.7378,0.3296
+"Iosco County, Michigan",0.6682,0.3987,0.1985,0.2444,0.4362
+"Iron County, Michigan",0.3493,0.4308,0.1457,0.4213,0.3239
+"Isabella County, Michigan",0.7881,0.0153,0.4445,0.8883,0.5711
+"Jackson County, Michigan",0.4279,0.3535,0.4725,0.706,0.5014
+"Kalamazoo County, Michigan",0.4098,0.1486,0.5927,0.6109,0.4257
+"Kalkaska County, Michigan",0.5332,0.1966,0.1861,0.2561,0.3035
+"Kent County, Michigan",0.2587,0.4674,0.6437,0.6239,0.4464
+"Keweenaw County, Michigan",0.1098,0.0929,0.0229,0.0029,0.0076
+"Lake County, Michigan",0.9259,0.3118,0.5119,0.5342,0.721
+"Lapeer County, Michigan",0.2507,0.2644,0.2733,0.2571,0.2065
+"Leelanau County, Michigan",0.0328,0.0687,0.3016,0.0229,0.0118
+"Lenawee County, Michigan",0.4171,0.3662,0.4165,0.5441,0.4403
+"Livingston County, Michigan",0.0318,0.0162,0.1339,0.049,0.0041
+"Luce County, Michigan",0.5005,0.5698,0.5218,0.5037,0.5313
+"Mackinac County, Michigan",0.6029,0.448,0.6437,0.6465,0.6211
+"Macomb County, Michigan",0.4127,0.4095,0.5867,0.3353,0.4079
+"Manistee County, Michigan",0.3961,0.2724,0.3592,0.4438,0.3583
+"Marquette County, Michigan",0.3277,0.0353,0.2323,0.5571,0.2291
+"Mason County, Michigan",0.3598,0.3032,0.2816,0.5756,0.3812
+"Mecosta County, Michigan",0.6141,0.2418,0.2816,0.9122,0.6102
+"Menominee County, Michigan",0.181,0.1565,0.2062,0.3194,0.1553
+"Midland County, Michigan",0.1473,0.1257,0.2854,0.4413,0.1683
+"Missaukee County, Michigan",0.6246,0.5663,0.2062,0.2991,0.4757
+"Monroe County, Michigan",0.2771,0.1066,0.2914,0.2046,0.1588
+"Montcalm County, Michigan",0.4722,0.1833,0.335,0.7273,0.4607
+"Montmorency County, Michigan",0.7518,0.3977,0.0627,0.1957,0.4311
+"Muskegon County, Michigan",0.5091,0.4798,0.6029,0.7945,0.63
+"Newaygo County, Michigan",0.5367,0.6974,0.3322,0.4868,0.5463
+"Oakland County, Michigan",0.1298,0.1225,0.6656,0.2119,0.1435
+"Oceana County, Michigan",0.5212,0.7051,0.5218,0.6443,0.6252
+"Ogemaw County, Michigan",0.6503,0.4919,0.1152,0.3681,0.4766
+"Ontonagon County, Michigan",0.2899,0.2033,0.1037,0.0939,0.1269
+"Osceola County, Michigan",0.6608,0.6115,0.182,0.5924,0.5924
+"Oscoda County, Michigan",0.8801,0.5482,0.0932,0.2778,0.5797
+"Otsego County, Michigan",0.3322,0.5692,0.0983,0.2339,0.2759
+"Ottawa County, Michigan",0.0544,0.119,0.4814,0.4801,0.1371
+"Presque Isle County, Michigan",0.356,0.3083,0.0579,0.1534,0.1957
+"Roscommon County, Michigan",0.5129,0.5065,0.1696,0.2781,0.3898
+"Saginaw County, Michigan",0.601,0.6774,0.6885,0.6013,0.6707
+"St. Clair County, Michigan",0.4302,0.3707,0.2781,0.1985,0.2914
+"St. Joseph County, Michigan",0.5667,0.763,0.4248,0.4712,0.5905
+"Sanilac County, Michigan",0.5577,0.5017,0.1508,0.4397,0.4613
+"Schoolcraft County, Michigan",0.7016,0.6265,0.434,0.2762,0.552
+"Shiawassee County, Michigan",0.2224,0.1709,0.1339,0.2383,0.1489
+"Tuscola County, Michigan",0.3786,0.2555,0.2109,0.3544,0.2841
+"Van Buren County, Michigan",0.5593,0.7413,0.5326,0.6281,0.6494
+"Washtenaw County, Michigan",0.2571,0.0232,0.6847,0.8056,0.3223
+"Wayne County, Michigan",0.8234,0.881,0.8769,0.6367,0.861
+"Wexford County, Michigan",0.5355,0.5581,0.2109,0.5288,0.5056
+"Aitkin County, Minnesota",0.4464,0.2698,0.1508,0.2755,0.2838
+"Anoka County, Minnesota",0.0837,0.3303,0.5654,0.3178,0.1807
+"Becker County, Minnesota",0.2615,0.4451,0.4165,0.5616,0.3808
+"Beltrami County, Minnesota",0.5768,0.4572,0.6548,0.9647,0.755
+"Benton County, Minnesota",0.1362,0.4136,0.3748,0.8301,0.3719
+"Big Stone County, Minnesota",0.0592,0.1855,0.0474,0.3567,0.0881
+"Blue Earth County, Minnesota",0.2822,0.0433,0.4018,0.9325,0.3831
+"Brown County, Minnesota",0.05,0.237,0.1928,0.413,0.1145
+"Carlton County, Minnesota",0.21,0.4808,0.3649,0.6386,0.3678
+"Carver County, Minnesota",0.0048,0.1954,0.3818,0.0862,0.0337
+"Cass County, Minnesota",0.4763,0.2291,0.5202,0.2657,0.3465
+"Chippewa County, Minnesota",0.5145,0.8024,0.4222,0.6806,0.6452
+"Chisago County, Minnesota",0.0385,0.0251,0.2323,0.3131,0.0426
+"Clay County, Minnesota",0.2514,0.2383,0.4314,0.8807,0.4381
+"Clearwater County, Minnesota",0.7381,0.5552,0.4658,0.9109,0.7779
+"Cook County, Minnesota",0.0503,0.1298,0.4378,0.2253,0.084
+"Cottonwood County, Minnesota",0.1823,0.9004,0.4613,0.6102,0.4903
+"Crow Wing County, Minnesota",0.2889,0.2393,0.1152,0.2984,0.2087
+"Dakota County, Minnesota",0.0601,0.4123,0.6013,0.2071,0.1492
+"Dodge County, Minnesota",0.0111,0.1839,0.265,0.1543,0.0401
+"Douglas County, Minnesota",0.0614,0.2886,0.0675,0.3971,0.1174
+"Faribault County, Minnesota",0.1661,0.3742,0.328,0.1734,0.1629
+"Fillmore County, Minnesota",0.1584,0.371,0.0579,0.433,0.2004
+"Freeborn County, Minnesota",0.3516,0.7203,0.4763,0.524,0.4986
+"Goodhue County, Minnesota",0.1266,0.1196,0.2733,0.4979,0.1645
+"Grant County, Minnesota",0.2323,0.4951,0.1339,0.1861,0.1998
+"Hennepin County, Minnesota",0.1979,0.1979,0.7038,0.8126,0.4108
+"Houston County, Minnesota",0.0235,0.1546,0.0983,0.0716,0.0207
+"Hubbard County, Minnesota",0.2358,0.2937,0.2364,0.5297,0.2809
+"Isanti County, Minnesota",0.2081,0.1199,0.1861,0.0996,0.0913
+"Itasca County, Minnesota",0.3465,0.3089,0.314,0.6405,0.4012
+"Jackson County, Minnesota",0.0264,0.3503,0.2485,0.2386,0.0856
+"Kanabec County, Minnesota",0.308,0.1304,0.1225,0.5565,0.2612
+"Kandiyohi County, Minnesota",0.2765,0.7684,0.5667,0.6895,0.5383
+"Kittson County, Minnesota",0.0232,0.1123,0.1037,0.609,0.0958
+"Koochiching County, Minnesota",0.1989,0.5119,0.2536,0.5323,0.3118
+"Lac qui Parle County, Minnesota",0.0169,0.4932,0.0932,0.1276,0.0535
+"Lake County, Minnesota",0.0741,0.2873,0.0474,0.1934,0.0805
+"Lake of the Woods County, Minnesota",0.0942,0.0264,0.2265,0.1588,0.0417
+"Le Sueur County, Minnesota",0.069,0.3408,0.2879,0.0786,0.0694
+"Lincoln County, Minnesota",0.0961,0.3073,0.0675,0.1002,0.069
+"Lyon County, Minnesota",0.2125,0.7245,0.4913,0.8498,0.5348
+"McLeod County, Minnesota",0.0875,0.2603,0.3086,0.2087,0.1126
+"Mahnomen County, Minnesota",0.944,0.8645,0.8941,0.8708,0.9577
+"Marshall County, Minnesota",0.0414,0.4925,0.2062,0.2246,0.1133
+"Martin County, Minnesota",0.2364,0.504,0.2536,0.3859,0.2867
+"Meeker County, Minnesota",0.0611,0.286,0.1508,0.2701,0.1018
+"Mille Lacs County, Minnesota",0.3754,0.6137,0.3484,0.7636,0.5406
+"Morrison County, Minnesota",0.217,0.1394,0.0474,0.2997,0.1448
+"Mower County, Minnesota",0.1845,0.8215,0.6083,0.6697,0.5021
+"Murray County, Minnesota",0.0719,0.5008,0.2733,0.0942,0.0983
+"Nicollet County, Minnesota",0.0468,0.2781,0.3888,0.5943,0.1877
+"Nobles County, Minnesota",0.5549,0.9599,0.8225,0.797,0.8323
+"Norman County, Minnesota",0.2326,0.2946,0.3535,0.4763,0.2806
+"Olmsted County, Minnesota",0.0627,0.2841,0.5654,0.6367,0.2361
+"Otter Tail County, Minnesota",0.2482,0.4852,0.2444,0.5221,0.3303
+"Pennington County, Minnesota",0.0436,0.2205,0.3217,0.5091,0.1416
+"Pine County, Minnesota",0.4493,0.1689,0.3446,0.8482,0.4919
+"Pipestone County, Minnesota",0.1059,0.7509,0.4248,0.2043,0.2288
+"Polk County, Minnesota",0.2027,0.4018,0.4314,0.8428,0.4365
+"Pope County, Minnesota",0.0315,0.0585,0.0821,0.1779,0.028
+"Ramsey County, Minnesota",0.4346,0.5278,0.7881,0.9456,0.7076
+"Red Lake County, Minnesota",0.0216,0.2978,0.2399,0.3143,0.0891
+"Redwood County, Minnesota",0.1047,0.3341,0.4085,0.3223,0.1794
+"Renville County, Minnesota",0.118,0.4957,0.4057,0.4375,0.2482
+"Rice County, Minnesota",0.2984,0.2491,0.5269,0.8253,0.4598
+"Rock County, Minnesota",0.07,0.1594,0.1696,0.4887,0.1304
+"Roseau County, Minnesota",0.139,0.4069,0.3016,0.5097,0.2504
+"St. Louis County, Minnesota",0.2542,0.0964,0.2816,0.7684,0.3054
+"Scott County, Minnesota",0.0175,0.4359,0.5616,0.1807,0.1034
+"Sherburne County, Minnesota",0.0245,0.3799,0.3592,0.2612,0.1047
+"Sibley County, Minnesota",0.0624,0.168,0.3675,0.3293,0.1139
+"Stearns County, Minnesota",0.2673,0.3035,0.4725,0.8473,0.4572
+"Steele County, Minnesota",0.1562,0.524,0.4273,0.5247,0.3105
+"Stevens County, Minnesota",0.0732,0.1435,0.42,0.5555,0.1728
+"Swift County, Minnesota",0.3204,0.9618,0.3503,0.3487,0.5119
+"Todd County, Minnesota",0.4031,0.7763,0.363,0.7331,0.5915
+"Traverse County, Minnesota",0.0713,0.4257,0.3977,0.3691,0.1829
+"Wabasha County, Minnesota",0.0449,0.3293,0.0983,0.2949,0.0986
+"Wadena County, Minnesota",0.5027,0.7604,0.2265,0.9822,0.7448
+"Waseca County, Minnesota",0.1158,0.4973,0.3388,0.3818,0.2195
+"Washington County, Minnesota",0.0134,0.1938,0.5326,0.1263,0.0503
+"Watonwan County, Minnesota",0.5199,0.7261,0.6701,0.6557,0.6583
+"Wilkin County, Minnesota",0.1629,0.0729,0.2164,0.4941,0.1556
+"Winona County, Minnesota",0.2208,0.0134,0.2816,0.8664,0.2377
+"Wright County, Minnesota",0.0165,0.1149,0.2914,0.0827,0.0235
+"Yellow Medicine County, Minnesota",0.076,0.5829,0.335,0.483,0.237
+"Adams County, Mississippi",0.9523,0.9402,0.936,0.8393,0.971
+"Alcorn County, Mississippi",0.9494,0.6761,0.5161,0.8785,0.8944
+"Amite County, Mississippi",0.7808,0.9348,0.8027,0.3646,0.7894
+"Attala County, Mississippi",0.9411,0.8893,0.8549,0.8603,0.957
+"Benton County, Mississippi",0.8212,0.7913,0.7821,0.4219,0.7725
+"Bolivar County, Mississippi",0.9927,0.8883,0.9567,0.9583,0.994
+"Calhoun County, Mississippi",0.7964,0.9844,0.7378,0.7066,0.8988
+"Carroll County, Mississippi",0.7884,0.3653,0.7442,0.5947,0.7
+"Chickasaw County, Mississippi",0.8664,0.9838,0.8759,0.8081,0.9542
+"Choctaw County, Mississippi",0.9074,0.7286,0.7028,0.4305,0.7932
+"Claiborne County, Mississippi",0.9714,0.0137,0.9924,0.9427,0.819
+"Clarke County, Mississippi",0.8759,0.9087,0.7521,0.3156,0.8021
+"Clay County, Mississippi",0.9825,0.2879,0.93,0.3649,0.7913
+"Coahoma County, Mississippi",0.9933,0.9045,0.9822,0.8896,0.9895
+"Copiah County, Mississippi",0.8034,0.3719,0.9017,0.8148,0.7976
+"Covington County, Mississippi",0.8947,0.6678,0.7894,0.3758,0.7674
+"DeSoto County, Mississippi",0.3847,0.51,0.7859,0.1289,0.3563
+"Forrest County, Mississippi",0.923,0.7346,0.8101,0.9758,0.9497
+"Franklin County, Mississippi",0.5568,0.915,0.7537,0.1597,0.5787
+"George County, Mississippi",0.9045,0.728,0.3961,0.7591,0.8384
+"Greene County, Mississippi",0.888,0.1308,0.6538,0.8969,0.7776
+"Grenada County, Mississippi",0.9093,0.6885,0.8616,0.6306,0.8492
+"Hancock County, Mississippi",0.5959,0.4343,0.4445,0.3236,0.4776
+"Harrison County, Mississippi",0.9246,0.9093,0.756,0.7525,0.9182
+"Hinds County, Mississippi",0.9437,0.5686,0.9771,0.8638,0.9154
+"Holmes County, Mississippi",0.994,0.875,0.9879,0.945,0.992
+"Humphreys County, Mississippi",0.9997,0.9297,0.9815,0.5927,0.9787
+"Issaquena County, Mississippi",0.9879,0.0767,0.9682,0.9994,0.9539
+"Itawamba County, Mississippi",0.3446,0.0773,0.328,0.4251,0.2463
+"Jackson County, Mississippi",0.8533,0.929,0.7066,0.4442,0.8288
+"Jasper County, Mississippi",0.5227,0.7591,0.8969,0.4139,0.6281
+"Jefferson County, Mississippi",0.9084,0.5822,0.9901,0.8619,0.8991
+"Jefferson Davis County, Mississippi",0.9749,0.6831,0.9332,0.4903,0.8743
+"Jones County, Mississippi",0.6666,0.916,0.7321,0.6319,0.791
+"Kemper County, Mississippi",0.9615,0.7054,0.9472,0.8998,0.95
+"Lafayette County, Mississippi",0.5686,0.0057,0.6656,0.8578,0.4391
+"Lamar County, Mississippi",0.6662,0.637,0.6373,0.3627,0.6032
+"Lauderdale County, Mississippi",0.9249,0.8097,0.8638,0.9612,0.959
+"Lawrence County, Mississippi",0.9405,0.9596,0.735,0.2479,0.8505
+"Leake County, Mississippi",0.8692,0.9695,0.882,0.8606,0.9574
+"Lee County, Mississippi",0.6758,0.7016,0.7391,0.6815,0.7455
+"Leflore County, Mississippi",0.9962,0.5485,0.9806,0.763,0.9411
+"Lincoln County, Mississippi",0.6551,0.2739,0.7019,0.6252,0.6042
+"Lowndes County, Mississippi",0.8559,0.3522,0.8718,0.5787,0.7521
+"Madison County, Mississippi",0.2937,0.3656,0.8323,0.2883,0.3554
+"Marion County, Mississippi",0.9847,0.6004,0.7423,0.6879,0.8928
+"Marshall County, Mississippi",0.8832,0.7133,0.8848,0.7388,0.8699
+"Monroe County, Mississippi",0.7512,0.5457,0.7066,0.3054,0.6163
+"Montgomery County, Mississippi",0.9774,0.8428,0.8591,0.8295,0.9599
+"Neshoba County, Mississippi",0.9087,0.8902,0.804,0.8893,0.9402
+"Newton County, Mississippi",0.6882,0.6411,0.7922,0.4747,0.6793
+"Noxubee County, Mississippi",0.9946,0.9653,0.973,0.4919,0.964
+"Oktibbeha County, Mississippi",0.8463,0.0407,0.819,0.812,0.6939
+"Panola County, Mississippi",0.9771,0.6615,0.8851,0.455,0.8626
+"Pearl River County, Mississippi",0.7604,0.8422,0.5231,0.3417,0.6907
+"Perry County, Mississippi",0.7846,0.7159,0.5679,0.4057,0.6914
+"Pike County, Mississippi",0.979,0.7922,0.9077,0.9733,0.9812
+"Pontotoc County, Mississippi",0.5679,0.8804,0.6077,0.3035,0.6087
+"Prentiss County, Mississippi",0.6303,0.7744,0.5317,0.6389,0.6993
+"Quitman County, Mississippi",0.9959,0.4645,0.9749,0.8867,0.9551
+"Rankin County, Mississippi",0.3166,0.3436,0.636,0.4225,0.3732
+"Scott County, Mississippi",0.8877,0.9936,0.8769,0.5177,0.9217
+"Sharkey County, Mississippi",0.9854,0.8027,0.9707,0.9494,0.9838
+"Simpson County, Mississippi",0.8632,0.8186,0.7668,0.3583,0.7808
+"Smith County, Mississippi",0.6293,0.8708,0.6249,0.5504,0.7251
+"Stone County, Mississippi",0.8355,0.6157,0.5892,0.9408,0.8587
+"Sunflower County, Mississippi",0.986,0.5068,0.9777,0.8091,0.9303
+"Tallahatchie County, Mississippi",0.9809,0.5336,0.9437,0.7639,0.9141
+"Tate County, Mississippi",0.951,0.5724,0.7321,0.84,0.8915
+"Tippah County, Mississippi",0.924,0.9061,0.574,0.6815,0.8839
+"Tishomingo County, Mississippi",0.8094,0.9465,0.2485,0.4073,0.7467
+"Tunica County, Mississippi",0.9952,0.2943,0.9838,0.9666,0.9602
+"Union County, Mississippi",0.6109,0.9306,0.5727,0.4403,0.6977
+"Walthall County, Mississippi",0.936,0.9577,0.8543,0.4448,0.8982
+"Warren County, Mississippi",0.7496,0.9386,0.8858,0.5285,0.8279
+"Washington County, Mississippi",0.9965,0.9784,0.9758,0.8836,0.9971
+"Wayne County, Mississippi",0.9446,0.9739,0.8075,0.4607,0.9119
+"Webster County, Mississippi",0.7919,0.6866,0.5542,0.2068,0.6112
+"Wilkinson County, Mississippi",0.8498,0.6446,0.9672,0.6497,0.8349
+"Winston County, Mississippi",0.8591,0.8438,0.8734,0.6036,0.8543
+"Yalobusha County, Mississippi",0.7976,0.7725,0.8031,0.3799,0.7429
+"Yazoo County, Mississippi",0.9968,0.8396,0.945,0.9952,0.9975
+"Adair County, Missouri",0.6494,0.0143,0.342,0.6837,0.4006
+"Andrew County, Missouri",0.097,0.048,0.1508,0.0248,0.0169
+"Atchison County, Missouri",0.3347,0.5399,0.0757,0.1339,0.2249
+"Audrain County, Missouri",0.6338,0.8062,0.3802,0.7079,0.7105
+"Barry County, Missouri",0.672,0.749,0.5094,0.2568,0.5768
+"Barton County, Missouri",0.9208,0.8183,0.2628,0.1788,0.6767
+"Bates County, Missouri",0.8027,0.5698,0.1985,0.7261,0.7114
+"Benton County, Missouri",0.7222,0.4079,0.1753,0.4827,0.5364
+"Bollinger County, Missouri",0.6869,0.3373,0.1037,0.2771,0.4241
+"Boone County, Missouri",0.3968,0.062,0.5711,0.7776,0.4244
+"Buchanan County, Missouri",0.7541,0.7639,0.5094,0.8845,0.8218
+"Butler County, Missouri",0.9402,0.6265,0.3888,0.7563,0.8412
+"Caldwell County, Missouri",0.5212,0.1966,0.1457,0.3191,0.3163
+"Callaway County, Missouri",0.4445,0.0589,0.3217,0.3169,0.2447
+"Camden County, Missouri",0.5428,0.2892,0.1572,0.294,0.3493
+"Cape Girardeau County, Missouri",0.3551,0.0598,0.4378,0.6147,0.3099
+"Carroll County, Missouri",0.3019,0.1285,0.1037,0.1556,0.1378
+"Carter County, Missouri",0.8005,0.3353,0.1696,0.2348,0.4823
+"Cass County, Missouri",0.1868,0.2981,0.4165,0.0608,0.1257
+"Cedar County, Missouri",0.756,0.5975,0.1696,0.6809,0.6643
+"Chariton County, Missouri",0.2052,0.3891,0.1094,0.2065,0.1747
+"Christian County, Missouri",0.1724,0.2641,0.2294,0.1047,0.1107
+"Clark County, Missouri",0.4381,0.154,0.0264,0.4031,0.265
+"Clay County, Missouri",0.2218,0.4556,0.546,0.2514,0.2692
+"Clinton County, Missouri",0.3618,0.1772,0.182,0.1136,0.1661
+"Cole County, Missouri",0.1161,0.1877,0.525,0.4696,0.2049
+"Cooper County, Missouri",0.4448,0.3245,0.3592,0.3828,0.3716
+"Crawford County, Missouri",0.9179,0.4104,0.1572,0.4773,0.657
+"Dade County, Missouri",0.7894,0.3013,0.1572,0.6338,0.595
+"Dallas County, Missouri",0.8031,0.6662,0.1276,0.2176,0.5466
+"Daviess County, Missouri",0.5514,0.3213,0.0379,0.7884,0.5157
+"DeKalb County, Missouri",0.2243,0.0293,0.4356,0.4559,0.1753
+"Dent County, Missouri",0.7388,0.7569,0.1861,0.5374,0.6551
+"Douglas County, Missouri",0.8702,0.8196,0.1225,0.1448,0.5969
+"Dunklin County, Missouri",0.9424,0.993,0.5778,0.8291,0.9707
+"Franklin County, Missouri",0.2851,0.07,0.2536,0.0964,0.1066
+"Gasconade County, Missouri",0.2024,0.4085,0.0757,0.4836,0.2488
+"Gentry County, Missouri",0.5711,0.2358,0.0627,0.5129,0.4066
+"Greene County, Missouri",0.5835,0.1034,0.4085,0.8272,0.5317
+"Grundy County, Missouri",0.7375,0.7031,0.1409,0.6748,0.679
+"Harrison County, Missouri",0.4015,0.8113,0.0983,0.3637,0.4378
+"Henry County, Missouri",0.7674,0.8527,0.1928,0.3691,0.6526
+"Hickory County, Missouri",0.9669,0.6182,0.1037,0.1298,0.6157
+"Holt County, Missouri",0.2545,0.5765,0.0627,0.084,0.1705
+"Howard County, Missouri",0.4423,0.3458,0.3723,0.3029,0.35
+"Howell County, Missouri",0.9096,0.7149,0.1572,0.6271,0.7693
+"Iron County, Missouri",0.6242,0.7331,0.1928,0.5778,0.6074
+"Jackson County, Missouri",0.6612,0.5899,0.7684,0.5829,0.6866
+"Jasper County, Missouri",0.7531,0.7703,0.489,0.6344,0.7451
+"Jefferson County, Missouri",0.1931,0.2151,0.2816,0.0983,0.1136
+"Johnson County, Missouri",0.5142,0.0484,0.4416,0.5873,0.3815
+"Knox County, Missouri",0.6583,0.3382,0.0983,0.0509,0.2679
+"Laclede County, Missouri",0.8101,0.861,0.2444,0.503,0.7327
+"Lafayette County, Missouri",0.1247,0.3754,0.2587,0.1094,0.1101
+"Lawrence County, Missouri",0.8352,0.7661,0.3723,0.5027,0.7362
+"Lewis County, Missouri",0.6328,0.0286,0.2109,0.7932,0.4486
+"Lincoln County, Missouri",0.2316,0.4222,0.1928,0.1925,0.1976
+"Linn County, Missouri",0.2682,0.3007,0.0932,0.0687,0.1263
+"Livingston County, Missouri",0.3519,0.2854,0.2164,0.4394,0.3073
+"McDonald County, Missouri",0.9596,0.8581,0.6701,0.5854,0.8899
+"Macon County, Missouri",0.3773,0.6287,0.182,0.2549,0.3388
+"Madison County, Missouri",0.5612,0.7299,0.1094,0.4181,0.5097
+"Maries County, Missouri",0.7423,0.4292,0.1276,0.2835,0.4814
+"Marion County, Missouri",0.3182,0.4865,0.2984,0.6627,0.4368
+"Mercer County, Missouri",0.4728,0.6962,0.1572,0.4852,0.4878
+"Miller County, Missouri",0.5237,0.2914,0.0932,0.4276,0.3793
+"Mississippi County, Missouri",0.9586,0.8851,0.658,0.6844,0.9106
+"Moniteau County, Missouri",0.3882,0.4884,0.3248,0.8288,0.5367
+"Monroe County, Missouri",0.4289,0.6064,0.2164,0.6656,0.5059
+"Montgomery County, Missouri",0.4235,0.6367,0.1696,0.4104,0.4187
+"Morgan County, Missouri",0.853,0.8393,0.1572,0.9481,0.8657
+"New Madrid County, Missouri",0.812,0.9045,0.5915,0.4706,0.7891
+"Newton County, Missouri",0.5628,0.4435,0.489,0.6354,0.5682
+"Nodaway County, Missouri",0.3675,0.0102,0.1654,0.6538,0.2151
+"Oregon County, Missouri",0.8941,0.7273,0.1339,0.3112,0.6589
+"Osage County, Missouri",0.0188,0.0258,0.0057,0.2517,0.0181
+"Ozark County, Missouri",0.9224,0.3099,0.0821,0.3045,0.5632
+"Pemiscot County, Missouri",0.9901,0.9415,0.7105,0.5122,0.9364
+"Perry County, Missouri",0.5164,0.2284,0.0983,0.3315,0.3175
+"Pettis County, Missouri",0.6188,0.84,0.4636,0.6074,0.6936
+"Phelps County, Missouri",0.6309,0.3544,0.3977,0.8361,0.6402
+"Pike County, Missouri",0.5122,0.7321,0.3217,0.9459,0.7216
+"Platte County, Missouri",0.104,0.3379,0.5488,0.2078,0.1632
+"Polk County, Missouri",0.7289,0.3869,0.1861,0.7047,0.6077
+"Pulaski County, Missouri",0.5479,0.419,0.6793,0.9049,0.6927
+"Putnam County, Missouri",0.2409,0.63,0.0525,0.5151,0.3258
+"Ralls County, Missouri",0.377,0.1489,0.1409,0.0363,0.1168
+"Randolph County, Missouri",0.7267,0.4556,0.3649,0.6179,0.6268
+"Ray County, Missouri",0.2911,0.1273,0.1572,0.0468,0.0932
+"Reynolds County, Missouri",0.8575,0.3882,0.1985,0.5301,0.6354
+"Ripley County, Missouri",0.8231,0.4384,0.1572,0.1441,0.476
+"St. Charles County, Missouri",0.0178,0.0764,0.4308,0.118,0.034
+"St. Clair County, Missouri",0.5877,0.7486,0.1696,0.6688,0.6182
+"Ste. Genevieve County, Missouri",0.1734,0.3029,0.0881,0.2669,0.1537
+"St. Francois County, Missouri",0.7426,0.4636,0.2733,0.889,0.7257
+"St. Louis County, Missouri",0.2227,0.4289,0.7458,0.3767,0.3401
+"Saline County, Missouri",0.3694,0.4314,0.5616,0.4928,0.44
+"Schuyler County, Missouri",0.2122,0.3525,0.0379,0.468,0.2329
+"Scotland County, Missouri",0.6395,0.2529,0.007,0.1963,0.3169
+"Scott County, Missouri",0.615,0.6923,0.4973,0.6548,0.665
+"Shannon County, Missouri",0.6052,0.266,0.1508,0.4833,0.4429
+"Shelby County, Missouri",0.4295,0.4874,0.0675,0.5014,0.3968
+"Stoddard County, Missouri",0.6952,0.5994,0.119,0.1514,0.4359
+"Stone County, Missouri",0.734,0.203,0.1037,0.3436,0.4337
+"Sullivan County, Missouri",0.4244,0.4919,0.5854,0.5638,0.5068
+"Taney County, Missouri",0.7887,0.5969,0.377,0.9071,0.7941
+"Texas County, Missouri",0.9675,0.5183,0.2854,0.8702,0.8575
+"Vernon County, Missouri",0.6627,0.5717,0.1339,0.5934,0.5733
+"Warren County, Missouri",0.3719,0.0881,0.2781,0.1518,0.1689
+"Washington County, Missouri",0.8085,0.7327,0.2109,0.8571,0.7957
+"Wayne County, Missouri",0.9233,0.2587,0.1654,0.6122,0.6675
+"Webster County, Missouri",0.5555,0.5122,0.2062,0.6675,0.5437
+"Worth County, Missouri",0.1731,0.7375,0.0337,0.2291,0.2237
+"Wright County, Missouri",0.915,0.9564,0.1457,0.2329,0.749
+"St. Louis city, Missouri",0.8161,0.3668,0.8941,0.8438,0.8139
+"Beaverhead County, Montana",0.307,0.041,0.3166,0.4343,0.2043
+"Big Horn County, Montana",0.8861,0.0977,0.9714,0.7661,0.7646
+"Blaine County, Montana",0.9055,0.8721,0.9036,0.8982,0.9443
+"Broadwater County, Montana",0.4913,0.0328,0.314,0.0076,0.0827
+"Carbon County, Montana",0.342,0.2615,0.2109,0.0258,0.1241
+"Carter County, Montana",0.5084,0.0675,0.1409,0.7681,0.4069
+"Cascade County, Montana",0.3357,0.3439,0.4613,0.6761,0.4435
+"Chouteau County, Montana",0.28,0.1222,0.5892,0.3726,0.2584
+"Custer County, Montana",0.196,0.2806,0.3086,0.7989,0.3589
+"Daniels County, Montana",0.153,0.1759,0.2692,0.1909,0.1228
+"Dawson County, Montana",0.0124,0.147,0.2294,0.441,0.0764
+"Deer Lodge County, Montana",0.6144,0.6656,0.3016,0.7073,0.6417
+"Fallon County, Montana",0.035,0.1028,0.1508,0.7938,0.1508
+"Fergus County, Montana",0.3548,0.091,0.1409,0.8772,0.3837
+"Flathead County, Montana",0.3108,0.0776,0.2444,0.3929,0.2094
+"Gallatin County, Montana",0.2129,0.0013,0.2984,0.4693,0.0783
+"Garfield County, Montana",0.1915,0.0496,0.0025,0.1648,0.0652
+"Glacier County, Montana",0.9583,0.8403,0.9634,0.9529,0.9752
+"Golden Valley County, Montana",0.2886,0.0916,0.4165,0.1304,0.1451
+"Granite County, Montana",0.4871,0.0792,0.1225,0.2421,0.2246
+"Hill County, Montana",0.3723,0.321,0.6923,0.5103,0.4419
+"Jefferson County, Montana",0.0757,0.1807,0.2364,0.35,0.1158
+"Judith Basin County, Montana",0.1483,0.3207,0.1753,0.0099,0.049
+"Lake County, Montana",0.8113,0.8587,0.7308,0.3223,0.7541
+"Lewis and Clark County, Montana",0.1772,0.1276,0.2984,0.4496,0.1906
+"Liberty County, Montana",0.4852,0.9421,0.0048,0.7751,0.6592
+"Lincoln County, Montana",0.8489,0.4874,0.2444,0.2459,0.5628
+"McCone County, Montana",0.0076,0.0725,0.2733,0.0605,0.0121
+"Madison County, Montana",0.1454,0.0299,0.2234,0.3592,0.098
+"Meagher County, Montana",0.1088,0.0379,0.1861,0.0309,0.0188
+"Mineral County, Montana",0.3328,0.343,0.2816,0.1521,0.2218
+"Missoula County, Montana",0.3481,0.0181,0.3697,0.7296,0.2762
+"Musselshell County, Montana",0.3427,0.273,0.2733,0.1928,0.2278
+"Park County, Montana",0.3287,0.021,0.1928,0.4028,0.1623
+"Petroleum County, Montana",0.0255,0.0045,0.0016,0.043,0.0013
+"Phillips County, Montana",0.188,0.3188,0.4839,0.2262,0.2081
+"Pondera County, Montana",0.6837,0.7582,0.5444,0.8861,0.7967
+"Powder River County, Montana",0.1919,0.0789,0.2214,0.3875,0.1521
+"Powell County, Montana",0.1807,0.0544,0.3592,0.7159,0.2319
+"Prairie County, Montana",0.5495,0.3793,0.2984,0.1884,0.3567
+"Ravalli County, Montana",0.3306,0.1607,0.2854,0.0888,0.1511
+"Richland County, Montana",0.2647,0.139,0.363,0.5132,0.2644
+"Roosevelt County, Montana",0.7515,0.1724,0.9504,0.9042,0.7665
+"Rosebud County, Montana",0.9205,0.8839,0.8629,0.8536,0.9408
+"Sanders County, Montana",0.8263,0.385,0.3217,0.3643,0.5778
+"Sheridan County, Montana",0.2046,0.2304,0.3016,0.2052,0.1642
+"Silver Bow County, Montana",0.4273,0.4403,0.2984,0.5797,0.4534
+"Stillwater County, Montana",0.0379,0.2689,0.2234,0.147,0.0608
+"Sweet Grass County, Montana",0.0678,0.1142,0.2485,0.028,0.0242
+"Teton County, Montana",0.3633,0.1919,0.1985,0.6825,0.3662
+"Toole County, Montana",0.6112,0.0703,0.4273,0.959,0.6023
+"Treasure County, Montana",0.0859,0.0745,0.0757,0.3143,0.0719
+"Valley County, Montana",0.1998,0.3283,0.4416,0.2081,0.2027
+"Wheatland County, Montana",0.3395,0.1569,0.119,0.0745,0.1273
+"Wibaux County, Montana",0.1775,0.7471,0.3446,0.2281,0.273
+"Yellowstone County, Montana",0.2094,0.2501,0.4416,0.546,0.2889
+"Adams County, Nebraska",0.2157,0.8018,0.4569,0.6277,0.4769
+"Antelope County, Nebraska",0.0573,0.6592,0.0881,0.0601,0.0767
+"Arthur County, Nebraska",0.0795,0.4486,0.1508,0.077,0.0751
+"Banner County, Nebraska",0.0372,0.4512,0.2214,0.0006,0.0124
+"Blaine County, Nebraska",0.2008,0.5043,0.0,0.0156,0.0799
+"Boone County, Nebraska",0.022,0.2463,0.0337,0.0321,0.0162
+"Box Butte County, Nebraska",0.3716,0.5218,0.5269,0.615,0.4963
+"Boyd County, Nebraska",0.126,0.3471,0.1753,0.0305,0.0601
+"Brown County, Nebraska",0.3013,0.3255,0.2364,0.0531,0.1444
+"Buffalo County, Nebraska",0.2924,0.4149,0.4165,0.5412,0.3828
+"Burt County, Nebraska",0.2399,0.5908,0.2399,0.0703,0.1798
+"Butler County, Nebraska",0.0557,0.5988,0.2323,0.0487,0.0738
+"Cass County, Nebraska",0.0955,0.0605,0.2164,0.0722,0.0379
+"Cedar County, Nebraska",0.0162,0.1441,0.0299,0.0165,0.0067
+"Chase County, Nebraska",0.3102,0.7057,0.5778,0.056,0.272
+"Cherry County, Nebraska",0.1947,0.1718,0.4416,0.6936,0.3016
+"Cheyenne County, Nebraska",0.329,0.1215,0.3649,0.5005,0.2857
+"Clay County, Nebraska",0.1069,0.6637,0.3503,0.0137,0.0942
+"Colfax County, Nebraska",0.3363,0.4862,0.8839,0.1664,0.364
+"Cuming County, Nebraska",0.0964,0.5081,0.3697,0.0235,0.0795
+"Custer County, Nebraska",0.1769,0.6233,0.1457,0.0684,0.1425
+"Dakota County, Nebraska",0.5065,0.6214,0.8925,0.8517,0.7321
+"Dawes County, Nebraska",0.2517,0.4992,0.4222,0.3713,0.3156
+"Dawson County, Nebraska",0.5138,0.8069,0.8171,0.7264,0.7311
+"Deuel County, Nebraska",0.3385,0.1728,0.4356,0.0016,0.063
+"Dixon County, Nebraska",0.3401,0.8683,0.4871,0.1142,0.3789
+"Dodge County, Nebraska",0.3392,0.9122,0.5231,0.3541,0.5135
+"Douglas County, Nebraska",0.4461,0.6236,0.6962,0.657,0.594
+"Dundy County, Nebraska",0.0398,0.1451,0.0032,0.0315,0.0156
+"Fillmore County, Nebraska",0.0067,0.0385,0.1409,0.0776,0.0083
+"Franklin County, Nebraska",0.1438,0.3589,0.0932,0.1403,0.1129
+"Frontier County, Nebraska",0.265,0.3898,0.1928,0.5406,0.3153
+"Furnas County, Nebraska",0.2281,0.532,0.1861,0.1432,0.1931
+"Gage County, Nebraska",0.1969,0.4989,0.1409,0.3271,0.2307
+"Garden County, Nebraska",0.5482,0.9453,0.1276,0.0528,0.42
+"Garfield County, Nebraska",0.042,0.1012,0.0299,0.3274,0.0557
+"Gosper County, Nebraska",0.1435,0.0296,0.1276,0.0535,0.0293
+"Grant County, Nebraska",0.2921,0.0811,0.014,0.3748,0.168
+"Greeley County, Nebraska",0.0636,0.6306,0.0455,0.0372,0.062
+"Hall County, Nebraska",0.6487,0.882,0.7378,0.496,0.7343
+"Hamilton County, Nebraska",0.0433,0.3471,0.1276,0.0105,0.0229
+"Harlan County, Nebraska",0.1263,0.9275,0.1508,0.4066,0.3312
+"Hayes County, Nebraska",0.0617,0.616,0.1985,0.0172,0.0547
+"Hitchcock County, Nebraska",0.1346,0.8791,0.1753,0.2192,0.2574
+"Holt County, Nebraska",0.0929,0.6227,0.2062,0.0729,0.1098
+"Hooker County, Nebraska",0.1196,0.0172,0.314,0.4782,0.1021
+"Howard County, Nebraska",0.1597,0.7849,0.2109,0.154,0.2202
+"Jefferson County, Nebraska",0.2934,0.7191,0.2164,0.1502,0.2736
+"Johnson County, Nebraska",0.0958,0.7798,0.5326,0.3509,0.2927
+"Kearney County, Nebraska",0.0283,0.5444,0.2733,0.1836,0.1028
+"Keith County, Nebraska",0.2269,0.5412,0.3217,0.2606,0.2603
+"Keya Paha County, Nebraska",0.1276,0.2797,0.021,0.0041,0.0226
+"Kimball County, Nebraska",0.6971,0.5571,0.4569,0.0725,0.4308
+"Knox County, Nebraska",0.1864,0.7747,0.4445,0.1683,0.2717
+"Lancaster County, Nebraska",0.2755,0.2905,0.5371,0.6647,0.4031
+"Lincoln County, Nebraska",0.3748,0.7782,0.3939,0.3675,0.4617
+"Logan County, Nebraska",0.057,0.2192,0.3649,0.0541,0.0471
+"Loup County, Nebraska",0.2237,0.6567,0.4556,0.0576,0.202
+"McPherson County, Nebraska",0.0239,0.0118,0.0006,0.0223,0.0016
+"Madison County, Nebraska",0.2284,0.6605,0.5501,0.6529,0.4633
+"Merrick County, Nebraska",0.2405,0.5953,0.2399,0.0955,0.1947
+"Morrill County, Nebraska",0.434,0.5635,0.5161,0.0904,0.3143
+"Nance County, Nebraska",0.1976,0.2183,0.1094,0.0121,0.05
+"Nemaha County, Nebraska",0.5953,0.2342,0.2781,0.5536,0.4712
+"Nuckolls County, Nebraska",0.083,0.0414,0.1572,0.0264,0.014
+"Otoe County, Nebraska",0.0993,0.902,0.3847,0.2173,0.2698
+"Pawnee County, Nebraska",0.4442,0.9249,0.0983,0.3153,0.49
+"Perkins County, Nebraska",0.1801,0.546,0.1985,0.0764,0.14
+"Phelps County, Nebraska",0.174,0.5094,0.2485,0.6309,0.3242
+"Pierce County, Nebraska",0.0684,0.5215,0.0407,0.0169,0.0439
+"Platte County, Nebraska",0.2103,0.7493,0.6013,0.3105,0.371
+"Polk County, Nebraska",0.0706,0.2813,0.2628,0.0404,0.0477
+"Red Willow County, Nebraska",0.3353,0.3576,0.2781,0.5062,0.3522
+"Richardson County, Nebraska",0.4133,0.5784,0.2399,0.1244,0.2883
+"Rock County, Nebraska",0.041,0.3812,0.0019,0.07,0.0423
+"Saline County, Nebraska",0.3878,0.7082,0.7003,0.3624,0.4989
+"Sarpy County, Nebraska",0.0417,0.3551,0.5488,0.0748,0.0776
+"Saunders County, Nebraska",0.0143,0.1527,0.0983,0.0337,0.0108
+"Scotts Bluff County, Nebraska",0.5367,0.9507,0.6599,0.5733,0.7356
+"Seward County, Nebraska",0.0321,0.071,0.0757,0.4095,0.0563
+"Sheridan County, Nebraska",0.2825,0.4318,0.5352,0.3891,0.3462
+"Sherman County, Nebraska",0.273,0.5714,0.0983,0.2774,0.2641
+"Sioux County, Nebraska",0.3439,0.5676,0.1572,0.315,0.3204
+"Stanton County, Nebraska",0.0057,0.0907,0.2879,0.013,0.0054
+"Thayer County, Nebraska",0.1368,0.3554,0.1094,0.1966,0.1301
+"Thomas County, Nebraska",0.0213,0.0207,0.3675,0.0038,0.0019
+"Thurston County, Nebraska",0.7786,0.6188,0.9443,0.6831,0.798
+"Valley County, Nebraska",0.0824,0.5842,0.0115,0.2851,0.1464
+"Washington County, Nebraska",0.0302,0.1187,0.0983,0.0379,0.0143
+"Wayne County, Nebraska",0.2596,0.0601,0.3166,0.3013,0.1626
+"Webster County, Nebraska",0.0461,0.1814,0.2914,0.0493,0.0375
+"Wheeler County, Nebraska",0.105,0.1209,0.0013,0.0617,0.0385
+"York County, Nebraska",0.0407,0.1479,0.2959,0.5682,0.1359
+"Churchill County, Nevada",0.5161,0.7703,0.6516,0.5317,0.6271
+"Clark County, Nevada",0.8969,0.6647,0.9217,0.7127,0.8635
+"Douglas County, Nevada",0.2046,0.4448,0.5558,0.1231,0.2059
+"Elko County, Nevada",0.4057,0.5721,0.741,0.7817,0.6185
+"Esmeralda County, Nevada",0.8638,0.7028,0.7436,0.9567,0.9077
+"Eureka County, Nevada",0.147,0.8339,0.4814,0.5692,0.4254
+"Humboldt County, Nevada",0.5056,0.6793,0.735,0.5495,0.616
+"Lander County, Nevada",0.413,0.9135,0.678,0.363,0.5762
+"Lincoln County, Nevada",0.3175,0.5472,0.4569,0.9255,0.5749
+"Lyon County, Nevada",0.7229,0.6602,0.6424,0.1737,0.5593
+"Mineral County, Nevada",0.7935,0.5829,0.8139,0.0738,0.5501
+"Nye County, Nevada",0.8339,0.8606,0.6503,0.469,0.7954
+"Pershing County, Nevada",0.539,0.3341,0.7423,0.901,0.6761
+"Storey County, Nevada",0.3732,0.476,0.4779,0.0108,0.1836
+"Washoe County, Nevada",0.6322,0.3983,0.776,0.7849,0.6971
+"White Pine County, Nevada",0.1279,0.2835,0.6538,0.4524,0.2498
+"Carson City, Nevada",0.6771,0.6965,0.7308,0.9755,0.8508
+"Belknap County, New Hampshire",0.2033,0.2342,0.1094,0.2221,0.1454
+"Carroll County, New Hampshire",0.3761,0.1266,0.0579,0.1123,0.1406
+"Cheshire County, New Hampshire",0.2291,0.0248,0.1457,0.5988,0.1702
+"Coos County, New Hampshire",0.5377,0.3038,0.0881,0.72,0.4862
+"Grafton County, New Hampshire",0.2148,0.084,0.328,0.6997,0.2619
+"Hillsborough County, New Hampshire",0.224,0.097,0.4973,0.4391,0.2234
+"Merrimack County, New Hampshire",0.1635,0.0815,0.2444,0.6701,0.2109
+"Rockingham County, New Hampshire",0.0595,0.0175,0.2692,0.1161,0.02
+"Strafford County, New Hampshire",0.2074,0.0086,0.335,0.7321,0.1833
+"Sullivan County, New Hampshire",0.3847,0.0659,0.1457,0.3882,0.2186
+"Atlantic County, New Jersey",0.7712,0.679,0.8317,0.9026,0.853
+"Bergen County, New Jersey",0.3191,0.1553,0.8501,0.651,0.4372
+"Burlington County, New Jersey",0.1829,0.2004,0.7261,0.3299,0.2434
+"Camden County, New Jersey",0.665,0.784,0.8396,0.7025,0.7795
+"Cape May County, New Jersey",0.3885,0.3729,0.4445,0.3201,0.3541
+"Cumberland County, New Jersey",0.9418,0.8934,0.8976,0.9726,0.9793
+"Essex County, New Jersey",0.8982,0.7566,0.9644,0.9478,0.9415
+"Gloucester County, New Jersey",0.2141,0.2469,0.5867,0.2259,0.2173
+"Hudson County, New Jersey",0.8241,0.1785,0.9669,0.8365,0.7827
+"Hunterdon County, New Jersey",0.0388,0.0592,0.4725,0.0846,0.035
+"Mercer County, New Jersey",0.5597,0.4053,0.8864,0.9383,0.7445
+"Middlesex County, New Jersey",0.496,0.2361,0.9201,0.9198,0.6647
+"Monmouth County, New Jersey",0.202,0.1254,0.6223,0.3338,0.2138
+"Morris County, New Jersey",0.1142,0.097,0.6847,0.3614,0.1667
+"Ocean County, New Jersey",0.3668,0.609,0.4699,0.3385,0.4133
+"Passaic County, New Jersey",0.917,0.6866,0.922,0.8737,0.9112
+"Salem County, New Jersey",0.6134,0.7073,0.6402,0.5842,0.6739
+"Somerset County, New Jersey",0.1381,0.1072,0.8549,0.2969,0.1912
+"Sussex County, New Jersey",0.1339,0.0391,0.4741,0.0509,0.0458
+"Union County, New Jersey",0.7579,0.6118,0.9325,0.7665,0.8145
+"Warren County, New Jersey",0.287,0.1269,0.5558,0.3077,0.245
+"Bernalillo County, New Mexico",0.7296,0.6564,0.9364,0.7168,0.7929
+"Catron County, New Mexico",0.4384,0.4524,0.5406,0.4206,0.4483
+"Chaves County, New Mexico",0.8683,0.9854,0.9389,0.8864,0.9701
+"Cibola County, New Mexico",0.8435,0.9497,0.9844,0.9555,0.9663
+"Colfax County, New Mexico",0.5775,0.6513,0.8874,0.9341,0.7989
+"Curry County, New Mexico",0.9529,0.9555,0.8934,0.6042,0.9395
+"De Baca County, New Mexico",0.7162,0.4232,0.9434,0.0897,0.5043
+"Doña Ana County, New Mexico",0.9688,0.9071,0.9714,0.958,0.9873
+"Eddy County, New Mexico",0.3888,0.8696,0.9017,0.5237,0.6382
+"Grant County, New Mexico",0.6707,0.6936,0.889,0.6106,0.7404
+"Guadalupe County, New Mexico",0.8221,0.7766,0.9889,0.7976,0.8791
+"Harding County, New Mexico",0.5485,0.6742,0.8988,0.5485,0.6615
+"Hidalgo County, New Mexico",0.6984,0.8371,0.9354,0.9905,0.9179
+"Lea County, New Mexico",0.9189,0.8301,0.9504,0.8766,0.9399
+"Lincoln County, New Mexico",0.8116,0.9195,0.7916,0.5269,0.8346
+"Los Alamos County, New Mexico",0.0003,0.0255,0.658,0.0789,0.0099
+"Luna County, New Mexico",0.9577,1.0,0.9704,0.9367,0.9997
+"McKinley County, New Mexico",0.9325,0.9208,0.9968,0.8985,0.9695
+"Mora County, New Mexico",0.399,0.9873,0.9831,0.1562,0.6169
+"Otero County, New Mexico",0.8594,0.9192,0.8851,0.8686,0.9294
+"Quay County, New Mexico",0.8762,0.9898,0.8832,0.2943,0.8711
+"Rio Arriba County, New Mexico",0.7152,0.9437,0.9911,0.2545,0.763
+"Roosevelt County, New Mexico",0.9182,0.8737,0.8743,0.9106,0.951
+"Sandoval County, New Mexico",0.3201,0.6672,0.9122,0.1435,0.3933
+"San Juan County, New Mexico",0.9637,0.9201,0.9389,0.8234,0.9669
+"San Miguel County, New Mexico",0.8772,0.9593,0.9873,0.9866,0.9854
+"Santa Fe County, New Mexico",0.6462,0.692,0.91,0.7057,0.7633
+"Sierra County, New Mexico",0.5746,0.8508,0.7646,0.742,0.7677
+"Socorro County, New Mexico",0.7194,0.7948,0.9475,0.9637,0.8972
+"Taos County, New Mexico",0.6176,0.8972,0.9411,0.2895,0.6955
+"Torrance County, New Mexico",0.8142,0.7776,0.881,0.4047,0.7712
+"Union County, New Mexico",0.6666,0.9901,0.8584,0.9771,0.9526
+"Valencia County, New Mexico",0.8307,0.9322,0.9561,0.6198,0.8823
+"Albany County, New York",0.3115,0.1737,0.6656,0.8021,0.461
+"Allegany County, New York",0.4973,0.1362,0.119,0.8155,0.4543
+"Bronx County, New York",0.9787,0.9545,0.9952,0.9806,0.9965
+"Broome County, New York",0.6227,0.5224,0.5065,0.8972,0.7248
+"Cattaraugus County, New York",0.6096,0.6087,0.328,0.8358,0.6809
+"Cayuga County, New York",0.4524,0.2062,0.342,0.8839,0.5208
+"Chautauqua County, New York",0.6147,0.7579,0.4085,0.798,0.7229
+"Chemung County, New York",0.5616,0.5507,0.434,0.7156,0.6093
+"Chenango County, New York",0.4604,0.4779,0.1225,0.6898,0.4833
+"Clinton County, New York",0.384,0.0837,0.2984,0.9103,0.4445
+"Columbia County, New York",0.3519,0.4582,0.4518,0.5192,0.427
+"Cortland County, New York",0.4165,0.0305,0.265,0.8444,0.3684
+"Delaware County, New York",0.5275,0.4938,0.265,0.5822,0.5142
+"Dutchess County, New York",0.3058,0.1613,0.6828,0.7696,0.447
+"Erie County, New York",0.3602,0.4235,0.6233,0.6395,0.4913
+"Essex County, New York",0.3096,0.279,0.2164,0.6424,0.3516
+"Franklin County, New York",0.5539,0.1425,0.4683,0.8626,0.5597
+"Fulton County, New York",0.4566,0.2603,0.3016,0.5189,0.3977
+"Genesee County, New York",0.2234,0.1139,0.2959,0.5501,0.2335
+"Greene County, New York",0.2899,0.1597,0.4569,0.7961,0.4076
+"Hamilton County, New York",0.3474,0.2122,0.2062,0.1012,0.1654
+"Herkimer County, New York",0.2071,0.2596,0.182,0.6357,0.2755
+"Jefferson County, New York",0.5453,0.3796,0.5237,0.9252,0.6653
+"Kings County, New York",0.8775,0.5352,0.9395,0.9249,0.8874
+"Lewis County, New York",0.3023,0.2106,0.0675,0.2676,0.1925
+"Livingston County, New York",0.2453,0.0471,0.3016,0.6328,0.2294
+"Madison County, New York",0.1689,0.0452,0.2536,0.6207,0.1801
+"Monroe County, New York",0.4136,0.6093,0.6806,0.7162,0.5943
+"Montgomery County, New York",0.6895,0.8867,0.5501,0.7232,0.7881
+"Nassau County, New York",0.1324,0.1696,0.8129,0.5584,0.2778
+"New York County, New York",0.6268,0.0996,0.8896,0.9784,0.7283
+"Niagara County, New York",0.3595,0.489,0.4604,0.5383,0.4454
+"Oneida County, New York",0.3907,0.7401,0.5237,0.9259,0.6828
+"Onondaga County, New York",0.4146,0.4881,0.6045,0.804,0.588
+"Ontario County, New York",0.1327,0.3242,0.3484,0.6367,0.2682
+"Orange County, New York",0.5097,0.6246,0.776,0.882,0.7299
+"Orleans County, New York",0.6427,0.3958,0.42,0.6201,0.58
+"Oswego County, New York",0.6137,0.2094,0.1985,0.9227,0.5962
+"Otsego County, New York",0.3417,0.0986,0.3086,0.6796,0.3287
+"Putnam County, New York",0.1209,0.062,0.6115,0.2326,0.1187
+"Queens County, New York",0.8282,0.1899,0.9765,0.8772,0.8024
+"Rensselaer County, New York",0.2727,0.2396,0.5183,0.7302,0.4047
+"Richmond County, New York",0.4413,0.3328,0.8021,0.811,0.5956
+"Rockland County, New York",0.6087,0.5062,0.7607,0.8915,0.7471
+"St. Lawrence County, New York",0.6701,0.2854,0.2265,0.9815,0.7108
+"Saratoga County, New York",0.0519,0.035,0.335,0.3611,0.0649
+"Schenectady County, New York",0.4012,0.1744,0.6634,0.7388,0.4874
+"Schoharie County, New York",0.2704,0.1044,0.2914,0.7576,0.3172
+"Schuyler County, New York",0.4267,0.1343,0.119,0.5507,0.3159
+"Seneca County, New York",0.6564,0.2902,0.3535,0.707,0.5737
+"Steuben County, New York",0.4349,0.4378,0.1861,0.6764,0.4683
+"Suffolk County, New York",0.223,0.1114,0.7226,0.4321,0.2596
+"Sullivan County, New York",0.7499,0.7652,0.6901,0.9475,0.8654
+"Tioga County, New York",0.2584,0.0939,0.119,0.279,0.1505
+"Tompkins County, New York",0.3312,0.0197,0.5829,0.9131,0.3907
+"Ulster County, New York",0.5043,0.2125,0.6115,0.7811,0.5511
+"Warren County, New York",0.2319,0.1279,0.1985,0.4171,0.1954
+"Washington County, New York",0.4505,0.2523,0.2485,0.6087,0.4127
+"Wayne County, New York",0.3226,0.342,0.3446,0.5294,0.3633
+"Westchester County, New York",0.4216,0.3821,0.8641,0.9373,0.6685
+"Wyoming County, New York",0.2606,0.0636,0.3322,0.5686,0.2399
+"Yates County, New York",0.6522,0.1581,0.0675,0.9173,0.5724
+"Alamance County, North Carolina",0.6643,0.5266,0.7668,0.7076,0.7136
+"Alexander County, North Carolina",0.4922,0.2924,0.4018,0.5466,0.4559
+"Alleghany County, North Carolina",0.8613,0.4998,0.3977,0.5807,0.7168
+"Anson County, North Carolina",0.9736,0.8034,0.8969,0.8256,0.9529
+"Ashe County, North Carolina",0.5632,0.6382,0.2164,0.2695,0.4518
+"Avery County, North Carolina",0.6624,0.4986,0.3675,0.909,0.7191
+"Beaufort County, North Carolina",0.8654,0.8451,0.7156,0.447,0.8066
+"Bertie County, North Carolina",0.9784,0.658,0.9446,0.9138,0.9586
+"Bladen County, North Carolina",0.86,0.7709,0.8352,0.5848,0.8326
+"Brunswick County, North Carolina",0.3535,0.1244,0.504,0.2004,0.2275
+"Buncombe County, North Carolina",0.5094,0.3691,0.4839,0.8409,0.5994
+"Burke County, North Carolina",0.7149,0.6793,0.5148,0.6249,0.7079
+"Cabarrus County, North Carolina",0.3614,0.4817,0.7706,0.3376,0.4321
+"Caldwell County, North Carolina",0.7257,0.6981,0.4018,0.4808,0.6503
+"Camden County, North Carolina",0.2561,0.6032,0.546,0.1021,0.2523
+"Carteret County, North Carolina",0.4547,0.2558,0.4057,0.4432,0.3888
+"Caswell County, North Carolina",0.7442,0.7646,0.7881,0.4384,0.7302
+"Catawba County, North Carolina",0.6055,0.6312,0.6249,0.7016,0.6818
+"Chatham County, North Carolina",0.2997,0.469,0.6516,0.167,0.2949
+"Cherokee County, North Carolina",0.7213,0.2482,0.2854,0.1333,0.3729
+"Chowan County, North Carolina",0.6806,0.8769,0.7814,0.4594,0.7394
+"Clay County, North Carolina",0.678,0.133,0.2234,0.4155,0.4232
+"Cleveland County, North Carolina",0.8699,0.7044,0.6481,0.8085,0.8524
+"Columbus County, North Carolina",0.952,0.8116,0.7951,0.846,0.937
+"Craven County, North Carolina",0.6373,0.8081,0.7261,0.8597,0.8126
+"Cumberland County, North Carolina",0.833,0.8718,0.9141,0.9558,0.943
+"Currituck County, North Carolina",0.2409,0.196,0.4248,0.0134,0.0862
+"Dare County, North Carolina",0.3805,0.1384,0.4117,0.1422,0.2071
+"Davidson County, North Carolina",0.6249,0.6812,0.5558,0.2752,0.553
+"Davie County, North Carolina",0.3665,0.5523,0.4658,0.3668,0.4057
+"Duplin County, North Carolina",0.9058,0.9749,0.8683,0.5549,0.9144
+"Durham County, North Carolina",0.5873,0.238,0.9065,0.8661,0.686
+"Edgecombe County, North Carolina",0.966,0.901,0.9418,0.7773,0.9605
+"Forsyth County, North Carolina",0.7652,0.6825,0.8291,0.7436,0.8126
+"Franklin County, North Carolina",0.5819,0.7019,0.756,0.5107,0.6491
+"Gaston County, North Carolina",0.6984,0.6163,0.6726,0.4578,0.65
+"Gates County, North Carolina",0.5765,0.5199,0.7464,0.0633,0.4053
+"Graham County, North Carolina",0.7684,0.7792,0.42,0.4591,0.6933
+"Granville County, North Carolina",0.6745,0.5778,0.8164,0.4811,0.6612
+"Greene County, North Carolina",0.9745,0.8272,0.8883,0.985,0.9863
+"Guilford County, North Carolina",0.6962,0.5469,0.8797,0.84,0.7865
+"Halifax County, North Carolina",0.9844,0.9007,0.9332,0.936,0.987
+"Harnett County, North Carolina",0.7432,0.8107,0.7836,0.4302,0.7372
+"Haywood County, North Carolina",0.5266,0.5441,0.2323,0.1702,0.3646
+"Henderson County, North Carolina",0.4365,0.5959,0.4913,0.2806,0.4286
+"Hertford County, North Carolina",0.9656,0.735,0.9513,0.8279,0.9427
+"Hoke County, North Carolina",0.8384,0.9345,0.931,0.6535,0.8909
+"Hyde County, North Carolina",0.9949,0.8966,0.8101,0.1989,0.874
+"Iredell County, North Carolina",0.3487,0.4041,0.615,0.3398,0.3773
+"Jackson County, North Carolina",0.8174,0.2899,0.5352,0.9386,0.7862
+"Johnston County, North Carolina",0.4683,0.6102,0.7261,0.4152,0.5294
+"Jones County, North Carolina",0.7973,0.2654,0.7598,0.5695,0.6736
+"Lee County, North Carolina",0.8571,0.9666,0.8072,0.6112,0.8953
+"Lenoir County, North Carolina",0.971,0.9975,0.8794,0.9774,0.9984
+"Lincoln County, North Carolina",0.2746,0.2685,0.4658,0.2666,0.2517
+"McDowell County, North Carolina",0.6421,0.7502,0.3847,0.861,0.7518
+"Macon County, North Carolina",0.6195,0.6351,0.3592,0.2288,0.4906
+"Madison County, North Carolina",0.3573,0.118,0.1654,0.7483,0.35
+"Martin County, North Carolina",0.9275,0.959,0.8641,0.6586,0.9306
+"Mecklenburg County, North Carolina",0.5787,0.4747,0.8915,0.5135,0.6115
+"Mitchell County, North Carolina",0.5437,0.629,0.2444,0.658,0.5689
+"Montgomery County, North Carolina",0.5705,0.9628,0.7537,0.5816,0.7741
+"Moore County, North Carolina",0.2778,0.6074,0.5867,0.2157,0.3306
+"Nash County, North Carolina",0.8403,0.741,0.881,0.8804,0.8902
+"New Hanover County, North Carolina",0.5638,0.0824,0.5797,0.4989,0.4289
+"Northampton County, North Carolina",0.9548,0.5157,0.9233,0.7786,0.8906
+"Onslow County, North Carolina",0.7585,0.6793,0.7213,0.7499,0.7948
+"Orange County, North Carolina",0.2857,0.0474,0.686,0.8454,0.3945
+"Pamlico County, North Carolina",0.5972,0.5603,0.6211,0.4146,0.5616
+"Pasquotank County, North Carolina",0.7324,0.6001,0.8473,0.6774,0.7626
+"Pender County, North Carolina",0.5294,0.4671,0.6204,0.573,0.5606
+"Perquimans County, North Carolina",0.7175,0.7451,0.6567,0.1858,0.5921
+"Person County, North Carolina",0.5558,0.6532,0.7165,0.2787,0.5393
+"Pitt County, North Carolina",0.8721,0.5282,0.8524,0.9679,0.9001
+"Polk County, North Carolina",0.3121,0.4578,0.4165,0.413,0.3583
+"Randolph County, North Carolina",0.6736,0.7681,0.5679,0.4108,0.6475
+"Richmond County, North Carolina",0.9761,0.882,0.825,0.9739,0.986
+"Robeson County, North Carolina",0.9828,0.9523,0.9758,0.9784,0.9962
+"Rockingham County, North Carolina",0.875,0.825,0.6516,0.6997,0.8514
+"Rowan County, North Carolina",0.7725,0.742,0.6599,0.8832,0.8435
+"Rutherford County, North Carolina",0.7897,0.8584,0.4973,0.6958,0.8072
+"Sampson County, North Carolina",0.93,0.8702,0.8721,0.867,0.9459
+"Scotland County, North Carolina",0.9857,0.8225,0.9135,0.9981,0.9959
+"Stanly County, North Carolina",0.6169,0.769,0.5352,0.5549,0.6631
+"Stokes County, North Carolina",0.5584,0.4893,0.2959,0.2816,0.4324
+"Surry County, North Carolina",0.8024,0.8797,0.4814,0.622,0.8005
+"Swain County, North Carolina",0.8581,0.832,0.7894,0.8788,0.901
+"Transylvania County, North Carolina",0.3764,0.4661,0.2959,0.7098,0.4773
+"Tyrrell County, North Carolina",0.819,0.7945,0.8075,0.7531,0.854
+"Union County, North Carolina",0.2221,0.3786,0.6701,0.0932,0.2008
+"Vance County, North Carolina",0.9532,0.9745,0.929,0.7283,0.9672
+"Wake County, North Carolina",0.2526,0.3229,0.7989,0.4257,0.3621
+"Warren County, North Carolina",0.9707,0.9605,0.931,0.923,0.9879
+"Washington County, North Carolina",0.9475,0.8511,0.9036,0.3716,0.8603
+"Watauga County, North Carolina",0.8619,0.0048,0.2444,0.5969,0.4238
+"Wayne County, North Carolina",0.8788,0.8991,0.8616,0.9545,0.9564
+"Wilkes County, North Carolina",0.8164,0.6491,0.3917,0.5272,0.707
+"Wilson County, North Carolina",0.9599,0.8543,0.8909,0.8136,0.952
+"Yadkin County, North Carolina",0.7206,0.5113,0.4741,0.5202,0.6233
+"Yancey County, North Carolina",0.7089,0.6971,0.2109,0.2533,0.5307
+"Adams County, North Dakota",0.1495,0.1648,0.2062,0.5708,0.2052
+"Barnes County, North Dakota",0.1355,0.0885,0.2879,0.5838,0.1842
+"Benson County, North Dakota",0.4117,0.8565,0.9211,0.8107,0.7426
+"Billings County, North Dakota",0.0127,0.015,0.0003,0.2113,0.0095
+"Bottineau County, North Dakota",0.0907,0.1333,0.2854,0.3073,0.111
+"Bowman County, North Dakota",0.251,0.5896,0.2164,0.1899,0.2421
+"Burke County, North Dakota",0.0159,0.3194,0.1572,0.0815,0.0363
+"Burleigh County, North Dakota",0.0382,0.1556,0.3939,0.7655,0.1963
+"Cass County, North Dakota",0.1511,0.0649,0.4636,0.7477,0.2485
+"Cavalier County, North Dakota",0.0563,0.3882,0.1457,0.1992,0.0955
+"Dickey County, North Dakota",0.1855,0.2036,0.3217,0.1922,0.146
+"Divide County, North Dakota",0.1858,0.2619,0.413,0.5587,0.2768
+"Dunn County, North Dakota",0.2036,0.5819,0.552,0.5927,0.4104
+"Eddy County, North Dakota",0.2078,0.5628,0.2733,0.7327,0.4082
+"Emmons County, North Dakota",0.1664,0.028,0.0407,0.1705,0.0506
+"Foster County, North Dakota",0.007,0.0716,0.0675,0.1149,0.0127
+"Golden Valley County, North Dakota",0.1024,0.5164,0.4117,0.2711,0.1982
+"Grand Forks County, North Dakota",0.2867,0.0191,0.4839,0.8654,0.3198
+"Grant County, North Dakota",0.1973,0.3124,0.2109,0.3535,0.2097
+"Griggs County, North Dakota",0.0258,0.1534,0.021,0.202,0.0407
+"Hettinger County, North Dakota",0.3268,0.2218,0.1985,0.0853,0.1495
+"Kidder County, North Dakota",0.1031,0.0843,0.2444,0.0312,0.0321
+"LaMoure County, North Dakota",0.0894,0.0843,0.0229,0.0687,0.0305
+"Logan County, North Dakota",0.0856,0.3761,0.1037,0.1053,0.0754
+"McHenry County, North Dakota",0.1709,0.1588,0.0627,0.1416,0.0907
+"McIntosh County, North Dakota",0.1674,0.1578,0.1572,0.2867,0.1368
+"McKenzie County, North Dakota",0.3369,0.1145,0.6029,0.874,0.468
+"McLean County, North Dakota",0.0156,0.2959,0.363,0.1915,0.0662
+"Mercer County, North Dakota",0.2577,0.4652,0.2587,0.5056,0.3296
+"Morton County, North Dakota",0.0589,0.0274,0.3592,0.2746,0.0519
+"Mountrail County, North Dakota",0.4333,0.7868,0.8088,0.8142,0.7156
+"Nelson County, North Dakota",0.0274,0.4047,0.2214,0.0646,0.0468
+"Oliver County, North Dakota",0.0242,0.5256,0.2164,0.1584,0.0808
+"Pembina County, North Dakota",0.1934,0.14,0.3016,0.1429,0.1206
+"Pierce County, North Dakota",0.111,0.4776,0.1654,0.1199,0.1155
+"Ramsey County, North Dakota",0.2186,0.5848,0.4973,0.7658,0.4747
+"Ransom County, North Dakota",0.0805,0.0515,0.2914,0.4015,0.0935
+"Renville County, North Dakota",0.0363,0.0375,0.0264,0.195,0.0245
+"Richland County, North Dakota",0.1091,0.1448,0.2984,0.7821,0.2459
+"Rolette County, North Dakota",0.8358,0.6847,0.985,0.8947,0.8934
+"Sargent County, North Dakota",0.0022,0.2253,0.2536,0.1059,0.0251
+"Sheridan County, North Dakota",0.071,0.0325,0.0264,0.0207,0.0073
+"Sioux County, North Dakota",0.9551,0.6166,0.9908,0.8104,0.9176
+"Slope County, North Dakota",0.0977,0.1378,0.0299,0.006,0.0134
+"Stark County, North Dakota",0.1944,0.0865,0.3977,0.8425,0.3112
+"Steele County, North Dakota",0.028,0.0783,0.015,0.1906,0.0299
+"Stutsman County, North Dakota",0.4792,0.2164,0.2399,0.6723,0.4419
+"Towner County, North Dakota",0.4311,0.5784,0.4222,0.02,0.2297
+"Traill County, North Dakota",0.0293,0.0576,0.2692,0.4493,0.0697
+"Walsh County, North Dakota",0.23,0.4521,0.4683,0.4843,0.3385
+"Ward County, North Dakota",0.1499,0.0671,0.5065,0.756,0.2571
+"Wells County, North Dakota",0.1508,0.3557,0.0525,0.6217,0.2437
+"Williams County, North Dakota",0.2262,0.4766,0.5778,0.8762,0.5062
+"Adams County, Ohio",0.8349,0.7181,0.0229,0.4508,0.6516
+"Allen County, Ohio",0.4152,0.672,0.5326,0.6659,0.5673
+"Ashland County, Ohio",0.3194,0.2081,0.0675,0.6522,0.3096
+"Ashtabula County, Ohio",0.8995,0.6704,0.3675,0.7906,0.8247
+"Athens County, Ohio",0.7165,0.0363,0.3086,0.9332,0.5772
+"Auglaize County, Ohio",0.0229,0.1915,0.0579,0.092,0.0261
+"Belmont County, Ohio",0.3503,0.1505,0.2234,0.5609,0.3067
+"Brown County, Ohio",0.504,0.4006,0.021,0.392,0.3691
+"Butler County, Ohio",0.3649,0.5145,0.5597,0.4254,0.4346
+"Carroll County, Ohio",0.3729,0.6137,0.0525,0.3032,0.3255
+"Champaign County, Ohio",0.1705,0.1559,0.1861,0.181,0.1123
+"Clark County, Ohio",0.6287,0.8387,0.4699,0.4998,0.6627
+"Clermont County, Ohio",0.1896,0.1575,0.2109,0.2634,0.1479
+"Clinton County, Ohio",0.3299,0.4979,0.1753,0.3303,0.3038
+"Columbiana County, Ohio",0.4225,0.3621,0.1654,0.6058,0.4162
+"Coshocton County, Ohio",0.7623,0.7213,0.0579,0.5262,0.6351
+"Crawford County, Ohio",0.5291,0.7576,0.0757,0.1489,0.3856
+"Cuyahoga County, Ohio",0.6554,0.6946,0.8043,0.6281,0.7305
+"Darke County, Ohio",0.2148,0.2755,0.0407,0.0649,0.0961
+"Defiance County, Ohio",0.2144,0.6239,0.4222,0.1747,0.2529
+"Delaware County, Ohio",0.0054,0.1651,0.4998,0.0445,0.0239
+"Erie County, Ohio",0.3462,0.5962,0.5081,0.3283,0.4015
+"Fairfield County, Ohio",0.1594,0.4543,0.4699,0.182,0.196
+"Fayette County, Ohio",0.5807,0.5943,0.2364,0.1454,0.3913
+"Franklin County, Ohio",0.5409,0.5297,0.776,0.6977,0.6497
+"Fulton County, Ohio",0.0675,0.4467,0.3563,0.0255,0.0585
+"Gallia County, Ohio",0.6535,0.3385,0.1753,0.8193,0.601
+"Geauga County, Ohio",0.1139,0.1129,0.1152,0.2918,0.0961
+"Greene County, Ohio",0.1715,0.0799,0.489,0.3471,0.1658
+"Guernsey County, Ohio",0.6844,0.538,0.1339,0.4636,0.5352
+"Hamilton County, Ohio",0.462,0.5243,0.7366,0.6713,0.5908
+"Hancock County, Ohio",0.1177,0.2246,0.3563,0.349,0.1604
+"Hardin County, Ohio",0.5533,0.1775,0.119,0.8575,0.5177
+"Harrison County, Ohio",0.6182,0.4598,0.1037,0.5985,0.5262
+"Henry County, Ohio",0.1289,0.3093,0.342,0.0719,0.0977
+"Highland County, Ohio",0.5912,0.357,0.0675,0.5724,0.4763
+"Hocking County, Ohio",0.545,0.812,0.0675,0.3528,0.4976
+"Holmes County, Ohio",0.4887,0.1037,0.0022,0.7646,0.3923
+"Huron County, Ohio",0.3118,0.6809,0.328,0.1744,0.301
+"Jackson County, Ohio",0.6713,0.525,0.0337,0.6443,0.5663
+"Jefferson County, Ohio",0.3856,0.3853,0.3058,0.6141,0.433
+"Knox County, Ohio",0.322,0.3576,0.1094,0.4111,0.2822
+"Lake County, Ohio",0.1432,0.335,0.4018,0.1483,0.1438
+"Lawrence County, Ohio",0.4623,0.6503,0.0932,0.2447,0.3672
+"Licking County, Ohio",0.1308,0.4906,0.3748,0.3443,0.2256
+"Logan County, Ohio",0.1254,0.2676,0.1861,0.3773,0.1578
+"Lorain County, Ohio",0.3589,0.595,0.5819,0.4209,0.4499
+"Lucas County, Ohio",0.6545,0.6252,0.7019,0.5794,0.678
+"Madison County, Ohio",0.1963,0.2988,0.377,0.2319,0.195
+"Mahoning County, Ohio",0.559,0.7216,0.6128,0.5043,0.6179
+"Marion County, Ohio",0.6007,0.6242,0.3802,0.7222,0.6443
+"Medina County, Ohio",0.0207,0.0888,0.1861,0.0388,0.0111
+"Meigs County, Ohio",0.7795,0.7149,0.015,0.3831,0.5848
+"Mercer County, Ohio",0.0223,0.104,0.0627,0.1257,0.0223
+"Miami County, Ohio",0.1034,0.2752,0.2444,0.0579,0.0643
+"Monroe County, Ohio",0.483,0.4429,0.0299,0.5437,0.4263
+"Montgomery County, Ohio",0.5803,0.6952,0.6752,0.686,0.6904
+"Morgan County, Ohio",0.7101,0.483,0.2485,0.4372,0.5425
+"Morrow County, Ohio",0.195,0.3366,0.0474,0.2011,0.1486
+"Muskingum County, Ohio",0.4989,0.4795,0.2587,0.636,0.511
+"Noble County, Ohio",0.5282,0.5307,0.119,0.8508,0.5902
+"Ottawa County, Ohio",0.0659,0.3306,0.2485,0.2027,0.105
+"Paulding County, Ohio",0.1658,0.7187,0.2399,0.0356,0.1387
+"Perry County, Ohio",0.441,0.2803,0.0229,0.5889,0.3688
+"Pickaway County, Ohio",0.3681,0.2488,0.2164,0.5867,0.3592
+"Pike County, Ohio",0.7617,0.7229,0.0735,0.629,0.6701
+"Portage County, Ohio",0.4006,0.029,0.3649,0.7337,0.3293
+"Preble County, Ohio",0.1079,0.2313,0.0337,0.0153,0.0328
+"Putnam County, Ohio",0.0025,0.1422,0.2364,0.0407,0.0102
+"Richland County, Ohio",0.5208,0.3455,0.4407,0.679,0.5329
+"Ross County, Ohio",0.6408,0.363,0.3322,0.7257,0.5931
+"Sandusky County, Ohio",0.2466,0.4537,0.4779,0.2208,0.2622
+"Scioto County, Ohio",0.8008,0.4575,0.1861,0.9049,0.7474
+"Seneca County, Ohio",0.1607,0.2975,0.3322,0.4416,0.2265
+"Shelby County, Ohio",0.1874,0.2778,0.2164,0.1855,0.1467
+"Stark County, Ohio",0.2835,0.4088,0.4248,0.3742,0.3147
+"Summit County, Ohio",0.3815,0.5237,0.6096,0.3843,0.4407
+"Trumbull County, Ohio",0.56,0.6023,0.413,0.5183,0.5533
+"Tuscarawas County, Ohio",0.5822,0.3723,0.1225,0.3898,0.4216
+"Union County, Ohio",0.0089,0.0455,0.3723,0.1066,0.0172
+"Van Wert County, Ohio",0.0608,0.4015,0.1753,0.0299,0.0449
+"Vinton County, Ohio",0.4979,0.5291,0.0169,0.2765,0.3595
+"Warren County, Ohio",0.0102,0.1339,0.4569,0.1689,0.0461
+"Washington County, Ohio",0.454,0.2628,0.0881,0.4388,0.3274
+"Wayne County, Ohio",0.392,0.244,0.1457,0.7413,0.4123
+"Williams County, Ohio",0.1903,0.4585,0.2323,0.1635,0.1785
+"Wood County, Ohio",0.2164,0.022,0.3818,0.4741,0.1562
+"Wyandot County, Ohio",0.021,0.4263,0.0821,0.1177,0.0487
+"Adair County, Oklahoma",0.9348,0.9039,0.9284,0.7967,0.9472
+"Alfalfa County, Oklahoma",0.2953,0.377,0.5119,0.3051,0.3048
+"Atoka County, Oklahoma",0.8199,0.7076,0.6949,0.8718,0.8556
+"Beaver County, Oklahoma",0.3309,0.9332,0.6936,0.0595,0.4034
+"Beckham County, Oklahoma",0.8473,0.3045,0.6287,0.9698,0.8403
+"Blaine County, Oklahoma",0.7009,0.9621,0.6701,0.3656,0.7553
+"Bryan County, Oklahoma",0.8209,0.7506,0.6764,0.7747,0.8416
+"Caddo County, Oklahoma",0.7601,0.8801,0.8304,0.8171,0.8705
+"Canadian County, Oklahoma",0.245,0.5253,0.6316,0.3248,0.3433
+"Carter County, Oklahoma",0.6532,0.9707,0.6971,0.4652,0.7751
+"Cherokee County, Oklahoma",0.847,0.7241,0.8899,0.9669,0.9236
+"Choctaw County, Oklahoma",0.9367,0.9567,0.797,0.7588,0.9485
+"Cimarron County, Oklahoma",0.2587,0.9647,0.6656,0.015,0.3134
+"Cleveland County, Oklahoma",0.4954,0.3404,0.6752,0.6694,0.5527
+"Coal County, Oklahoma",0.8314,0.9373,0.7226,0.4753,0.8358
+"Comanche County, Oklahoma",0.8129,0.8899,0.8346,0.9345,0.9211
+"Cotton County, Oklahoma",0.4976,0.3274,0.6233,0.21,0.3859
+"Craig County, Oklahoma",0.8333,0.936,0.7798,0.91,0.9316
+"Creek County, Oklahoma",0.4076,0.5358,0.6185,0.5714,0.5205
+"Custer County, Oklahoma",0.6332,0.756,0.7089,0.7528,0.7607
+"Delaware County, Oklahoma",0.8326,0.7222,0.7474,0.5326,0.7878
+"Dewey County, Oklahoma",0.4318,0.3649,0.5326,0.1982,0.3347
+"Ellis County, Oklahoma",0.671,0.8218,0.4273,0.1413,0.5323
+"Garfield County, Oklahoma",0.6783,0.9303,0.6402,0.5517,0.7706
+"Garvin County, Oklahoma",0.5336,0.8689,0.6328,0.1931,0.546
+"Grady County, Oklahoma",0.3637,0.4368,0.5326,0.4983,0.434
+"Grant County, Oklahoma",0.2714,0.4413,0.4273,0.1225,0.2208
+"Greer County, Oklahoma",0.7353,0.5177,0.6287,0.7162,0.727
+"Harmon County, Oklahoma",0.8807,0.7779,0.8508,0.2428,0.7572
+"Harper County, Oklahoma",0.3089,0.8489,0.6487,0.146,0.4028
+"Haskell County, Oklahoma",0.916,0.9166,0.686,0.3866,0.8387
+"Hughes County, Oklahoma",0.7999,0.727,0.776,0.6096,0.7945
+"Jackson County, Oklahoma",0.6831,0.7646,0.7706,0.4451,0.6981
+"Jefferson County, Oklahoma",0.7232,0.992,0.5978,0.398,0.8056
+"Johnston County, Oklahoma",0.7611,0.9154,0.7016,0.8556,0.875
+"Kay County, Oklahoma",0.8053,0.957,0.6449,0.6341,0.8549
+"Kingfisher County, Oklahoma",0.3153,0.7117,0.6166,0.2297,0.398
+"Kiowa County, Oklahoma",0.7763,0.9475,0.6373,0.2577,0.741
+"Latimer County, Oklahoma",0.8816,0.6672,0.7655,0.7038,0.8396
+"Le Flore County, Oklahoma",0.8899,0.972,0.6742,0.7566,0.924
+"Lincoln County, Oklahoma",0.4362,0.651,0.5183,0.196,0.4101
+"Logan County, Oklahoma",0.2418,0.2374,0.5829,0.4699,0.3003
+"Love County, Oklahoma",0.7019,0.9367,0.686,0.5752,0.7961
+"McClain County, Oklahoma",0.3061,0.5479,0.574,0.1619,0.2991
+"McCurtain County, Oklahoma",0.7906,0.9819,0.7859,0.6971,0.8976
+"McIntosh County, Oklahoma",0.7986,0.6694,0.706,0.5418,0.7528
+"Major County, Oklahoma",0.1893,0.8654,0.4741,0.2491,0.3579
+"Marshall County, Oklahoma",0.868,0.9946,0.7442,0.3843,0.8769
+"Mayes County, Oklahoma",0.7394,0.8269,0.7474,0.4788,0.7499
+"Murray County, Oklahoma",0.4397,0.6879,0.6656,0.581,0.5775
+"Muskogee County, Oklahoma",0.8886,0.9427,0.8403,0.9882,0.9774
+"Noble County, Oklahoma",0.2431,0.8743,0.5326,0.3538,0.4458
+"Nowata County, Oklahoma",0.6004,0.6895,0.7276,0.518,0.6529
+"Okfuskee County, Oklahoma",0.8037,0.783,0.7843,0.8632,0.8715
+"Oklahoma County, Oklahoma",0.7801,0.8454,0.8403,0.7012,0.8431
+"Okmulgee County, Oklahoma",0.8928,0.8495,0.7646,0.9033,0.922
+"Osage County, Oklahoma",0.5997,0.4477,0.7537,0.5896,0.6207
+"Ottawa County, Oklahoma",0.8015,0.9717,0.7458,0.8756,0.9252
+"Pawnee County, Oklahoma",0.4636,0.5227,0.6083,0.4464,0.4979
+"Payne County, Oklahoma",0.7693,0.0445,0.5969,0.8842,0.6408
+"Pittsburg County, Oklahoma",0.8702,0.8104,0.6949,0.7572,0.868
+"Pontotoc County, Oklahoma",0.5498,0.6316,0.7391,0.6472,0.6561
+"Pottawatomie County, Oklahoma",0.7267,0.6691,0.6561,0.6965,0.7496
+"Pushmataha County, Oklahoma",0.978,0.8326,0.6764,0.5453,0.8896
+"Roger Mills County, Oklahoma",0.4664,0.7671,0.5065,0.0102,0.2835
+"Rogers County, Oklahoma",0.3255,0.4712,0.6634,0.3331,0.3878
+"Seminole County, Oklahoma",0.9542,0.9179,0.7502,0.8244,0.9523
+"Sequoyah County, Oklahoma",0.8912,0.8247,0.7693,0.4426,0.8183
+"Stephens County, Oklahoma",0.7114,0.8871,0.5476,0.349,0.6892
+"Texas County, Oklahoma",0.8562,0.8476,0.9112,0.8368,0.9084
+"Tillman County, Oklahoma",0.8597,0.9994,0.805,0.4639,0.9125
+"Tulsa County, Oklahoma",0.7547,0.7871,0.7859,0.6039,0.7846
+"Wagoner County, Oklahoma",0.3338,0.7875,0.6806,0.2463,0.4489
+"Washington County, Oklahoma",0.5342,0.9058,0.6487,0.2402,0.5867
+"Washita County, Oklahoma",0.602,0.8571,0.504,0.2902,0.5947
+"Woods County, Oklahoma",0.6048,0.1674,0.4839,0.7649,0.5584
+"Woodward County, Oklahoma",0.6647,0.8845,0.5644,0.6484,0.7611
+"Baker County, Oregon",0.5078,0.4508,0.3166,0.5234,0.4811
+"Benton County, Oregon",0.5399,0.0277,0.5488,0.8918,0.5005
+"Clackamas County, Oregon",0.2377,0.3172,0.5437,0.4273,0.3023
+"Clatsop County, Oregon",0.4903,0.5434,0.4913,0.7149,0.5813
+"Columbia County, Oregon",0.2943,0.1823,0.4117,0.3096,0.2453
+"Coos County, Oregon",0.6796,0.6942,0.4636,0.8616,0.7661
+"Crook County, Oregon",0.3293,0.6551,0.3847,0.2529,0.356
+"Curry County, Oregon",0.5387,0.6516,0.4518,0.6519,0.6067
+"Deschutes County, Oregon",0.3662,0.1562,0.4222,0.287,0.2634
+"Douglas County, Oregon",0.5969,0.7089,0.4165,0.6586,0.6487
+"Gilliam County, Oregon",0.6357,0.2867,0.4569,0.5301,0.5282
+"Grant County, Oregon",0.7343,0.5326,0.342,0.4222,0.5784
+"Harney County, Oregon",0.5737,0.7232,0.4273,0.9892,0.8034
+"Hood River County, Oregon",0.44,0.6045,0.7537,0.9306,0.7111
+"Jackson County, Oregon",0.5937,0.6067,0.552,0.8139,0.7025
+"Jefferson County, Oregon",0.7827,0.9774,0.8043,0.8727,0.9278
+"Josephine County, Oregon",0.8151,0.805,0.4378,0.6376,0.7817
+"Klamath County, Oregon",0.8276,0.9125,0.6045,0.6417,0.8438
+"Lake County, Oregon",0.7824,0.6729,0.4913,0.9688,0.8517
+"Lane County, Oregon",0.6522,0.4903,0.5294,0.9157,0.7375
+"Lincoln County, Oregon",0.7127,0.8517,0.5294,0.4814,0.7165
+"Linn County, Oregon",0.6347,0.6195,0.4779,0.6758,0.6586
+"Malheur County, Oregon",0.937,0.951,0.7878,0.9949,0.9908
+"Marion County, Oregon",0.7773,0.8641,0.7502,0.95,0.902
+"Morrow County, Oregon",0.609,0.937,0.8101,0.5612,0.7735
+"Multnomah County, Oregon",0.5037,0.105,0.6993,0.9345,0.5927
+"Polk County, Oregon",0.4626,0.7792,0.5978,0.6828,0.6395
+"Sherman County, Oregon",0.3204,0.4773,0.377,0.3503,0.3376
+"Tillamook County, Oregon",0.4795,0.8256,0.4839,0.6955,0.6507
+"Umatilla County, Oregon",0.6697,0.9625,0.7448,0.9854,0.9259
+"Union County, Oregon",0.581,0.5285,0.3675,0.9542,0.7187
+"Wallowa County, Oregon",0.2354,0.6822,0.2879,0.6888,0.4461
+"Wasco County, Oregon",0.7623,0.769,0.6402,0.9873,0.8937
+"Washington County, Oregon",0.2724,0.1779,0.7502,0.5676,0.3703
+"Wheeler County, Oregon",0.4267,0.2771,0.3977,0.1171,0.2479
+"Yamhill County, Oregon",0.4534,0.6863,0.6102,0.9424,0.7232
+"Adams County, Pennsylvania",0.2135,0.3108,0.3535,0.252,0.21
+"Allegheny County, Pennsylvania",0.2011,0.2221,0.5759,0.6004,0.314
+"Armstrong County, Pennsylvania",0.1791,0.167,0.0191,0.2914,0.132
+"Beaver County, Pennsylvania",0.203,0.3191,0.3563,0.3653,0.2386
+"Bedford County, Pennsylvania",0.3468,0.1518,0.0169,0.244,0.1868
+"Berks County, Pennsylvania",0.5383,0.7012,0.6806,0.6669,0.6659
+"Blair County, Pennsylvania",0.2622,0.3299,0.1339,0.609,0.3108
+"Bradford County, Pennsylvania",0.4025,0.3357,0.0579,0.587,0.3754
+"Bucks County, Pennsylvania",0.0967,0.2129,0.5005,0.2103,0.1317
+"Butler County, Pennsylvania",0.0722,0.036,0.1225,0.4728,0.0786
+"Cambria County, Pennsylvania",0.2288,0.4225,0.2323,0.6793,0.3605
+"Cameron County, Pennsylvania",0.5014,0.6688,0.1094,0.4483,0.4734
+"Carbon County, Pennsylvania",0.5301,0.209,0.2984,0.175,0.2895
+"Centre County, Pennsylvania",0.3576,0.0025,0.4496,0.9803,0.3344
+"Chester County, Pennsylvania",0.0655,0.1238,0.5679,0.3102,0.1244
+"Clarion County, Pennsylvania",0.4263,0.0958,0.0579,0.6475,0.315
+"Clearfield County, Pennsylvania",0.4356,0.4983,0.1928,0.7292,0.5017
+"Clinton County, Pennsylvania",0.6602,0.2717,0.0821,0.7407,0.5409
+"Columbia County, Pennsylvania",0.3831,0.0312,0.2265,0.6732,0.2813
+"Crawford County, Pennsylvania",0.5402,0.6335,0.1152,0.7556,0.5842
+"Cumberland County, Pennsylvania",0.1231,0.1476,0.4725,0.5282,0.2068
+"Dauphin County, Pennsylvania",0.3478,0.6297,0.7474,0.6316,0.5476
+"Delaware County, Pennsylvania",0.3853,0.4515,0.7299,0.7579,0.5654
+"Elk County, Pennsylvania",0.1569,0.1661,0.0299,0.1419,0.0824
+"Erie County, Pennsylvania",0.4607,0.6764,0.4814,0.7792,0.6242
+"Fayette County, Pennsylvania",0.5224,0.3968,0.2879,0.6802,0.5224
+"Forest County, Pennsylvania",0.4827,0.2065,0.6828,0.6551,0.5072
+"Franklin County, Pennsylvania",0.3217,0.5632,0.4018,0.2389,0.3194
+"Fulton County, Pennsylvania",0.175,0.2679,0.0881,0.1524,0.1184
+"Greene County, Pennsylvania",0.2832,0.2507,0.2234,0.6831,0.342
+"Huntingdon County, Pennsylvania",0.3131,0.1518,0.3016,0.7054,0.3481
+"Indiana County, Pennsylvania",0.5154,0.0875,0.1861,0.8228,0.4528
+"Jefferson County, Pennsylvania",0.4305,0.349,0.014,0.5663,0.3745
+"Juniata County, Pennsylvania",0.4337,0.3376,0.1654,0.8015,0.4846
+"Lackawanna County, Pennsylvania",0.3875,0.7588,0.4973,0.6144,0.5558
+"Lancaster County, Pennsylvania",0.4575,0.3513,0.525,0.7493,0.5399
+"Lawrence County, Pennsylvania",0.4916,0.6631,0.2692,0.517,0.5151
+"Lebanon County, Pennsylvania",0.517,0.665,0.5317,0.6592,0.6176
+"Lehigh County, Pennsylvania",0.5759,0.7149,0.7735,0.7534,0.734
+"Luzerne County, Pennsylvania",0.5727,0.8253,0.5727,0.643,0.6942
+"Lycoming County, Pennsylvania",0.4432,0.3933,0.328,0.7439,0.5091
+"McKean County, Pennsylvania",0.279,0.3592,0.1696,0.5628,0.3188
+"Mercer County, Pennsylvania",0.378,0.5845,0.3248,0.7582,0.5278
+"Mifflin County, Pennsylvania",0.7521,0.4063,0.0757,0.6631,0.5934
+"Monroe County, Pennsylvania",0.5565,0.2816,0.7598,0.1849,0.4136
+"Montgomery County, Pennsylvania",0.1012,0.2224,0.6233,0.454,0.2119
+"Montour County, Pennsylvania",0.1425,0.4747,0.2879,0.8352,0.3818
+"Northampton County, Pennsylvania",0.2666,0.3411,0.6211,0.5959,0.4038
+"Northumberland County, Pennsylvania",0.336,0.4426,0.2628,0.6452,0.4206
+"Perry County, Pennsylvania",0.2838,0.1502,0.0881,0.2644,0.1737
+"Philadelphia County, Pennsylvania",0.909,0.8361,0.9465,0.915,0.9465
+"Pike County, Pennsylvania",0.4429,0.3509,0.5558,0.0439,0.2405
+"Potter County, Pennsylvania",0.3974,0.5374,0.0407,0.5409,0.405
+"Schuylkill County, Pennsylvania",0.4228,0.6411,0.335,0.539,0.4928
+"Snyder County, Pennsylvania",0.3563,0.1177,0.0627,0.6071,0.2819
+"Somerset County, Pennsylvania",0.349,0.2571,0.1094,0.6726,0.3618
+"Sullivan County, Pennsylvania",0.2806,0.2666,0.1339,0.3977,0.2444
+"Susquehanna County, Pennsylvania",0.4003,0.1989,0.0407,0.1371,0.1814
+"Tioga County, Pennsylvania",0.3767,0.2367,0.0264,0.5196,0.2975
+"Union County, Pennsylvania",0.4693,0.0697,0.4165,0.8167,0.4531
+"Venango County, Pennsylvania",0.3751,0.5126,0.0627,0.4718,0.3656
+"Warren County, Pennsylvania",0.1314,0.3563,0.0627,0.3217,0.153
+"Washington County, Pennsylvania",0.1123,0.1263,0.265,0.5227,0.1648
+"Wayne County, Pennsylvania",0.4839,0.1992,0.3166,0.5119,0.3952
+"Westmoreland County, Pennsylvania",0.0996,0.1088,0.1861,0.3748,0.1091
+"Wyoming County, Pennsylvania",0.1304,0.1082,0.0821,0.2345,0.0872
+"York County, Pennsylvania",0.2638,0.5024,0.5094,0.3605,0.3379
+"Bristol County, Rhode Island",0.1152,0.085,0.2914,0.426,0.1327
+"Kent County, Rhode Island",0.2402,0.1791,0.4165,0.2918,0.2116
+"Newport County, Rhode Island",0.2183,0.1928,0.4496,0.5396,0.2787
+"Providence County, Rhode Island",0.679,0.594,0.7983,0.9208,0.8097
+"Washington County, Rhode Island",0.1642,0.1171,0.2879,0.2584,0.1324
+"Abbeville County, South Carolina",0.6157,0.1973,0.6872,0.734,0.5988
+"Aiken County, South Carolina",0.5947,0.6357,0.7226,0.5151,0.6322
+"Allendale County, South Carolina",0.9882,0.8097,0.9793,0.994,0.9955
+"Anderson County, South Carolina",0.6166,0.4916,0.5854,0.6542,0.6303
+"Bamberg County, South Carolina",0.9866,0.8046,0.937,0.7455,0.958
+"Barnwell County, South Carolina",0.9243,0.8664,0.8721,0.9443,0.9612
+"Beaufort County, South Carolina",0.2695,0.5549,0.6923,0.5908,0.469
+"Berkeley County, South Carolina",0.4082,0.5794,0.7591,0.5523,0.5447
+"Calhoun County, South Carolina",0.7633,0.5212,0.8365,0.5574,0.7273
+"Charleston County, South Carolina",0.4222,0.1101,0.7213,0.6172,0.4343
+"Cherokee County, South Carolina",0.7967,0.6096,0.6548,0.7241,0.7798
+"Chester County, South Carolina",0.8062,0.3837,0.8008,0.5253,0.7047
+"Chesterfield County, South Carolina",0.9001,0.9338,0.7894,0.8874,0.9462
+"Clarendon County, South Carolina",0.9472,0.6519,0.8785,0.993,0.9691
+"Colleton County, South Carolina",0.9564,0.8597,0.8129,0.9389,0.966
+"Darlington County, South Carolina",0.8746,0.7496,0.8466,0.8527,0.8921
+"Dillon County, South Carolina",0.9831,0.9157,0.8915,0.8435,0.9745
+"Dorchester County, South Carolina",0.6071,0.6589,0.756,0.4543,0.6306
+"Edgefield County, South Carolina",0.7451,0.7066,0.8116,0.9065,0.8476
+"Fairfield County, South Carolina",0.8676,0.7311,0.9243,0.8276,0.8893
+"Florence County, South Carolina",0.7305,0.5288,0.8686,0.923,0.8256
+"Georgetown County, South Carolina",0.5927,0.349,0.7178,0.42,0.5301
+"Greenville County, South Carolina",0.4766,0.5533,0.7028,0.7362,0.6246
+"Greenwood County, South Carolina",0.7929,0.7471,0.7951,0.8174,0.8466
+"Hampton County, South Carolina",0.959,0.923,0.9214,0.7922,0.9621
+"Horry County, South Carolina",0.7378,0.7254,0.5778,0.4938,0.7022
+"Jasper County, South Carolina",0.8505,0.6475,0.8912,0.8988,0.8829
+"Kershaw County, South Carolina",0.5606,0.6535,0.6971,0.1495,0.4782
+"Lancaster County, South Carolina",0.3586,0.6634,0.6764,0.3433,0.4575
+"Laurens County, South Carolina",0.8874,0.8454,0.7038,0.8161,0.8947
+"Lee County, South Carolina",0.9796,0.3563,0.9488,0.9975,0.9704
+"Lexington County, South Carolina",0.3796,0.5568,0.6347,0.4893,0.4855
+"McCormick County, South Carolina",0.5536,0.4158,0.8549,0.6023,0.6087
+"Marion County, South Carolina",0.9077,0.6701,0.9294,0.7346,0.8753
+"Marlboro County, South Carolina",0.9717,0.4184,0.9259,0.9605,0.9405
+"Newberry County, South Carolina",0.6013,0.9125,0.7821,0.7471,0.8027
+"Oconee County, South Carolina",0.7528,0.8492,0.4588,0.4063,0.6968
+"Orangeburg County, South Carolina",0.9535,0.6958,0.9478,0.9236,0.9516
+"Pickens County, South Carolina",0.6653,0.0369,0.4356,0.9316,0.5717
+"Richland County, South Carolina",0.7486,0.3888,0.9154,0.8622,0.7922
+"Saluda County, South Carolina",0.7187,0.8985,0.7989,0.6736,0.8228
+"Spartanburg County, South Carolina",0.6456,0.7929,0.706,0.6704,0.7486
+"Sumter County, South Carolina",0.8632,0.6274,0.896,0.8638,0.8762
+"Union County, South Carolina",0.9166,0.811,0.7321,0.8813,0.9173
+"Williamsburg County, South Carolina",0.901,0.8282,0.9548,0.9749,0.9634
+"York County, South Carolina",0.2749,0.3217,0.6872,0.3958,0.3436
+"Aurora County, South Dakota",0.0649,0.5921,0.3322,0.0754,0.104
+"Beadle County, South Dakota",0.3977,0.8021,0.6332,0.931,0.7289
+"Bennett County, South Dakota",0.9427,0.3754,0.937,0.531,0.811
+"Bon Homme County, South Dakota",0.3124,0.0535,0.3977,0.3023,0.1899
+"Brookings County, South Dakota",0.1871,0.006,0.335,0.7401,0.154
+"Brown County, South Dakota",0.1549,0.2628,0.42,0.5905,0.2669
+"Brule County, South Dakota",0.3866,0.2294,0.5081,0.5094,0.3872
+"Buffalo County, South Dakota",0.9975,0.7728,0.9831,0.9399,0.9892
+"Butte County, South Dakota",0.7337,0.1444,0.3503,0.6268,0.5431
+"Campbell County, South Dakota",0.1269,0.2972,0.0627,0.1247,0.0878
+"Charles Mix County, South Dakota",0.8091,0.175,0.756,0.6468,0.6777
+"Clark County, South Dakota",0.4372,0.6707,0.1985,0.2151,0.3659
+"Clay County, South Dakota",0.6907,0.0194,0.3977,0.9962,0.6367
+"Codington County, South Dakota",0.1861,0.0945,0.2628,0.6993,0.2415
+"Corson County, South Dakota",0.8845,0.2832,0.9656,0.4709,0.7324
+"Custer County, South Dakota",0.315,0.1212,0.3248,0.5679,0.2937
+"Davison County, South Dakota",0.3143,0.2409,0.2959,0.6977,0.3742
+"Day County, South Dakota",0.2249,0.111,0.4222,0.1317,0.1282
+"Deuel County, South Dakota",0.0579,0.2151,0.1276,0.0191,0.0213
+"Dewey County, South Dakota",0.8915,0.2517,0.9825,0.8199,0.8263
+"Douglas County, South Dakota",0.2873,0.4248,0.1225,0.5161,0.3166
+"Edmunds County, South Dakota",0.0525,0.2167,0.0544,0.0385,0.0258
+"Fall River County, South Dakota",0.6433,0.5192,0.4518,0.6545,0.6277
+"Faulk County, South Dakota",0.1801,0.5396,0.0264,0.7926,0.3627
+"Grant County, South Dakota",0.146,0.3226,0.1985,0.5393,0.231
+"Gregory County, South Dakota",0.1906,0.1957,0.3824,0.2682,0.1817
+"Haakon County, South Dakota",0.1104,0.2695,0.2733,0.6618,0.2389
+"Hamlin County, South Dakota",0.1114,0.4174,0.2109,0.1845,0.1336
+"Hand County, South Dakota",0.013,0.1591,0.1753,0.2526,0.048
+"Hanson County, South Dakota",0.0051,0.0178,0.1339,0.0003,0.0003
+"Harding County, South Dakota",0.0035,0.0054,0.4314,0.4865,0.0264
+"Hughes County, South Dakota",0.0535,0.0923,0.5161,0.9793,0.3013
+"Hutchinson County, South Dakota",0.0512,0.4489,0.2294,0.2409,0.1209
+"Hyde County, South Dakota",0.0391,0.0267,0.2959,0.0611,0.0153
+"Jackson County, South Dakota",0.9822,0.3923,0.9494,0.999,0.9771
+"Jerauld County, South Dakota",0.0474,0.2078,0.3535,0.7175,0.1976
+"Jones County, South Dakota",0.1317,0.4117,0.5542,0.2335,0.2036
+"Kingsbury County, South Dakota",0.0751,0.1518,0.119,0.4241,0.1114
+"Lake County, South Dakota",0.056,0.1336,0.1985,0.3474,0.09
+"Lawrence County, South Dakota",0.3172,0.1693,0.3086,0.6653,0.3449
+"Lincoln County, South Dakota",0.008,0.3414,0.2536,0.0506,0.0309
+"Lyman County, South Dakota",0.6437,0.9052,0.8482,0.9065,0.867
+"McCook County, South Dakota",0.0834,0.1378,0.1696,0.0445,0.0366
+"McPherson County, South Dakota",0.2488,0.3643,0.0455,0.1998,0.1788
+"Marshall County, South Dakota",0.0395,0.4162,0.4948,0.1871,0.1193
+"Meade County, South Dakota",0.2698,0.0315,0.4057,0.3684,0.1744
+"Mellette County, South Dakota",0.9265,0.2962,0.952,0.8419,0.8552
+"Miner County, South Dakota",0.1925,0.5558,0.1094,0.2631,0.2154
+"Minnehaha County, South Dakota",0.1753,0.4594,0.525,0.6583,0.3748
+"Moody County, South Dakota",0.0671,0.5221,0.6029,0.4362,0.2431
+"Oglala Lakota County, South Dakota",0.9987,0.2494,0.9981,0.9332,0.9545
+"Pennington County, South Dakota",0.3917,0.4349,0.5488,0.8053,0.5539
+"Perkins County, South Dakota",0.2211,0.4938,0.0379,0.7003,0.3417
+"Potter County, South Dakota",0.0356,0.0633,0.2164,0.1184,0.0296
+"Roberts County, South Dakota",0.6481,0.5345,0.8291,0.5695,0.6694
+"Sanborn County, South Dakota",0.1457,0.2768,0.1339,0.3662,0.167
+"Spink County, South Dakota",0.1155,0.336,0.1861,0.2587,0.1381
+"Stanley County, South Dakota",0.0108,0.0579,0.3217,0.3213,0.0452
+"Sully County, South Dakota",0.0312,0.2234,0.2062,0.042,0.027
+"Todd County, South Dakota",0.9605,0.3026,0.9971,0.9914,0.9475
+"Tripp County, South Dakota",0.6997,0.4753,0.5352,0.5472,0.6236
+"Turner County, South Dakota",0.0853,0.4693,0.0579,0.078,0.0725
+"Union County, South Dakota",0.0455,0.3726,0.314,0.076,0.0627
+"Walworth County, South Dakota",0.4088,0.378,0.5444,0.672,0.5024
+"Yankton County, South Dakota",0.062,0.1903,0.3563,0.7019,0.2014
+"Ziebach County, South Dakota",0.9351,0.1527,0.9745,0.971,0.8842
+"Anderson County, Tennessee",0.6083,0.7397,0.3649,0.5972,0.6363
+"Bedford County, Tennessee",0.7429,0.8692,0.6045,0.4003,0.7261
+"Benton County, Tennessee",0.7156,0.5081,0.2323,0.1696,0.4508
+"Bledsoe County, Tennessee",0.8823,0.1849,0.3723,0.755,0.6997
+"Blount County, Tennessee",0.293,0.168,0.2914,0.342,0.2313
+"Bradley County, Tennessee",0.6898,0.7108,0.4556,0.5647,0.6726
+"Campbell County, Tennessee",0.896,0.4629,0.021,0.7213,0.7143
+"Cannon County, Tennessee",0.4795,0.3417,0.1572,0.1664,0.2739
+"Carroll County, Tennessee",0.58,0.5584,0.4537,0.475,0.5457
+"Carter County, Tennessee",0.8301,0.5838,0.1572,0.553,0.6666
+"Cheatham County, Tennessee",0.272,0.2749,0.2816,0.1947,0.1995
+"Chester County, Tennessee",0.6968,0.1387,0.4378,0.3665,0.4553
+"Claiborne County, Tennessee",0.8269,0.2415,0.0627,0.5641,0.5619
+"Clay County, Tennessee",0.6599,0.9472,0.1037,0.4617,0.6605
+"Cocke County, Tennessee",0.9287,0.8807,0.182,0.2759,0.7369
+"Coffee County, Tennessee",0.6354,0.9243,0.3847,0.3382,0.6411
+"Crockett County, Tennessee",0.6045,0.9733,0.6424,0.349,0.7203
+"Cumberland County, Tennessee",0.595,0.2918,0.1094,0.245,0.3506
+"Davidson County, Tennessee",0.7054,0.2794,0.825,0.8027,0.7171
+"Decatur County, Tennessee",0.762,0.1289,0.2485,0.3548,0.4496
+"DeKalb County, Tennessee",0.8988,0.6204,0.3802,0.7388,0.8018
+"Dickson County, Tennessee",0.3143,0.3233,0.3484,0.1801,0.2316
+"Dyer County, Tennessee",0.7063,0.8832,0.552,0.2129,0.6335
+"Fayette County, Tennessee",0.3388,0.5294,0.7066,0.2097,0.3668
+"Fentress County, Tennessee",0.7203,0.5107,0.0407,0.1998,0.4413
+"Franklin County, Tennessee",0.4407,0.5409,0.363,0.3672,0.4219
+"Gibson County, Tennessee",0.7286,0.8848,0.5927,0.6233,0.7833
+"Giles County, Tennessee",0.4897,0.4235,0.4779,0.4022,0.4524
+"Grainger County, Tennessee",0.8295,0.5727,0.1508,0.4136,0.6128
+"Greene County, Tennessee",0.6468,0.6882,0.2109,0.6064,0.615
+"Grundy County, Tennessee",0.8247,0.427,0.0579,0.2743,0.5192
+"Hamblen County, Tennessee",0.8851,0.9698,0.5237,0.5116,0.8591
+"Hamilton County, Tennessee",0.4769,0.553,0.6634,0.5822,0.5635
+"Hancock County, Tennessee",0.9621,0.6424,0.015,0.8492,0.8419
+"Hardeman County, Tennessee",0.9695,0.6303,0.8447,0.6837,0.8871
+"Hardin County, Tennessee",0.6799,0.5562,0.2536,0.2892,0.503
+"Hawkins County, Tennessee",0.7458,0.5978,0.0932,0.4178,0.5555
+"Haywood County, Tennessee",0.9815,0.8536,0.9001,0.3764,0.8883
+"Henderson County, Tennessee",0.6958,0.7022,0.3917,0.4633,0.6274
+"Henry County, Tennessee",0.6284,0.7009,0.3939,0.5205,0.6118
+"Hickman County, Tennessee",0.5253,0.1845,0.3016,0.5278,0.4181
+"Houston County, Tennessee",0.5676,0.3974,0.2485,0.2313,0.3847
+"Humphreys County, Tennessee",0.7569,0.1619,0.2733,0.1457,0.3735
+"Jackson County, Tennessee",0.7614,0.699,0.1339,0.7105,0.7035
+"Jefferson County, Tennessee",0.5008,0.734,0.2485,0.391,0.4954
+"Johnson County, Tennessee",0.6904,0.4165,0.2733,0.8925,0.6882
+"Knox County, Tennessee",0.3793,0.1871,0.5094,0.5215,0.3738
+"Lake County, Tennessee",0.9539,0.3818,0.7146,0.9933,0.9345
+"Lauderdale County, Tennessee",0.9294,0.8505,0.7951,0.826,0.9246
+"Lawrence County, Tennessee",0.8616,0.875,0.1985,0.4454,0.7391
+"Lewis County, Tennessee",0.8393,0.2612,0.2062,0.335,0.5288
+"Lincoln County, Tennessee",0.4321,0.5167,0.42,0.2354,0.3726
+"Loudon County, Tennessee",0.2447,0.3646,0.3961,0.0894,0.1715
+"McMinn County, Tennessee",0.6115,0.6112,0.377,0.5062,0.5705
+"McNairy County, Tennessee",0.7073,0.2008,0.3166,0.1129,0.3404
+"Macon County, Tennessee",0.7404,0.6752,0.2781,0.3035,0.5686
+"Madison County, Tennessee",0.8708,0.8568,0.8365,0.783,0.8969
+"Marion County, Tennessee",0.7044,0.5087,0.2536,0.2692,0.4951
+"Marshall County, Tennessee",0.5422,0.4438,0.4416,0.1155,0.3513
+"Maury County, Tennessee",0.2708,0.2969,0.5581,0.1486,0.2214
+"Meigs County, Tennessee",0.7776,0.216,0.2733,0.3369,0.4881
+"Monroe County, Tennessee",0.8266,0.854,0.3535,0.4957,0.7569
+"Montgomery County, Tennessee",0.5183,0.7801,0.7706,0.3793,0.5997
+"Moore County, Tennessee",0.5151,0.1884,0.1928,0.1072,0.2262
+"Morgan County, Tennessee",0.8727,0.1483,0.2692,0.6192,0.6122
+"Obion County, Tennessee",0.658,0.7878,0.5269,0.3118,0.6064
+"Overton County, Tennessee",0.5011,0.3064,0.0337,0.1479,0.252
+"Perry County, Tennessee",0.8715,0.2227,0.2536,0.1553,0.4677
+"Pickett County, Tennessee",0.5864,0.2421,0.0455,0.2765,0.3283
+"Polk County, Tennessee",0.7534,0.1836,0.265,0.497,0.5157
+"Putnam County, Tennessee",0.7108,0.2564,0.3748,0.5743,0.5536
+"Rhea County, Tennessee",0.7671,0.8721,0.3535,0.4734,0.7238
+"Roane County, Tennessee",0.405,0.2189,0.2399,0.4098,0.3083
+"Robertson County, Tennessee",0.3834,0.4591,0.504,0.1075,0.279
+"Rutherford County, Tennessee",0.363,0.5657,0.699,0.3003,0.4267
+"Scott County, Tennessee",0.9685,0.9077,0.0073,0.2141,0.7388
+"Sequatchie County, Tennessee",0.6732,0.7903,0.1928,0.1759,0.504
+"Sevier County, Tennessee",0.5902,0.6831,0.342,0.4817,0.566
+"Shelby County, Tennessee",0.8976,0.7827,0.944,0.6297,0.8708
+"Smith County, Tennessee",0.4718,0.5542,0.2692,0.3258,0.4146
+"Stewart County, Tennessee",0.3592,0.539,0.2854,0.4324,0.3885
+"Sullivan County, Tennessee",0.6761,0.4283,0.1861,0.364,0.4839
+"Sumner County, Tennessee",0.3032,0.4136,0.5094,0.2396,0.2927
+"Tipton County, Tennessee",0.4963,0.7121,0.615,0.0948,0.4158
+"Trousdale County, Tennessee",0.4734,0.0073,0.4973,0.3917,0.2157
+"Unicoi County, Tennessee",0.6939,0.5689,0.2364,0.3834,0.5371
+"Union County, Tennessee",0.6338,0.3952,0.0474,0.2199,0.3783
+"Van Buren County, Tennessee",0.7359,0.3462,0.0474,0.8183,0.623
+"Warren County, Tennessee",0.7117,0.9529,0.4518,0.5819,0.7805
+"Washington County, Tennessee",0.6067,0.2895,0.3697,0.7868,0.5857
+"Wayne County, Tennessee",0.7576,0.4375,0.3248,0.9195,0.7474
+"Weakley County, Tennessee",0.6376,0.4833,0.4165,0.6484,0.608
+"White County, Tennessee",0.874,0.3112,0.1696,0.2195,0.5154
+"Williamson County, Tennessee",0.0032,0.1352,0.4779,0.0382,0.0165
+"Wilson County, Tennessee",0.139,0.4696,0.4932,0.1381,0.175
+"Anderson County, Texas",0.7862,0.5428,0.8129,0.9943,0.896
+"Andrews County, Texas",0.7254,0.608,0.9259,0.3853,0.6834
+"Angelina County, Texas",0.9386,0.9876,0.7916,0.9656,0.9917
+"Aransas County, Texas",0.7849,0.3952,0.714,0.7865,0.7614
+"Archer County, Texas",0.3843,0.7531,0.3748,0.035,0.2657
+"Armstrong County, Texas",0.0643,0.56,0.3802,0.0458,0.0865
+"Atascosa County, Texas",0.8279,0.8349,0.9551,0.6707,0.8664
+"Austin County, Texas",0.5991,0.8877,0.7821,0.4547,0.7133
+"Bailey County, Texas",0.4712,0.9138,0.966,0.7792,0.7843
+"Bandera County, Texas",0.5838,0.6519,0.6198,0.44,0.5899
+"Bastrop County, Texas",0.7276,0.5517,0.8791,0.6872,0.7566
+"Baylor County, Texas",0.5358,0.5313,0.525,0.2647,0.462
+"Bee County, Texas",0.9507,0.4098,0.9599,0.9329,0.9166
+"Bell County, Texas",0.8871,0.8861,0.9033,0.881,0.937
+"Bexar County, Texas",0.8995,0.8635,0.972,0.7712,0.9192
+"Blanco County, Texas",0.3999,0.2593,0.615,0.0694,0.2339
+"Borden County, Texas",0.0006,0.1311,0.4932,0.1193,0.0267
+"Bosque County, Texas",0.4919,0.7964,0.5994,0.4356,0.5794
+"Bowie County, Texas",0.7413,0.7114,0.7585,0.9768,0.8766
+"Brazoria County, Texas",0.4588,0.5966,0.9007,0.7245,0.6519
+"Brazos County, Texas",0.8368,0.1464,0.8377,0.9392,0.804
+"Brewster County, Texas",0.5352,0.4168,0.8603,0.7359,0.6478
+"Briscoe County, Texas",0.8587,0.8072,0.8101,0.008,0.5479
+"Brooks County, Texas",0.9014,0.8377,0.9965,0.7687,0.9163
+"Brown County, Texas",0.742,0.9631,0.6701,0.943,0.9135
+"Burleson County, Texas",0.4034,0.5399,0.7436,0.4664,0.5049
+"Burnet County, Texas",0.4986,0.6911,0.6437,0.5046,0.5819
+"Caldwell County, Texas",0.7299,0.7442,0.9364,0.9745,0.8956
+"Calhoun County, Texas",0.3605,0.9675,0.9163,0.6007,0.72
+"Callahan County, Texas",0.4155,0.5444,0.4699,0.0929,0.2956
+"Cameron County, Texas",0.9895,0.9163,0.9962,0.8317,0.9844
+"Camp County, Texas",0.9163,0.9927,0.8492,0.4458,0.917
+"Carson County, Texas",0.0888,0.2151,0.4636,0.0945,0.083
+"Cass County, Texas",0.8396,0.9663,0.6045,0.5644,0.8619
+"Castro County, Texas",0.7315,0.7716,0.9583,0.5476,0.7801
+"Chambers County, Texas",0.5663,0.5148,0.7391,0.1938,0.4798
+"Cherokee County, Texas",0.9306,0.9259,0.7941,0.9551,0.9717
+"Childress County, Texas",0.9408,0.5759,0.867,0.1451,0.7178
+"Clay County, Texas",0.161,0.602,0.363,0.1044,0.1772
+"Cochran County, Texas",0.9135,0.8928,0.9481,0.8005,0.938
+"Coke County, Texas",0.6885,0.9287,0.6268,0.1715,0.6379
+"Coleman County, Texas",0.692,0.9055,0.5994,0.2154,0.6449
+"Collin County, Texas",0.2393,0.3598,0.8543,0.2358,0.2997
+"Collingsworth County, Texas",0.6793,0.9984,0.7725,0.4913,0.8498
+"Colorado County, Texas",0.6214,0.6586,0.8352,0.7951,0.7639
+"Comal County, Texas",0.2374,0.37,0.7276,0.2189,0.2749
+"Comanche County, Texas",0.7642,0.8772,0.7038,0.301,0.7267
+"Concho County, Texas",0.3936,0.9857,0.8403,0.6182,0.7534
+"Cooke County, Texas",0.5453,0.8486,0.6287,0.6214,0.6946
+"Coryell County, Texas",0.7757,0.7528,0.819,0.7626,0.833
+"Cottle County, Texas",0.6828,0.9294,0.7843,0.1864,0.6732
+"Crane County, Texas",0.4747,0.4012,0.9625,0.916,0.7092
+"Crockett County, Texas",0.3745,0.7305,0.9141,0.0913,0.4098
+"Crosby County, Texas",0.8438,0.9997,0.9303,0.6048,0.9504
+"Culberson County, Texas",0.826,0.7986,0.9917,0.5527,0.8393
+"Dallam County, Texas",0.6637,0.2568,0.8842,0.5313,0.6039
+"Dallas County, Texas",0.9271,0.7184,0.9685,0.7171,0.8925
+"Dawson County, Texas",0.9981,0.9338,0.9551,0.7709,0.9876
+"Deaf Smith County, Texas",0.6615,0.8206,0.9793,0.3885,0.7245
+"Delta County, Texas",0.5985,0.4101,0.5597,0.0818,0.3665
+"Denton County, Texas",0.3051,0.3684,0.825,0.3357,0.3796
+"DeWitt County, Texas",0.7887,0.5418,0.8508,0.9096,0.8441
+"Dickens County, Texas",0.8431,0.9446,0.7938,0.1508,0.7588
+"Dimmit County, Texas",0.9812,0.9971,0.994,0.9631,0.9994
+"Donley County, Texas",0.4957,0.0608,0.5711,0.4006,0.3353
+"Duval County, Texas",0.8925,0.9841,0.9936,0.9045,0.9768
+"Eastland County, Texas",0.7467,0.9131,0.5679,0.8797,0.8616
+"Ector County, Texas",0.9364,0.7906,0.9618,0.8645,0.9421
+"Edwards County, Texas",0.8492,0.8008,0.8756,0.1079,0.6844
+"Ellis County, Texas",0.4801,0.755,0.8171,0.3522,0.5695
+"El Paso County, Texas",0.9898,0.9182,0.992,0.8145,0.9825
+"Erath County, Texas",0.9061,0.1454,0.6316,0.9198,0.7996
+"Falls County, Texas",0.9803,0.5132,0.8734,0.992,0.972
+"Fannin County, Texas",0.7047,0.3519,0.5759,0.6713,0.643
+"Fayette County, Texas",0.3471,0.5883,0.6685,0.6185,0.5234
+"Fisher County, Texas",0.328,0.9644,0.7735,0.0433,0.4248
+"Floyd County, Texas",0.7865,0.9895,0.9405,0.1024,0.7722
+"Foard County, Texas",0.9335,0.4257,0.6936,0.0951,0.6071
+"Fort Bend County, Texas",0.3824,0.5431,0.959,0.2393,0.4515
+"Franklin County, Texas",0.3863,0.7999,0.5797,0.0964,0.3821
+"Freestone County, Texas",0.6297,0.9418,0.7321,0.6917,0.8088
+"Frio County, Texas",0.832,0.8498,0.9876,0.9965,0.9698
+"Gaines County, Texas",0.5985,0.7836,0.8403,0.4429,0.6745
+"Galveston County, Texas",0.7028,0.6172,0.8304,0.6551,0.7378
+"Garza County, Texas",0.8447,0.2456,0.9185,0.4925,0.6984
+"Gillespie County, Texas",0.5472,0.6379,0.636,0.6513,0.6392
+"Glasscock County, Texas",0.2536,0.5625,0.7366,0.1187,0.2784
+"Goliad County, Texas",0.5033,0.574,0.8066,0.3198,0.5243
+"Gonzales County, Texas",0.6567,0.978,0.9195,0.8956,0.9087
+"Gray County, Texas",0.9268,0.8346,0.7684,0.5593,0.8645
+"Grayson County, Texas",0.5905,0.7989,0.6249,0.588,0.6888
+"Gregg County, Texas",0.7677,0.8444,0.8212,0.8565,0.8731
+"Grimes County, Texas",0.8377,0.7786,0.8008,0.7836,0.8676
+"Guadalupe County, Texas",0.3939,0.643,0.8797,0.4031,0.5256
+"Hale County, Texas",0.9176,0.8921,0.9532,0.7744,0.9332
+"Hall County, Texas",0.8527,0.9943,0.8438,0.2969,0.8689
+"Hamilton County, Texas",0.6029,0.9637,0.4763,0.314,0.6634
+"Hansford County, Texas",0.6036,0.3859,0.8781,0.1839,0.4836
+"Hardeman County, Texas",0.3952,0.874,0.735,0.0668,0.4222
+"Hardin County, Texas",0.5285,0.9017,0.4537,0.5256,0.6465
+"Harris County, Texas",0.965,0.7458,0.9672,0.7089,0.9201
+"Harrison County, Texas",0.7983,0.9602,0.7646,0.8008,0.9036
+"Hartley County, Texas",0.4458,0.1346,0.7843,0.6163,0.4683
+"Haskell County, Texas",0.8829,0.8896,0.741,0.3563,0.812
+"Hays County, Texas",0.7089,0.1804,0.8673,0.7432,0.6723
+"Hemphill County, Texas",0.3818,0.9033,0.7668,0.3182,0.5577
+"Henderson County, Texas",0.8361,0.6542,0.5953,0.8186,0.8291
+"Hidalgo County, Texas",0.999,0.8855,0.9975,0.7515,0.9841
+"Hill County, Texas",0.7292,0.945,0.6806,0.7779,0.8562
+"Hockley County, Texas",0.8365,0.9494,0.8941,0.8311,0.93
+"Hood County, Texas",0.5243,0.4244,0.4871,0.559,0.525
+"Hopkins County, Texas",0.7811,0.7296,0.6449,0.5488,0.7525
+"Houston County, Texas",0.9195,0.8699,0.7836,0.9672,0.9625
+"Howard County, Texas",0.777,0.7684,0.8877,0.9224,0.8816
+"Hudspeth County, Texas",0.985,0.8603,0.9863,0.9835,0.9943
+"Hunt County, Texas",0.825,0.7038,0.6828,0.9322,0.8746
+"Hutchinson County, Texas",0.4416,0.6421,0.6872,0.0452,0.3245
+"Irion County, Texas",0.4047,0.2838,0.6389,0.1549,0.2962
+"Jack County, Texas",0.9491,0.7191,0.5927,0.9691,0.9418
+"Jackson County, Texas",0.7385,0.8333,0.8059,0.664,0.8094
+"Jasper County, Texas",0.8979,0.6271,0.6223,0.9074,0.8737
+"Jeff Davis County, Texas",0.5046,0.4725,0.5558,0.3602,0.4738
+"Jefferson County, Texas",0.9313,0.924,0.9259,0.929,0.9723
+"Jim Hogg County, Texas",0.8991,0.1941,0.9933,0.2294,0.6427
+"Jim Wells County, Texas",0.9415,0.9822,0.9847,0.5431,0.9491
+"Johnson County, Texas",0.5511,0.6083,0.6911,0.6083,0.6284
+"Jones County, Texas",0.7722,0.2265,0.8075,0.3633,0.5829
+"Karnes County, Texas",0.8155,0.6042,0.9491,0.9978,0.9367
+"Kaufman County, Texas",0.7076,0.7006,0.8225,0.4629,0.7089
+"Kendall County, Texas",0.2809,0.4152,0.6624,0.321,0.3411
+"Kenedy County, Texas",0.6449,0.9917,1.0,0.0426,0.6678
+"Kent County, Texas",0.1486,0.7531,0.4779,0.146,0.2393
+"Kerr County, Texas",0.6322,0.5733,0.7105,0.8393,0.7442
+"Kimble County, Texas",0.531,0.566,0.6532,0.2714,0.4948
+"King County, Texas",0.6764,0.8056,0.7464,0.0092,0.4438
+"Kinney County, Texas",0.4855,0.9313,0.9427,0.2364,0.6265
+"Kleberg County, Texas",0.9936,0.8221,0.9819,0.9704,0.9924
+"Knox County, Texas",0.65,0.9205,0.8171,0.189,0.6564
+"Lamar County, Texas",0.7856,0.9752,0.6373,0.601,0.8536
+"Lamb County, Texas",0.6818,0.9885,0.9332,0.3888,0.8221
+"Lampasas County, Texas",0.6774,0.8094,0.6599,0.3474,0.658
+"La Salle County, Texas",0.9631,0.6557,0.9952,0.7356,0.9128
+"Lavaca County, Texas",0.4184,0.8298,0.6449,0.4823,0.5752
+"Lee County, Texas",0.6398,0.7677,0.7598,0.7983,0.7856
+"Leon County, Texas",0.6233,0.9758,0.6102,0.2673,0.6974
+"Liberty County, Texas",0.9758,0.8053,0.8139,0.9564,0.9739
+"Limestone County, Texas",0.8196,0.9714,0.8199,0.7152,0.9065
+"Lipscomb County, Texas",0.6472,0.9835,0.7922,0.3388,0.7703
+"Live Oak County, Texas",0.7665,0.7267,0.8686,0.9809,0.9039
+"Llano County, Texas",0.6984,0.7731,0.4445,0.3452,0.6192
+"Loving County, Texas",0.0,0.9866,0.0579,0.9828,0.4356
+"Lubbock County, Texas",0.8177,0.5005,0.8632,0.8613,0.8422
+"Lynn County, Texas",0.8317,0.9459,0.8686,0.0442,0.6898
+"McCulloch County, Texas",0.9154,0.8909,0.7607,0.2049,0.7897
+"McLennan County, Texas",0.8521,0.7951,0.8346,0.8333,0.8861
+"McMullen County, Texas",0.6933,0.9952,0.9236,0.2689,0.8104
+"Madison County, Texas",0.714,0.6914,0.8501,0.9987,0.9131
+"Marion County, Texas",0.7821,0.7983,0.6599,0.4088,0.7315
+"Martin County, Texas",0.6618,0.6437,0.9045,0.2199,0.5966
+"Mason County, Texas",0.3007,0.9115,0.5352,0.0146,0.2724
+"Matagorda County, Texas",0.9723,0.9825,0.9122,0.7308,0.9758
+"Maverick County, Texas",0.9971,0.9023,0.9997,0.8549,0.9901
+"Medina County, Texas",0.4018,0.8562,0.9141,0.8209,0.741
+"Menard County, Texas",0.9733,0.8629,0.7693,0.3322,0.8606
+"Midland County, Texas",0.5867,0.6787,0.9077,0.7318,0.7397
+"Milam County, Texas",0.755,0.8648,0.7706,0.5714,0.798
+"Mills County, Texas",0.3283,0.9364,0.6618,0.1616,0.4693
+"Mitchell County, Texas",0.5504,0.4206,0.8915,0.8218,0.6958
+"Montague County, Texas",0.6484,0.8953,0.434,0.2211,0.5959
+"Montgomery County, Texas",0.4451,0.4254,0.7579,0.5358,0.5212
+"Moore County, Texas",0.805,0.8358,0.9586,0.8011,0.882
+"Morris County, Texas",0.6872,0.9376,0.749,0.5033,0.7792
+"Motley County, Texas",0.3236,0.5889,0.5616,0.0067,0.1721
+"Nacogdoches County, Texas",0.972,0.9106,0.797,0.9984,0.9952
+"Navarro County, Texas",0.9628,0.9685,0.8565,0.8587,0.979
+"Newton County, Texas",0.9574,0.4092,0.6128,0.7843,0.8463
+"Nolan County, Texas",0.9255,0.9981,0.8571,0.8212,0.9815
+"Nueces County, Texas",0.9332,0.7801,0.9666,0.8492,0.9351
+"Ochiltree County, Texas",0.6863,0.9434,0.9163,0.5765,0.8244
+"Oldham County, Texas",0.4496,0.1374,0.7146,0.4184,0.392
+"Orange County, Texas",0.594,0.8037,0.5476,0.6099,0.6853
+"Palo Pinto County, Texas",0.9106,0.7515,0.6309,0.4738,0.8015
+"Panola County, Texas",0.6456,0.8501,0.6389,0.5845,0.7331
+"Parker County, Texas",0.321,0.2284,0.5119,0.258,0.2638
+"Parmer County, Texas",0.6437,0.7833,0.9513,0.2797,0.6596
+"Pecos County, Texas",0.7474,0.6653,0.9771,0.9885,0.9049
+"Polk County, Texas",0.9262,0.8858,0.6532,0.8412,0.9208
+"Potter County, Texas",0.9485,0.8788,0.9052,0.9936,0.9889
+"Presidio County, Texas",1.0,0.9669,0.9825,0.7219,0.9933
+"Rains County, Texas",0.3318,0.9185,0.4636,0.2615,0.4706
+"Randall County, Texas",0.2154,0.3751,0.6936,0.4839,0.3519
+"Reagan County, Texas",0.5794,0.4276,0.979,0.1919,0.5052
+"Real County, Texas",0.5523,0.9806,0.6309,0.6392,0.783
+"Red River County, Texas",0.7945,0.6783,0.6287,0.3796,0.6895
+"Reeves County, Texas",0.9389,0.7035,0.9809,0.9462,0.9548
+"Refugio County, Texas",0.91,0.9962,0.9201,0.7133,0.9653
+"Roberts County, Texas",0.1406,0.0067,0.4741,0.2437,0.0576
+"Robertson County, Texas",0.707,0.9793,0.8199,0.6322,0.8546
+"Rockwall County, Texas",0.0913,0.28,0.7066,0.0875,0.1164
+"Runnels County, Texas",0.4922,0.985,0.7821,0.0242,0.5148
+"Rusk County, Texas",0.7486,0.7464,0.7537,0.7248,0.7973
+"Sabine County, Texas",0.8839,0.4868,0.4537,0.1327,0.5609
+"San Augustine County, Texas",0.9793,0.944,0.6828,0.972,0.9885
+"San Jacinto County, Texas",0.9329,0.875,0.6347,0.2965,0.8091
+"San Patricio County, Texas",0.846,0.9761,0.9354,0.7101,0.9249
+"San Saba County, Texas",0.6977,0.6561,0.7521,0.3522,0.6389
+"Schleicher County, Texas",0.7401,0.762,0.9052,0.0735,0.5803
+"Scurry County, Texas",0.5202,0.4846,0.8686,0.3548,0.5332
+"Shackelford County, Texas",0.511,0.2119,0.4445,0.3872,0.3936
+"Shelby County, Texas",0.77,0.9481,0.7751,0.7598,0.8778
+"Sherman County, Texas",0.4757,0.9485,0.833,0.2654,0.6309
+"Smith County, Texas",0.7334,0.7916,0.797,0.7735,0.8234
+"Somervell County, Texas",0.2959,0.6468,0.5597,0.6853,0.5135
+"Starr County, Texas",0.9978,0.9682,0.999,0.7197,0.9905
+"Stephens County, Texas",0.9768,0.9539,0.6806,0.9752,0.9898
+"Sterling County, Texas",0.1794,0.2447,0.7156,0.0636,0.1419
+"Stonewall County, Texas",0.4769,0.2214,0.6449,0.132,0.2994
+"Sutton County, Texas",0.7448,0.8145,0.9777,0.4283,0.7687
+"Swisher County, Texas",0.95,0.7766,0.9096,0.713,0.9103
+"Tarrant County, Texas",0.7792,0.6707,0.8982,0.5017,0.7585
+"Taylor County, Texas",0.6363,0.7289,0.7655,0.7353,0.7591
+"Terrell County, Texas",0.0767,0.6812,0.8533,0.0025,0.0859
+"Terry County, Texas",0.9625,0.9462,0.9325,0.9128,0.9828
+"Throckmorton County, Texas",0.4375,0.2428,0.4496,0.0143,0.1581
+"Titus County, Texas",0.8956,0.9227,0.9052,0.6252,0.8995
+"Tom Green County, Texas",0.6204,0.7957,0.8673,0.8304,0.8113
+"Travis County, Texas",0.5527,0.0935,0.882,0.7805,0.5702
+"Trinity County, Texas",0.8552,0.9879,0.574,0.7518,0.9185
+"Tyler County, Texas",0.8842,0.9103,0.5501,0.951,0.9319
+"Upshur County, Texas",0.6841,0.7817,0.5425,0.259,0.6017
+"Upton County, Texas",0.6876,0.7092,0.9185,0.6567,0.77
+"Uvalde County, Texas",0.9065,0.9968,0.9749,0.9364,0.9911
+"Val Verde County, Texas",0.8371,0.9329,0.9889,0.8877,0.9437
+"Van Zandt County, Texas",0.6538,0.7633,0.4948,0.265,0.5714
+"Victoria County, Texas",0.8606,0.8937,0.9052,0.8377,0.9198
+"Walker County, Texas",0.9755,0.1161,0.8225,0.9997,0.9392
+"Waller County, Texas",0.7868,0.5262,0.9176,0.8514,0.8317
+"Ward County, Texas",0.6548,0.8412,0.9345,0.3987,0.7235
+"Washington County, Texas",0.4467,0.4601,0.7585,0.8826,0.6522
+"Webb County, Texas",0.9917,0.917,0.9987,0.8034,0.9831
+"Wharton County, Texas",0.9141,0.9319,0.9045,0.8078,0.9456
+"Wheeler County, Texas",0.9036,0.986,0.6828,0.5377,0.9045
+"Wichita County, Texas",0.7372,0.6876,0.741,0.8416,0.8167
+"Wilbarger County, Texas",0.9691,0.8906,0.8272,0.7938,0.9561
+"Willacy County, Texas",0.9892,0.91,0.993,0.8428,0.985
+"Williamson County, Texas",0.2701,0.4009,0.8199,0.2275,0.3207
+"Wilson County, Texas",0.2351,0.2402,0.833,0.3363,0.2972
+"Winkler County, Texas",0.3958,0.3252,0.9523,0.3388,0.4448
+"Wise County, Texas",0.4483,0.79,0.6128,0.3923,0.5422
+"Wood County, Texas",0.7124,0.847,0.5011,0.6771,0.7655
+"Yoakum County, Texas",0.622,0.5918,0.9644,0.2472,0.587
+"Young County, Texas",0.4639,0.9535,0.5892,0.1575,0.5345
+"Zapata County, Texas",0.9901,0.9809,0.9984,0.9014,0.9968
+"Zavala County, Texas",0.8813,0.9905,0.9978,0.4292,0.909
+"Beaver County, Utah",0.1556,0.5612,0.4658,0.0519,0.1457
+"Box Elder County, Utah",0.1527,0.1416,0.3977,0.1686,0.1215
+"Cache County, Utah",0.2816,0.2889,0.4779,0.538,0.3478
+"Carbon County, Utah",0.7051,0.7436,0.4932,0.3748,0.6297
+"Daggett County, Utah",0.2199,0.0506,0.182,0.5469,0.1849
+"Davis County, Utah",0.0325,0.2822,0.4948,0.1069,0.0678
+"Duchesne County, Utah",0.5778,0.4629,0.4445,0.5167,0.5361
+"Emery County, Utah",0.1645,0.6729,0.2914,0.2008,0.2269
+"Garfield County, Utah",0.4617,0.364,0.3446,0.251,0.3423
+"Grand County, Utah",0.433,0.3331,0.5218,0.5597,0.4582
+"Iron County, Utah",0.5017,0.2809,0.4496,0.384,0.4114
+"Juab County, Utah",0.0487,0.1887,0.2692,0.1823,0.0659
+"Kane County, Utah",0.2265,0.5861,0.2399,0.2663,0.259
+"Millard County, Utah",0.4241,0.8657,0.4763,0.1642,0.4502
+"Morgan County, Utah",0.0019,0.0146,0.1409,0.0019,0.0
+"Piute County, Utah",0.9478,0.3293,0.0544,0.1753,0.5402
+"Rich County, Utah",0.0811,0.8193,0.4117,0.1829,0.2141
+"Salt Lake County, Utah",0.3325,0.4044,0.6777,0.552,0.4512
+"San Juan County, Utah",0.8524,0.9688,0.8988,0.8794,0.9567
+"Sanpete County, Utah",0.6064,0.2743,0.4146,0.5507,0.5116
+"Sevier County, Utah",0.37,0.1931,0.2485,0.4162,0.2886
+"Summit County, Utah",0.0267,0.251,0.4556,0.091,0.0509
+"Tooele County, Utah",0.1206,0.3204,0.5269,0.238,0.1766
+"Uintah County, Utah",0.5644,0.4216,0.5294,0.5081,0.5297
+"Utah County, Utah",0.1798,0.1963,0.5183,0.5011,0.2555
+"Wasatch County, Utah",0.0776,0.1508,0.4871,0.1114,0.0748
+"Washington County, Utah",0.3382,0.5762,0.4763,0.3309,0.3875
+"Wayne County, Utah",0.244,0.3166,0.0041,0.0589,0.1053
+"Weber County, Utah",0.2393,0.4944,0.6083,0.3891,0.3471
+"Addison County, Vermont",0.1518,0.0652,0.2323,0.4499,0.139
+"Bennington County, Vermont",0.2736,0.433,0.1861,0.5861,0.349
+"Caledonia County, Vermont",0.2113,0.4473,0.1225,0.5367,0.2844
+"Chittenden County, Vermont",0.1763,0.0245,0.3802,0.7722,0.2205
+"Essex County, Vermont",0.6386,0.5752,0.0983,0.1852,0.4155
+"Franklin County, Vermont",0.2444,0.0748,0.1654,0.1976,0.1219
+"Grand Isle County, Vermont",0.1203,0.0156,0.2485,0.0057,0.006
+"Lamoille County, Vermont",0.2685,0.034,0.1276,0.3678,0.1409
+"Orange County, Vermont",0.1565,0.0967,0.0735,0.224,0.0939
+"Orleans County, Vermont",0.4508,0.3038,0.1037,0.4664,0.3548
+"Rutland County, Vermont",0.2879,0.1661,0.1094,0.9093,0.3955
+"Washington County, Vermont",0.1222,0.1098,0.1508,0.5791,0.161
+"Windham County, Vermont",0.3248,0.3159,0.2265,0.4878,0.3185
+"Windsor County, Vermont",0.1817,0.0961,0.1409,0.4143,0.1499
+"Accomack County, Virginia",0.7416,0.8982,0.791,0.7973,0.8597
+"Albemarle County, Virginia",0.1295,0.245,0.5927,0.5059,0.2469
+"Alleghany County, Virginia",0.3099,0.1864,0.2444,0.5918,0.3102
+"Amelia County, Virginia",0.4808,0.2399,0.6287,0.2924,0.3853
+"Amherst County, Virginia",0.4244,0.1632,0.6198,0.4973,0.4022
+"Appomattox County, Virginia",0.2848,0.1419,0.5892,0.0557,0.1441
+"Arlington County, Virginia",0.0423,0.0115,0.7894,0.7945,0.1597
+"Augusta County, Virginia",0.1591,0.1626,0.3166,0.5266,0.2129
+"Bath County, Virginia",0.3678,0.16,0.1409,0.1314,0.1674
+"Bedford County, Virginia",0.0878,0.1215,0.4085,0.1721,0.0853
+"Bland County, Virginia",0.0493,0.0458,0.1276,0.6195,0.0974
+"Botetourt County, Virginia",0.0375,0.0226,0.2294,0.0783,0.013
+"Brunswick County, Virginia",0.8101,0.308,0.9141,0.9281,0.8311
+"Buchanan County, Virginia",0.8517,0.5049,0.015,0.4381,0.5975
+"Buckingham County, Virginia",0.6974,0.2437,0.7725,0.7614,0.6758
+"Campbell County, Virginia",0.3567,0.4458,0.5581,0.4365,0.4152
+"Caroline County, Virginia",0.3064,0.4209,0.7537,0.3901,0.399
+"Carroll County, Virginia",0.5861,0.3016,0.1225,0.1114,0.2797
+"Charles City County, Virginia",0.3945,0.1934,0.8988,0.09,0.2685
+"Charlotte County, Virginia",0.6172,0.86,0.6885,0.6344,0.7436
+"Chesterfield County, Virginia",0.2421,0.6452,0.7929,0.111,0.2943
+"Clarke County, Virginia",0.0926,0.098,0.4445,0.0916,0.0598
+"Craig County, Virginia",0.0538,0.1059,0.0627,0.2864,0.0589
+"Culpeper County, Virginia",0.357,0.5511,0.6923,0.3401,0.4327
+"Cumberland County, Virginia",0.3532,0.5196,0.7391,0.371,0.4426
+"Dickenson County, Virginia",0.5717,0.3058,0.0032,0.644,0.4629
+"Dinwiddie County, Virginia",0.3656,0.1495,0.7502,0.3229,0.3261
+"Essex County, Virginia",0.9593,0.6048,0.8438,0.4311,0.8272
+"Fairfax County, Virginia",0.112,0.2574,0.8775,0.3621,0.2412
+"Fauquier County, Virginia",0.0764,0.3802,0.5654,0.0286,0.0732
+"Floyd County, Virginia",0.1546,0.0955,0.1696,0.1941,0.0929
+"Fluvanna County, Virginia",0.0821,0.027,0.5915,0.1658,0.0582
+"Franklin County, Virginia",0.2275,0.1909,0.3847,0.7028,0.321
+"Frederick County, Virginia",0.2179,0.4715,0.5183,0.2135,0.2545
+"Giles County, Virginia",0.1273,0.099,0.0821,0.3334,0.1037
+"Gloucester County, Virginia",0.133,0.0732,0.4683,0.0089,0.0344
+"Goochland County, Virginia",0.0041,0.0449,0.5667,0.4009,0.0592
+"Grayson County, Virginia",0.6414,0.6755,0.3446,0.4648,0.5851
+"Greene County, Virginia",0.1683,0.6096,0.5269,0.1365,0.2199
+"Greensville County, Virginia",0.8883,0.3016,0.9405,0.9847,0.8979
+"Halifax County, Virginia",0.6977,0.8365,0.7859,0.5749,0.7684
+"Hanover County, Virginia",0.0185,0.0735,0.4932,0.0837,0.0274
+"Henrico County, Virginia",0.266,0.4677,0.8661,0.2183,0.3414
+"Henry County, Virginia",0.7553,0.7614,0.6828,0.6494,0.7757
+"Highland County, Virginia",0.3901,0.1368,0.0821,0.0751,0.1352
+"Isle of Wight County, Virginia",0.2733,0.2784,0.6726,0.1279,0.2243
+"James City County, Virginia",0.078,0.5781,0.6249,0.1499,0.1763
+"King and Queen County, Virginia",0.6382,0.0239,0.7136,0.0277,0.1973
+"King George County, Virginia",0.09,0.1397,0.6647,0.0239,0.0528
+"King William County, Virginia",0.1082,0.1874,0.5727,0.0022,0.0334
+"Lancaster County, Virginia",0.7331,0.3907,0.7089,0.1565,0.5075
+"Lee County, Virginia",0.9217,0.908,0.2062,0.8374,0.8788
+"Loudoun County, Virginia",0.0197,0.3322,0.8524,0.1374,0.1059
+"Louisa County, Virginia",0.5049,0.1406,0.5829,0.0885,0.2542
+"Lunenburg County, Virginia",0.7661,0.9561,0.7983,0.93,0.9243
+"Madison County, Virginia",0.3398,0.077,0.4518,0.125,0.1594
+"Mathews County, Virginia",0.2205,0.307,0.4416,0.0127,0.1002
+"Mecklenburg County, Virginia",0.5581,0.8088,0.7798,0.6812,0.7308
+"Middlesex County, Virginia",0.3089,0.3115,0.5644,0.3026,0.3042
+"Montgomery County, Virginia",0.3621,0.0029,0.4779,0.9017,0.2873
+"Nelson County, Virginia",0.3672,0.1699,0.5202,0.2033,0.2536
+"New Kent County, Virginia",0.0115,0.0111,0.574,0.0111,0.0025
+"Northampton County, Virginia",0.6857,0.6977,0.8272,0.7782,0.79
+"Northumberland County, Virginia",0.3805,0.0757,0.6901,0.0935,0.1922
+"Nottoway County, Virginia",0.9303,0.5151,0.8438,0.6592,0.8425
+"Orange County, Virginia",0.2459,0.2434,0.5797,0.3172,0.2593
+"Page County, Virginia",0.6602,0.3831,0.1753,0.1359,0.363
+"Patrick County, Virginia",0.2768,0.3557,0.3058,0.2956,0.2558
+"Pittsylvania County, Virginia",0.6777,0.7973,0.6233,0.5126,0.7054
+"Powhatan County, Virginia",0.0226,0.008,0.4248,0.0181,0.0022
+"Prince Edward County, Virginia",0.5313,0.1801,0.776,0.8552,0.6106
+"Prince George County, Virginia",0.4582,0.0681,0.8549,0.4158,0.3805
+"Prince William County, Virginia",0.3213,0.5813,0.9195,0.2144,0.4117
+"Pulaski County, Virginia",0.2304,0.1658,0.2854,0.3465,0.2011
+"Rappahannock County, Virginia",0.4515,0.076,0.3824,0.0,0.0573
+"Richmond County, Virginia",0.4566,0.2663,0.776,0.7289,0.5485
+"Roanoke County, Virginia",0.0681,0.3134,0.4537,0.2339,0.1333
+"Rockbridge County, Virginia",0.1753,0.1947,0.265,0.153,0.125
+"Rockingham County, Virginia",0.2339,0.2733,0.3888,0.3808,0.2526
+"Russell County, Virginia",0.6023,0.2339,0.0169,0.3242,0.3468
+"Scott County, Virginia",0.4865,0.301,0.0169,0.7827,0.4712
+"Shenandoah County, Virginia",0.469,0.7992,0.4146,0.1476,0.4298
+"Smyth County, Virginia",0.5542,0.8931,0.1152,0.7671,0.6841
+"Southampton County, Virginia",0.3942,0.287,0.7693,0.4184,0.4279
+"Spotsylvania County, Virginia",0.3303,0.2994,0.7261,0.1336,0.2654
+"Stafford County, Virginia",0.0904,0.4734,0.8212,0.2794,0.2428
+"Surry County, Virginia",0.5119,0.4031,0.8447,0.1995,0.448
+"Sussex County, Virginia",0.7012,0.2144,0.9201,0.8871,0.7385
+"Tazewell County, Virginia",0.6417,0.5619,0.1409,0.665,0.5883
+"Warren County, Virginia",0.6061,0.2704,0.4683,0.4792,0.496
+"Washington County, Virginia",0.3124,0.3147,0.0579,0.3904,0.2549
+"Westmoreland County, Virginia",0.9281,0.903,0.7537,0.2638,0.8193
+"Wise County, Virginia",0.8756,0.5387,0.2587,0.8937,0.8046
+"Wythe County, Virginia",0.3812,0.72,0.1339,0.3983,0.4139
+"York County, Virginia",0.0633,0.5269,0.6911,0.1384,0.1543
+"Alexandria city, Virginia",0.2345,0.0242,0.8651,0.7442,0.3178
+"Bristol city, Virginia",0.8088,0.8381,0.3888,0.5902,0.7696
+"Buena Vista city, Virginia",0.6332,0.3732,0.3961,0.4053,0.4983
+"Charlottesville city, Virginia",0.6513,0.0334,0.72,0.8562,0.5727
+"Chesapeake city, Virginia",0.3153,0.6125,0.8291,0.2475,0.4149
+"Colonial Heights city, Virginia",0.4782,0.9443,0.678,0.1912,0.5651
+"Covington city, Virginia",0.4073,0.468,0.5237,0.1352,0.3128
+"Danville city, Virginia",0.9322,0.9765,0.9176,0.8979,0.9796
+"Emporia city, Virginia",0.9071,0.994,0.9784,0.4228,0.9233
+"Fairfax city, Virginia",0.1413,0.1117,0.8508,0.8113,0.3551
+"Falls Church city, Virginia",0.055,0.4047,0.678,0.4486,0.2189
+"Franklin city, Virginia",0.7241,0.7165,0.9303,0.6745,0.7938
+"Fredericksburg city, Virginia",0.5851,0.3624,0.8101,0.9675,0.7636
+"Galax city, Virginia",0.9249,0.9478,0.6561,0.8928,0.9532
+"Hampton city, Virginia",0.6277,0.58,0.937,0.7464,0.748
+"Harrisonburg city, Virginia",0.9666,0.1234,0.7378,0.9504,0.8648
+"Hopewell city, Virginia",0.9138,0.8435,0.9074,0.6001,0.8801
+"Lexington city, Virginia",0.0789,0.0,0.5119,0.5912,0.0474
+"Lynchburg city, Virginia",0.6917,0.1429,0.7684,0.9122,0.7066
+"Manassas city, Virginia",0.5173,0.3137,0.931,0.3093,0.4884
+"Manassas Park city, Virginia",0.7588,0.3261,0.9593,0.4295,0.6532
+"Martinsville city, Virginia",0.8661,0.9882,0.9065,0.6414,0.9297
+"Newport News city, Virginia",0.6739,0.686,0.9154,0.9179,0.8406
+"Norfolk city, Virginia",0.8451,0.4203,0.9084,0.9246,0.8594
+"Norton city, Virginia",0.8549,0.6328,0.0757,0.8307,0.769
+"Petersburg city, Virginia",0.9701,0.9389,0.9885,0.79,0.9733
+"Poquoson city, Virginia",0.001,0.2386,0.3016,0.0048,0.0038
+"Portsmouth city, Virginia",0.804,0.6039,0.937,0.7766,0.8355
+"Radford city, Virginia",0.735,0.0032,0.4779,0.5243,0.3408
+"Richmond city, Virginia",0.8575,0.3016,0.9109,0.8823,0.8333
+"Roanoke city, Virginia",0.8718,0.6624,0.8088,0.7639,0.8521
+"Salem city, Virginia",0.2253,0.083,0.4613,0.8046,0.3248
+"Staunton city, Virginia",0.5262,0.468,0.5317,0.748,0.6048
+"Suffolk city, Virginia",0.4715,0.4553,0.882,0.2806,0.4788
+"Virginia Beach city, Virginia",0.2743,0.3465,0.7843,0.2377,0.307
+"Waynesboro city, Virginia",0.7735,0.9042,0.6332,0.4069,0.7601
+"Williamsburg city, Virginia",0.4846,0.0188,0.6962,0.6398,0.3802
+"Winchester city, Virginia",0.8689,0.791,0.7366,0.9135,0.9033
+"Adams County, Washington",0.9835,0.7467,0.9526,0.9621,0.98
+"Asotin County, Washington",0.5743,0.5807,0.3535,0.1826,0.4283
+"Benton County, Washington",0.4232,0.8441,0.6993,0.6157,0.6405
+"Chelan County, Washington",0.5068,0.9542,0.7098,0.8129,0.7999
+"Clallam County, Washington",0.4753,0.6128,0.5161,0.6799,0.5861
+"Clark County, Washington",0.3264,0.5037,0.6013,0.448,0.4257
+"Columbia County, Washington",0.2549,0.9275,0.5005,0.1063,0.3576
+"Cowlitz County, Washington",0.5288,0.8514,0.504,0.7426,0.7124
+"Douglas County, Washington",0.4909,0.9911,0.7668,0.6939,0.8116
+"Ferry County, Washington",0.6443,0.5905,0.6481,0.749,0.7159
+"Franklin County, Washington",0.8909,0.8715,0.9243,0.7833,0.9147
+"Garfield County, Washington",0.1702,0.6007,0.328,0.2685,0.2456
+"Grant County, Washington",0.8323,0.889,0.8657,0.9271,0.931
+"Grays Harbor County, Washington",0.6694,0.8409,0.5654,0.8988,0.8215
+"Island County, Washington",0.2498,0.322,0.5679,0.3945,0.3032
+"Jefferson County, Washington",0.4063,0.2946,0.4085,0.3974,0.3643
+"King County, Washington",0.1938,0.0496,0.8199,0.8816,0.3761
+"Kitsap County, Washington",0.195,0.2514,0.6128,0.6236,0.3334
+"Kittitas County, Washington",0.5132,0.013,0.5202,0.6265,0.3366
+"Klickitat County, Washington",0.6389,0.7178,0.525,0.4995,0.6414
+"Lewis County, Washington",0.608,0.7887,0.5081,0.6739,0.7028
+"Lincoln County, Washington",0.1489,0.6131,0.3058,0.2132,0.2113
+"Mason County, Washington",0.4776,0.7162,0.5679,0.525,0.573
+"Okanogan County, Washington",0.8836,0.9889,0.7502,0.7595,0.9453
+"Pacific County, Washington",0.3923,0.9096,0.5371,0.8221,0.7038
+"Pend Oreille County, Washington",0.447,0.4235,0.4314,0.4279,0.4314
+"Pierce County, Washington",0.3452,0.4744,0.7391,0.735,0.5434
+"San Juan County, Washington",0.2424,0.092,0.3723,0.2179,0.1527
+"Skagit County, Washington",0.4642,0.7426,0.6402,0.5619,0.5982
+"Skamania County, Washington",0.2619,0.1432,0.5011,0.3252,0.2345
+"Snohomish County, Washington",0.2428,0.1919,0.7178,0.5832,0.3557
+"Spokane County, Washington",0.4181,0.419,0.4871,0.8457,0.5638
+"Stevens County, Washington",0.4613,0.5873,0.4248,0.4018,0.4652
+"Thurston County, Washington",0.3026,0.3443,0.6424,0.5024,0.3939
+"Wahkiakum County, Washington",0.3538,0.1514,0.4839,0.1301,0.2039
+"Walla Walla County, Washington",0.6755,0.7416,0.6634,0.8858,0.8078
+"Whatcom County, Washington",0.4203,0.1104,0.5778,0.8667,0.5002
+"Whitman County, Washington",0.6239,0.0099,0.5953,0.9154,0.5186
+"Yakima County, Washington",0.9698,0.8976,0.9154,0.8317,0.9647
+"Barbour County, West Virginia",0.6713,0.1782,0.2062,0.4855,0.4563
+"Berkeley County, West Virginia",0.3296,0.1756,0.4913,0.3159,0.2704
+"Boone County, West Virginia",0.5794,0.5641,0.0032,0.2603,0.4003
+"Braxton County, West Virginia",0.8158,0.2342,0.314,0.5768,0.6013
+"Brooke County, West Virginia",0.2272,0.5616,0.0983,0.7124,0.378
+"Cabell County, West Virginia",0.784,0.3863,0.3086,0.8635,0.7276
+"Calhoun County, West Virginia",0.7302,0.4028,0.021,0.3373,0.4696
+"Clay County, West Virginia",0.6685,0.4734,0.0057,0.6052,0.538
+"Doddridge County, West Virginia",0.4591,0.0366,0.1225,0.5275,0.2625
+"Fayette County, West Virginia",0.7922,0.5231,0.2109,0.7445,0.7019
+"Gilmer County, West Virginia",0.5297,0.1295,0.5542,0.6621,0.4849
+"Grant County, West Virginia",0.4368,0.3198,0.0299,0.2679,0.2695
+"Greenbrier County, West Virginia",0.5848,0.3468,0.2234,0.4477,0.4537
+"Hampshire County, West Virginia",0.7235,0.3,0.0821,0.3929,0.4699
+"Hancock County, West Virginia",0.5221,0.2622,0.1696,0.2109,0.2969
+"Hardy County, West Virginia",0.4874,0.3602,0.3086,0.3742,0.3942
+"Harrison County, West Virginia",0.476,0.2409,0.1508,0.7814,0.4703
+"Jackson County, West Virginia",0.3112,0.294,0.014,0.5558,0.2934
+"Jefferson County, West Virginia",0.2164,0.0738,0.5011,0.4658,0.217
+"Kanawha County, West Virginia",0.4696,0.4804,0.3824,0.6949,0.5339
+"Lewis County, West Virginia",0.5635,0.4356,0.1696,0.7617,0.5568
+"Lincoln County, West Virginia",0.5364,0.461,0.0083,0.3863,0.3983
+"Logan County, West Virginia",0.8069,0.5014,0.0337,0.7178,0.6624
+"McDowell County, West Virginia",0.9131,0.8237,0.5202,0.7601,0.8721
+"Marion County, West Virginia",0.4671,0.3777,0.2164,0.5632,0.4394
+"Marshall County, West Virginia",0.2552,0.4827,0.0675,0.2237,0.2167
+"Mason County, West Virginia",0.3137,0.1737,0.0229,0.6074,0.2774
+"Mercer County, West Virginia",0.5943,0.7856,0.314,0.8791,0.7343
+"Mineral County, West Virginia",0.1884,0.357,0.1654,0.3786,0.2135
+"Mingo County, West Virginia",0.8422,0.4687,0.0337,0.7092,0.6761
+"Monongalia County, West Virginia",0.525,0.0041,0.3748,0.8225,0.3325
+"Monroe County, West Virginia",0.5842,0.7276,0.0821,0.119,0.3901
+"Morgan County, West Virginia",0.4286,0.0808,0.1094,0.1779,0.1759
+"Nicholas County, West Virginia",0.4066,0.5638,0.0089,0.1903,0.2794
+"Ohio County, West Virginia",0.3983,0.4324,0.2485,0.7117,0.4741
+"Pendleton County, West Virginia",0.5829,0.2991,0.0757,0.1091,0.2666
+"Pleasants County, West Virginia",0.4893,0.3338,0.0379,0.6207,0.4295
+"Pocahontas County, West Virginia",0.6589,0.2001,0.0627,0.8466,0.5546
+"Preston County, West Virginia",0.518,0.1091,0.335,0.7429,0.4591
+"Putnam County, West Virginia",0.084,0.1912,0.0757,0.209,0.077
+"Raleigh County, West Virginia",0.7439,0.7722,0.3748,0.8447,0.7887
+"Randolph County, West Virginia",0.6475,0.0983,0.2399,0.7871,0.5189
+"Ritchie County, West Virginia",0.4419,0.5705,0.0083,0.1222,0.2609
+"Roane County, West Virginia",0.8953,0.5126,0.0379,0.3942,0.6141
+"Summers County, West Virginia",0.6236,0.4499,0.2294,0.9262,0.6752
+"Taylor County, West Virginia",0.5418,0.252,0.0337,0.4009,0.3538
+"Tucker County, West Virginia",0.3255,0.1721,0.0048,0.5399,0.2615
+"Tyler County, West Virginia",0.1826,0.3105,0.0115,0.2017,0.1349
+"Upshur County, West Virginia",0.7283,0.2762,0.1037,0.805,0.6045
+"Wayne County, West Virginia",0.573,0.3334,0.0169,0.343,0.3694
+"Webster County, West Virginia",0.7095,0.3261,0.1508,0.434,0.4916
+"Wetzel County, West Virginia",0.3799,0.2704,0.0264,0.5434,0.3201
+"Wirt County, West Virginia",0.3913,0.2774,0.0115,0.3163,0.2552
+"Wood County, West Virginia",0.4862,0.4658,0.0757,0.3907,0.3869
+"Wyoming County, West Virginia",0.7213,0.3942,0.0089,0.5084,0.5173
+"Adams County, Wisconsin",0.5679,0.399,0.342,0.5962,0.5259
+"Ashland County, Wisconsin",0.3252,0.3271,0.503,0.8031,0.4852
+"Barron County, Wisconsin",0.3713,0.6198,0.2234,0.4216,0.4009
+"Bayfield County, Wisconsin",0.1199,0.1457,0.4604,0.1209,0.097
+"Brown County, Wisconsin",0.1492,0.4133,0.5444,0.5364,0.3007
+"Buffalo County, Wisconsin",0.1524,0.224,0.0675,0.0525,0.0595
+"Burnett County, Wisconsin",0.412,0.23,0.2879,0.0824,0.1928
+"Calumet County, Wisconsin",0.0086,0.1009,0.3058,0.0391,0.0115
+"Chippewa County, Wisconsin",0.1686,0.0675,0.1572,0.2704,0.1056
+"Clark County, Wisconsin",0.6096,0.5584,0.2265,0.7929,0.6347
+"Columbia County, Wisconsin",0.0668,0.1053,0.2399,0.3878,0.0993
+"Crawford County, Wisconsin",0.2679,0.182,0.1409,0.6602,0.2905
+"Dane County, Wisconsin",0.1053,0.0388,0.5616,0.65,0.1855
+"Dodge County, Wisconsin",0.1613,0.0818,0.3248,0.4349,0.1584
+"Door County, Wisconsin",0.1066,0.1499,0.1572,0.0808,0.0525
+"Douglas County, Wisconsin",0.1654,0.3633,0.2692,0.6573,0.2946
+"Dunn County, Wisconsin",0.2195,0.0235,0.2234,0.6615,0.188
+"Eau Claire County, Wisconsin",0.1301,0.0487,0.3388,0.5896,0.1616
+"Florence County, Wisconsin",0.3458,0.1317,0.0379,0.0697,0.112
+"Fond du Lac County, Wisconsin",0.091,0.1766,0.3592,0.5597,0.1887
+"Forest County, Wisconsin",0.4563,0.2208,0.552,0.3691,0.3799
+"Grant County, Wisconsin",0.2685,0.0379,0.0983,0.6968,0.2224
+"Green County, Wisconsin",0.048,0.2701,0.1276,0.1887,0.0684
+"Green Lake County, Wisconsin",0.3261,0.6987,0.2399,0.4779,0.4228
+"Iowa County, Wisconsin",0.0172,0.0493,0.1339,0.0328,0.0051
+"Iron County, Wisconsin",0.2087,0.2049,0.0757,0.0834,0.0926
+"Jackson County, Wisconsin",0.5126,0.2424,0.4146,0.7541,0.5231
+"Jefferson County, Wisconsin",0.1107,0.0684,0.335,0.4283,0.1276
+"Juneau County, Wisconsin",0.4489,0.2354,0.342,0.6166,0.4273
+"Kenosha County, Wisconsin",0.4543,0.4718,0.6268,0.5546,0.5215
+"Kewaunee County, Wisconsin",0.0118,0.1107,0.1225,0.022,0.0064
+"La Crosse County, Wisconsin",0.1514,0.0318,0.3388,0.6672,0.182
+"Lafayette County, Wisconsin",0.2383,0.3936,0.1508,0.0643,0.1339
+"Langlade County, Wisconsin",0.258,0.2669,0.1572,0.1613,0.1607
+"Lincoln County, Wisconsin",0.2485,0.1995,0.1037,0.2848,0.1775
+"Manitowoc County, Wisconsin",0.0566,0.3993,0.3248,0.2854,0.1346
+"Marathon County, Wisconsin",0.1161,0.3086,0.3697,0.2224,0.1473
+"Marinette County, Wisconsin",0.118,0.1349,0.0735,0.3379,0.1088
+"Marquette County, Wisconsin",0.2829,0.44,0.1861,0.1896,0.2227
+"Menominee County, Wisconsin",0.5692,0.5997,0.9927,0.2749,0.5743
+"Milwaukee County, Wisconsin",0.6942,0.7569,0.8743,0.839,0.8276
+"Monroe County, Wisconsin",0.3315,0.3497,0.3166,0.7474,0.4432
+"Oconto County, Wisconsin",0.0477,0.0525,0.0983,0.1005,0.0204
+"Oneida County, Wisconsin",0.0799,0.0713,0.1037,0.0974,0.036
+"Outagamie County, Wisconsin",0.0366,0.1094,0.3977,0.2412,0.0671
+"Ozaukee County, Wisconsin",0.0305,0.0926,0.2816,0.1492,0.0395
+"Pepin County, Wisconsin",0.0808,0.2603,0.0474,0.055,0.0442
+"Pierce County, Wisconsin",0.0442,0.0051,0.1928,0.329,0.0216
+"Polk County, Wisconsin",0.1648,0.1015,0.0932,0.1282,0.0703
+"Portage County, Wisconsin",0.098,0.0347,0.2879,0.4613,0.1063
+"Price County, Wisconsin",0.2138,0.2364,0.1276,0.4916,0.2253
+"Racine County, Wisconsin",0.3163,0.6519,0.6656,0.4515,0.4674
+"Richland County, Wisconsin",0.2892,0.4703,0.1508,0.6274,0.3764
+"Rock County, Wisconsin",0.2176,0.5259,0.5119,0.3121,0.2988
+"Rusk County, Wisconsin",0.3627,0.329,0.0983,0.1756,0.216
+"St. Croix County, Wisconsin",0.0073,0.0668,0.1753,0.0474,0.0086
+"Sauk County, Wisconsin",0.1877,0.3309,0.3217,0.3869,0.2323
+"Sawyer County, Wisconsin",0.4731,0.3178,0.5829,0.237,0.3758
+"Shawano County, Wisconsin",0.1639,0.1728,0.4146,0.3089,0.1769
+"Sheboygan County, Wisconsin",0.0465,0.2552,0.4871,0.4645,0.16
+"Taylor County, Wisconsin",0.2612,0.3659,0.0579,0.2055,0.189
+"Trempealeau County, Wisconsin",0.1788,0.4213,0.3503,0.2074,0.1989
+"Vernon County, Wisconsin",0.4353,0.5504,0.0544,0.6977,0.4779
+"Vilas County, Wisconsin",0.2014,0.0913,0.4314,0.0398,0.0729
+"Walworth County, Wisconsin",0.1995,0.1584,0.4407,0.3608,0.2074
+"Washburn County, Wisconsin",0.2762,0.1788,0.1339,0.085,0.119
+"Washington County, Wisconsin",0.0194,0.0344,0.2294,0.0401,0.008
+"Waukesha County, Wisconsin",0.02,0.0541,0.3888,0.0853,0.0191
+"Waupaca County, Wisconsin",0.1037,0.2059,0.1276,0.2937,0.1142
+"Waushara County, Wisconsin",0.3837,0.3583,0.3322,0.51,0.3917
+"Winnebago County, Wisconsin",0.1094,0.0853,0.3847,0.5084,0.1549
+"Wood County, Wisconsin",0.1651,0.3487,0.2399,0.2619,0.1791
+"Albany County, Wyoming",0.5651,0.0006,0.5119,0.5857,0.2533
+"Big Horn County, Wyoming",0.5447,0.7926,0.4018,0.3064,0.531
+"Campbell County, Wyoming",0.2345,0.3137,0.4018,0.2819,0.2367
+"Carbon County, Wyoming",0.51,0.4547,0.5892,0.5539,0.5377
+"Converse County, Wyoming",0.2778,0.3169,0.3503,0.37,0.2781
+"Crook County, Wyoming",0.0881,0.3678,0.1753,0.0767,0.0722
+"Fremont County, Wyoming",0.7582,0.4442,0.6793,0.8193,0.7642
+"Goshen County, Wyoming",0.2214,0.2485,0.4445,0.5348,0.2918
+"Hot Springs County, Wyoming",0.2628,0.2848,0.3118,0.1769,0.1938
+"Johnson County, Wyoming",0.2981,0.0461,0.328,0.2946,0.1709
+"Laramie County, Wyoming",0.2657,0.2129,0.5759,0.272,0.2514
+"Lincoln County, Wyoming",0.1015,0.2864,0.2323,0.2036,0.118
+"Natrona County, Wyoming",0.2991,0.5775,0.42,0.4601,0.3987
+"Niobrara County, Wyoming",0.6955,0.1623,0.3118,0.2988,0.419
+"Park County, Wyoming",0.216,0.0608,0.3446,0.1527,0.1072
+"Platte County, Wyoming",0.3611,0.4757,0.4222,0.2507,0.3309
+"Sheridan County, Wyoming",0.2625,0.0872,0.265,0.49,0.2211
+"Sublette County, Wyoming",0.1238,0.3828,0.265,0.1308,0.1225
+"Sweetwater County, Wyoming",0.3703,0.6309,0.5616,0.4458,0.4722
+"Teton County, Wyoming",0.1005,0.0468,0.5352,0.5861,0.1693
+"Uinta County, Wyoming",0.1136,0.391,0.3824,0.6526,0.2803
+"Washakie County, Wyoming",0.2415,0.1858,0.5011,0.2717,0.2192
+"Weston County, Wyoming",0.3404,0.055,0.4165,0.7283,0.3331

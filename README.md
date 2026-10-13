@@ -1,6 +1,6 @@
 # Assay
 
-**Status: production.** 101 tests (93 Python, 7 driving the browser page); the dimensionality path is validated against a published HDI result, the rank-envelope path has no external anchor. Every hard number below is recorded in [`claims.json`](claims.json) with how it is known and when it was last checked. See [PRODUCTION.md](../PRODUCTION.md).
+**Status: production.** 104 tests (96 Python, 7 driving the browser page); the dimensionality path is validated against a published HDI result, the rank-envelope path has no external anchor. Every hard number below is recorded in [`claims.json`](claims.json) with how it is known and when it was last checked. See [PRODUCTION.md](../PRODUCTION.md).
 
 Tests whether a published index measures what it says it measures. Named for
 the metallurgical test that tells you what an ore is actually made of, rather
@@ -251,6 +251,41 @@ treatment of change over time.
 The two results fit together: comparisons between distant countries are mostly
 robust, while the small movements that get reported annually mostly are not.
 
+## A third index, and not a country ranking: CDC's Social Vulnerability Index
+
+```bash
+python tools/fetch_svi.py
+python ax.py audit data/svi-2022.json --draws 2000
+```
+
+HDI and EPI both rank countries and both draw on the same international
+statistics, so agreeing on them is not two independent tests. The CDC/ATSDR
+Social Vulnerability Index (2022) ranks 3,144 US counties for emergency
+planning and declares four themes: socioeconomic status, household
+characteristics, racial and ethnic minority status, and housing type and
+transportation.
+
+Assay reports **60.6% of variance on one component**, one dimension retained
+against four claimed, and r(SVI, PC1) = 0.9817.
+
+**The useful result is about this tool, not about the index.** The report
+says the themes "are largely re-descriptions of a single underlying thing".
+It says that because 60.6% is over a line drawn at 60% in `assay/report.py`;
+at 59.9% it would have said the dimensions overlap. The themes' own
+correlations run from 0.27 (household characteristics with housing type) to
+0.58, which is four things that move together, not one thing named four
+times. HDI at 84% and EPI under half sat far from that line, so two indices
+never tested it. The third landed on it. The verdict sentence is too strong
+between about 60% and 75%, and it has not been changed here: moving a
+threshold the day a result lands on it is how a tool learns to say what its
+author expects, and the wording lives in two implementations
+(`assay/report.py` and `docs/audit.js`) that have to move together.
+
+Two ways this is a weaker test than HDI, written into the fetch script before
+the audit ran: all four themes come from one survey (the American Community
+Survey), and the overall rank is a percentile of sums of percentiles, so the
+weights cannot be reproduced linearly and that test is off.
+
 ## Running it
 
 ```bash
@@ -300,9 +335,15 @@ block was moved off that loop for this reason and this file was not.)*
   78–90% range shows the dimensionality path is right on one index whose answer
   was already known. The rank-envelope and weight-reproduction paths have no
   external anchor at all yet.
-- Two indices now, not one - but both are country-level and both are
-  built by Western institutions from overlapping data infrastructure. That is
-  not the same as two independent replications.
+- Three indices now. Two are country-level and built by Western institutions
+  from overlapping data infrastructure, which is not two independent
+  replications. The third (US counties, CDC) is independent of both in subject
+  and unit, but its themes share one survey, and it has no published
+  dimensionality figure to land inside, as HDI's did.
+- The 60% line between "overlapping" and "one thing" in the report's wording
+  is a judgement nobody had tested until an index landed on it (the Social
+  Vulnerability Index, 60.6%). It is the next thing to fix, in both
+  implementations at once.
 - Both free parameters are now swept rather than chosen, but the RANGES swept
   (±1 to ±10 points; bars 0.75 to 0.99) are themselves judgements. They are
   reported rather than hidden, which is the most that can honestly be done.
@@ -333,7 +374,7 @@ tools/      fetch_vdem.py  fetch_undp.py  fetch_epi.py
             build_hdi_panel.py  build_epi_panel.py
             conform_browser.py  docclaims.py
             rawcache.py  netcache.py (downloads, cached under data/cache/)
-tests/      101 tests (7 of them drive docs/audit.html in a browser)
+tests/      104 tests (7 of them drive docs/audit.html in a browser)
 claims.json every hard number this README publishes, graded and dated
 ax.py       the CLI
 ```
@@ -361,11 +402,11 @@ run drifting toward the retention boundary is visible before it flips. Run it
 after any change to `structure.py` or `docs/audit.js`.
 
 **What that costs, found 2026-09-19 by CI's first run.** A clone of this
-repository alone runs 50 of its 101 tests: `test_structure`, `test_aggregation`,
+repository alone runs 53 of its 104 tests: `test_structure`, `test_aggregation`,
 `test_report` and `test_claims` import Sextant through `structure.py` and cannot
 load without a sibling checkout. The suite passes in a working directory that has one and
 fails in a fresh clone, so **a clone, not the working directory, is the honest
-check before trusting a green run.** `.github/workflows/assay.yml` runs the 50
+check before trusting a green run.** `.github/workflows/assay.yml` runs the 53
 and prints what it did not run; the machinery those four exercise is
 Sextant's own, and Sextant's CI runs all 342 of its tests on every push.
 
