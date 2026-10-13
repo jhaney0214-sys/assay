@@ -22,7 +22,14 @@ Both are testable, and neither is usually tested.
 There are over a hundred ESG rating systems, each with its own weights. The
 academic response to university rankings has moved to arguing that single-score
 aggregation implies a precision the underlying data cannot support. The critique
-exists in journals. It does not exist as something you can run.
+exists in journals, and the tools that exist are for the people building an
+index: the European Commission's Joint Research Centre publishes COINr for R
+and the COIN Tool for Excel, which cover correlation, principal components
+and sensitivity analysis for an index under construction. What does not exist
+is something a reader can point at somebody else's published index, in a
+browser, with nothing installed. *(Corrected 2026-10-13: this said the
+critique "does not exist as something you can run", which COINr, on CRAN
+since 2022, makes false.)*
 
 This is the same position [Sextant](../Sextant) takes about political compasses,
 pointed at other people's numbers instead of our own: **nothing may be asserted
