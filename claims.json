@@ -100,7 +100,7 @@
     {
       "id": "test_count",
       "claim": "Tests in the suite, Python and browser together",
-      "value": "104 tests",
+      "value": "108 tests",
       "format": "%d tests",
       "derive": {
         "files": [

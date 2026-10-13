@@ -61,6 +61,18 @@ except ImportError as exc:                                      # pragma: no cov
 
 MIN_COLUMNS_FOR_MAP = 5
 REDUNDANT_AT = 0.90
+# How alike the sub-scores must be, on average, before fewer dimensions than
+# claimed is called "one thing" and not "overlapping". Judgements, like the
+# 0.90 above, and written down for the same reason. Until 2026-10-13 the
+# report drew this line at 60% of variance on the first component, which no
+# index had come near until CDC's Social Vulnerability Index landed on 60.6%
+# with sub-scores correlating 0.27 to 0.58 and was told it measured one thing.
+# The share on one component also depends on how many sub-scores there are;
+# the average correlation between them does not, and it is what a reader can
+# check against the table. A correlation of 0.7 is about half the variance
+# shared between two sub-scores, and 0.4 about a sixth.
+ONE_THING_AT = 0.70
+OVERLAP_AT = 0.40
 
 
 def correlations(index):
@@ -151,6 +163,25 @@ def pc1_scores(index):
     return Z @ v
 
 
+def pairwise(R):
+    """How alike the sub-scores are: the mean, least and greatest |r| between pairs."""
+    R = np.asarray(R, dtype=float)
+    k = R.shape[0]
+    if k < 2:
+        return {"mean": 1.0, "min": 1.0, "max": 1.0}
+    off = np.abs(R[np.triu_indices(k, 1)])
+    return {"mean": float(off.mean()), "min": float(off.min()), "max": float(off.max())}
+
+
+def grade(mean_r):
+    """'one', 'overlap' or 'loose', from the average |r| between sub-scores."""
+    if mean_r >= ONE_THING_AT:
+        return "one"
+    if mean_r >= OVERLAP_AT:
+        return "overlap"
+    return "loose"
+
+
 def analyse(index, seed=0):
     """The whole structural picture for one index."""
     R = correlations(index)
@@ -163,6 +194,7 @@ def analyse(index, seed=0):
         "dimensions": dim,
         "variance_explained": var,
         "pc1_share": var[0],
+        "pairwise": pairwise(R),
         "loadings": L,
         "factor_correlations": Phi,
         "rotation": rotation,

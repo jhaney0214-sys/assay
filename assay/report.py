@@ -14,6 +14,7 @@ import numpy as np
 
 from .aggregation import DECORATIVE_AT
 from .structure import REDUNDANT_AT
+from . import structure
 
 
 def _bar(x, width=28):
@@ -76,6 +77,8 @@ def render(index, struct, agg, env, movable):
     w("")
 
     pc1 = struct["pc1_share"]
+    alike = struct["pairwise"]
+    kind = structure.grade(alike["mean"])
     if hi < claimed and index.has_shared_construction:
         w("  >> The index names %d dimensions and the data supports %s, with"
           % (claimed, span))
@@ -83,11 +86,32 @@ def render(index, struct, agg, env, movable):
           % (100 * pc1))
         w("     warning above. This collapse is what the formula guarantees.")
         w("     It is not a finding, and must not be published as one.")
-    elif hi < claimed and pc1 >= 0.6:
+    elif hi < claimed and kind == "one":
         w("  >> The index names %d dimensions. The data supports %s." % (claimed, span))
         w("     %.0f%% of all sub-score variance sits on one component, so the"
           % (100 * pc1))
         w("     pillars are largely re-descriptions of a single underlying thing.")
+        w("     They correlate %.2f with each other on average, and %.2f at the"
+          % (alike["mean"], alike["min"]))
+        w("     least alike pair.")
+    elif hi < claimed and kind == "overlap":
+        # CDC's Social Vulnerability Index produced this case: one factor
+        # retained and 61% on it, from four themes correlating 0.27 to 0.58.
+        # That is four things that rise together, not one thing named four
+        # times, and the report said the second until 2026-10-13.
+        w("  >> The index names %d dimensions and the retention tests support %s."
+          % (claimed, span))
+        w("     %.0f%% of sub-score variance sits on one component." % (100 * pc1))
+        w("")
+        w("     Read this as: the pillars OVERLAP HEAVILY and are still not one")
+        w("     thing. They correlate %.2f with each other on average and only"
+          % alike["mean"])
+        w("     %.2f at the least alike pair, so each carries something the"
+          % alike["min"])
+        w("     others do not. What the data does not support is %d separate"
+          % claimed)
+        w("     dimensions: the differences between pillars are real and too")
+        w("     small to stand apart from what they share.")
     elif hi < claimed:
         # EPI produced this case: one factor retained, but explaining under half
         # the variance. Saying "the index is one thing" there would be as wrong
@@ -228,7 +252,8 @@ def render(index, struct, agg, env, movable):
     w("READING THESE TOGETHER")
     w("")
     stable = env["median_spread_share"] <= 0.05
-    one_dim = hi < claimed and pc1 >= 0.5
+    one_dim = hi < claimed and kind == "one"
+    overlapping = hi < claimed and kind == "overlap"
     if stable and one_dim:
         w("  The ranking barely moves under reweighting, and that is NOT")
         w("  evidence that it is robust. With %.0f%% of variance on one" % (100 * pc1))
@@ -253,6 +278,15 @@ def render(index, struct, agg, env, movable):
         w("  So: the index is measuring one thing, and the precise rank it")
         w("  reports is not a reliable property of the entity. A place in the")
         w("  table is worth reading as a band, not a position.")
+    elif overlapping and not stable:
+        w("  The pillars overlap enough that one component sets the broad")
+        w("  ordering, and differ enough that the weighting matters: the")
+        w("  remaining %.0f%% of variance is where one pillar says something"
+          % (100 * (1 - pc1)))
+        w("  another does not. Other weightings would move ranks a long way")
+        w("  (the envelope above), whatever the published one happens to do,")
+        w("  so a rank belongs to the weights that produced it as much as to")
+        w("  the entity.")
     elif stable:
         w("  The ranking is stable under reweighting and the pillars are")
         w("  distinct, which is the good case: the ordering survives the")

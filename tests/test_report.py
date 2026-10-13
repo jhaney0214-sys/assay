@@ -120,6 +120,58 @@ class TestWeakSingleFactor(unittest.TestCase):
         self.assertIn("do not resolve into named dimensions", txt)
 
 
+class TestOverlappingPillars(unittest.TestCase):
+    """Between one thing and a loose set: pillars that rise together and differ.
+
+    CDC's Social Vulnerability Index is this case (four themes correlating
+    0.27 to 0.58). Until 2026-10-13 the report told it its pillars were
+    "largely re-descriptions of a single underlying thing", because 60.6% of
+    variance on one component was over a line drawn at 60%.
+    """
+
+    def overlapping(self, load, n=400, k=4, seed=5):
+        import numpy as np
+        from assay.load import Index
+        rng = np.random.default_rng(seed)
+        f = rng.standard_normal(n)
+        X = np.column_stack([load * f + rng.standard_normal(n) for _ in range(k)])
+        return Index("pillars", ["e%d" % i for i in range(n)],
+                     ["c%d" % i for i in range(k)], X.tolist(), claimed_dimensions=k)
+
+    def test_pillars_correlating_about_a_half_are_not_called_one_thing(self):
+        idx = self.overlapping(1.0)              # pairwise r near 0.5
+        alike = structure.analyse(idx)["pairwise"]
+        self.assertEqual(structure.grade(alike["mean"]), "overlap")
+        txt = _render(idx, mode="uniform")
+        self.assertNotIn("single underlying thing", txt)
+        self.assertNotIn("the index is measuring one thing", txt)
+        self.assertIn("OVERLAP HEAVILY", txt)
+        self.assertIn("%.2f" % alike["mean"], txt)
+        self.assertIn("%.2f" % alike["min"], txt)
+
+    def test_the_lines_are_where_the_file_says_and_each_side_of_them_differs(self):
+        self.assertEqual(structure.grade(structure.ONE_THING_AT), "one")
+        self.assertEqual(structure.grade(structure.ONE_THING_AT - 0.001), "overlap")
+        self.assertEqual(structure.grade(structure.OVERLAP_AT), "overlap")
+        self.assertEqual(structure.grade(structure.OVERLAP_AT - 0.001), "loose")
+
+    def test_likeness_is_the_average_least_and_greatest_absolute_correlation(self):
+        R = [[1.0, 0.6, -0.2], [0.6, 1.0, 0.4], [-0.2, 0.4, 1.0]]
+        alike = structure.pairwise(R)
+        self.assertAlmostEqual(alike["mean"], 0.4)
+        self.assertAlmostEqual(alike["min"], 0.2)
+        self.assertAlmostEqual(alike["max"], 0.6)
+
+    def test_the_bundled_indices_fall_where_their_write_ups_say(self):
+        from assay import load
+        root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        got = {}
+        for name in ("hdi-2022", "svi-2022", "epi-2024"):
+            idx = load.from_spec(os.path.join(root, "data", name + ".json"))
+            got[name] = structure.grade(structure.analyse(idx)["pairwise"]["mean"])
+        self.assertEqual(got, {"hdi-2022": "one", "svi-2022": "overlap", "epi-2024": "loose"})
+
+
 class TestFlippedSubScores(unittest.TestCase):
 
     def test_a_flipped_sub_score_is_reported_as_substantive(self):

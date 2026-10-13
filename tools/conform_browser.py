@@ -37,7 +37,8 @@ import numpy as np                                            # noqa: E402
 from assay import load, structure                             # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SPECS = ["data/hdi-2022.json", "data/vdem-2024.json", "data/epi-2024.json"]
+SPECS = ["data/hdi-2022.json", "data/vdem-2024.json", "data/epi-2024.json",
+         "data/svi-2022.json"]
 TOL = 1e-9
 
 RUNNER = r"""
@@ -48,6 +49,9 @@ const out = Assay.analyse(input.columns, input.names, {
 process.stdout.write(JSON.stringify({
   n: out.n, k: out.k,
   pc1Share: out.pc1Share,
+  pairwise: out.pairwise,
+  grade: Assay.grade(out.pairwise.mean),
+  lines: [Assay.ONE_THING_AT, Assay.OVERLAP_AT],
   varianceExplained: out.varianceExplained,
   dimensions: out.dimensions,
   redundant: out.redundant,
@@ -98,6 +102,13 @@ def main():
         check("n", py["n"], js["n"])
         check("k", py["k"], js["k"])
         check("pc1_share", py["pc1_share"], js["pc1Share"])
+        for part in ("mean", "min", "max"):
+            check("pairwise." + part, py["pairwise"][part], js["pairwise"][part])
+        # The words each side would use, and the lines they are drawn at.
+        check("grade", {"one": 1, "overlap": 2, "loose": 3}[structure.grade(py["pairwise"]["mean"])],
+              {"one": 1, "overlap": 2, "loose": 3}[js["grade"]])
+        check("ONE_THING_AT", structure.ONE_THING_AT, js["lines"][0])
+        check("OVERLAP_AT", structure.OVERLAP_AT, js["lines"][1])
         for i, (a, b) in enumerate(zip(py["variance_explained"],
                                        js["varianceExplained"])):
             check("variance_explained[%d]" % i, a, b)

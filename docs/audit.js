@@ -221,6 +221,31 @@ const Assay = (function () {
   /* ---------- the whole audit ---------- */
 
   const MIN_COLUMNS_FOR_MAP = 5;
+  /* How alike sub-scores must be on average before "one thing" is said and
+     not "overlapping". The same two numbers as assay/structure.py, where the
+     reasons are; tools/conform_browser.py compares the figures they grade. */
+  const ONE_THING_AT = 0.70;
+  const OVERLAP_AT = 0.40;
+
+  function pairwise(R) {
+    const k = R.length;
+    if (k < 2) return { mean: 1, min: 1, max: 1 };
+    let sum = 0, min = Infinity, max = -Infinity, count = 0;
+    for (let i = 0; i < k; i++)
+      for (let j = i + 1; j < k; j++) {
+        const r = Math.abs(R[i][j]);
+        sum += r; count++;
+        if (r < min) min = r;
+        if (r > max) max = r;
+      }
+    return { mean: sum / count, min, max };
+  }
+
+  function grade(meanR) {
+    if (meanR >= ONE_THING_AT) return "one";
+    if (meanR >= OVERLAP_AT) return "overlap";
+    return "loose";
+  }
 
   function analyse(columns, names, options = {}) {
     const k = columns.length, n = columns[0].length;
@@ -240,6 +265,7 @@ const Assay = (function () {
       n, k,
       varianceExplained: ve,
       pc1Share: ve[0],
+      pairwise: pairwise(R),
       dimensions: {
         parallel, map, mapUsable,
         low: Math.min.apply(null, counts),
@@ -259,6 +285,7 @@ const Assay = (function () {
   return {
     analyse, correlations, standardise, jacobiEigen, varianceExplained,
     parallelAnalysis, mapTest, redundantPairs, pc1Scores, pearson,
+    pairwise, grade, ONE_THING_AT, OVERLAP_AT,
     MIN_COLUMNS_FOR_MAP,
   };
 })();

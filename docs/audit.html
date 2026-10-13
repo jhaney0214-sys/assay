@@ -113,7 +113,7 @@ else. It cannot tell you an index is <em>wrong</em> — only whether its own
 structure supports the claims made for it.</p>
 <p>The same five checks Assay's Python engine runs, ported to the browser and
 verified against it: <code>tools/conform_browser.py</code> compares both over
-three indices and fails on disagreement beyond 1e-9.</p>
+four indices and fails on disagreement beyond 1e-9.</p>
 </footer>
 
 <script src="audit.js"></script>
@@ -287,10 +287,30 @@ function render(a, names, dropped, shared, hasPublished, suspect) {
       : "Velicer's MAP is not reported: it is unreliable below " +
         Assay.MIN_COLUMNS_FOR_MAP + " columns, because there is almost " +
         "nothing left to partial out.") + "</p>");
-  if (!shared && d.high === 1 && a.k >= 3)
-    parts.push("<div class='warn'>One component. The named pillars are not " +
-      "separable in this data — whatever they are called, the entities are " +
-      "ordered on a single underlying quantity.</div>");
+  /* One retained component is not one thing measured. What the sub-scores
+     share is read from how alike they are, the same way assay/report.py
+     reads it; this used to say "a single underlying quantity" whenever one
+     component was kept, whatever it explained. */
+  const alike = a.pairwise, kind = Assay.grade(alike.mean);
+  const likeness = "The sub-scores correlate " + alike.mean.toFixed(2) +
+    " with each other on average and " + alike.min.toFixed(2) +
+    " at the least alike pair.";
+  if (!shared && d.high === 1 && a.k >= 3) {
+    if (kind === "one")
+      parts.push("<div class='warn'>One component. The named pillars are not " +
+        "separable in this data — whatever they are called, the entities are " +
+        "ordered on a single underlying quantity. " + likeness + "</div>");
+    else if (kind === "overlap")
+      parts.push("<div class='warn'>One component retained, and the pillars " +
+        "are still not one thing. They overlap heavily: " + likeness +
+        " Each carries something the others do not, but not enough to stand " +
+        "as a dimension of its own.</div>");
+    else
+      parts.push("<div class='warn'>One component retained, and it does not " +
+        "explain much. " + likeness + " The claimed structure is not there " +
+        "and neither is a single clean alternative: these look like loosely " +
+        "related measurements that do not resolve into named dimensions.</div>");
+  }
 
   /* Q2 first component share */
   parts.push("<h3>How much is one component?</h3>");
