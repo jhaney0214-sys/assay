@@ -100,7 +100,7 @@
     {
       "id": "test_count",
       "claim": "Tests in the suite, Python and browser together",
-      "value": "108 tests",
+      "value": "122 tests",
       "format": "%d tests",
       "derive": {
         "files": [
@@ -110,7 +110,7 @@
       },
       "status": "measured",
       "anchor": "test methods in tests/test_*.py, counted by parsing the way unittest's loader finds them; measured against `unittest discover` on 2026-09-25",
-      "checked_on": "2026-09-25",
+      "checked_on": "2026-10-15",
       "durable": "read from source on every verify, so it cannot outlive the code",
       "appears_in": [
         "README.md"
@@ -121,15 +121,15 @@
     },
     {
       "id": "standalone_tests",
-      "claim": "Tests a fresh clone runs without a sibling checkout: the four files CI runs",
-      "value": "runs 53 of its",
+      "claim": "Tests a fresh clone runs without a sibling checkout: the five files CI runs",
+      "value": "runs 67 of its",
       "also_written": [
-        "runs the 53"
+        "runs the 67"
       ],
       "format": "runs %d of its",
       "status": "measured",
-      "anchor": "test methods in the four files .github/workflows/assay.yml runs, counted by parsing",
-      "checked_on": "2026-09-26",
+      "anchor": "test methods in the five files .github/workflows/assay.yml runs, counted by parsing",
+      "checked_on": "2026-10-15",
       "durable": "read from source on every verify",
       "appears_in": [
         "README.md"
@@ -142,7 +142,8 @@
           "tests/test_drift.py",
           "tests/test_browser_page.py",
           "tests/test_claims_ledger.py",
-          "tests/test_fetch_svi.py"
+          "tests/test_fetch_svi.py",
+          "tests/test_editions.py"
         ],
         "tests": "python"
       }

@@ -1,6 +1,6 @@
 # Assay
 
-**Status: production.** 108 tests (100 Python, 7 driving the browser page); the dimensionality path is validated against a published HDI result, the rank-envelope path has no external anchor. Every hard number below is recorded in [`claims.json`](claims.json) with how it is known and when it was last checked. See [PRODUCTION.md](../PRODUCTION.md).
+**Status: production.** 122 tests (115 Python, 7 driving the browser page); the dimensionality path is validated against a published HDI result, the rank-envelope path has no external anchor. Every hard number below is recorded in [`claims.json`](claims.json) with how it is known and when it was last checked. See [PRODUCTION.md](../PRODUCTION.md).
 
 Tests whether a published index measures what it says it measures. Named for
 the metallurgical test that tells you what an ore is actually made of, rather
@@ -258,6 +258,35 @@ treatment of change over time.
 The two results fit together: comparisons between distant countries are mostly
 robust, while the small movements that get reported annually mostly are not.
 
+### When a new edition is out
+
+```bash
+python tools/editions.py            # all three; --only hdi|epi|svi to narrow
+```
+
+Re-running the rank-change test on a new edition takes two commands; knowing
+the edition exists was the slow part. `tools/editions.py` reads the edition
+each fetch script uses, asks each publisher with HEAD requests whether a later
+one exists at the address it would have, and checks whether the file used has
+changed size against the local cache. It never downloads a data file: when it
+finds one, it prints the commands to fetch it and re-run, and running them is
+your call. It also warns when a fetch script and its panel script point at
+different files.
+
+It finds what follows the publisher's naming pattern and nothing else, so "none
+found" means "none at the addresses tried", which the report lists. A 200 that
+returns an HTML page is not counted as a file. EPI's editions since 2026 are
+found by their downloads page instead (`/2026/downloads`), because the file
+names inside it carry dates no probe can guess.
+
+**First run, 2026-10-15 and 16:** a 2025 HDI report is out
+(`2025_HDR/HDR25_…`), and EPI 2026 is out with its results as `.xlsx`. The
+2024 EPI CSV address now answers with the site's downloads page, so a fresh
+clone's `fetch_epi.py` would cache an HTML page instead of the file; the
+cached copy here predates the move. SVI's 2022 file answered on the first day
+and timed out on the second, and no later SVI was found at the addresses
+tried. Nothing has been re-run on the new editions.
+
 ## A third index, and not a country ranking: CDC's Social Vulnerability Index
 
 ```bash
@@ -389,8 +418,9 @@ assay/      load.py  structure.py  aggregation.py  report.py
 tools/      fetch_vdem.py  fetch_undp.py  fetch_epi.py
             build_hdi_panel.py  build_epi_panel.py
             conform_browser.py  docclaims.py
+            editions.py (is a newer HDI, EPI or SVI out? HEAD requests only)
             rawcache.py  netcache.py (downloads, cached under data/cache/)
-tests/      108 tests (7 of them drive docs/audit.html in a browser)
+tests/      122 tests (7 of them drive docs/audit.html in a browser)
 claims.json every hard number this README publishes, graded and dated
 ax.py       the CLI
 ```
@@ -418,11 +448,11 @@ run drifting toward the retention boundary is visible before it flips. Run it
 after any change to `structure.py` or `docs/audit.js`.
 
 **What that costs, found 2026-09-19 by CI's first run.** A clone of this
-repository alone runs 53 of its 108 tests: `test_structure`, `test_aggregation`,
+repository alone runs 67 of its 122 tests: `test_structure`, `test_aggregation`,
 `test_report` and `test_claims` import Sextant through `structure.py` and cannot
 load without a sibling checkout. The suite passes in a working directory that has one and
 fails in a fresh clone, so **a clone, not the working directory, is the honest
-check before trusting a green run.** `.github/workflows/assay.yml` runs the 53
+check before trusting a green run.** `.github/workflows/assay.yml` runs the 67
 and prints what it did not run; the machinery those four exercise is
 Sextant's own, and Sextant's CI runs all 342 of its tests on every push.
 

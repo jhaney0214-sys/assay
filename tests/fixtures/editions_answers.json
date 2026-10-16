@@ -1,0 +1,84 @@
+{
+ "_note": "What each publisher answers to a HEAD request, staged for tests/test_editions.py. Any URL not listed answers 404. Not real answers: the sizes and dates are made up.",
+ "a new HDI report, EPI unchanged, SVI's missing file answered with an HTML page": {
+  "https://hdr.undp.org/sites/default/files/2023-24_HDR/HDR23-24_Composite_indices_complete_time_series.csv": [
+   200,
+   {
+    "Content-Type": "text/csv",
+    "Content-Length": "1919243",
+    "Last-Modified": "Thu, 13 Mar 2024 10:00:00 GMT"
+   }
+  ],
+  "https://hdr.undp.org/sites/default/files/2025_HDR/HDR25_Composite_indices_complete_time_series.csv": [
+   200,
+   {
+    "Content-Type": "text/csv",
+    "Content-Length": "2004118",
+    "Last-Modified": "Tue, 06 May 2025 09:00:00 GMT"
+   }
+  ],
+  "https://epi.yale.edu/downloads/epi2024results.csv": [
+   200,
+   {
+    "Content-Type": "text/csv",
+    "Content-Length": "123308"
+   }
+  ],
+  "https://svi.cdc.gov/Documents/Data/2022/csv/states_counties/SVI_2022_US_county.csv": [
+   200,
+   {
+    "Content-Type": "application/octet-stream",
+    "Content-Length": "2301480"
+   }
+  ],
+  "https://svi.cdc.gov/Documents/Data/2024/csv/states_counties/SVI_2024_US_county.csv": [
+   200,
+   {
+    "Content-Type": "text/html; charset=utf-8",
+    "Content-Length": "5120"
+   }
+  ]
+ },
+ "EPI's results file changed size at the same address": {
+  "https://epi.yale.edu/downloads/epi2024results.csv": [
+   200,
+   {
+    "Content-Type": "text/csv",
+    "Content-Length": "124001"
+   }
+  ]
+ },
+ "the SVI file Assay used is gone": {
+  "https://svi.cdc.gov/Documents/Data/2022/csv/states_counties/SVI_2022_US_county.csv": [
+   404,
+   {
+    "Content-Type": "text/html"
+   }
+  ]
+ },
+ "EPI's 2024 file address answers with an HTML page and a 2026 downloads page exists (as on 2026-10-15)": {
+  "https://epi.yale.edu/downloads/epi2024results.csv": [
+   200,
+   {
+    "Content-Type": "text/html; charset=UTF-8",
+    "Content-Length": "30621"
+   }
+  ],
+  "https://epi.yale.edu/2026/downloads": [
+   200,
+   {
+    "Content-Type": "text/html; charset=UTF-8",
+    "Content-Length": "47355"
+   }
+  ]
+ },
+ "the EPI file address answers with an HTML page and no later edition is found": {
+  "https://epi.yale.edu/downloads/epi2024results.csv": [
+   200,
+   {
+    "Content-Type": "text/html; charset=UTF-8",
+    "Content-Length": "30621"
+   }
+  ]
+ }
+}
