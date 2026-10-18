@@ -28,11 +28,11 @@ reweighting test should perturb: it is the choice a committee actually made.
 
 import argparse
 import csv
-import io
 import json
 import os
 
 import rawcache
+import table
 
 RESULTS = "https://epi.yale.edu/downloads/epi2024results.csv"
 WEIGHTS = "https://epi.yale.edu/downloads/epi2024weights.csv"
@@ -44,18 +44,13 @@ UA = {"User-Agent": "Mozilla/5.0 (compatible; Assay research; urllib)"}
 BASELINE_YEAR, CURRENT_YEAR = 2014, 2024
 
 
-def decode(raw):
-    for enc in ("utf-8-sig", "utf-8", "cp1252", "latin-1"):
-        try:
-            return raw.decode(enc)
-        except UnicodeDecodeError:
-            continue
-    raise SystemExit("could not decode an EPI file")
-
-
 def grab(url, legacy):
     # `legacy` is where this used to be saved; an existing copy is adopted.
-    return decode(rawcache.get("epi", url, UA["User-Agent"], legacy=legacy, timeout=90))
+    # CSV (2024) or .xlsx (2026) alike; an HTML page in place of the file stops the run.
+    try:
+        return table.rows(rawcache.get("epi", url, UA["User-Agent"], legacy=legacy, timeout=90))
+    except table.TableError as exc:
+        raise SystemExit("%s: %s" % (url, exc))
 
 
 def to_float(v):
@@ -71,10 +66,8 @@ def main():
     ap.parse_args()
     here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    res = list(csv.DictReader(io.StringIO(
-        grab(RESULTS, os.path.join(here, "data/raw/epi2024results.csv")))))
-    wts = list(csv.DictReader(io.StringIO(
-        grab(WEIGHTS, os.path.join(here, "data/raw/epi2024weights.csv")))))
+    res = grab(RESULTS, os.path.join(here, "data/raw/epi2024results.csv"))
+    wts = grab(WEIGHTS, os.path.join(here, "data/raw/epi2024weights.csv"))
 
     po = [r for r in wts if (r.get("Type") or "").strip() == "PolicyObjective"]
     cols, weights = [], {}
