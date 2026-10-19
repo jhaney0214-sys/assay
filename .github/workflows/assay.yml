@@ -59,6 +59,17 @@ jobs:
           pip install playwright
           python -m playwright install --with-deps chromium
 
+      # The audit page allows script only from the site's own files (a <meta>
+      # policy, script-src 'self', since 2026-10-19). An inline script or
+      # handler added back would be blocked in every visitor's browser with
+      # no error here, so the published Action checks the pages against
+      # their policy. Checked locally first: passes as is, and fails naming
+      # the line when an inline script is put back.
+      - name: Content-Security-Policy
+        uses: jhaney0214-sys/csp-hash-check@v1
+        with:
+          path: docs
+
       - name: Test what does not need the sibling
         run: |
           python -m unittest tests.test_drift tests.test_browser_page \
