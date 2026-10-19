@@ -609,6 +609,7 @@ tools/      fetch_vdem.py  fetch_undp.py  fetch_epi.py
             conform_browser.py  docclaims.py
             editions.py (is a newer HDI, EPI or SVI out? HEAD requests only)
             fetch_hdr2006.py (HDI 2004, for the Foster et al. replication)
+            findings.py (every figure on Against the Source's EPI page)
             rawcache.py  netcache.py (downloads, cached under data/cache/)
 tests/      193 tests (15 of them drive docs/audit.html in a browser)
 claims.json every hard number this README publishes, graded and dated
