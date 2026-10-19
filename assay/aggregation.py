@@ -126,11 +126,18 @@ def weights_are_decorative(index, pc1):
 
 
 def _ranks(scores):
-    """Rank 1 = highest score."""
-    order = np.argsort(-np.asarray(scores, dtype=float))
-    ranks = np.empty(len(scores), dtype=int)
-    ranks[order] = np.arange(1, len(scores) + 1)
-    return ranks
+    """Rank 1 = highest score; equal scores share the best rank (1, 2, 2, 4).
+
+    Competition ranking, the way an index publishes ranks. Until 2026-10-19
+    ties took whatever order numpy's default sort left them in, which is
+    not even defined: two countries tied at HDI 0.947 got ranks 9 and 10 in
+    an order nobody chose, and a rank change could come from the sort. The
+    browser engine (docs/audit.js `ranks`) does the same, and
+    tools/conform_browser.py holds the two together.
+    """
+    s = -np.asarray(scores, dtype=float)
+    # Each score's rank is one past the number of scores strictly above it.
+    return np.searchsorted(np.sort(s), s, side="left") + 1
 
 
 def rank_envelope(index, draws=DEFAULT_DRAWS, mode=None, concentration=50.0, seed=0):
@@ -179,8 +186,9 @@ def rank_envelope(index, draws=DEFAULT_DRAWS, mode=None, concentration=50.0, see
         published_rank = _ranks(Z @ (alpha / alpha.sum()))
 
     top = 10 if index.n >= 20 else max(3, index.n // 4)
-    published_top = set(np.argsort(published_rank)[:top])
-    churn = [len(published_top - set(np.argsort(all_ranks[d])[:top])) for d in range(draws)]
+    # Top by rank, not by position in a sort, so a tie at the boundary is in.
+    published_top = np.flatnonzero(published_rank <= top)
+    churn = [int((all_ranks[d][published_top] > top).sum()) for d in range(draws)]
 
     return {
         "mode": mode,
@@ -248,7 +256,7 @@ def leave_one_out(index, top=10):
     base = _ranks(X @ w0)
     n = index.n
     top = min(top, n)
-    base_top = set(np.argsort(base)[:top])
+    base_top = np.flatnonzero(base <= top)
     rows = []
     for j, col in enumerate(index.columns):
         w = w0.copy()
@@ -264,7 +272,7 @@ def leave_one_out(index, top=10):
             "p90_shift": float(np.percentile(moved, 90)),
             "max_shift": int(moved.max()),
             "rank_r": float(np.corrcoef(ranks, base)[0, 1]),
-            "top_changed": len(base_top - set(np.argsort(ranks)[:top])),
+            "top_changed": int((ranks[base_top] > top).sum()),
         })
     rows.sort(key=lambda r: (-r["median_shift"], -r["max_shift"]))
     return {"scale": scale, "n": n, "top": top, "rows": rows}

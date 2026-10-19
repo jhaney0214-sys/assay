@@ -185,6 +185,38 @@ class TestAuditPage(unittest.TestCase):
         self.assertIn("55th", text)
         self.assertEqual(self.errors, [])
 
+    def test_hdi_rank_envelope_matches_the_engine_within_sampling(self):
+        """The page's envelope against aggregation.rank_envelope.
+
+        Python, uniform mode, 2,000 draws: the median HDI country moves 41
+        places of 193, 21% of the field (the README's figure). The page
+        draws its own weightings, so it agrees within sampling, not exactly;
+        tools/conform_browser.py checks the arithmetic exactly on numpy's
+        draws and measured the sampling spread.
+        """
+        import re
+        text, _ = self._run("hdi", mark_published=True)
+        m = re.search(r"The median rank moves (\d+) places of (\d+) \((\d+)% of the field\)", text)
+        self.assertIsNotNone(m, text[:2000])
+        self.assertEqual(int(m.group(2)), 193)
+        self.assertLessEqual(abs(int(m.group(3)) - 21), 3)
+        self.assertIn("Most weight-dependent", text)
+        self.assertIn("Read a place in the table as a band", text)
+        self.assertEqual(self.errors, [])
+
+    def test_the_envelope_names_entities_from_the_identifier_column(self):
+        page = self.browser.new_page()
+        page.goto(self.url, wait_until="networkidle")
+        page.click("[data-example='vdem']")
+        page.wait_for_selector("#mapping:not(.hidden)", timeout=20000)
+        page.click("#run")
+        page.wait_for_selector("#movable", timeout=40000)
+        names = page.eval_on_selector_all("#movable tbody tr td:first-child",
+                                          "els => els.map(e => e.textContent)")
+        page.close()
+        self.assertEqual(len(names), 10)
+        self.assertFalse(any(n.startswith("row ") for n in names), names)
+
     def test_hdi_says_the_index_left_out_the_same_countries(self):
         """North Korea and Monaco have no published HDI either."""
         text, _ = self._run("hdi", mark_published=True)

@@ -35,12 +35,21 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
 import numpy as np                                            # noqa: E402
-from assay import load, structure                             # noqa: E402
+from assay import aggregation, load, structure                             # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SPECS = ["data/hdi-2022.json", "data/vdem-2024.json", "data/epi-2024.json",
          "data/svi-2022.json"]
 TOL = 1e-9
+ENV_EXACT_DRAWS = 200
+ENV_OWN_DRAWS = 1000
+# Two independent samplers of 1,000 draws each. Measured 2026-10-19 over 12
+# numpy seeds: EPI's median spread share varies with sd 0.0065 (0.562 to
+# 0.581), HDI's 0.0033. The gap between two independent samples then has sd
+# about 0.009 on EPI, so 0.03 is some 3.3 sd: wide enough that sampling alone
+# does not fail it, narrow enough that a sampler drawing from the wrong
+# distribution does. 0.02 was tried first and EPI landed at 0.019.
+ENV_TOL = 0.03
 TRICKY = ["12%", "3 (est.)", "1_000", "inf", "-Infinity", "1e999", "0x10",
           " 1,234.5 ", ".5", "5.", "-.5e-3", "+2", "NA", "n/a", "..", "-", "",
           "١٢", "1e", "e5", "--1"]
@@ -68,6 +77,11 @@ process.stdout.write(JSON.stringify({
   cells: input.cells.map(Assay.toNumber),
   left: input.left ? Assay.leftOut(input.left.kept, input.left.dropped) : null,
   selectiveAt: Assay.SELECTIVE_AT,
+  orient: Assay.orient(input.asPublished, input.published).flipped,
+  envExact: Assay.rankEnvelope(input.columns, {
+    published: input.published, weights: input.envWeights }),
+  envOwn: Assay.rankEnvelope(input.columns, {
+    published: input.published, draws: input.envDraws, seed: 0 }),
 }));
 """
 
@@ -104,6 +118,16 @@ def main():
                    "left": ({"kept": published,
                              "dropped": [p for _, p in index.missing["dropped_published"]]}
                             if left and published is not None else None)}
+        # The rank envelope, twice. With numpy's own Dirichlet draws handed to
+        # the page's engine, every best, worst and spread must agree exactly:
+        # that tests the arithmetic. With the page's own generator, only the
+        # summaries can agree, within ENV_TOL of the field; that tests the
+        # sampler, the way parallel analysis is tested above.
+        rng = np.random.default_rng(0)
+        env_w = [rng.dirichlet(np.ones(index.k)).tolist() for _ in range(ENV_EXACT_DRAWS)]
+        payload["envWeights"] = env_w
+        payload["envDraws"] = ENV_OWN_DRAWS
+        payload["asPublished"] = [[float(v) for v in col] for col in index.as_published().T]
         tmp = ROOT / "tools" / "_conform_input.json"
         tmp.write_text(json.dumps(payload), "utf-8")
 
@@ -119,6 +143,29 @@ def main():
                 failures.append("%s: %s python=%r js=%r" % (name, label, a, b))
 
         check("n", py["n"], js["n"])
+        checks += 1
+        if [index.columns.index(c) for c in index.flipped] != js["orient"]:
+            failures.append("%s: orientation flips python=%r js=%r"
+                            % (name, index.flipped, js["orient"]))
+        ex = aggregation.rank_envelope(index, draws=ENV_EXACT_DRAWS, mode="uniform", seed=0)
+        je = js["envExact"]
+        for key in ("best", "worst", "spread"):
+            checks += 1
+            if ex[key].tolist() != je[key]:
+                bad = int(np.sum(np.asarray(ex[key]) != np.asarray(je[key])))
+                failures.append("%s: envelope %s differs for %d entities" % (name, key, bad))
+        checks += 1
+        if ex["published_rank"].tolist() != je["publishedRank"]:
+            failures.append("%s: envelope published rank differs" % name)
+        check("env.median_spread", ex["median_spread"], je["medianSpread"])
+        check("env.p90_spread", ex["p90_spread"], je["p90Spread"])
+        check("env.mean_top_churn", ex["mean_top_churn"], je["meanTopChurn"])
+        own = aggregation.rank_envelope(index, draws=ENV_OWN_DRAWS, mode="uniform", seed=0)
+        jo = js["envOwn"]
+        for key, jkey in (("median_spread_share", "medianSpreadShare"),
+                          ("p90_spread_share", "p90SpreadShare")):
+            check("env own-draws " + key, own[key], jo[jkey], tol=ENV_TOL)
+        env_gap = abs(own["median_spread_share"] - jo["medianSpreadShare"])
         check("SELECTIVE_AT", load.SELECTIVE_AT, js["selectiveAt"])
         mismatched = [c for c, v in zip(cells, js["cells"])
                       if load._to_float(c) != v]
@@ -164,6 +211,10 @@ def main():
               % (name, py["n"], py["k"], py["pc1_share"],
                  py["dimensions"]["parallel"], py["dimensions"]["map"],
                  len(py["redundant"])))
+        print("  %-12s envelope: exact on %d numpy draws; own draws median share "
+              "python %.3f js %.3f (gap %.3f, allowed %.2f)"
+              % ("", ENV_EXACT_DRAWS, own["median_spread_share"],
+                 jo["medianSpreadShare"], env_gap, ENV_TOL))
 
     tmp.unlink(missing_ok=True)
     runner.unlink(missing_ok=True)

@@ -199,6 +199,7 @@ $("#run").addEventListener("click", () => {
     .map((s) => s.value);
   const scoreIdx = roles.map((r, i) => r === "score" ? i : -1).filter((i) => i >= 0);
   const pubIdx = roles.indexOf("published");
+  const idIdx = roles.indexOf("id");
 
   if (scoreIdx.length < 3) {
     alert("Mark at least three columns as sub-scores. Below three there is no " +
@@ -215,7 +216,8 @@ $("#run").addEventListener("click", () => {
     const vals = scoreIdx.map((i) => Assay.toNumber(r[i]));
     const pub = pubIdx >= 0 ? Assay.toNumber(r[pubIdx]) : null;
     if (vals.every((v) => v !== null) && (pubIdx < 0 || pub !== null)) {
-      keep.push({ vals, pub });
+      keep.push({ vals, pub, label: idIdx >= 0 ? (r[idIdx] || "").trim()
+                                              : "row " + (keep.length + gone.length + 1) });
       return;
     }
     gone.push(pub);
@@ -245,7 +247,13 @@ $("#run").addEventListener("click", () => {
     hasPublished: published !== null,
     ...Assay.leftOut(published, gone.filter((p) => p !== null)),
   } : null;
-  render(out, names, dropped, $("#shared").checked, published !== null, suspect, left);
+  // The rank envelope, on the sub-scores turned to point one way, as the
+  // engine's loader does. Any weighting at all: the page has no weights input.
+  const turned = Assay.orient(columns, published);
+  const env = Assay.rankEnvelope(turned.columns, { published, draws: 2000, seed: 0 });
+  env.labels = keep.map((r) => r.label);
+  env.flipped = turned.flipped.map((j) => names[j]);
+  render(out, names, dropped, $("#shared").checked, published !== null, suspect, left, env);
 });
 
 /* An index total is a function of its own pillars, so it correlates with
@@ -316,7 +324,54 @@ function leftOutBlock(left) {
   return p.join("");
 }
 
-function render(a, names, dropped, shared, hasPublished, suspect, left) {
+function envelopeBlock(env, kind, oneDim) {
+  const p = [];
+  const pc = (x) => Math.round(100 * x) + "%";
+  p.push("<h3>How much of a rank is the entity, and how much the weighting?</h3>");
+  p.push("<p class='verdict' id='envelope'>The median rank moves " +
+    env.medianSpread.toFixed(0) + " places of " + env.spread.length + " (" +
+    pc(env.medianSpreadShare) + " of the field)</p>");
+  p.push("<p class='muted'>" + env.draws.toLocaleString() + " weightings drawn " +
+    "evenly from every possible weighting of these sub-scores. The page has no " +
+    "way to enter an index's own weights, so this is the permissive reading: an " +
+    "upper bound on how far a rank could move, not the movement under small " +
+    "disagreements about the published weights (the Python engine reports that " +
+    "when a spec gives them). Places are not comparable between indices of " +
+    "different sizes; the share of the field is.</p>");
+  p.push("<table><tbody>" +
+    "<tr><td>90th percentile spread</td><td class='num'>" + env.p90Spread.toFixed(0) +
+    " places (" + pc(env.p90SpreadShare) + ")</td></tr>" +
+    "<tr><td>Largest spread</td><td class='num'>" + env.maxSpread + " places (" +
+    pc(env.maxSpreadShare) + ")</td></tr>" +
+    "<tr><td>Top-" + env.topN + " churn</td><td class='num'>" +
+    env.meanTopChurn.toFixed(1) + " of " + env.topN + " leave on an average draw</td></tr>" +
+    "</tbody></table>");
+  if (env.flipped.length)
+    p.push("<p class='muted'>Turned round before weighting, because they run " +
+      "against the rest: " + env.flipped.map(esc).join(", ") + ". A country " +
+      "scoring well on these tends to score worse overall.</p>");
+  const order = env.spread.map((s, t) => t).sort((a, b) => env.spread[b] - env.spread[a]).slice(0, 10);
+  p.push("<p>Most weight-dependent:</p><table id='movable'><thead><tr><th>Entity</th>" +
+    "<th class='num'>Rank</th><th class='num'>Best</th><th class='num'>Worst</th></tr></thead><tbody>");
+  order.forEach((t) => p.push("<tr><td>" + esc(env.labels[t]) + "</td><td class='num'>" +
+    env.publishedRank[t] + "</td><td class='num'>" + env.best[t] + "</td><td class='num'>" +
+    env.worst[t] + "</td></tr>"));
+  p.push("</tbody></table>");
+  // assay/report.py's joint reading: stability beside one dimension is
+  // not robustness, and the page says so where it applies.
+  if (env.medianSpreadShare <= 0.05 && oneDim)
+    p.push("<div class='warn'><strong>This stability is not evidence of " +
+      "robustness.</strong> The sub-scores are close to one thing, so no " +
+      "weighting could have separated these entities. The stability and the " +
+      "redundancy are the same fact.</div>");
+  else if (env.medianSpreadShare > 0.05)
+    p.push("<p class='muted'>Rank differences smaller than this spread are " +
+      "differences between weightings as much as between entities. Read a place " +
+      "in the table as a band, not a position.</p>");
+  return p.join("");
+}
+
+function render(a, names, dropped, shared, hasPublished, suspect, left, env) {
   const d = a.dimensions;
   const parts = [];
 
@@ -424,6 +479,10 @@ function render(a, names, dropped, shared, hasPublished, suspect, left) {
       : "<p class='muted'>The weighting moves the result away from a plain " +
         "first component by a visible amount.</p>");
   }
+
+  /* Q5 the envelope */
+  if (env) parts.push(envelopeBlock(env, Assay.grade(a.pairwise.mean),
+    a.dimensions.high === 1 && Assay.grade(a.pairwise.mean) === "one"));
 
   /* The trap */
   parts.push("<h3>Before you use any of this</h3>");

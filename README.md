@@ -1,6 +1,6 @@
 # Assay
 
-**Status: production.** 178 tests (169 Python, 9 driving the browser page); the dimensionality path is validated against a published HDI result, the pairwise-robustness path against three of four published HDI 2004 figures; the rank-envelope path has no external anchor. Every hard number below is recorded in [`claims.json`](claims.json) with how it is known and when it was last checked. See [PRODUCTION.md](../PRODUCTION.md).
+**Status: production.** 180 tests (169 Python, 11 driving the browser page); the dimensionality path is validated against a published HDI result, the pairwise-robustness path against three of four published HDI 2004 figures; the rank-envelope path has no external anchor. Every hard number below is recorded in [`claims.json`](claims.json) with how it is known and when it was last checked. See [PRODUCTION.md](../PRODUCTION.md).
 
 Tests whether a published index measures what it says it measures. Named for
 the metallurgical test that tells you what an ore is actually made of, rather
@@ -268,7 +268,9 @@ from its own published components** — a country lands up to 1.2 points out
 from the three policy objectives, and 2.2 from the eleven issue categories
 *(5.6 until 2026-10-19, an error of this tool's; see the EPI correction
 above)*. That is why `change_fidelity` exists: the level is not
-reproduced exactly, but the change is (r = 0.998, 97.8% same direction),
+reproduced exactly, but the change is (r = 0.998, 97.2% same direction;
+97.8% until 2026-10-19, when tied scores began sharing a rank instead of
+taking an arbitrary order, see "Ties" below),
 because a per-country offset largely cancels in a difference.
 
 ### Why this is not Foster, McGillivray & Seth (2009)
@@ -491,6 +493,20 @@ idiom `METHOD.md` records as the carrier of a real miscount: a file whose
 defined before it and still prints a green `OK`. `PRODUCTION.md`'s own re-check
 block was moved off that loop for this reason and this file was not.)*
 
+## Ties
+
+Equal scores share the best rank (1, 2, 2, 4), the way indices publish
+ranks. Until 2026-10-19 they took whatever order numpy's default sort left
+them in, which is not defined; it surfaced when the browser engine, whose
+sort keeps input order, disagreed with the Python one on every index with a
+tied published score. Every figure that tie order could reach was re-run.
+None of the findings above moved except EPI's change agreement, 97.8% to
+97.2%. Smaller figures this README does not quote did: HDI 2022's top-ten
+churn (3.3 to 4.2 of 10, since its published top ten includes a tie) and a
+few published ranks in the "most weight-dependent" lists, now the shared
+rank. The drift tables, the HDI anchor and the SVI, V-Dem and EPI audits are
+unchanged.
+
 ## What is not established
 
 - **One validation is one validation.** HDI's 84.1% matching the published
@@ -544,7 +560,7 @@ tools/      fetch_vdem.py  fetch_undp.py  fetch_epi.py
             editions.py (is a newer HDI, EPI or SVI out? HEAD requests only)
             fetch_hdr2006.py (HDI 2004, for the Foster et al. replication)
             rawcache.py  netcache.py (downloads, cached under data/cache/)
-tests/      178 tests (9 of them drive docs/audit.html in a browser)
+tests/      180 tests (11 of them drive docs/audit.html in a browser)
 claims.json every hard number this README publishes, graded and dated
 ax.py       the CLI
 ```
@@ -571,12 +587,26 @@ generator, which JavaScript cannot reproduce; the percentile gap is printed so a
 run drifting toward the retention boundary is visible before it flips. Run it
 after any change to `structure.py` or `docs/audit.js`.
 
+**The rank envelope is on the page since 2026-10-19**, in its permissive
+form, any weighting at all, since the page has no weights input. It is
+checked twice. Given numpy's own 200 Dirichlet draws, the page's engine must
+reproduce every entity's best, worst and spread exactly, and the published
+ranks, median and churn; on all four indices it does. With its own
+generator, 1,000 draws each side, only the summaries can agree: the median
+spread as a share of the field must land within 0.03 of Python's. That
+tolerance was measured, not chosen: over 12 numpy seeds EPI's figure varies
+with a standard deviation of 0.0065, so the gap between two independent
+samples has one of about 0.009. The page also turns round the sub-scores
+that run against the rest before weighting, by the loader's rule, and the
+check compares which ones each side turns round. Building it is how the tie
+problem above was found.
+
 **What that costs, found 2026-09-19 by CI's first run.** A clone of this
-repository alone runs 119 of its 178 tests: `test_structure`, `test_aggregation`,
+repository alone runs 121 of its 180 tests: `test_structure`, `test_aggregation`,
 `test_report` and `test_claims` import Sextant through `structure.py` and cannot
 load without a sibling checkout. The suite passes in a working directory that has one and
 fails in a fresh clone, so **a clone, not the working directory, is the honest
-check before trusting a green run.** `.github/workflows/assay.yml` runs the 119
+check before trusting a green run.** `.github/workflows/assay.yml` runs the 121
 and prints what it did not run; the machinery those four exercise is
 Sextant's own, and Sextant's CI runs all 342 of its tests on every push.
 Without the sibling, `ax.py columns` and `ax.py init` still run: since

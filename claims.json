@@ -100,7 +100,7 @@
     {
       "id": "test_count",
       "claim": "Tests in the suite, Python and browser together",
-      "value": "178 tests",
+      "value": "180 tests",
       "format": "%d tests",
       "derive": {
         "files": [
@@ -113,7 +113,8 @@
       "checked_on": "2026-10-15",
       "durable": "read from source on every verify, so it cannot outlive the code",
       "appears_in": [
-        "README.md"
+        "README.md",
+        "docs/index.html"
       ],
       "near": [
         "tests"
@@ -122,9 +123,9 @@
     {
       "id": "standalone_tests",
       "claim": "Tests a fresh clone runs without a sibling checkout: the nine files CI runs",
-      "value": "runs 119 of its",
+      "value": "runs 121 of its",
       "also_written": [
-        "runs the 119"
+        "runs the 121"
       ],
       "format": "runs %d of its",
       "status": "measured",

@@ -80,7 +80,9 @@ const Assay = (function () {
     return columns.map((col) => {
       const n = col.length;
       const mean = col.reduce((a, b) => a + b, 0) / n;
-      // Population sd, matching numpy's default ddof=0 in Index.standardised.
+      // Population sd (divides by n). Index.standardised divides by n - 1;
+      // the two differ by one constant factor for every column, which no
+      // correlation, component share or ranking can see.
       const varr = col.reduce((a, b) => a + (b - mean) * (b - mean), 0) / n;
       const sd = Math.sqrt(varr);
       return col.map((v) => (sd === 0 ? 0 : (v - mean) / sd));
@@ -282,6 +284,108 @@ const Assay = (function () {
     return result;
   }
 
+  /* ---------- orientation and the rank envelope ---------- */
+
+  // assay/load.py's orient(): turn round any sub-score that correlates
+  // negatively with the published score, or, with none marked, with the
+  // column most correlated with the rest. Returns the oriented columns and
+  // the indices turned round. Structure ignores sign; the envelope does not.
+  function orient(columns, published) {
+    let ref = published;
+    if (!ref) {
+      const R = correlations(columns);
+      let best = 0, bestSum = -1;
+      R.forEach((row, j) => {
+        const s = row.reduce((a, x) => a + Math.abs(x), 0);
+        if (s > bestSum) { bestSum = s; best = j; }
+      });
+      ref = standardise(columns)[best];
+    }
+    const flipped = [];
+    const out = columns.map((col, j) => {
+      if (pearson(col, ref) < 0) { flipped.push(j); return col.map((v) => -v); }
+      return col;
+    });
+    return { columns: out, flipped };
+  }
+
+  // Rank 1 = highest; equal scores share the best rank (1, 2, 2, 4), as
+  // aggregation._ranks does and as indices publish ranks.
+  function ranks(scores) {
+    const order = scores.map((s, i) => i).sort((a, b) => scores[b] - scores[a]);
+    const r = new Array(scores.length);
+    order.forEach((i, pos) => {
+      const prev = order[pos - 1];
+      r[i] = pos > 0 && scores[prev] === scores[i] ? r[prev] : pos + 1;
+    });
+    return r;
+  }
+
+  // numpy's default percentile: linear between the two nearest ranks.
+  function percentile(xs, p) {
+    const s = xs.slice().sort((a, b) => a - b);
+    const h = (s.length - 1) * p / 100, lo = Math.floor(h);
+    return lo + 1 < s.length ? s[lo] + (h - lo) * (s[lo + 1] - s[lo]) : s[lo];
+  }
+
+  // aggregation.rank_envelope in its "uniform" mode: any weighting at all,
+  // drawn flat over the simplex (Dirichlet with every parameter 1), applied
+  // to the oriented z-scores. The page has no weights input, so this is the
+  // permissive reading, an upper bound on how far a rank could move.
+  // `options.weights` replaces the draws, which is how conform_browser.py
+  // feeds this numpy's own draws and checks the arithmetic exactly.
+  function rankEnvelope(columns, options = {}) {
+    const k = columns.length, n = columns[0].length;
+    const Z = standardise(columns);
+    let W = options.weights;
+    if (!W) {
+      const rand = rng((options.seed || 0) + 7919);
+      W = [];
+      for (let d = 0; d < (options.draws || 2000); d++) {
+        const e = Array.from({ length: k }, () => -Math.log(Math.max(rand(), 1e-300)));
+        const s = e.reduce((a, b) => a + b, 0);
+        W.push(e.map((x) => x / s));
+      }
+    }
+    const draws = W.length;
+    const best = new Array(n).fill(Infinity), worst = new Array(n).fill(-Infinity);
+    const all = [];
+    for (const w of W) {
+      const score = new Array(n).fill(0);
+      for (let c = 0; c < k; c++) for (let t = 0; t < n; t++) score[t] += Z[c][t] * w[c];
+      const r = ranks(score);
+      all.push(r);
+      for (let t = 0; t < n; t++) {
+        if (r[t] < best[t]) best[t] = r[t];
+        if (r[t] > worst[t]) worst[t] = r[t];
+      }
+    }
+    const spread = best.map((b, t) => worst[t] - b);
+    let pubRank;
+    if (options.published) pubRank = ranks(options.published);
+    else {
+      const eq = new Array(n).fill(0);
+      for (let c = 0; c < k; c++) for (let t = 0; t < n; t++) eq[t] += Z[c][t] / k;
+      pubRank = ranks(eq);
+    }
+    const top = n >= 20 ? 10 : Math.max(3, Math.floor(n / 4));
+    const pubTop = new Set(pubRank.map((r, t) => [r, t]).filter(([r]) => r <= top).map(([, t]) => t));
+    const churn = all.map((r) => {
+      let out = 0;
+      pubTop.forEach((t) => { if (r[t] > top) out++; });
+      return out;
+    });
+    const med = percentile(spread, 50), p90 = percentile(spread, 90);
+    const mx = Math.max.apply(null, spread);
+    return {
+      draws, best, worst, spread, publishedRank: pubRank,
+      medianSpread: med, p90Spread: p90, maxSpread: mx,
+      medianSpreadShare: med / n, p90SpreadShare: p90 / n, maxSpreadShare: mx / n,
+      topN: top, meanTopChurn: churn.reduce((a, b) => a + b, 0) / draws,
+      maxTopChurn: Math.max.apply(null, churn),
+    };
+  }
+
   /* ---------- reading a cell, and who was left out ---------- */
 
   // The same rule as assay/load.py's _to_float, so the page and the engine
@@ -335,6 +439,7 @@ const Assay = (function () {
     parallelAnalysis, mapTest, redundantPairs, pc1Scores, pearson,
     pairwise, grade, ONE_THING_AT, OVERLAP_AT,
     MIN_COLUMNS_FOR_MAP, isBlank, toNumber, leftOut, SELECTIVE_AT,
+    orient, ranks, percentile, rankEnvelope,
   };
 })();
 
