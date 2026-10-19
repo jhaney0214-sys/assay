@@ -52,6 +52,14 @@ class TestCells(unittest.TestCase):
         self.assertEqual(load._to_float(" 1,234.5 "), 1234.5)
         self.assertEqual(load._to_float("-0.25"), -0.25)
 
+    def test_only_a_plain_decimal_reads(self):
+        # float() takes all of these. docs/audit.js does not, and the two
+        # must drop the same rows (tools/conform_browser.py checks it).
+        for s in ("1_000", "١٢", "0x10", "1e", "--1", "3 (est.)"):
+            self.assertIsNone(load._to_float(s), s)
+        for s, v in ((".5", 0.5), ("5.", 5.0), ("-.5e-3", -0.0005), ("+2", 2.0)):
+            self.assertEqual(load._to_float(s), v, s)
+
     def test_blank_and_unreadable_are_told_apart(self):
         for s in ("", " ", "NA", "n/a", "nan", "-", "null", None):
             self.assertTrue(load._is_blank(s), repr(s))
@@ -145,6 +153,13 @@ class TestLeftOut(unittest.TestCase):
         self.assertEqual(cols["a"], (2, 0, []))
         self.assertEqual(cols["b"], (1, 1, ["12%"]))
         self.assertNotIn("c", cols)
+        self.assertEqual(left["names"], ["g1", "g2", "g3"])
+
+    def test_hdi_drops_two_countries_the_index_did_not_score_either(self):
+        left = load.left_out(load.from_spec(str(ROOT / "data" / "hdi-2022.json")))
+        self.assertEqual((left["rows_in"], left["dropped"], left["compared"]), (195, 2, 0))
+        self.assertEqual(sorted(left["names"]),
+                         ["Korea (Democratic People's Rep. of)", "Monaco"])
 
     def test_dropping_the_bottom_of_the_table_is_called_selective(self):
         # The overall score rises with the row number, so dropping the first

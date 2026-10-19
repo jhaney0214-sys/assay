@@ -1,6 +1,6 @@
 # Assay
 
-**Status: production.** 149 tests (142 Python, 7 driving the browser page); the dimensionality path is validated against a published HDI result, the rank-envelope path has no external anchor. Every hard number below is recorded in [`claims.json`](claims.json) with how it is known and when it was last checked. See [PRODUCTION.md](../PRODUCTION.md).
+**Status: production.** 154 tests (145 Python, 9 driving the browser page); the dimensionality path is validated against a published HDI result, the rank-envelope path has no external anchor. Every hard number below is recorded in [`claims.json`](claims.json) with how it is known and when it was last checked. See [PRODUCTION.md](../PRODUCTION.md).
 
 Tests whether a published index measures what it says it measures. Named for
 the metallurgical test that tells you what an ore is actually made of, rather
@@ -374,17 +374,29 @@ weight of 0. Write `0` for a pillar the index does not weight.
 
 `ax.py columns` counts the empty cells in each column, and the cells that are
 neither empty nor a number (`12%`, `n.a.`), so a spec writer sees which pillar
-will cost rows before choosing it. Infinities count as unreadable: `float()`
-accepts `inf`, and one in a column turned every number the audit printed
-into `nan`.
+will cost rows before choosing it. A cell is a number only if it is a plain
+decimal in ASCII digits: `float()` also accepts `inf`, `1_000` and
+non-ASCII digits, and one `inf` in a column turned every number the audit
+printed into `nan`. The browser page reads cells by the same rule; it used
+`parseFloat`, which reads `12%` as 12, so the page and the engine could audit
+different rows of one file. `tools/conform_browser.py` now runs both readers
+over every cell of the four bundled files and a list of awkward cases.
 
 **Keep incomplete rows in the data file.** The audit drops them itself and
 then reports, above every number, how many went, which column emptied them,
 and whether they score higher or lower on the published composite than the
 rows that stayed. A gap of a quarter of a standard deviation or more is
-called selective; that line is a judgement, like the others here. A file
-holding only complete rows hides this, which is why `fetch_epi.py` now
-writes all 180 countries.
+called selective; that line is a judgement, like the others here. When ten
+or fewer rows are dropped they are named. A file holding only complete rows
+hides all this, which is why the EPI, HDI and SVI fetch scripts now write
+incomplete rows with blank cells. The browser page shows the same section,
+computed by the same arithmetic and held to the engine's by
+`tools/conform_browser.py`.
+
+What it finds on the bundled indices: EPI drops 75 of 180, and they score
+lower (above). HDI drops two, North Korea and Monaco, which have no published
+HDI either, so the audit covers the same field the index does. SVI's 2022
+file has no unranked county, so nothing is dropped.
 
 Tests are `unittest`; there is no pytest here.
 
@@ -438,9 +450,9 @@ block was moved off that loop for this reason and this file was not.)*
   that missingness is unlikely to be random — an index tends not to score the
   places it finds hardest to score. The report now tests this where it can, on
   the published score, and only for dropped rows that have one. Two dropped
-  groups can match on the composite and still differ on the missing pillar,
-  and the HDI, V-Dem and SVI files still arrive with their incomplete rows
-  already removed by their fetch scripts, so only EPI is tested.
+  groups can match on the composite and still differ on the missing pillar.
+  V-Dem's fetch script still keeps only countries with all five indices, and
+  V-Dem publishes no composite to compare on anyway.
 
 ## Layout
 
@@ -452,7 +464,7 @@ tools/      fetch_vdem.py  fetch_undp.py  fetch_epi.py
             conform_browser.py  docclaims.py
             editions.py (is a newer HDI, EPI or SVI out? HEAD requests only)
             rawcache.py  netcache.py (downloads, cached under data/cache/)
-tests/      149 tests (7 of them drive docs/audit.html in a browser)
+tests/      154 tests (9 of them drive docs/audit.html in a browser)
 claims.json every hard number this README publishes, graded and dated
 ax.py       the CLI
 ```
@@ -480,11 +492,11 @@ run drifting toward the retention boundary is visible before it flips. Run it
 after any change to `structure.py` or `docs/audit.js`.
 
 **What that costs, found 2026-09-19 by CI's first run.** A clone of this
-repository alone runs 92 of its 149 tests: `test_structure`, `test_aggregation`,
+repository alone runs 96 of its 154 tests: `test_structure`, `test_aggregation`,
 `test_report` and `test_claims` import Sextant through `structure.py` and cannot
 load without a sibling checkout. The suite passes in a working directory that has one and
 fails in a fresh clone, so **a clone, not the working directory, is the honest
-check before trusting a green run.** `.github/workflows/assay.yml` runs the 92
+check before trusting a green run.** `.github/workflows/assay.yml` runs the 96
 and prints what it did not run; the machinery those four exercise is
 Sextant's own, and Sextant's CI runs all 342 of its tests on every push.
 

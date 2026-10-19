@@ -20,8 +20,9 @@ percentile of a sum of sums of percentiles, not a weighted sum of the theme
 ranks, so the weights cannot be reproduced linearly; the spec says so and that
 test is switched off, as it is for HDI.
 
-A county CDC could not rank carries -999 in a column; those rows are dropped
-and counted.
+A county CDC could not rank carries -999 in a column. Since 2026-10-18 that
+cell is written blank and the county kept, so the audit can drop it and report
+who it dropped; before, this script dropped it and only counted.
 """
 
 import argparse
@@ -46,16 +47,18 @@ MISSING = -999.0
 
 
 def rows_from(text):
-    """([entity, theme ranks..., overall] rows, number dropped)."""
-    out, dropped = [], 0
+    """([entity, theme ranks..., overall] rows, number incomplete).
+
+    An unranked cell (-999) is written blank; its county stays in the file.
+    """
+    out, incomplete = [], 0
     for r in csv.DictReader(io.StringIO(text)):
         values = [float(r[c]) for c in list(THEMES) + [OVERALL]]
         if any(v <= MISSING for v in values):
-            dropped += 1
-            continue
+            incomplete += 1
         # LOCATION is "Autauga County, Alabama": unique, where COUNTY alone is not.
-        out.append([r["LOCATION"]] + values)
-    return out, dropped
+        out.append([r["LOCATION"]] + ["" if v <= MISSING else v for v in values])
+    return out, incomplete
 
 
 def main():
@@ -87,8 +90,8 @@ def main():
     with open(os.path.join(here, "data", stem + ".json"), "w", encoding="utf-8") as fh:
         json.dump(spec, fh, indent=2)
         fh.write("\n")
-    print("%d counties written to data/%s.csv, %d dropped for a missing rank"
-          % (len(rows), stem, dropped))
+    print("%d counties written to data/%s.csv, %d of them with a missing rank "
+          "for the audit to drop" % (len(rows), stem, dropped))
     return 0
 
 

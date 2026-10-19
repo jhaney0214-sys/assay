@@ -8,14 +8,14 @@
 #
 # They are not skipped quietly. They run two other ways: Sextant's own CI runs
 # all 342 of its tests on every push, which is where that machinery lives, and
-# the full 73 run locally where the two projects are siblings - the run that
+# the whole suite runs locally where the two projects are siblings - the run that
 # matters before a publish. Checking Sextant out here would need a token with
 # read access to a private repository, stored on a public one; that was
 # considered on 2026-09-19 and declined as a poor trade for a second run of
 # code Sextant already tests.
 #
 # What runs here: test_drift and test_browser_page, the latter against a real
-# chromium, because its seven cover the page this repository actually serves
+# chromium, because they cover the page this repository actually serves
 # and they skip themselves when chromium is missing.
 #
 # Since 2026-09-20, test_claims_ledger as well. It checks claims.json against

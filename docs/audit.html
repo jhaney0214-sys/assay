@@ -144,7 +144,7 @@ function parseCSV(text) {
 function looksNumeric(values) {
   const usable = values.filter((v) => v.trim() !== "");
   if (!usable.length) return false;
-  const ok = usable.filter((v) => isFinite(parseFloat(v))).length;
+  const ok = usable.filter((v) => Assay.toNumber(v) !== null).length;
   return ok / usable.length > 0.8;
 }
 
@@ -206,14 +206,26 @@ $("#run").addEventListener("click", () => {
     return;
   }
 
-  const keep = [];
+  // Cells are read by Assay.toNumber, the engine's own rule. A dropped row is
+  // tallied by the column that emptied it, as assay/report.py does, and its
+  // published score kept, so "who was left out" can be asked of it.
+  const keep = [], gone = [], gaps = {};
+  const checked = scoreIdx.concat(pubIdx >= 0 ? [pubIdx] : []);
   parsed.body.forEach((r) => {
-    const vals = scoreIdx.map((i) => parseFloat((r[i] || "").trim()));
-    const pub = pubIdx >= 0 ? parseFloat((r[pubIdx] || "").trim()) : null;
-    if (vals.every((v) => isFinite(v)) && (pubIdx < 0 || isFinite(pub)))
+    const vals = scoreIdx.map((i) => Assay.toNumber(r[i]));
+    const pub = pubIdx >= 0 ? Assay.toNumber(r[pubIdx]) : null;
+    if (vals.every((v) => v !== null) && (pubIdx < 0 || pub !== null)) {
       keep.push({ vals, pub });
+      return;
+    }
+    gone.push(pub);
+    checked.forEach((i) => {
+      if (Assay.toNumber(r[i]) !== null) return;
+      const g = gaps[i] || (gaps[i] = { empty: 0, text: 0 });
+      if (Assay.isBlank(r[i])) g.empty++; else g.text++;
+    });
   });
-  const dropped = parsed.body.length - keep.length;
+  const dropped = gone.length;
   if (keep.length < 10) {
     alert("Only " + keep.length + " complete rows. That is too few to say " +
           "anything about structure.");
@@ -226,7 +238,14 @@ $("#run").addEventListener("click", () => {
 
   const suspect = aggregateAmongScores(columns, names);
   const out = Assay.analyse(columns, names, { published, seed: 0, iters: 500 });
-  render(out, names, dropped, $("#shared").checked, published !== null, suspect);
+  const left = dropped ? {
+    rowsIn: parsed.body.length, dropped,
+    byColumn: Object.keys(gaps).map((i) => ({ name: parsed.header[i], ...gaps[i] }))
+      .sort((a, b) => (b.empty + b.text) - (a.empty + a.text)),
+    hasPublished: published !== null,
+    ...Assay.leftOut(published, gone.filter((p) => p !== null)),
+  } : null;
+  render(out, names, dropped, $("#shared").checked, published !== null, suspect, left);
 });
 
 /* An index total is a function of its own pillars, so it correlates with
@@ -251,7 +270,53 @@ function aggregateAmongScores(columns, names) {
 
 function pct(x) { return (100 * x).toFixed(1) + "%"; }
 
-function render(a, names, dropped, shared, hasPublished, suspect) {
+function ordinal(x) {
+  const n = Math.round(x), t = n % 100;
+  const s = (t >= 11 && t <= 13) ? "th" : ({ 1: "st", 2: "nd", 3: "rd" }[n % 10] || "th");
+  return n + s;
+}
+
+function leftOutBlock(left) {
+  const p = [];
+  p.push("<h3>Who was left out?</h3>");
+  p.push("<p class='verdict' id='left-out'>" + left.dropped + " of " + left.rowsIn +
+    " rows dropped</p>");
+  p.push("<table><thead><tr><th>Column</th><th class='num'>Empty</th>" +
+    "<th class='num'>Not a number</th></tr></thead><tbody>");
+  left.byColumn.forEach((c) => p.push("<tr><td>" + esc(c.name) + "</td><td class='num'>" +
+    (c.empty || "") + "</td><td class='num'>" + (c.text || "") + "</td></tr>"));
+  p.push("</tbody></table>");
+  if (left.byColumn.some((c) => c.text))
+    p.push("<p class='muted'>A “not a number” cell is text such as <code>12%</code> or " +
+      "<code>n.a.</code>. If that is how the file writes numbers rather than a gap, " +
+      "those rows were dropped by mistake.</p>");
+  if (!left.hasPublished) {
+    p.push("<p class='muted'>No published score is marked, so whether the dropped " +
+      "rows differ from the kept ones cannot be tested.</p>");
+  } else if (left.gapInSd === undefined) {
+    p.push("<p class='muted'>" + (left.compared === 0
+      ? "None of the dropped rows has a published score either: the index left " +
+        "them out too, so this audit covers the same field it does."
+      : "Only " + left.compared + " dropped rows have a published score, too few " +
+        "to compare.") + "</p>");
+  } else {
+    const side = left.gapInSd < 0 ? "lower" : "higher";
+    const how = "Compared on the published score, the " + left.compared +
+      " dropped rows that have one sit at the " + ordinal(left.droppedMeanPct) +
+      " percentile on average and the kept rows at the " +
+      ordinal(left.keptMeanPct) + " (" + Math.abs(left.gapInSd).toFixed(2) +
+      " SD " + side + ").";
+    p.push(left.selective
+      ? "<div class='warn' id='left-out-verdict'><strong>The dropping is selective.</strong> " +
+        how + " Everything below describes the index where it is complete, " +
+        "which is not the whole field.</div>"
+      : "<p class='muted' id='left-out-verdict'>" + how + " That is close, which " +
+        "is evidence against the dropping biasing what follows, not proof.</p>");
+  }
+  return p.join("");
+}
+
+function render(a, names, dropped, shared, hasPublished, suspect, left) {
   const d = a.dimensions;
   const parts = [];
 
@@ -276,6 +341,7 @@ function render(a, names, dropped, shared, hasPublished, suspect) {
   parts.push("<p class='muted'>" + a.n + " complete rows, " + a.k +
     " sub-scores" + (dropped ? ", " + dropped + " rows dropped for missing values" : "") +
     ".</p>");
+  if (left) parts.push(leftOutBlock(left));
 
   /* Q1 dimensions */
   const range = d.low === d.high ? String(d.low) : d.low + "–" + d.high;

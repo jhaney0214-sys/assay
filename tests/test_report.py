@@ -235,6 +235,20 @@ class TestWhoWasLeftOut(unittest.TestCase):
         self.assertIn("score lower", txt)
         self.assertLess(txt.index("WHO WAS LEFT OUT"), txt.index("HOW MANY DIMENSIONS"))
 
+    def test_a_few_dropped_entities_are_named(self):
+        from assay import load
+        root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        idx = load.from_spec(os.path.join(root, "data", "hdi-2022.json"))
+        struct = structure.analyse(idx)
+        pc1 = structure.pc1_scores(idx)
+        agg = {"reproduces": None,
+               "decorative": aggregation.weights_are_decorative(idx, pc1)}
+        env = aggregation.rank_envelope(idx, draws=50)
+        txt = report.render(idx, struct, agg, env, aggregation.most_movable(idx, env),
+                            left=load.left_out(idx))
+        self.assertIn("dropped: Korea (Democratic People's Rep. of); Monaco", txt)
+        self.assertIn("the index\n  left them out too", txt)
+
     def test_without_it_the_report_is_as_before(self):
         self.assertNotIn("WHO WAS LEFT OUT", self._epi(left=False))
 

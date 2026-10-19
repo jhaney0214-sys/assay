@@ -63,7 +63,7 @@
       "raw": 193,
       "format": "%d countries",
       "status": "measured",
-      "anchor": "load.from_spec('data/hdi-2022.json'); 194 rows in, one incomplete.",
+      "anchor": "load.from_spec('data/hdi-2022.json'); 195 rows in; two incomplete (North Korea, Monaco), neither with a published HDI.",
       "checked_on": "2026-09-20",
       "recheck_by": "2027-03-31",
       "appears_in": [
@@ -100,7 +100,7 @@
     {
       "id": "test_count",
       "claim": "Tests in the suite, Python and browser together",
-      "value": "149 tests",
+      "value": "154 tests",
       "format": "%d tests",
       "derive": {
         "files": [
@@ -122,9 +122,9 @@
     {
       "id": "standalone_tests",
       "claim": "Tests a fresh clone runs without a sibling checkout: the seven files CI runs",
-      "value": "runs 92 of its",
+      "value": "runs 96 of its",
       "also_written": [
-        "runs the 92"
+        "runs the 96"
       ],
       "format": "runs %d of its",
       "status": "measured",

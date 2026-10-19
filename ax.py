@@ -155,7 +155,8 @@ def cmd_drift(args):
     print(text)
     if args.out:
         os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
-        open(args.out, "w", encoding="utf-8").write(text + "\n")
+        with open(args.out, "w", encoding="utf-8") as fh:
+            fh.write(text + "\n")
         print("\nwritten to %s" % args.out)
     if args.json:
         payload = {"index": spec.get("name"), "pairs": rows, "bins": bins,
@@ -167,7 +168,8 @@ def cmd_drift(args):
                    "fidelity": [{"year": y, **f} for y, f in fidelity],
                    "draws": args.draws, "concentration": args.concentration}
         os.makedirs(os.path.dirname(os.path.abspath(args.json)), exist_ok=True)
-        json.dump(payload, open(args.json, "w", encoding="utf-8"), indent=2, default=str)
+        with open(args.json, "w", encoding="utf-8") as fh:
+            json.dump(payload, fh, indent=2, default=str)
         print("json written to %s" % args.json)
     return 0
 

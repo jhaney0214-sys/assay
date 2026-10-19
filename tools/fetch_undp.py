@@ -91,7 +91,7 @@ def main():
         if c not in have:
             raise SystemExit("column %s not in file - try another --year" % c)
 
-    out_rows, dropped = [], 0
+    out_rows, dropped, incomplete = [], 0, 0
     for r in rows:
         # UNDP appends eleven aggregate rows to the country list, and they do
         # NOT carry a blank iso3 - they carry pseudo-codes beginning "ZZ":
@@ -116,21 +116,27 @@ def main():
         elif vals[gi] is not None:
             vals[gi] = None
         hdi = to_float(r[hdi_col])
+        # An incomplete country is written with its gaps blank, not dropped
+        # here: the audit drops it itself and reports who it dropped and how
+        # they score on the published HDI. Aggregate rows are still left out,
+        # above, because they are not entities at all.
         if any(v is None for v in vals) or hdi is None:
-            dropped += 1
-            continue
-        out_rows.append([r["country"].strip()] + vals + [hdi])
+            incomplete += 1
+        out_rows.append([r["country"].strip()]
+                        + ["" if v is None else v for v in vals + [hdi]])
 
-    print("%d countries complete in %d (%d rows dropped)"
-          % (len(out_rows), args.year, dropped))
-    if len(out_rows) < 50:
+    complete = len(out_rows) - incomplete
+    print("%d countries complete in %d (%d aggregate rows left out, %d incomplete "
+          "countries kept for the audit to drop)"
+          % (complete, args.year, dropped, incomplete))
+    if complete < 50:
         raise SystemExit("too few complete countries; try another --year")
 
     out_csv = os.path.join(here, "data", "hdi-%d.csv" % args.year)
     with open(out_csv, "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
         w.writerow(["country"] + list(INDICATORS.values()) + ["HDI"])
-        w.writerows(sorted(out_rows))
+        w.writerows(sorted(out_rows, key=lambda r: r[0]))
     print("wrote %s" % out_csv)
 
     spec = {

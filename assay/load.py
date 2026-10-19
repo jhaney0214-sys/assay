@@ -35,6 +35,7 @@ import csv
 import json
 import math
 import os
+import re
 
 
 class Index:
@@ -115,6 +116,12 @@ def _is_blank(s):
     return s is None or str(s).strip().replace(",", "").lower() in _BLANK
 
 
+# A plain decimal number, ASCII digits only: the same pattern as docs/audit.js,
+# so the page and this engine read the same rows of a file. float() alone is
+# looser - it takes "1_000", "inf" and non-ASCII digits.
+_NUMBER = re.compile(r"[+-]?([0-9]+(\.[0-9]*)?|\.[0-9]+)([eE][+-]?[0-9]+)?")
+
+
 def _to_float(s):
     """A cell as a finite float, or None.
 
@@ -124,10 +131,10 @@ def _to_float(s):
     """
     if _is_blank(s):
         return None
-    try:
-        v = float(str(s).strip().replace(",", ""))
-    except ValueError:
+    t = str(s).strip().replace(",", "")
+    if not _NUMBER.fullmatch(t):
         return None
+    v = float(t)
     return v if math.isfinite(v) else None
 
 
@@ -211,12 +218,13 @@ def from_csv(path, entity_col, score_cols, published_col=None,
     checked = list(score_cols) + ([published_col] if published_col else [])
     by_column = {c: {"blank": 0, "unreadable": 0, "examples": []} for c in checked}
     entities, values, published, dropped = [], [], [], 0
-    dropped_published = []
+    dropped_published, dropped_names = [], []
     for r in rows:
         vals = [_to_float(r[c]) for c in score_cols]
         pub = _to_float(r[published_col]) if published_col else None
         if any(v is None for v in vals) or (published_col and pub is None):
             dropped += 1
+            dropped_names.append(str(r[entity_col]).strip())
             for c in checked:
                 if _to_float(r[c]) is not None:
                     continue
@@ -246,7 +254,8 @@ def from_csv(path, entity_col, score_cols, published_col=None,
                 aggregation_form=aggregation_form)
     idx.dropped = dropped
     idx.missing = {"rows_in": len(rows), "published_col": published_col,
-                   "by_column": by_column, "dropped_published": dropped_published}
+                   "by_column": by_column, "dropped_published": dropped_published,
+                   "dropped_names": dropped_names}
     return idx
 
 
@@ -273,7 +282,8 @@ def left_out(index):
             for c, d in m["by_column"].items() if d["blank"] or d["unreadable"]]
     cols.sort(key=lambda t: -(t[1] + t[2]))
     out = {"rows_in": m["rows_in"], "dropped": index.dropped,
-           "by_column": cols, "compared": 0, "published_col": m["published_col"]}
+           "by_column": cols, "compared": 0, "published_col": m["published_col"],
+           "names": list(m.get("dropped_names", []))}
     pubs = [p for _, p in m["dropped_published"]]
     if index.published is None or len(pubs) < 3:
         out["compared"] = len(pubs)

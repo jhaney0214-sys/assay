@@ -28,11 +28,13 @@ class Reshape(unittest.TestCase):
                          ["Washington County, Alabama", "Washington County, Arkansas"])
         self.assertEqual(rows[0][1:], [0.5, 0.4, 0.3, 0.2, 0.35])
 
-    def test_a_county_cdc_could_not_rank_is_dropped_and_counted(self):
+    def test_a_county_cdc_could_not_rank_is_kept_blank_and_counted(self):
+        # Kept so the audit can drop it and say who it dropped.
         text = HEAD + ('1,A,"A, Alabama",0.5,0.4,0.3,0.2,0.35\n'
                        '2,B,"B, Alaska",-999,0.2,0.3,0.4,-999\n')
-        rows, dropped = fetch_svi.rows_from(text)
-        self.assertEqual((len(rows), dropped), (1, 1))
+        rows, incomplete = fetch_svi.rows_from(text)
+        self.assertEqual((len(rows), incomplete), (2, 1))
+        self.assertEqual(rows[1], ["B, Alaska", "", 0.2, 0.3, 0.4, ""])
 
 
 class TheBundledFile(unittest.TestCase):

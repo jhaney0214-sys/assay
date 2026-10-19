@@ -26,6 +26,7 @@ WHAT MUST MATCH EXACTLY, and what cannot:
         that drifts toward the boundary is visible before it flips.
 """
 
+import csv
 import json
 import pathlib
 import subprocess
@@ -40,6 +41,13 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SPECS = ["data/hdi-2022.json", "data/vdem-2024.json", "data/epi-2024.json",
          "data/svi-2022.json"]
 TOL = 1e-9
+TRICKY = ["12%", "3 (est.)", "1_000", "inf", "-Infinity", "1e999", "0x10",
+          " 1,234.5 ", ".5", "5.", "-.5e-3", "+2", "NA", "n/a", "..", "-", "",
+          "١٢", "1e", "e5", "--1"]
+
+
+def index_csv(spec_path, spec):
+    return ROOT / pathlib.Path(spec_path).parent / spec["data"]
 
 RUNNER = r"""
 const Assay = require(process.argv[2]);
@@ -57,6 +65,9 @@ process.stdout.write(JSON.stringify({
   redundant: out.redundant,
   weightsVsPc1: out.weightsVsPc1 === undefined ? null : out.weightsVsPc1,
   R: out.R,
+  cells: input.cells.map(Assay.toNumber),
+  left: input.left ? Assay.leftOut(input.left.kept, input.left.dropped) : null,
+  selectiveAt: Assay.SELECTIVE_AT,
 }));
 """
 
@@ -83,8 +94,16 @@ def main():
         published = ([float(v) for v in index.published]
                      if index.published is not None else None)
 
+        # Every raw cell of the data file, plus the cases that once split the
+        # two readers, so both drop the same rows before any statistic.
+        with open(index_csv(spec_path, spec), newline="", encoding="utf-8-sig") as fh:
+            cells = [v for row in csv.reader(fh) for v in row] + TRICKY
+        left = load.left_out(index)
         payload = {"columns": columns, "names": list(index.columns),
-                   "published": published, "iters": 500}
+                   "published": published, "iters": 500, "cells": cells,
+                   "left": ({"kept": published,
+                             "dropped": [p for _, p in index.missing["dropped_published"]]}
+                            if left and published is not None else None)}
         tmp = ROOT / "tools" / "_conform_input.json"
         tmp.write_text(json.dumps(payload), "utf-8")
 
@@ -100,6 +119,20 @@ def main():
                 failures.append("%s: %s python=%r js=%r" % (name, label, a, b))
 
         check("n", py["n"], js["n"])
+        check("SELECTIVE_AT", load.SELECTIVE_AT, js["selectiveAt"])
+        mismatched = [c for c, v in zip(cells, js["cells"])
+                      if load._to_float(c) != v]
+        checks += 1
+        if mismatched:
+            failures.append("%s: cells read differently: %r" % (name, mismatched[:5]))
+        if payload["left"]:
+            jl = js["left"]
+            check("left.compared", left["compared"], jl["compared"])
+            if "gap_in_sd" in left:
+                check("left.gap_in_sd", left["gap_in_sd"], jl["gapInSd"])
+                check("left.kept_mean_pct", left["kept_mean_pct"], jl["keptMeanPct"])
+                check("left.dropped_mean_pct", left["dropped_mean_pct"], jl["droppedMeanPct"])
+                check("left.selective", left["selective"], jl["selective"])
         check("k", py["k"], js["k"])
         check("pc1_share", py["pc1_share"], js["pc1Share"])
         for part in ("mean", "min", "max"):

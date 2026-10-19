@@ -171,6 +171,26 @@ class TestAuditPage(unittest.TestCase):
         self.assertIn("45.1%", text)          # python: 0.4507225
         self.assertIn("No pair correlates at 0.90 or above", text)
 
+    def test_epi_says_its_dropped_countries_score_lower(self):
+        """The page's own "who was left out", on the 180-country example.
+
+        assay/report.py's figures for the same file: 75 dropped, at the 43rd
+        percentile of the published EPI against 55th for the 105 kept.
+        tools/conform_browser.py holds the two computations to 1e-9.
+        """
+        text, _ = self._run("epi", mark_published=True)
+        self.assertIn("75 of 180 rows dropped", text)
+        self.assertIn("The dropping is selective", text)
+        self.assertIn("43rd percentile", text)
+        self.assertIn("55th", text)
+        self.assertEqual(self.errors, [])
+
+    def test_hdi_says_the_index_left_out_the_same_countries(self):
+        """North Korea and Monaco have no published HDI either."""
+        text, _ = self._run("hdi", mark_published=True)
+        self.assertIn("2 of 195 rows dropped", text)
+        self.assertIn("the index left them out too", text)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

@@ -282,11 +282,59 @@ const Assay = (function () {
     return result;
   }
 
+  /* ---------- reading a cell, and who was left out ---------- */
+
+  // The same rule as assay/load.py's _to_float, so the page and the engine
+  // audit the same rows of the same file. This used parseFloat, which reads
+  // "12%" as 12 and "3 (est.)" as 3, where the engine drops both rows.
+  const BLANK = ["", "na", "n/a", "nan", "-", "null"];
+  const NUMBER = /^[+-]?([0-9]+(\.[0-9]*)?|\.[0-9]+)([eE][+-]?[0-9]+)?$/;
+
+  function isBlank(s) {
+    return s == null ||
+      BLANK.includes(String(s).trim().replace(/,/g, "").toLowerCase());
+  }
+
+  function toNumber(s) {
+    if (isBlank(s)) return null;
+    const t = String(s).trim().replace(/,/g, "");
+    if (!NUMBER.test(t)) return null;
+    const v = Number(t);
+    return isFinite(v) ? v : null;
+  }
+
+  // assay/load.py's SELECTIVE_AT, and its left_out() comparison: the dropped
+  // rows' published scores against the kept rows', as mid-rank percentiles
+  // within both, and as a gap in SDs of the kept rows.
+  const SELECTIVE_AT = 0.25;
+
+  function leftOut(kept, dropped) {
+    if (!kept || dropped.length < 3) return { compared: dropped.length };
+    const every = kept.concat(dropped), N = every.length;
+    const pct = (v) => {
+      let below = 0, tied = 0;
+      for (const x of every) { if (x < v) below++; else if (x === v) tied++; }
+      return 100 * (below / N + 0.5 * (tied / N));
+    };
+    const mean = (xs) => xs.reduce((a, b) => a + b, 0) / xs.length;
+    const mk = mean(kept);
+    const sd = Math.sqrt(kept.reduce((a, x) => a + (x - mk) ** 2, 0) /
+                         (kept.length - 1)) || 1;
+    const gap = (mean(dropped) - mk) / sd;
+    return {
+      compared: dropped.length,
+      keptMeanPct: mean(kept.map(pct)),
+      droppedMeanPct: mean(dropped.map(pct)),
+      gapInSd: gap,
+      selective: Math.abs(gap) >= SELECTIVE_AT,
+    };
+  }
+
   return {
     analyse, correlations, standardise, jacobiEigen, varianceExplained,
     parallelAnalysis, mapTest, redundantPairs, pc1Scores, pearson,
     pairwise, grade, ONE_THING_AT, OVERLAP_AT,
-    MIN_COLUMNS_FOR_MAP,
+    MIN_COLUMNS_FOR_MAP, isBlank, toNumber, leftOut, SELECTIVE_AT,
   };
 })();
 

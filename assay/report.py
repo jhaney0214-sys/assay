@@ -10,6 +10,8 @@ index naming six pillars has one dimension is not an opinion about the authors,
 it is a property of the numbers they published.
 """
 
+import textwrap
+
 import numpy as np
 
 from .aggregation import DECORATIVE_AT
@@ -21,12 +23,25 @@ def _bar(x, width=28):
     return "#" * int(round(x * width))
 
 
+# Dropped entities are named when there are this few; past it, a list is noise.
+NAME_DROPPED_UP_TO = 10
+
+
+def _wrap(text, width):
+    return textwrap.wrap(text, width, subsequent_indent="  ")
+
+
 def _left_out(w, left, index):
     w("WHO WAS LEFT OUT")
     w("")
     w("  %d of %d rows dropped for a missing or unreadable value; everything"
       % (left["dropped"], left["rows_in"]))
     w("  below is about the %d that stayed." % index.n)
+    names = left.get("names") or []
+    if names and len(names) <= NAME_DROPPED_UP_TO:
+        w("")
+        for line in _wrap("dropped: " + "; ".join(names), 70):
+            w("  " + line)
     w("")
     for col, blank, bad, examples in left["by_column"]:
         tail = ""
@@ -46,6 +61,12 @@ def _left_out(w, left, index):
         if index.published is None:
             w("  The index publishes no overall score here, so whether the")
             w("  dropped rows differ from the kept ones cannot be tested.")
+        elif left["compared"] == 0:
+            # HDI 2022: North Korea and Monaco. The index did not score them
+            # either, so this audit and the index cover the same countries.
+            w("  None of the dropped rows has a published %s either: the index" % pub)
+            w("  left them out too, so the audit covers the same field as the")
+            w("  index. How they would have scored is not known to either.")
         else:
             w("  Only %d dropped row(s) carry a published %s, too few to"
               % (left["compared"], pub))
