@@ -1,0 +1,39 @@
+{
+  "name": "Yale Environmental Performance Index 2026",
+  "data": "epi-2026.csv",
+  "entity_col": "country",
+  "score_cols": [
+    "Forests (FOR)",
+    "Grasslands (GRS)",
+    "Fisheries (FSH)",
+    "Air Pollution (APO)",
+    "Agriculture (AGR)",
+    "Water Resources (WRS)",
+    "Biodiversity & Habitat (BDH)",
+    "Waste Management (WMG)",
+    "Heavy Metals (HMT)",
+    "Sanitation & Drinking Water (H2O)",
+    "Air Quality (AIR)",
+    "Climate Change Mitigation (CCH)"
+  ],
+  "published_col": "EPI",
+  "weights": {
+    "Forests (FOR)": 4.5,
+    "Grasslands (GRS)": 4.5,
+    "Fisheries (FSH)": 2.25,
+    "Air Pollution (APO)": 4.5,
+    "Agriculture (AGR)": 2.25,
+    "Water Resources (WRS)": 2.25,
+    "Biodiversity & Habitat (BDH)": 24.750000000000004,
+    "Waste Management (WMG)": 1.25,
+    "Heavy Metals (HMT)": 3.75,
+    "Sanitation & Drinking Water (H2O)": 5.0,
+    "Air Quality (AIR)": 15.0,
+    "Climate Change Mitigation (CCH)": 30.0
+  },
+  "claimed_dimensions": 3,
+  "aggregation_form": "linear",
+  "orient": true,
+  "source": "Yale EPI 2026, https://epi.yale.edu/sites/default/files/2026-09/epi2026results2026-07-07.xlsx and https://epi.yale.edu/sites/default/files/2026-09/epi2026methods.xlsx",
+  "note": "Twelve issue categories weighted into three policy objectives (Ecosystem Vitality, Environmental Health, Climate Change) and then into the EPI. Each category's weight is its Weight_level times its objective's, from the methods workbook's Weights sheet; that sheet's Weight_EPI column mixes percentages and fractions and is not read. Forests is FOR (ECS in 2024) and Grasslands (GRS) is new."
+}

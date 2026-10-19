@@ -79,7 +79,15 @@ def _left_out(w, left, index):
     w("    kept     average percentile %5.1f" % left["kept_mean_pct"])
     w("    dropped  average percentile %5.1f   (%.2f SD %s)"
       % (left["dropped_mean_pct"], abs(left["gap_in_sd"]), side))
-    if left["selective"]:
+    if left.get("near_line"):
+        w("  >> Too close to call: the gap is %.2f SD, and the report calls"
+          % abs(left["gap_in_sd"]))
+        w("     dropping selective from 0.25. The entities removed score %s"
+          % side)
+        w("     than those kept, by about as much as the line itself; read")
+        w("     the audit as describing the complete part of the field and")
+        w("     possibly not the whole of it.")
+    elif left["selective"]:
         w("  >> The dropping is selective: the entities removed score %s on the"
           % side)
         w("     index itself than those kept. The audit describes the index")

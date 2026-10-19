@@ -285,6 +285,11 @@ def from_csv(path, entity_col, score_cols, published_col=None,
 # selective. A judgement, like the thresholds in structure.py, written down so
 # that it can be argued with.
 SELECTIVE_AT = 0.25
+# Within this of the line either way, the report says it is too close to call
+# instead of giving a verdict. EPI 2026 landed at 0.24 against 2024's 0.40, and
+# the flat reading turned "selective" into "evidence against bias" over a
+# hundredth of a standard deviation (2026-10-19).
+NEAR_LINE = 0.05
 
 
 def left_out(index):
@@ -325,6 +330,7 @@ def left_out(index):
         "dropped_mean_pct": float(np.mean([pct(v) for v in gone])),
         "gap_in_sd": gap,
         "selective": abs(gap) >= SELECTIVE_AT,
+        "near_line": abs(abs(gap) - SELECTIVE_AT) < NEAR_LINE,
     })
     return out
 

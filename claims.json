@@ -101,7 +101,7 @@
     {
       "id": "test_count",
       "claim": "Tests in the suite, Python and browser together",
-      "value": "184 tests",
+      "value": "193 tests",
       "format": "%d tests",
       "derive": {
         "files": [
@@ -123,14 +123,14 @@
     },
     {
       "id": "standalone_tests",
-      "claim": "Tests a fresh clone runs without a sibling checkout: the nine files CI runs",
-      "value": "runs 125 of its",
+      "claim": "Tests a fresh clone runs without a sibling checkout: the ten files CI runs",
+      "value": "runs 133 of its",
       "also_written": [
-        "runs the 125"
+        "runs the 133"
       ],
       "format": "runs %d of its",
       "status": "measured",
-      "anchor": "test methods in the nine files .github/workflows/assay.yml runs, counted by parsing",
+      "anchor": "test methods in the ten files .github/workflows/assay.yml runs, counted by parsing",
       "checked_on": "2026-10-15",
       "durable": "read from source on every verify",
       "appears_in": [
@@ -149,7 +149,8 @@
           "tests/test_table.py",
           "tests/test_load.py",
           "tests/test_pairwise.py",
-          "tests/test_leave_one_out.py"
+          "tests/test_leave_one_out.py",
+          "tests/test_epi_editions.py"
         ],
         "tests": "python"
       }

@@ -410,7 +410,7 @@ const Assay = (function () {
   // assay/load.py's SELECTIVE_AT, and its left_out() comparison: the dropped
   // rows' published scores against the kept rows', as mid-rank percentiles
   // within both, and as a gap in SDs of the kept rows.
-  const SELECTIVE_AT = 0.25;
+  const SELECTIVE_AT = 0.25, NEAR_LINE = 0.05;
 
   function leftOut(kept, dropped) {
     if (!kept || dropped.length < 3) return { compared: dropped.length };
@@ -431,6 +431,8 @@ const Assay = (function () {
       droppedMeanPct: mean(dropped.map(pct)),
       gapInSd: gap,
       selective: Math.abs(gap) >= SELECTIVE_AT,
+      // assay/load.py's NEAR_LINE: within this of the line, too close to call.
+      nearLine: Math.abs(Math.abs(gap) - SELECTIVE_AT) < NEAR_LINE,
     };
   }
 
@@ -439,7 +441,7 @@ const Assay = (function () {
     parallelAnalysis, mapTest, redundantPairs, pc1Scores, pearson,
     pairwise, grade, ONE_THING_AT, OVERLAP_AT,
     MIN_COLUMNS_FOR_MAP, isBlank, toNumber, leftOut, SELECTIVE_AT,
-    orient, ranks, percentile, rankEnvelope,
+    orient, ranks, percentile, rankEnvelope, NEAR_LINE,
   };
 })();
 

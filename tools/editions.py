@@ -47,6 +47,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 import build_epi_panel  # noqa: E402
 import build_hdi_panel  # noqa: E402
+import epi_editions  # noqa: E402
 import fetch_epi  # noqa: E402
 import fetch_svi  # noqa: E402
 import fetch_undp  # noqa: E402
@@ -131,14 +132,16 @@ def indices():
                   "weights (tools/fetch_epi.py)": fetch_epi.WEIGHTS},
          "candidates": epi_candidates(fetch_epi.RESULTS),
          "edition_pages": epi_pages(fetch_epi.RESULTS),
-         "rerun": ["open the new edition's downloads page and pick the results and weights files",
-                   "check their column names: fetch_epi.py reads CSV or .xlsx (tools/table.py), "
-                   "and the 2026 edition's results are .xlsx",
-                   "set RESULTS and WEIGHTS in tools/fetch_epi.py and tools/build_epi_panel.py",
+         "rerun": ["already built: %s (EPI editions in tools/epi_editions.py)"
+                   % ", ".join(str(y) for y in sorted(epi_editions.EDITIONS)),
+                   "for a later one, open its downloads page and add it to EDITIONS in "
+                   "tools/epi_editions.py: results and weights addresses, sheet names, "
+                   "and whether it publishes the backcast (.old) or the change (.chg)",
                    "read the new edition's errata first (2024 had a weights corrigendum)",
-                   "py tools/build_epi_panel.py",
-                   "py ax.py drift data/epi-panel.json --draws 800 --no-structure",
-                   "py tools/fetch_epi.py"]},
+                   "py tools/fetch_epi.py --edition <year>",
+                   "py tools/build_epi_panel.py --edition <year>",
+                   "py ax.py audit data/epi-<year>.json --draws 2000",
+                   "py ax.py drift data/epi-panel-<year>.json --draws 800 --no-structure"]},
         {"key": "svi", "name": "CDC/ATSDR Social Vulnerability Index", "cache": "svi",
          "used": fetch_svi.URL, "edition": str(fetch_svi.YEAR),
          "also": {},

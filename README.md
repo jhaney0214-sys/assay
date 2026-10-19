@@ -1,6 +1,6 @@
 # Assay
 
-**Status: production.** 184 tests (169 Python, 15 driving the browser page); the dimensionality path is validated against a published HDI result, the pairwise-robustness path against three of four published HDI 2004 figures; the rank-envelope path has no external anchor. Every hard number below is recorded in [`claims.json`](claims.json) with how it is known and when it was last checked. See [PRODUCTION.md](../PRODUCTION.md).
+**Status: production.** 193 tests (178 Python, 15 driving the browser page); the dimensionality path is validated against a published HDI result, the pairwise-robustness path against three of four published HDI 2004 figures; the rank-envelope path has no external anchor. Every hard number below is recorded in [`claims.json`](claims.json) with how it is known and when it was last checked. See [PRODUCTION.md](../PRODUCTION.md).
 
 Tests whether a published index measures what it says it measures. Named for
 the metallurgical test that tells you what an ore is actually made of, rather
@@ -182,6 +182,48 @@ here perturbs Yale's *own* published weights rather than inventing a range —
 the median country still moves 30 places of 105. *(28 until 2026-10-19, when
 the envelope stopped applying those weights to a turned-round Fisheries
 column; see the correction above.)*
+
+### EPI 2026: the same questions of the next edition
+
+```bash
+python tools/fetch_epi.py --edition 2026
+python ax.py audit data/epi-2026.json --draws 2000
+```
+
+Yale's 2026 edition is the first chance to ask whether the 2024 results are
+about EPI or about one year of it. It changed shape: twelve issue
+categories, with Grasslands new and Forests recoded `FOR`, weights in a
+methods workbook, and the ten-year change published in place of the
+backcast. `tools/epi_editions.py` reads both editions, and two things in the
+2026 files had to be handled rather than read. Its `Weight_EPI` column holds
+percentages for some rows and fractions for others (Forests 4.499999,
+Biodiversity & Habitat 0.2475), so each category's weight is computed from
+the two level weights, which sum to one within every objective. And the
+backcast is rebuilt as current minus change. That reconstruction cannot be
+checked against 2024, which published no change column; checked internally
+instead, the published EPI change matches the weighted sum of the three
+objectives' changes to 0.013 points, as the levels match to 0.009.
+
+| finding | 2024 | 2026 |
+|-|-|-|
+| dimensions found against three claimed | 1, on 45.1% | 1, on 43.3% |
+| score recomputed from the published weights | 0.22 points out (median) | exact |
+| r(published EPI, PC1): do the weights do work? | 0.921 | 0.935 |
+| leaning hardest, against the heaviest pillar | Biodiversity 7 places, Climate 4 | Biodiversity 7, Climate 5 |
+| sub-scores running against the index | Fisheries | Fisheries, Forests, Agriculture |
+| rank envelope, median country | 30 places of 105 | 34 of 105 |
+| ten-year change robust across the surface | 77% to 99% | 76% to 98% |
+| countries dropped, and how they score | 75 of 180, 0.40 SD lower | 72 of 177, 0.24 SD lower |
+
+**Everything replicated except the dropping.** In 2024 the dropped
+countries scored 0.40 of a standard deviation below the kept ones, which the
+report calls selective. In 2026 the gap is 0.24, against a line drawn at
+0.25, and the report's reading flipped from "selective" to "evidence against
+bias" over a hundredth of a standard deviation. That said more about the
+line than about EPI, so since 2026-10-19 a gap within 0.05 of the line is
+reported as too close to call, in both the report and the browser page. The
+2024 tables stay the bundled worked example; the 2026 ones sit beside them,
+and `tools/conform_browser.py` checks the page against the engine on both.
 
 ## The new question: is a reported rank change real?
 
@@ -568,7 +610,7 @@ tools/      fetch_vdem.py  fetch_undp.py  fetch_epi.py
             editions.py (is a newer HDI, EPI or SVI out? HEAD requests only)
             fetch_hdr2006.py (HDI 2004, for the Foster et al. replication)
             rawcache.py  netcache.py (downloads, cached under data/cache/)
-tests/      184 tests (15 of them drive docs/audit.html in a browser)
+tests/      193 tests (15 of them drive docs/audit.html in a browser)
 claims.json every hard number this README publishes, graded and dated
 ax.py       the CLI
 ```
@@ -624,11 +666,11 @@ check compares which ones each side turns round. Building it is how the tie
 problem above was found.
 
 **What that costs, found 2026-09-19 by CI's first run.** A clone of this
-repository alone runs 125 of its 184 tests: `test_structure`, `test_aggregation`,
+repository alone runs 133 of its 193 tests: `test_structure`, `test_aggregation`,
 `test_report` and `test_claims` import Sextant through `structure.py` and cannot
 load without a sibling checkout. The suite passes in a working directory that has one and
 fails in a fresh clone, so **a clone, not the working directory, is the honest
-check before trusting a green run.** `.github/workflows/assay.yml` runs the 125
+check before trusting a green run.** `.github/workflows/assay.yml` runs the 133
 and prints what it did not run; the machinery those four exercise is
 Sextant's own, and Sextant's CI runs all 342 of its tests on every push.
 Without the sibling, `ax.py columns` and `ax.py init` still run: since

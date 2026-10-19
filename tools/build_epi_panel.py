@@ -31,51 +31,31 @@ import csv
 import json
 import os
 
-import rawcache
-import table
+import epi_editions
+from epi_editions import to_float
 
-RESULTS = "https://epi.yale.edu/downloads/epi2024results.csv"
-WEIGHTS = "https://epi.yale.edu/downloads/epi2024weights.csv"
-UA = {"User-Agent": "Mozilla/5.0 (compatible; Assay research; urllib)"}
-
-# The backcast is "approximately ten years prior" (Yale's wording), so these
-# labels are nominal periods, not exact years. They exist to give the panel two
-# ordered points; nothing downstream reads them as dates.
-BASELINE_YEAR, CURRENT_YEAR = 2014, 2024
-
-
-def grab(url, legacy):
-    # `legacy` is where this used to be saved; an existing copy is adopted.
-    # CSV (2024) or .xlsx (2026) alike; an HTML page in place of the file stops the run.
-    try:
-        return table.rows(rawcache.get("epi", url, UA["User-Agent"], legacy=legacy, timeout=90))
-    except table.TableError as exc:
-        raise SystemExit("%s: %s" % (url, exc))
-
-
-def to_float(v):
-    v = (v or "").strip()
-    try:
-        return float(v)
-    except ValueError:
-        return None
+# The default edition's files; tools/editions.py reads these. 2026 publishes
+# the change (`.chg`) instead of the backcast, and epi_editions rebuilds `.old`
+# from it, so the panel below is the same construction for both editions.
+RESULTS = epi_editions.EDITIONS[2024]["results"]
+WEIGHTS = epi_editions.EDITIONS[2024]["weights"]
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.parse_args()
+    ap.add_argument("--edition", type=int, default=2024)
+    args = ap.parse_args()
     here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    e = epi_editions.EDITIONS.get(args.edition)
 
-    res = grab(RESULTS, os.path.join(here, "data/raw/epi2024results.csv"))
-    wts = grab(WEIGHTS, os.path.join(here, "data/raw/epi2024weights.csv"))
+    # The backcast is "approximately ten years prior" (Yale's wording), so these
+    # labels are nominal periods, not exact years. They exist to give the panel
+    # two ordered points; nothing downstream reads them as dates.
+    BASELINE_YEAR, CURRENT_YEAR = e["baseline"] if e else None, args.edition
 
-    po = [r for r in wts if (r.get("Type") or "").strip() == "PolicyObjective"]
-    cols, weights = [], {}
-    for r in po:
-        ab = r["Abbreviation"].strip()
-        label = "%s (%s)" % (r["Variable"].strip(), ab)
-        cols.append((ab, label))
-        weights[label] = float(r["Weight"])
+    res, _, objs = epi_editions.load(args.edition, here)
+    cols = [(ab, label) for ab, label, _ in objs]
+    weights = {label: w for _, label, w in objs}
     print("policy objectives: " + ", ".join("%s=%.2f" % (l, weights[l]) for _, l in cols))
 
     rows, dropped = [], 0
@@ -100,7 +80,8 @@ def main():
     print("%d countries with both periods complete (%d dropped)"
           % (len(rows) // 2, dropped))
 
-    path = os.path.join(here, "data", "epi-panel.csv")
+    path = os.path.join(here, "data", "epi-panel.csv" if args.edition == 2024
+                        else "epi-panel-%d.csv" % args.edition)
     with open(path, "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
         w.writerow(["country", "year"] + [l for _, l in cols] + ["EPI"])
@@ -108,7 +89,7 @@ def main():
     print("wrote %s" % path)
 
     spec = {
-        "name": "Yale EPI 2024 - backcast baseline vs current",
+        "name": "Yale EPI %d - backcast baseline vs current" % args.edition,
         "data": os.path.basename(path),
         "entity_col": "country",
         "year_col": "year",
@@ -118,7 +99,7 @@ def main():
         "claimed_dimensions": 3,
         "aggregation_form": "linear",
         "orient": False,
-        "source": "Yale EPI 2024, %s and %s" % (RESULTS, WEIGHTS),
+        "source": "Yale EPI %d, %s and %s" % (args.edition, e["results"], e["weights"]),
         "note": (
             "Periods are labelled %d and %d but the baseline is Yale's backcast "
             "on data 'approximately ten years prior', not a calendar year. The "

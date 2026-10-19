@@ -1,25 +1,25 @@
 """Build an EPI issue-category table from Yale's own published files.
 
-    python tools/fetch_epi.py
+    python tools/fetch_epi.py                  # the 2024 edition
+    python tools/fetch_epi.py --edition 2026   # the 2026 edition
 
-Two files, both plain CSV over HTTPS with no key or form:
-
-    epi2024results.csv   country scores at every level of the hierarchy
-    epi2024weights.csv   the weight of each level, including "EPI Percent" -
-                         each issue category's effective share of the total
+Each edition publishes country scores at every level of the hierarchy and the
+weight of each level; tools/epi_editions.py knows where each keeps them and
+how to read them (2024: two CSVs; 2026: two .xlsx workbooks, with a weights
+column in mixed units that is not read).
 
 This is the first target where all four of Assay's tests apply at once. EPI's
-eleven issue categories are measured from unrelated instruments (satellite
-aerosol retrievals, fisheries landings, protected-area registries, greenhouse
-gas inventories), they aggregate LINEARLY, and Yale publishes the weights
+issue categories are measured from unrelated instruments (satellite aerosol
+retrievals, fisheries landings, protected-area registries, greenhouse gas
+inventories), they aggregate LINEARLY, and Yale publishes the weights
 machine-readably. So the reproduction test has something to check, and the rank
 envelope can perturb the authors' own numbers rather than inventing a range.
 
-Yale also issued a corrigendum after publication: the Wastewater Collected and
-Wastewater Treated indicator weights should read 1.5% each rather than 2%. That
-sits below the issue-category level audited here, so it should not move these
-totals - but it is exactly the class of error the reproduction test exists to
-surface, and worth knowing about when reading the result.
+Yale issued a corrigendum after the 2024 publication: the Wastewater Collected
+and Wastewater Treated indicator weights should read 1.5% each rather than 2%.
+That sits below the issue-category level audited here, so it should not move
+these totals - but it is exactly the class of error the reproduction test
+exists to surface, and worth knowing about when reading the result.
 """
 
 import argparse
@@ -27,54 +27,41 @@ import csv
 import json
 import os
 
-import rawcache
-import table
+import epi_editions
+from epi_editions import to_float
 
-RESULTS = "https://epi.yale.edu/downloads/epi2024results.csv"
-WEIGHTS = "https://epi.yale.edu/downloads/epi2024weights.csv"
-UA = {"User-Agent": "Mozilla/5.0 (compatible; Assay research; urllib)"}
+# The default edition's files. tools/editions.py reads these to say which
+# edition the bundled data is from and whether a later one is out.
+RESULTS = epi_editions.EDITIONS[2024]["results"]
+WEIGHTS = epi_editions.EDITIONS[2024]["weights"]
 
-
-def grab(url, legacy):
-    # `legacy` is where this used to be saved; an existing copy is adopted.
-    # CSV (2024) or .xlsx (2026) alike; an HTML page in place of the file stops the run.
-    try:
-        return table.rows(rawcache.get("epi", url, UA["User-Agent"], legacy=legacy, timeout=90))
-    except table.TableError as exc:
-        raise SystemExit("%s: %s" % (url, exc))
-
-
-def to_float(v):
-    v = (v or "").strip().replace("%", "")
-    if v in ("", "NA", "n/a", ".."):
-        return None
-    try:
-        return float(v)
-    except ValueError:
-        return None
+NOTES = {
+    2024: ("Eleven issue categories weighted into three policy objectives "
+           "(Climate Change Mitigation, Environmental Health, Ecosystem "
+           "Vitality) and then into the EPI. Weights are Yale's own published "
+           "'EPI Percent' shares. A corrigendum revised two INDICATOR weights "
+           "below this level (Wastewater Collected and Treated, 1.5% not 2%)."),
+    2026: ("Twelve issue categories weighted into three policy objectives "
+           "(Ecosystem Vitality, Environmental Health, Climate Change) and then "
+           "into the EPI. Each category's weight is its Weight_level times its "
+           "objective's, from the methods workbook's Weights sheet; that sheet's "
+           "Weight_EPI column mixes percentages and fractions and is not read. "
+           "Forests is FOR (ECS in 2024) and Grasslands (GRS) is new."),
+}
 
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--edition", type=int, default=2024,
+                    help="EPI edition (%s)" % ", ".join(map(str, sorted(epi_editions.EDITIONS))))
     ap.add_argument("--out", default=None)
     args = ap.parse_args()
     here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    e = epi_editions.EDITIONS.get(args.edition)
 
-    res = grab(RESULTS, os.path.join(here, "data/raw/epi2024results.csv"))
-    wts = grab(WEIGHTS, os.path.join(here, "data/raw/epi2024weights.csv"))
-
-    cats = [r for r in wts if (r.get("Type") or "").strip() == "IssueCategory"]
-    weights, labels, cols = {}, {}, []
-    for r in cats:
-        ab = r["Abbreviation"].strip()
-        pct = to_float(r["EPI Percent"])
-        col = ab + ".new"
-        if pct is None or col not in res[0]:
-            raise SystemExit("issue category %s has no weight or no score column" % ab)
-        label = "%s (%s)" % (r["Variable"].strip(), ab)
-        labels[ab] = label
-        weights[label] = pct
-        cols.append((ab, col, label))
+    res, cats, _ = epi_editions.load(args.edition, here)
+    weights = {label: pct for _, label, pct in cats}
+    cols = [(ab, ab + ".new", label) for ab, label, _ in cats]
 
     total = sum(weights.values())
     print("%d issue categories, published weights sum to %.2f%%" % (len(cols), total))
@@ -111,12 +98,15 @@ def main():
     print("\n%d countries complete (%d to be dropped by the audit)"
           % (len(rows) - dropped, dropped))
     if dropped > 0.25 * len(res):
-        print("  WARNING: %.0f%% of countries dropped, and the two categories "
-              "above\n  explain most of it. The audited sample is biased toward "
-              "countries\n  that have both a coastline and forests."
-              % (100.0 * dropped / len(res)))
+        # Named from the data: 2024's gaps were Forests and Fisheries, 2026's
+        # Fisheries, Grasslands and Forests. The audit's "who was left out"
+        # section measures whether the dropped countries score differently.
+        gaps = [label for label, n in worst if n]
+        print("  WARNING: %.0f%% of countries dropped, almost all for %s.\n"
+              "  The audited sample is the countries scored on all of them."
+              % (100.0 * dropped / len(res), " or ".join(gaps)))
 
-    out_csv = args.out or os.path.join(here, "data", "epi-2024.csv")
+    out_csv = args.out or os.path.join(here, "data", "epi-%d.csv" % args.edition)
     with open(out_csv, "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
         w.writerow(["country"] + [l for _, _, l in cols] + ["EPI"])
@@ -124,7 +114,7 @@ def main():
     print("wrote %s" % out_csv)
 
     spec = {
-        "name": "Yale Environmental Performance Index 2024",
+        "name": "Yale Environmental Performance Index %d" % args.edition,
         "data": os.path.basename(out_csv),
         "entity_col": "country",
         "score_cols": [l for _, _, l in cols],
@@ -133,14 +123,8 @@ def main():
         "claimed_dimensions": 3,
         "aggregation_form": "linear",
         "orient": True,
-        "source": "Yale EPI 2024, %s and %s" % (RESULTS, WEIGHTS),
-        "note": (
-            "Eleven issue categories weighted into three policy objectives "
-            "(Climate Change Mitigation, Environmental Health, Ecosystem "
-            "Vitality) and then into the EPI. Weights are Yale's own published "
-            "'EPI Percent' shares. A corrigendum revised two INDICATOR weights "
-            "below this level (Wastewater Collected and Treated, 1.5% not 2%)."
-        ),
+        "source": "Yale EPI %d, %s and %s" % (args.edition, e["results"], e["weights"]),
+        "note": NOTES[args.edition],
     }
     with open(out_csv.replace(".csv", ".json"), "w", encoding="utf-8") as fh:
         json.dump(spec, fh, indent=2)

@@ -288,6 +288,23 @@ class TestWhoWasLeftOut(unittest.TestCase):
         self.assertIn("dropped: Korea (Democratic People's Rep. of); Monaco", txt)
         self.assertIn("the index\n  left them out too", txt)
 
+    def test_epi_2026_is_too_close_to_call(self):
+        # 0.24 SD against the 0.25 line: no verdict either way.
+        from assay import load
+        root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        idx = load.from_spec(os.path.join(root, "data", "epi-2026.json"))
+        struct = structure.analyse(idx)
+        pc1 = structure.pc1_scores(idx)
+        agg = {"reproduces": aggregation.reproduces_published(idx),
+               "decorative": aggregation.weights_are_decorative(idx, pc1)}
+        env = aggregation.rank_envelope(idx, draws=50)
+        txt = report.render(idx, struct, agg, env, aggregation.most_movable(idx, env),
+                            left=load.left_out(idx))
+        section = txt.split("HOW MANY DIMENSIONS")[0]
+        self.assertIn("Too close to call", section)
+        self.assertNotIn("evidence against", section)
+        self.assertNotIn("The dropping is selective", section)
+
     def test_without_it_the_report_is_as_before(self):
         self.assertNotIn("WHO WAS LEFT OUT", self._epi(left=False))
 

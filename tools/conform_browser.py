@@ -39,7 +39,7 @@ from assay import aggregation, load, structure                             # noq
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SPECS = ["data/hdi-2022.json", "data/vdem-2024.json", "data/epi-2024.json",
-         "data/svi-2022.json"]
+         "data/svi-2022.json", "data/epi-2026.json"]
 TOL = 1e-9
 ENV_EXACT_DRAWS = 200
 ENV_OWN_DRAWS = 1000
@@ -77,6 +77,7 @@ process.stdout.write(JSON.stringify({
   cells: input.cells.map(Assay.toNumber),
   left: input.left ? Assay.leftOut(input.left.kept, input.left.dropped) : null,
   selectiveAt: Assay.SELECTIVE_AT,
+  nearLine: Assay.NEAR_LINE,
   orient: Assay.orient(input.asPublished, input.published).flipped,
   envExact: Assay.rankEnvelope(input.columns, {
     published: input.published, weights: input.envWeights }),
@@ -167,6 +168,7 @@ def main():
             check("env own-draws " + key, own[key], jo[jkey], tol=ENV_TOL)
         env_gap = abs(own["median_spread_share"] - jo["medianSpreadShare"])
         check("SELECTIVE_AT", load.SELECTIVE_AT, js["selectiveAt"])
+        check("NEAR_LINE", load.NEAR_LINE, js["nearLine"])
         mismatched = [c for c, v in zip(cells, js["cells"])
                       if load._to_float(c) != v]
         checks += 1
@@ -180,6 +182,7 @@ def main():
                 check("left.kept_mean_pct", left["kept_mean_pct"], jl["keptMeanPct"])
                 check("left.dropped_mean_pct", left["dropped_mean_pct"], jl["droppedMeanPct"])
                 check("left.selective", left["selective"], jl["selective"])
+                check("left.near_line", left["near_line"], jl["nearLine"])
         check("k", py["k"], js["k"])
         check("pc1_share", py["pc1_share"], js["pc1Share"])
         for part in ("mean", "min", "max"):

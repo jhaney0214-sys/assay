@@ -207,7 +207,12 @@ function leftOutBlock(left) {
       " percentile on average and the kept rows at the " +
       ordinal(left.keptMeanPct) + " (" + Math.abs(left.gapInSd).toFixed(2) +
       " SD " + side + ").";
-    p.push(left.selective
+    p.push(left.nearLine
+      ? "<div class='warn' id='left-out-verdict'><strong>Too close to call.</strong> " +
+        how + " The page calls dropping selective from 0.25 SD, and this sits about " +
+        "on that line: read what follows as describing the complete part of the " +
+        "field, and possibly not the whole of it.</div>"
+      : left.selective
       ? "<div class='warn' id='left-out-verdict'><strong>The dropping is selective.</strong> " +
         how + " Everything below describes the index where it is complete, " +
         "which is not the whole field.</div>"
