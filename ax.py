@@ -40,9 +40,20 @@ def cmd_columns(args):
         print("no rows")
         return 1
     print("%d rows, %d columns\n" % (len(rows), len(rows[0])))
+    # Empty and unreadable cells per column, read the way the audit will read
+    # them, so a spec writer sees which pillar is going to cost rows before
+    # choosing it, and sees "12%" or "n.a." text that would be dropped as a gap.
+    print("  %-42s %5s %5s  %s" % ("column", "empty", "text", "first values"))
     for c in rows[0]:
-        sample = [r[c] for r in rows[:3]]
-        print("  %-42s %s" % (c, " | ".join(str(s)[:18] for s in sample)))
+        cells = [r[c] for r in rows]
+        empty = sum(1 for s in cells if load._is_blank(s))
+        text = sum(1 for s in cells
+                   if not load._is_blank(s) and load._to_float(s) is None)
+        sample = cells[:3]
+        print("  %-42s %5s %5s  %s" % (c[:42], empty or "", text or "",
+                                       " | ".join(str(s)[:18] for s in sample)))
+    print("\n  'text' counts cells that are neither empty nor a number. In a name")
+    print("  column that is expected; in a score column those rows are dropped.")
     return 0
 
 
@@ -59,7 +70,8 @@ def cmd_audit(args):
                                     concentration=args.concentration, seed=args.seed)
     movable = aggregation.most_movable(idx, env, limit=args.show)
 
-    text = report.render(idx, struct, agg, env, movable)
+    left = load.left_out(idx)
+    text = report.render(idx, struct, agg, env, movable, left=left)
     print(text)
 
     if args.out:
@@ -85,6 +97,7 @@ def cmd_audit(args):
                               for k, v in env.items()},
             "flipped": idx.flipped,
             "dropped_rows": idx.dropped,
+            "left_out": left,
         }
         os.makedirs(os.path.dirname(os.path.abspath(args.json)), exist_ok=True)
         with open(args.json, "w", encoding="utf-8") as fh:

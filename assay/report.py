@@ -21,7 +21,60 @@ def _bar(x, width=28):
     return "#" * int(round(x * width))
 
 
-def render(index, struct, agg, env, movable):
+def _left_out(w, left, index):
+    w("WHO WAS LEFT OUT")
+    w("")
+    w("  %d of %d rows dropped for a missing or unreadable value; everything"
+      % (left["dropped"], left["rows_in"]))
+    w("  below is about the %d that stayed." % index.n)
+    w("")
+    for col, blank, bad, examples in left["by_column"]:
+        tail = ""
+        if bad:
+            tail = "   %d unreadable, e.g. %s" % (bad, ", ".join(repr(e) for e in examples))
+        w("    %-40s %4d empty%s" % (col[:40], blank, tail))
+    if len(left["by_column"]) > 1:
+        w("    (a row can be missing more than one)")
+    if any(bad for _, _, bad, _ in left["by_column"]):
+        w("")
+        w("  An unreadable cell is text that is not a number. If it is a")
+        w("  formatting habit of the file (a footnote mark, a unit) and not a")
+        w("  gap, those rows were dropped by mistake.")
+    w("")
+    pub = left["published_col"] or "published score"
+    if "gap_in_sd" not in left:
+        if index.published is None:
+            w("  The index publishes no overall score here, so whether the")
+            w("  dropped rows differ from the kept ones cannot be tested.")
+        else:
+            w("  Only %d dropped row(s) carry a published %s, too few to"
+              % (left["compared"], pub))
+            w("  compare. Whether the dropping is selective is not known.")
+        w("")
+        return
+    side = "lower" if left["gap_in_sd"] < 0 else "higher"
+    w("  On the published %s, %d of the dropped rows can be compared:"
+      % (pub, left["compared"]))
+    w("    kept     average percentile %5.1f" % left["kept_mean_pct"])
+    w("    dropped  average percentile %5.1f   (%.2f SD %s)"
+      % (left["dropped_mean_pct"], abs(left["gap_in_sd"]), side))
+    if left["selective"]:
+        w("  >> The dropping is selective: the entities removed score %s on the"
+          % side)
+        w("     index itself than those kept. The audit describes the index")
+        w("     where it is complete, which is not the whole field.")
+    else:
+        w("  >> The dropped rows score close to the kept ones on the published")
+        w("     index, which is evidence against the dropping biasing what")
+        w("     follows. It is not proof: they may differ on what is missing.")
+    unscored = left["dropped"] - left["compared"]
+    if unscored:
+        w("     %d dropped row(s) have no published score and are not compared."
+          % unscored)
+    w("")
+
+
+def render(index, struct, agg, env, movable, left=None):
     L = []
     w = L.append
 
@@ -53,6 +106,13 @@ def render(index, struct, agg, env, movable):
         w("  the component parts with the shared term divided out.")
         w("!" * 74)
         w("")
+
+    # ---- who was dropped ------------------------------------------------
+    # Before any number, because every number below is about the rows that
+    # stayed. EPI is the case: 75 of 180 countries dropped, and they score
+    # lower on the published EPI than the 105 the audit runs on.
+    if left is not None:
+        _left_out(w, left, index)
 
     # ---- dimensionality -------------------------------------------------
     dim = struct["dimensions"]

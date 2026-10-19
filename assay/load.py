@@ -25,11 +25,15 @@ per column, over the entities actually present.
 Missing data is dropped listwise and the count is reported. Indices are small -
 50 to 200 rows - so a pairwise estimator buys little and costs interpretability,
 and unlike a survey the missingness here is usually "this country was not
-scored", which is not ignorable.
+scored", which is not ignorable. So the loader also keeps what it needs to ask
+whether it was ignorable: which column emptied each dropped row, any text it
+could not read as a number, and the published score of each dropped entity
+where the index published one. `left_out()` turns that into a comparison.
 """
 
 import csv
 import json
+import math
 import os
 
 
@@ -59,6 +63,8 @@ class Index:
         self.aggregation_form = aggregation_form
         self.flipped = []
         self.dropped = 0
+        # Filled by from_csv; None for an Index built in memory.
+        self.missing: dict | None = None
 
     @property
     def n(self):
@@ -101,16 +107,84 @@ class Index:
         return bool(self.shared_construction)
 
 
+_BLANK = ("", "na", "n/a", "nan", "-", "null")
+
+
+def _is_blank(s):
+    """A cell that says 'not scored', as against one holding text we cannot read."""
+    return s is None or str(s).strip().replace(",", "").lower() in _BLANK
+
+
 def _to_float(s):
-    if s is None:
-        return None
-    s = str(s).strip().replace(",", "")
-    if s == "" or s.lower() in ("na", "n/a", "nan", "-", "null"):
+    """A cell as a finite float, or None.
+
+    Infinities are refused. float() accepts "inf" and "-Infinity", and one of
+    them in a column turns its correlations, and so every number the audit
+    prints, into nan without an error anywhere.
+    """
+    if _is_blank(s):
         return None
     try:
-        return float(s)
+        v = float(str(s).strip().replace(",", ""))
     except ValueError:
         return None
+    return v if math.isfinite(v) else None
+
+
+# What each kind of spec must say. Everything else is optional.
+_REQUIRED = ("data", "entity_col", "score_cols")
+
+
+def check_spec(spec, path, panel=False):
+    """Refuse a spec whose mistakes would otherwise be silent.
+
+    The one that mattered: a weight keyed by a misspelt column was read as
+    weight 0 for the real column (`weights.get(c, 0.0)`), so the reproduction
+    test failed and the rank envelope perturbed a weighting nobody published,
+    with no error to say why.
+    """
+    need = _REQUIRED + (("year_col",) if panel else ())
+    absent = [k for k in need if k not in spec]
+    if absent:
+        raise ValueError("%s: spec is missing %s (a spec needs %s)"
+                         % (path, ", ".join(absent), ", ".join(need)))
+    cols = spec["score_cols"]
+    if (not isinstance(cols, list) or not cols
+            or not all(isinstance(c, str) for c in cols)):
+        raise ValueError("%s: score_cols must be a non-empty list of column names"
+                         % path)
+    dupes = sorted({c for c in cols if cols.count(c) > 1})
+    if dupes:
+        raise ValueError("%s: score_cols lists %s more than once"
+                         % (path, ", ".join(dupes)))
+    weights = spec.get("weights")
+    if weights:
+        unknown = sorted(set(weights) - set(cols))
+        if unknown:
+            raise ValueError(
+                "%s: weights name %s, which %s not in score_cols (%s)"
+                % (path, ", ".join(unknown), "is" if len(unknown) == 1 else "are",
+                   ", ".join(cols)))
+        unweighted = [c for c in cols if c not in weights]
+        if unweighted:
+            raise ValueError(
+                "%s: no weight given for %s. Write 0 for a pillar the index "
+                "does not weight, so that a misspelling cannot do it silently."
+                % (path, ", ".join(unweighted)))
+        bad = [c for c, w in weights.items()
+               if isinstance(w, bool) or not isinstance(w, (int, float))
+               or not math.isfinite(w) or w < 0]
+        if bad:
+            raise ValueError("%s: weights must be numbers of zero or more; %s %s not"
+                             % (path, ", ".join(sorted(bad)),
+                                "is" if len(bad) == 1 else "are"))
+        if sum(weights.values()) <= 0:
+            raise ValueError("%s: the weights sum to zero" % path)
+    claimed = spec.get("claimed_dimensions")
+    if claimed is not None and (isinstance(claimed, bool) or not isinstance(claimed, int)
+                                or not 1 <= claimed <= len(cols)):
+        raise ValueError("%s: claimed_dimensions must be a whole number from 1 to "
+                         "the %d score columns, not %r" % (path, len(cols), claimed))
 
 
 def from_csv(path, entity_col, score_cols, published_col=None,
@@ -134,12 +208,26 @@ def from_csv(path, entity_col, score_cols, published_col=None,
         raise ValueError("columns not in file: %s\navailable: %s"
                          % (", ".join(missing), ", ".join(sorted(rows[0]))))
 
+    checked = list(score_cols) + ([published_col] if published_col else [])
+    by_column = {c: {"blank": 0, "unreadable": 0, "examples": []} for c in checked}
     entities, values, published, dropped = [], [], [], 0
+    dropped_published = []
     for r in rows:
         vals = [_to_float(r[c]) for c in score_cols]
         pub = _to_float(r[published_col]) if published_col else None
         if any(v is None for v in vals) or (published_col and pub is None):
             dropped += 1
+            for c in checked:
+                if _to_float(r[c]) is not None:
+                    continue
+                if _is_blank(r[c]):
+                    by_column[c]["blank"] += 1
+                else:
+                    by_column[c]["unreadable"] += 1
+                    if len(by_column[c]["examples"]) < 3:
+                        by_column[c]["examples"].append(str(r[c]).strip()[:24])
+            if pub is not None:
+                dropped_published.append((str(r[entity_col]).strip(), pub))
             continue
         entities.append(str(r[entity_col]).strip())
         values.append(vals)
@@ -157,7 +245,57 @@ def from_csv(path, entity_col, score_cols, published_col=None,
                 shared_construction=shared_construction,
                 aggregation_form=aggregation_form)
     idx.dropped = dropped
+    idx.missing = {"rows_in": len(rows), "published_col": published_col,
+                   "by_column": by_column, "dropped_published": dropped_published}
     return idx
+
+
+# How far apart, in standard deviations of the kept rows' published score, the
+# dropped and kept entities must sit before the report calls the dropping
+# selective. A judgement, like the thresholds in structure.py, written down so
+# that it can be argued with.
+SELECTIVE_AT = 0.25
+
+
+def left_out(index):
+    """Who listwise deletion removed, why, and whether they differ from who stayed.
+
+    The comparison is possible only on the published score, and only for the
+    dropped entities the index scored overall while leaving a pillar empty.
+    An entity with no published score cannot be compared with anything here,
+    and that count is reported rather than assumed to look like the rest.
+    """
+    import numpy as np
+    m = index.missing
+    if not m or not index.dropped:
+        return None
+    cols = [(c, d["blank"], d["unreadable"], d["examples"])
+            for c, d in m["by_column"].items() if d["blank"] or d["unreadable"]]
+    cols.sort(key=lambda t: -(t[1] + t[2]))
+    out = {"rows_in": m["rows_in"], "dropped": index.dropped,
+           "by_column": cols, "compared": 0, "published_col": m["published_col"]}
+    pubs = [p for _, p in m["dropped_published"]]
+    if index.published is None or len(pubs) < 3:
+        out["compared"] = len(pubs)
+        return out
+    kept = np.asarray(index.published, dtype=float)
+    gone = np.asarray(pubs, dtype=float)
+    every = np.concatenate([kept, gone])
+
+    def pct(v):
+        # Mid-rank percentile within every row that has a published score.
+        return 100.0 * ((every < v).mean() + 0.5 * (every == v).mean())
+
+    sd = float(kept.std(ddof=1)) or 1.0
+    gap = (float(gone.mean()) - float(kept.mean())) / sd
+    out.update({
+        "compared": len(pubs),
+        "kept_mean_pct": float(np.mean([pct(v) for v in kept])),
+        "dropped_mean_pct": float(np.mean([pct(v) for v in gone])),
+        "gap_in_sd": gap,
+        "selective": abs(gap) >= SELECTIVE_AT,
+    })
+    return out
 
 
 def orient(index):
@@ -196,6 +334,7 @@ def from_spec(path):
     """
     with open(path, encoding="utf-8") as fh:
         spec = json.load(fh)
+    check_spec(spec, path)
     data = spec["data"]
     if not os.path.isabs(data):
         data = os.path.join(os.path.dirname(os.path.abspath(path)), data)
@@ -223,6 +362,7 @@ def panel_from_spec(path):
     """
     with open(path, encoding="utf-8") as fh:
         spec = json.load(fh)
+    check_spec(spec, path, panel=True)
     data = spec["data"]
     if not os.path.isabs(data):
         data = os.path.join(os.path.dirname(os.path.abspath(path)), data)

@@ -210,5 +210,34 @@ class TestReproductionNuance(unittest.TestCase):
         self.assertIn("The stated method is the actual method", txt)
 
 
+class TestWhoWasLeftOut(unittest.TestCase):
+    """The dropped rows are reported before any number computed without them."""
+
+    def _epi(self, left=True):
+        from assay import load
+        root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        idx = load.from_spec(os.path.join(root, "data", "epi-2024.json"))
+        struct = structure.analyse(idx)
+        pc1 = structure.pc1_scores(idx)
+        agg = {"reproduces": aggregation.reproduces_published(idx),
+               "decorative": aggregation.weights_are_decorative(idx, pc1)}
+        env = aggregation.rank_envelope(idx, draws=100)
+        movable = aggregation.most_movable(idx, env, limit=5)
+        return report.render(idx, struct, agg, env, movable,
+                             left=load.left_out(idx) if left else None)
+
+    def test_epi_says_who_it_dropped_and_that_they_score_lower(self):
+        txt = self._epi()
+        self.assertIn("WHO WAS LEFT OUT", txt)
+        self.assertIn("75 of 180 rows dropped", txt)
+        self.assertIn("Forests (ECS)", txt.split("HOW MANY DIMENSIONS")[0])
+        self.assertIn("The dropping is selective", txt)
+        self.assertIn("score lower", txt)
+        self.assertLess(txt.index("WHO WAS LEFT OUT"), txt.index("HOW MANY DIMENSIONS"))
+
+    def test_without_it_the_report_is_as_before(self):
+        self.assertNotIn("WHO WAS LEFT OUT", self._epi(left=False))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

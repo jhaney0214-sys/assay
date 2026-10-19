@@ -94,16 +94,22 @@ def main():
     for label, n in worst:
         print("  %-42s missing in %3d" % (label[:42], n))
 
+    # Incomplete rows are written too, with their gaps left blank. The audit
+    # drops them itself and then reports who it dropped and how they score on
+    # the published EPI; a file holding only the survivors would hide that.
     rows, dropped = [], 0
     for r in res:
         vals = [to_float(r[c]) for _, c, _ in cols]
         epi = to_float(r.get("EPI.new"))
         name = (r.get("country") or "").strip()
-        if not name or epi is None or any(v is None for v in vals):
-            dropped += 1
+        if not name:
             continue
-        rows.append([name] + vals + [epi])
-    print("\n%d countries complete (%d dropped)" % (len(rows), dropped))
+        if epi is None or any(v is None for v in vals):
+            dropped += 1
+        rows.append([name] + ["" if v is None else v for v in vals]
+                    + ["" if epi is None else epi])
+    print("\n%d countries complete (%d to be dropped by the audit)"
+          % (len(rows) - dropped, dropped))
     if dropped > 0.25 * len(res):
         print("  WARNING: %.0f%% of countries dropped, and the two categories "
               "above\n  explain most of it. The audited sample is biased toward "
@@ -114,7 +120,7 @@ def main():
     with open(out_csv, "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
         w.writerow(["country"] + [l for _, _, l in cols] + ["EPI"])
-        w.writerows(sorted(rows))
+        w.writerows(sorted(rows, key=lambda r: r[0]))
     print("wrote %s" % out_csv)
 
     spec = {

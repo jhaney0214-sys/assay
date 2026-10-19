@@ -100,7 +100,7 @@
     {
       "id": "test_count",
       "claim": "Tests in the suite, Python and browser together",
-      "value": "126 tests",
+      "value": "149 tests",
       "format": "%d tests",
       "derive": {
         "files": [
@@ -121,14 +121,14 @@
     },
     {
       "id": "standalone_tests",
-      "claim": "Tests a fresh clone runs without a sibling checkout: the six files CI runs",
-      "value": "runs 71 of its",
+      "claim": "Tests a fresh clone runs without a sibling checkout: the seven files CI runs",
+      "value": "runs 92 of its",
       "also_written": [
-        "runs the 71"
+        "runs the 92"
       ],
       "format": "runs %d of its",
       "status": "measured",
-      "anchor": "test methods in the six files .github/workflows/assay.yml runs, counted by parsing",
+      "anchor": "test methods in the seven files .github/workflows/assay.yml runs, counted by parsing",
       "checked_on": "2026-10-15",
       "durable": "read from source on every verify",
       "appears_in": [
@@ -144,7 +144,8 @@
           "tests/test_claims_ledger.py",
           "tests/test_fetch_svi.py",
           "tests/test_editions.py",
-          "tests/test_table.py"
+          "tests/test_table.py",
+          "tests/test_load.py"
         ],
         "tests": "python"
       }

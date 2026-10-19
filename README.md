@@ -1,6 +1,6 @@
 # Assay
 
-**Status: production.** 126 tests (119 Python, 7 driving the browser page); the dimensionality path is validated against a published HDI result, the rank-envelope path has no external anchor. Every hard number below is recorded in [`claims.json`](claims.json) with how it is known and when it was last checked. See [PRODUCTION.md](../PRODUCTION.md).
+**Status: production.** 149 tests (142 Python, 7 driving the browser page); the dimensionality path is validated against a published HDI result, the rank-envelope path has no external anchor. Every hard number below is recorded in [`claims.json`](claims.json) with how it is known and when it was last checked. See [PRODUCTION.md](../PRODUCTION.md).
 
 Tests whether a published index measures what it says it measures. Named for
 the metallurgical test that tells you what an ore is actually made of, rather
@@ -152,7 +152,12 @@ a country scoring well on fisheries tends to score worse overall.
 
 Two limits on all of that. **75 of 180 countries are dropped**, and not at
 random: Forests is missing for 49 and Fisheries for 39, so the audited sample is
-biased toward countries with both a coastline and forests. And the rank envelope
+biased toward countries with both a coastline and forests. *(Measured
+2026-10-18: the report's "who was left out" section compares the dropped and
+kept countries on the published EPI, which Yale gives all 180. The 75 dropped
+sit at the 43rd percentile on average and the 105 kept at the 55th, 0.40 of a
+standard deviation apart, so the audit describes the better-scoring part of
+the field.)* And the rank envelope
 here perturbs Yale's *own* published weights rather than inventing a range —
 the median country still moves 28 places of 105.
 
@@ -362,6 +367,25 @@ A spec is a small JSON file recording what the index claims about itself:
 Everything is compared against that, so the audit tests the index against its
 own account of itself rather than against an assumption of ours.
 
+A spec is checked before anything is computed. A weight keyed by a column
+that is not in `score_cols` is refused by name, and so is a score column with
+no weight: until 2026-10-18 a misspelt key silently gave the real column a
+weight of 0. Write `0` for a pillar the index does not weight.
+
+`ax.py columns` counts the empty cells in each column, and the cells that are
+neither empty nor a number (`12%`, `n.a.`), so a spec writer sees which pillar
+will cost rows before choosing it. Infinities count as unreadable: `float()`
+accepts `inf`, and one in a column turned every number the audit printed
+into `nan`.
+
+**Keep incomplete rows in the data file.** The audit drops them itself and
+then reports, above every number, how many went, which column emptied them,
+and whether they score higher or lower on the published composite than the
+rows that stayed. A gap of a quarter of a standard deviation or more is
+called selective; that line is a judgement, like the others here. A file
+holding only complete rows hides this, which is why `fetch_epi.py` now
+writes all 180 countries.
+
 Tests are `unittest`; there is no pytest here.
 
 ```bash
@@ -412,7 +436,11 @@ block was moved off that loop for this reason and this file was not.)*
   from anything.
 - Listwise deletion drops countries that are not scored on every pillar, and
   that missingness is unlikely to be random — an index tends not to score the
-  places it finds hardest to score.
+  places it finds hardest to score. The report now tests this where it can, on
+  the published score, and only for dropped rows that have one. Two dropped
+  groups can match on the composite and still differ on the missing pillar,
+  and the HDI, V-Dem and SVI files still arrive with their incomplete rows
+  already removed by their fetch scripts, so only EPI is tested.
 
 ## Layout
 
@@ -424,7 +452,7 @@ tools/      fetch_vdem.py  fetch_undp.py  fetch_epi.py
             conform_browser.py  docclaims.py
             editions.py (is a newer HDI, EPI or SVI out? HEAD requests only)
             rawcache.py  netcache.py (downloads, cached under data/cache/)
-tests/      126 tests (7 of them drive docs/audit.html in a browser)
+tests/      149 tests (7 of them drive docs/audit.html in a browser)
 claims.json every hard number this README publishes, graded and dated
 ax.py       the CLI
 ```
@@ -452,11 +480,11 @@ run drifting toward the retention boundary is visible before it flips. Run it
 after any change to `structure.py` or `docs/audit.js`.
 
 **What that costs, found 2026-09-19 by CI's first run.** A clone of this
-repository alone runs 71 of its 126 tests: `test_structure`, `test_aggregation`,
+repository alone runs 92 of its 149 tests: `test_structure`, `test_aggregation`,
 `test_report` and `test_claims` import Sextant through `structure.py` and cannot
 load without a sibling checkout. The suite passes in a working directory that has one and
 fails in a fresh clone, so **a clone, not the working directory, is the honest
-check before trusting a green run.** `.github/workflows/assay.yml` runs the 71
+check before trusting a green run.** `.github/workflows/assay.yml` runs the 92
 and prints what it did not run; the machinery those four exercise is
 Sextant's own, and Sextant's CI runs all 342 of its tests on every push.
 
