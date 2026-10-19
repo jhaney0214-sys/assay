@@ -404,6 +404,14 @@ weights cannot be reproduced linearly and that test is off.
 
 ## Running it
 
+**If you cloned this repository on its own, `ax.py audit` will not run.** It
+imports its factor analysis from Sextant, a sibling project that is not
+public, and the reason the code is not copied here is under "Layout" below.
+Everything else works without it: the [browser page](docs/audit.html) runs
+the same checks on any CSV, verified against this engine, and `ax.py columns`,
+`ax.py init` and `ax.py drift` need nothing beyond numpy. The commands below
+are the ones used where both projects sit side by side.
+
 ```bash
 cd "C:/Users/Jhane/AI Workstation/Assay"
 python tools/fetch_vdem.py --year 2024

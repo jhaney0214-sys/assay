@@ -55,9 +55,12 @@ except ImportError as exc:                                      # pragma: no cov
         "Assay reuses Sextant's factor machinery and could not import it from\n"
         "  %s\n"
         "(tried both 'Sextant' and 'sextant'; set SEXTANT_PATH to override)\n"
-        "Keep the two projects as siblings in the workstation, or fix the path "
-        "here. The code is deliberately not duplicated: a second copy drifts "
-        "from the first the moment either is corrected." % _SEXTANT) from exc
+        "Sextant is not a public repository, so a clone of Assay alone cannot\n"
+        "run this command. Without it: docs/audit.html runs the same checks in\n"
+        "a browser, and `ax.py columns`, `init` and `drift` work. With a\n"
+        "checkout of Sextant, keep it beside Assay or set SEXTANT_PATH.\n"
+        "The code is deliberately not duplicated: a second copy drifts from the\n"
+        "first the moment either is corrected." % _SEXTANT) from exc
 
 MIN_COLUMNS_FOR_MAP = 5
 REDUNDANT_AT = 0.90
