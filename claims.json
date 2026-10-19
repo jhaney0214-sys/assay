@@ -90,7 +90,8 @@
       "recheck_by": "2027-03-31",
       "appears_in": [
         "README.md",
-        "docs/index.html"
+        "docs/index.html",
+        "tests/test_browser_page.py"
       ],
       "near": [
         "under reweighting"

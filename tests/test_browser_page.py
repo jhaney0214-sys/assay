@@ -189,7 +189,7 @@ class TestAuditPage(unittest.TestCase):
         """The page's envelope against aggregation.rank_envelope.
 
         Python, uniform mode, 2,000 draws: the median HDI country moves 41
-        places of 193, 21% of the field (the README's figure). The page
+        places of 193 under reweighting, 21% of the field (the README's figure). The page
         draws its own weightings, so it agrees within sampling, not exactly;
         tools/conform_browser.py checks the arithmetic exactly on numpy's
         draws and measured the sampling spread.
