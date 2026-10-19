@@ -53,7 +53,7 @@ def model_fidelity(index, weights):
     if index.published is None:
         return None
     w = np.array([weights[c] for c in index.columns], float)
-    ours = index.matrix() @ (w / w.sum())
+    ours = index.as_published() @ (w / w.sum())
     theirs = np.asarray(index.published, float)
     return {
         "r": float(np.corrcoef(ours, theirs)[0, 1]),
@@ -84,8 +84,8 @@ def change_fidelity(before, after, weights):
     w = np.array([weights[c] for c in before.columns], float)
     w = w / w.sum()
 
-    mb = before.matrix()[[bi[c] for c in common]] @ w
-    ma = after.matrix()[[ai[c] for c in common]] @ w
+    mb = before.as_published()[[bi[c] for c in common]] @ w
+    ma = after.as_published()[[ai[c] for c in common]] @ w
     pb = np.asarray(before.published, float)[[bi[c] for c in common]]
     pa = np.asarray(after.published, float)[[ai[c] for c in common]]
 
@@ -167,8 +167,8 @@ def rank_change_robustness(before, after, weights, draws=1000,
         raise ValueError("only %d countries in both years" % len(common))
     bi = {c: i for i, c in enumerate(before.entities)}
     ai = {c: i for i, c in enumerate(after.entities)}
-    Xb = before.matrix()[[bi[c] for c in common]]
-    Xa = after.matrix()[[ai[c] for c in common]]
+    Xb = before.as_published()[[bi[c] for c in common]]
+    Xa = after.as_published()[[ai[c] for c in common]]
 
     base = np.array([weights[c] for c in before.columns], float)
     base = base / base.sum()

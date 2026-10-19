@@ -1,0 +1,21 @@
+{
+  "name": "UNDP Human Development Index 2004, as printed in HDR 2006",
+  "data": "hdr2006-hdi-2004.csv",
+  "entity_col": "country",
+  "score_cols": [
+    "Life expectancy index",
+    "Education index",
+    "GDP index"
+  ],
+  "published_col": "HDI",
+  "weights": {
+    "Life expectancy index": 1,
+    "Education index": 1,
+    "GDP index": 1
+  },
+  "claimed_dimensions": 3,
+  "aggregation_form": "linear",
+  "orient": true,
+  "source": "UNDP, Human Development Report 2006, Table 1, https://hdr.undp.org/system/files/documents/human-development-report-2006-english.human-development-report-2006-english",
+  "note": "A historical edition, kept to replicate Foster, McGillivray and Seth (2009). Before 2010 the HDI was the arithmetic mean of these three indices. Indices are printed to two decimals, HDI to three."
+}

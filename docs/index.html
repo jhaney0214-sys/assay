@@ -179,13 +179,13 @@ works with the network off. HDI, V-Dem and EPI are loadable as worked examples.<
 <tbody>
 <tr><td>Dimensionality</td><td>One factor retained, explaining 45%</td><td>Neither the three dimensions claimed nor a clean single one. The other 55% is spread across components too weak to retain — what loosely related measurements look like when they do not resolve into named dimensions.</td></tr>
 <tr><td>Are the weights decorative?</td><td>r with first component = 0.921</td><td>Below the 0.95 line, so the published ranking is not recoverable from an unweighted component. Yale's weighting is load-bearing, unlike HDI's.</td></tr>
-<tr><td>Does the score follow from the weights?</td><td>r = 0.9962, typical error 2.2 points</td><td>The ordering reproduces; the score does not. That error is 19% of one standard deviation, with rank disagreements up to 10 places.</td></tr>
-<tr><td>Rank envelope</td><td>Median country moves 28 places of 105</td><td>Computed by perturbing Yale's own published weights rather than inventing a range.</td></tr>
+<tr><td>Does the score follow from the weights?</td><td>r = 0.9990, typical error 0.22 points</td><td>Yes, just: the typical error is 1.9% of one standard deviation, against the 2% the audit counts as reproduced. Corrected 19 October 2026 from 2.2 points, an error of this tool's (below).</td></tr>
+<tr><td>Rank envelope</td><td>Median country moves 30 places of 105</td><td>Computed by perturbing Yale's own published weights rather than inventing a range.</td></tr>
 </tbody>
 </table>
 </div>
 
-<p>Reporting only the correlation would have called the recomputation exact. Reporting only the score error would have called it broken. It is neither: a weighted sum of the published categories is a good model of the index, not the index itself.</p>
+<p><strong>Corrected 19 October 2026.</strong> This page said the ordering reproduced and the score did not, with a typical country 2.2 points from its published value. That error was the audit's own. It turns fisheries round to read the correlations, because fisheries runs against the index, and it then applied Yale's weights to the turned-round column. With the sub-scores as published, EPI's score follows from its weights to within 0.22 points, and the rank envelope widens from 28 places to 30. The HDI, V-Dem and SVI results did not move.</p>
 
 <p>Two limits on all of it. Seventy-five of 180 countries are dropped, and not at random — forests data is missing for 49 and fisheries for 39, so the audited sample is biased toward countries that have both a coastline and forests. And fisheries runs against its own index: it correlates negatively with the total, so a country scoring well on fisheries tends to score worse overall.</p>
 

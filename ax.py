@@ -71,7 +71,8 @@ def cmd_audit(args):
     movable = aggregation.most_movable(idx, env, limit=args.show)
 
     left = load.left_out(idx)
-    text = report.render(idx, struct, agg, env, movable, left=left)
+    pairs = aggregation.pairwise_robustness(idx)
+    text = report.render(idx, struct, agg, env, movable, left=left, pairs=pairs)
     print(text)
 
     if args.out:
@@ -98,6 +99,7 @@ def cmd_audit(args):
             "flipped": idx.flipped,
             "dropped_rows": idx.dropped,
             "left_out": left,
+            "pairwise_robustness": pairs,
         }
         os.makedirs(os.path.dirname(os.path.abspath(args.json)), exist_ok=True)
         with open(args.json, "w", encoding="utf-8") as fh:

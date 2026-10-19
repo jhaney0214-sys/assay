@@ -1,6 +1,6 @@
 # Assay
 
-**Status: production.** 154 tests (145 Python, 9 driving the browser page); the dimensionality path is validated against a published HDI result, the rank-envelope path has no external anchor. Every hard number below is recorded in [`claims.json`](claims.json) with how it is known and when it was last checked. See [PRODUCTION.md](../PRODUCTION.md).
+**Status: production.** 166 tests (157 Python, 9 driving the browser page); the dimensionality path is validated against a published HDI result, the pairwise-robustness path against three of four published HDI 2004 figures; the rank-envelope path has no external anchor. Every hard number below is recorded in [`claims.json`](claims.json) with how it is known and when it was last checked. See [PRODUCTION.md](../PRODUCTION.md).
 
 Tests whether a published index measures what it says it measures. Named for
 the metallurgical test that tells you what an ore is actually made of, rather
@@ -140,12 +140,22 @@ measurements looks like when it does not resolve into named dimensions.
 line, so the published ranking is not recoverable from an unweighted component.
 Yale's weighting is load-bearing.
 
-**The ordering reproduces; the score does not.** r(recomputed, published) =
-0.9962, but a typical country lands 2.2 points from its published value — 19% of
-one standard deviation — with rank disagreements up to 10 places. A weighted sum
-of the published categories is a good model of EPI, not EPI itself. Reporting
-only the correlation would have called it exact; reporting only the score error
-would have called it broken.
+**The score follows from the published weights, just.** r(recomputed,
+published) = 0.9990, and a typical country lands 0.22 points from its
+published value, 1.9% of one standard deviation, against the 2% the report
+counts as reproduced; the worst lands 2.2 points out and ranks differ by up to
+9 places. So the verdict sits at its own line, and the residue is the
+processing below the issue-category level that this audit does not see.
+
+*(Corrected 2026-10-19. This said the ordering reproduces and the score does
+not: a typical country 2.2 points out, 19% of one SD, ranks up to 10 places
+apart. That error was this tool's. The loader turns Fisheries round because
+it runs against the index, which is right for reading correlations, and the
+reproduction test then applied Yale's weights to the turned-round column, so
+Fisheries entered the recomputed EPI with its sign reversed. Weighted
+computations now use the sub-scores as published (`Index.as_published`).
+HDI, V-Dem and SVI have no turned-round column and their audits are
+byte-identical before and after; so are both drift results.)*
 
 **Fisheries runs against its own index.** It correlates negatively with EPI, so
 a country scoring well on fisheries tends to score worse overall.
@@ -159,7 +169,9 @@ sit at the 43rd percentile on average and the 105 kept at the 55th, 0.40 of a
 standard deviation apart, so the audit describes the better-scoring part of
 the field.)* And the rank envelope
 here perturbs Yale's *own* published weights rather than inventing a range —
-the median country still moves 28 places of 105.
+the median country still moves 30 places of 105. *(28 until 2026-10-19, when
+the envelope stopped applying those weights to a turned-round Fisheries
+column; see the correction above.)*
 
 ## The new question: is a reported rank change real?
 
@@ -242,11 +254,12 @@ unrelated measurements behave alike once the gap is the same.
 
 Two caveats. EPI's panel is a single ten-year gap, not a series, so its 175
 changes give thin bins. And EPI's published score is **not exactly reproducible
-from its own published components** at either level of its hierarchy — a country
-lands up to 1.2 points out from the three policy objectives, and 5.6 from the
-eleven issue categories. That is why `change_fidelity` exists: the level is not
-reproduced, but the change is (r = 0.998, 97.8% same direction), because a
-per-country offset largely cancels in a difference.
+from its own published components** — a country lands up to 1.2 points out
+from the three policy objectives, and 2.2 from the eleven issue categories
+*(5.6 until 2026-10-19, an error of this tool's; see the EPI correction
+above)*. That is why `change_fidelity` exists: the level is not
+reproduced exactly, but the change is (r = 0.998, 97.8% same direction),
+because a per-country offset largely cancels in a difference.
 
 ### Why this is not Foster, McGillivray & Seth (2009)
 
@@ -262,6 +275,43 @@ treatment of change over time.
 
 The two results fit together: comparisons between distant countries are mostly
 robust, while the small movements that get reported annually mostly are not.
+
+### Their test, run here: the second external anchor
+
+```bash
+python tools/fetch_hdr2006.py        # HDI 2004 from HDR 2006's Table 1; needs pypdf
+python -m unittest tests.test_pairwise
+```
+
+Their test is now part of every audit (`aggregation.pairwise_robustness`), and
+it is exact rather than sampled: "A above B" holds for every weighting in a
+set if it holds at the set's corners (their Theorem 2). Every audit reports
+the share of pairs no weighting at all reverses, and the share no weighting
+within a quarter of the way to any single-pillar corner reverses.
+
+Their figures come from HDI 2004, 177 countries, three dimension indices
+averaged equally. UNDP no longer serves those tables as data, so
+`fetch_hdr2006.py` reads them from the 2006 report's PDF, where the indices
+are printed to two decimals. Rounding creates ties, and a tie is never a
+reversal, so the printed table finds more robust pairs than the paper did
+(11,156 against 10,875). Rebuilding unrounded indices from the raw columns
+fails for about 35 countries whose inputs UNDP estimated without printing.
+So the test asks whether each published figure lies inside the range the
+rounding allows, drawing every index uniformly within ±0.005:
+
+| figure | paper | Assay, 95% of draws within rounding |
+|-|-|-|
+| all 177, every weighting | 10,875 pairs | 10,820 to 10,889 |
+| all 177, quarter of the way | 91.8% | 91.9% to 92.1% |
+| top ten, every weighting | 4 of 45 | 1 to 5 |
+| top ten, quarter of the way | 21 of 45 | 16 to 24 |
+
+**Three land inside the rounding, and one misses by about 0.2 points**, some
+30 pairs of 15,576. The miss is not explained, and the test pins it as a
+miss, not as agreement. This anchors the pairwise path only. The rank
+envelope's Dirichlet draws still have no published figure to land on.
+
+Building it found a bug in the weighted paths: see the EPI correction above.
 
 ### When a new edition is out
 
@@ -418,8 +468,10 @@ block was moved off that loop for this reason and this file was not.)*
 
 - **One validation is one validation.** HDI's 84.1% matching the published
   78–90% range shows the dimensionality path is right on one index whose answer
-  was already known. The rank-envelope and weight-reproduction paths have no
-  external anchor at all yet.
+  was already known. Since 2026-10-19 the pairwise-robustness path has a
+  second anchor, Foster, McGillivray & Seth's HDI 2004 figures, three of four
+  matched within rounding. The rank envelope and the weight-reproduction test
+  still have none.
 - Three indices now. Two are country-level and built by Western institutions
   from overlapping data infrastructure, which is not two independent
   replications. The third (US counties, CDC) is independent of both in subject
@@ -463,8 +515,9 @@ tools/      fetch_vdem.py  fetch_undp.py  fetch_epi.py
             build_hdi_panel.py  build_epi_panel.py
             conform_browser.py  docclaims.py
             editions.py (is a newer HDI, EPI or SVI out? HEAD requests only)
+            fetch_hdr2006.py (HDI 2004, for the Foster et al. replication)
             rawcache.py  netcache.py (downloads, cached under data/cache/)
-tests/      154 tests (9 of them drive docs/audit.html in a browser)
+tests/      166 tests (9 of them drive docs/audit.html in a browser)
 claims.json every hard number this README publishes, graded and dated
 ax.py       the CLI
 ```
@@ -492,11 +545,11 @@ run drifting toward the retention boundary is visible before it flips. Run it
 after any change to `structure.py` or `docs/audit.js`.
 
 **What that costs, found 2026-09-19 by CI's first run.** A clone of this
-repository alone runs 96 of its 154 tests: `test_structure`, `test_aggregation`,
+repository alone runs 108 of its 166 tests: `test_structure`, `test_aggregation`,
 `test_report` and `test_claims` import Sextant through `structure.py` and cannot
 load without a sibling checkout. The suite passes in a working directory that has one and
 fails in a fresh clone, so **a clone, not the working directory, is the honest
-check before trusting a green run.** `.github/workflows/assay.yml` runs the 96
+check before trusting a green run.** `.github/workflows/assay.yml` runs the 108
 and prints what it did not run; the machinery those four exercise is
 Sextant's own, and Sextant's CI runs all 342 of its tests on every push.
 

@@ -80,10 +80,31 @@ class Index:
         import numpy as np
         return np.asarray(self.values, dtype=float)
 
-    def standardised(self):
-        """z-scored columns. A column with zero variance is left at zero."""
-        import numpy as np
+    def as_published(self):
+        """Values with orientation turned back: the sub-scores as published.
+
+        Orientation is for reading STRUCTURE - correlations, components - and
+        nothing else. Anything that applies the index's own weights must use
+        this instead. Until 2026-10-19 the reproduction test, the rank
+        envelope and the drift test all used the oriented values, so EPI's
+        Fisheries, turned round because it runs against the index, entered
+        the recomputed EPI with its sign reversed. The audit reported a
+        typical score error of 2.2 points that was the tool's own; with the
+        sign put back it is 0.22.
+        """
         X = self.matrix()
+        for c in self.flipped:
+            X[:, self.columns.index(c)] *= -1
+        return X
+
+    def standardised(self, as_published=False):
+        """z-scored columns. A column with zero variance is left at zero.
+
+        Oriented by default, for structure; `as_published=True` for anything
+        that applies the index's weights (see `as_published`).
+        """
+        import numpy as np
+        X = self.as_published() if as_published else self.matrix()
         mu = X.mean(axis=0)
         sd = X.std(axis=0, ddof=1)
         sd[sd == 0] = 1.0

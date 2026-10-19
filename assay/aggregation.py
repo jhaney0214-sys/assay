@@ -42,9 +42,10 @@ def weighted_score(index, weights):
 
     Standardising is right when the question is about structure or about which
     ordering a weighting produces, because it stops the widest-scaled column
-    dominating for a reason unrelated to its weight.
+    dominating for a reason unrelated to its weight. The sub-scores point the
+    way the index publishes them, since these are the index's weights.
     """
-    Z = index.standardised()
+    Z = index.standardised(as_published=True)
     w = np.asarray(weights, dtype=float)
     w = w / w.sum()
     return Z @ w
@@ -58,8 +59,9 @@ def weighted_score_raw(index, weights):
     different arithmetic whenever the columns have different spreads, and it
     would make a perfectly reproducible index look irreproducible. EPI, whose
     eleven issue categories vary widely in spread, is the case that exposed it.
+    The values are as published, never orientation-flipped (load.as_published).
     """
-    X = index.matrix()
+    X = index.as_published()
     w = np.asarray(weights, dtype=float)
     w = w / w.sum()
     return X @ w
@@ -158,7 +160,10 @@ def rank_envelope(index, draws=DEFAULT_DRAWS, mode=None, concentration=50.0, see
         alpha = np.ones(k)
         mode = "uniform"
 
-    Z = index.standardised()
+    # Perturbing the PUBLISHED weights only means something on the sub-scores
+    # as published; any weighting at all ("uniform") is read over the oriented
+    # ones, where every pillar points the way the index calls good.
+    Z = index.standardised(as_published=(mode == "near"))
     all_ranks = np.empty((draws, index.n), dtype=np.int32)
     for d in range(draws):
         w = rng.dirichlet(alpha)
@@ -200,6 +205,56 @@ def rank_envelope(index, draws=DEFAULT_DRAWS, mode=None, concentration=50.0, see
         "mean_top_churn": float(np.mean(churn)),
         "max_top_churn": int(np.max(churn)),
     }
+
+
+def pairwise_robustness(index, orders=(1.0, 0.25)):
+    """Which pairwise comparisons no defensible weighting reverses.
+
+    Foster, McGillivray and Seth (2009, OPHI Working Paper 26) call x above y
+    robust over a set of weightings W when the composite puts x above y at
+    the initial weights w0 and no w in W reverses it. For W the simplex S_r,
+    the weightings within a fraction r of the way from w0 to each corner, it
+    is exact and needs no sampling (their Theorem 2): x stays at or above y
+    everywhere in S_r if and only if it does at each of S_r's corners, where
+    entity x scores (1-r)C0(x) + r x_d. r = 1 is every weighting at all,
+    which reduces to x beating y on every sub-score.
+
+    This is the deterministic counterpart of `rank_envelope`, and the only
+    weight-sensitivity figure here with a published value to land on: on
+    HDI 2004 the paper reports 69.8% of 15,576 comparisons robust at r = 1
+    and 91.8% at r = 0.25 (tools/fetch_hdr2006.py, tests/test_pairwise.py).
+
+    Scale: the published sub-scores with the published weights when the index
+    is a weighted sum of them (what FMS test, and what the index computes);
+    otherwise z-scores with equal weights, said in the result, because a sum
+    of raw sub-scores on unrelated scales is not a composite of anything.
+    """
+    linear = getattr(index, "aggregation_form", "linear") == "linear"
+    if index.weights and linear:
+        X = index.as_published()
+        w0 = np.array([index.weights.get(c, 0.0) for c in index.columns], float)
+        scale = "published sub-scores, published weights"
+    else:
+        X = index.standardised()
+        w0 = np.ones(index.k)
+        scale = "z-scores, equal weights"
+    w0 = w0 / w0.sum()
+    c0 = X @ w0
+    n = index.n
+    total = n * (n - 1) // 2
+    out = {"scale": scale, "pairs": total, "orders": []}
+    for r in orders:
+        V = (1.0 - r) * c0[:, None] + r * X
+        robust = 0
+        # One entity against every lower-scoring one at a time: n rows of k
+        # comparisons, so 3,144 counties is 4.9 million pairs without ever
+        # holding them all at once.
+        for i in range(n):
+            below = c0 < c0[i]
+            if below.any():
+                robust += int(np.all(V[below] <= V[i], axis=1).sum())
+        out["orders"].append({"r": r, "robust": robust, "share": robust / total})
+    return out
 
 
 def most_movable(index, env, limit=10):

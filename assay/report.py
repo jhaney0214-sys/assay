@@ -95,7 +95,7 @@ def _left_out(w, left, index):
     w("")
 
 
-def render(index, struct, agg, env, movable, left=None):
+def render(index, struct, agg, env, movable, left=None, pairs=None):
     L = []
     w = L.append
 
@@ -327,6 +327,30 @@ def render(index, struct, agg, env, movable, left=None):
     for name, pub, best, worst, spread in movable:
         w("    %-34s %6d   %5d  %5d  %6d" % (name[:34], pub, best, worst, spread))
     w("")
+
+    # ---- pairwise robustness, exact -------------------------------------
+    if pairs is not None:
+        w("WHICH COMPARISONS DOES NO WEIGHTING REVERSE?")
+        w("")
+        w("  Exact, not sampled (Foster, McGillivray & Seth 2009): 'A above B'")
+        w("  holds everywhere in a set of weightings if it holds at the set's")
+        w("  corners. On %s, of %d pairs:" % (pairs["scale"], pairs["pairs"]))
+        w("")
+        for o in pairs["orders"]:
+            if o["r"] == 1.0:
+                label = "under every weighting at all"
+            else:
+                label = ("under weightings up to %d%% of the way from the starting"
+                         % round(100 * o["r"]))
+            w("    %5.1f%%  %s" % (100 * o["share"], label))
+            if o["r"] != 1.0:
+                w("            weights toward all the weight on any one sub-score")
+        w("")
+        w("  'Every weighting' needs A to beat B on every sub-score, so it falls")
+        w("  as sub-scores are added; compare indices at the narrower set. On")
+        w("  HDI 2004 three of the paper's four figures land inside the printed")
+        w("  table's rounding and one misses by 0.2 points (tests/test_pairwise.py).")
+        w("")
 
     # ---- the joint reading ----------------------------------------------
     w("=" * 74)
