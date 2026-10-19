@@ -1,6 +1,6 @@
 # Assay
 
-**Status: production.** 180 tests (169 Python, 11 driving the browser page); the dimensionality path is validated against a published HDI result, the pairwise-robustness path against three of four published HDI 2004 figures; the rank-envelope path has no external anchor. Every hard number below is recorded in [`claims.json`](claims.json) with how it is known and when it was last checked. See [PRODUCTION.md](../PRODUCTION.md).
+**Status: production.** 184 tests (169 Python, 15 driving the browser page); the dimensionality path is validated against a published HDI result, the pairwise-robustness path against three of four published HDI 2004 figures; the rank-envelope path has no external anchor. Every hard number below is recorded in [`claims.json`](claims.json) with how it is known and when it was last checked. See [PRODUCTION.md](../PRODUCTION.md).
 
 Tests whether a published index measures what it says it measures. Named for
 the metallurgical test that tells you what an ore is actually made of, rather
@@ -560,7 +560,7 @@ tools/      fetch_vdem.py  fetch_undp.py  fetch_epi.py
             editions.py (is a newer HDI, EPI or SVI out? HEAD requests only)
             fetch_hdr2006.py (HDI 2004, for the Foster et al. replication)
             rawcache.py  netcache.py (downloads, cached under data/cache/)
-tests/      180 tests (11 of them drive docs/audit.html in a browser)
+tests/      184 tests (15 of them drive docs/audit.html in a browser)
 claims.json every hard number this README publishes, graded and dated
 ax.py       the CLI
 ```
@@ -587,6 +587,20 @@ generator, which JavaScript cannot reproduce; the percentile gap is printed so a
 run drifting toward the retention boundary is visible before it flips. Run it
 after any change to `structure.py` or `docs/audit.js`.
 
+**A file is untrusted input, and the page treats it so since 2026-10-19.**
+The product test that day found the column-mapping table writing each
+column's first values into the page as HTML, so a CSV whose first entity was
+named `<img src=x onerror=...>` ran that script on the page's origin. Every
+cell and header is now escaped, a browser test feeds the page a hostile file
+and checks nothing runs, and the page's wiring moved from an inline script to
+`docs/audit-page.js` so that a content security policy can allow script only
+from the site's own files: an inline handler that slips past the escaping is
+blocked too, which another test checks. The page still works opened from
+disk, and a test checks that as well. The same test pass found loading
+V-Dem's example and then another file kept V-Dem's shared-construction box
+ticked, so EPI's structure was reported as "not a finding"; reading new data
+now clears it.
+
 **The rank envelope is on the page since 2026-10-19**, in its permissive
 form, any weighting at all, since the page has no weights input. It is
 checked twice. Given numpy's own 200 Dirichlet draws, the page's engine must
@@ -602,11 +616,11 @@ check compares which ones each side turns round. Building it is how the tie
 problem above was found.
 
 **What that costs, found 2026-09-19 by CI's first run.** A clone of this
-repository alone runs 121 of its 180 tests: `test_structure`, `test_aggregation`,
+repository alone runs 125 of its 184 tests: `test_structure`, `test_aggregation`,
 `test_report` and `test_claims` import Sextant through `structure.py` and cannot
 load without a sibling checkout. The suite passes in a working directory that has one and
 fails in a fresh clone, so **a clone, not the working directory, is the honest
-check before trusting a green run.** `.github/workflows/assay.yml` runs the 121
+check before trusting a green run.** `.github/workflows/assay.yml` runs the 125
 and prints what it did not run; the machinery those four exercise is
 Sextant's own, and Sextant's CI runs all 342 of its tests on every push.
 Without the sibling, `ax.py columns` and `ax.py init` still run: since

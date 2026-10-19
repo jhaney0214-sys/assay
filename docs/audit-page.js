@@ -1,0 +1,416 @@
+/* The page's own wiring: reading a CSV, the column mapping, rendering.
+ * The analysis is in audit.js. This was an inline <script> until
+ * 2026-10-19; it moved here so the page's content security policy can
+ * allow only script files from this site, which blocks any inline
+ * handler a hostile CSV manages to get into the page. */
+
+"use strict";
+const $ = (s) => document.querySelector(s);
+let parsed = null;
+
+/* ---------- CSV ---------- */
+function parseCSV(text) {
+  const rows = [];
+  let row = [], field = "", inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQ) {
+      if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+      else if (c === '"') inQ = false;
+      else field += c;
+    } else if (c === '"') inQ = true;
+    else if (c === ",") { row.push(field); field = ""; }
+    else if (c === "\n") { row.push(field); rows.push(row); row = []; field = ""; }
+    else if (c !== "\r") field += c;
+  }
+  if (field.length || row.length) { row.push(field); rows.push(row); }
+  return rows.filter((r) => r.some((v) => v.trim() !== ""));
+}
+
+function looksNumeric(values) {
+  const usable = values.filter((v) => v.trim() !== "");
+  if (!usable.length) return false;
+  const ok = usable.filter((v) => Assay.toNumber(v) !== null).length;
+  return ok / usable.length > 0.8;
+}
+
+$("#parse").addEventListener("click", () => {
+  const rows = parseCSV($("#csv").value.trim());
+  if (rows.length < 3) { alert("Need a header row and at least two data rows."); return; }
+  const header = rows[0].map((h) => h.trim());
+  const body = rows.slice(1);
+  // New data, new declaration: nothing about the last file carries over.
+  // The V-Dem example ticks this again after reading its columns.
+  $("#shared").checked = false;
+  parsed = { header, body };
+
+  const tbody = $("#maptable tbody");
+  tbody.innerHTML = "";
+  header.forEach((name, i) => {
+    const col = body.map((r) => (r[i] || "").trim());
+    const numeric = looksNumeric(col);
+    // The DEFAULT is a suggestion and the visitor overrides it: numeric
+    // columns default to sub-score and text to identifier. Which column is
+    // the published total is argued from the data below, never from position.
+    //
+    // Both cells are the file's own text and are escaped. The sample values
+    // were not until 2026-10-19: a CSV whose first entity was named
+    // <img src=x onerror=...> ran that script on this page's origin, found by
+    // the product test that day. tests/test_browser_page.py keeps it found.
+    const tr = document.createElement("tr");
+    tr.innerHTML = "<td><strong>" + esc(name) + "</strong></td>" +
+      "<td class='muted'>" + esc(col.slice(0, 3).join(", ").slice(0, 40)) + "</td>" +
+      "<td><select data-col='" + i + "'>" +
+      "<option value='score'>sub-score</option>" +
+      "<option value='id'>identifier</option>" +
+      "<option value='published'>published score</option>" +
+      "<option value='ignore'>ignore</option></select></td>";
+    tbody.appendChild(tr);
+    tr.querySelector("select").value = numeric ? "score" : "id";
+  });
+  // NO POSITIONAL GUESS about which column is the published total. The
+  // obvious rule - "it is the last numeric one" - is right for HDI and wrong
+  // for V-Dem, which publishes five sibling indices and no aggregate, so the
+  // rule silently deleted a real pillar and reported four. Every numeric
+  // column starts as a sub-score and the detector below argues from the data
+  // instead of from position.
+  $("#mapping").classList.remove("hidden");
+  $("#mapping").scrollIntoView({ behavior: "smooth" });
+});
+
+$("#file").addEventListener("change", (e) => {
+  const f = e.target.files[0];
+  if (!f) return;
+  const r = new FileReader();
+  r.onload = () => { $("#csv").value = r.result; $("#parse").click(); };
+  r.readAsText(f);
+});
+
+/* ---------- audit ---------- */
+$("#run").addEventListener("click", () => {
+  const roles = Array.from(document.querySelectorAll("#maptable select"))
+    .map((s) => s.value);
+  const scoreIdx = roles.map((r, i) => r === "score" ? i : -1).filter((i) => i >= 0);
+  const pubIdx = roles.indexOf("published");
+  const idIdx = roles.indexOf("id");
+
+  if (scoreIdx.length < 3) {
+    alert("Mark at least three columns as sub-scores. Below three there is no " +
+          "dimensional question to ask.");
+    return;
+  }
+
+  // Cells are read by Assay.toNumber, the engine's own rule. A dropped row is
+  // tallied by the column that emptied it, as assay/report.py does, and its
+  // published score kept, so "who was left out" can be asked of it.
+  const keep = [], gone = [], gaps = {};
+  const checked = scoreIdx.concat(pubIdx >= 0 ? [pubIdx] : []);
+  parsed.body.forEach((r) => {
+    const vals = scoreIdx.map((i) => Assay.toNumber(r[i]));
+    const pub = pubIdx >= 0 ? Assay.toNumber(r[pubIdx]) : null;
+    if (vals.every((v) => v !== null) && (pubIdx < 0 || pub !== null)) {
+      keep.push({ vals, pub, label: idIdx >= 0 ? (r[idIdx] || "").trim()
+                                              : "row " + (keep.length + gone.length + 1) });
+      return;
+    }
+    gone.push(pub);
+    checked.forEach((i) => {
+      if (Assay.toNumber(r[i]) !== null) return;
+      const g = gaps[i] || (gaps[i] = { empty: 0, text: 0 });
+      if (Assay.isBlank(r[i])) g.empty++; else g.text++;
+    });
+  });
+  const dropped = gone.length;
+  if (keep.length < 10) {
+    alert("Only " + keep.length + " complete rows. That is too few to say " +
+          "anything about structure.");
+    return;
+  }
+
+  const columns = scoreIdx.map((_, c) => keep.map((r) => r.vals[c]));
+  const names = scoreIdx.map((i) => parsed.header[i]);
+  const published = pubIdx >= 0 ? keep.map((r) => r.pub) : null;
+
+  const suspect = aggregateAmongScores(columns, names);
+  const out = Assay.analyse(columns, names, { published, seed: 0, iters: 500 });
+  const left = dropped ? {
+    rowsIn: parsed.body.length, dropped,
+    byColumn: Object.keys(gaps).map((i) => ({ name: parsed.header[i], ...gaps[i] }))
+      .sort((a, b) => (b.empty + b.text) - (a.empty + a.text)),
+    hasPublished: published !== null,
+    ...Assay.leftOut(published, gone.filter((p) => p !== null)),
+  } : null;
+  // The rank envelope, on the sub-scores turned to point one way, as the
+  // engine's loader does. Any weighting at all: the page has no weights input.
+  const turned = Assay.orient(columns, published);
+  const env = Assay.rankEnvelope(turned.columns, { published, draws: 2000, seed: 0 });
+  env.labels = keep.map((r) => r.label);
+  env.flipped = turned.flipped.map((j) => names[j]);
+  render(out, names, dropped, $("#shared").checked, published !== null, suspect, left, env);
+});
+
+/* An index total is a function of its own pillars, so it correlates with
+   their mean far more tightly than the pillars correlate with each other.
+   0.95 is above anything observed between genuine pillars in the three
+   worked examples and below HDI's own 0.998 against its inputs. */
+const AGGREGATE_AT = 0.95;
+
+function aggregateAmongScores(columns, names) {
+  if (columns.length < 4) return null;
+  let worst = null;
+  for (let c = 0; c < columns.length; c++) {
+    const others = columns.filter((_, i) => i !== c);
+    const mean = columns[c].map((_, t) =>
+      others.reduce((a, col) => a + col[t], 0) / others.length);
+    const r = Math.abs(Assay.pearson(columns[c], mean));
+    if (r >= AGGREGATE_AT && (!worst || r > worst.r))
+      worst = { name: names[c], r };
+  }
+  return worst;
+}
+
+function pct(x) { return (100 * x).toFixed(1) + "%"; }
+
+function ordinal(x) {
+  const n = Math.round(x), t = n % 100;
+  const s = (t >= 11 && t <= 13) ? "th" : ({ 1: "st", 2: "nd", 3: "rd" }[n % 10] || "th");
+  return n + s;
+}
+
+function leftOutBlock(left) {
+  const p = [];
+  p.push("<h3>Who was left out?</h3>");
+  p.push("<p class='verdict' id='left-out'>" + left.dropped + " of " + left.rowsIn +
+    " rows dropped</p>");
+  p.push("<table><thead><tr><th>Column</th><th class='num'>Empty</th>" +
+    "<th class='num'>Not a number</th></tr></thead><tbody>");
+  left.byColumn.forEach((c) => p.push("<tr><td>" + esc(c.name) + "</td><td class='num'>" +
+    (c.empty || "") + "</td><td class='num'>" + (c.text || "") + "</td></tr>"));
+  p.push("</tbody></table>");
+  if (left.byColumn.some((c) => c.text))
+    p.push("<p class='muted'>A “not a number” cell is text such as <code>12%</code> or " +
+      "<code>n.a.</code>. If that is how the file writes numbers rather than a gap, " +
+      "those rows were dropped by mistake.</p>");
+  if (!left.hasPublished) {
+    p.push("<p class='muted'>No published score is marked, so whether the dropped " +
+      "rows differ from the kept ones cannot be tested.</p>");
+  } else if (left.gapInSd === undefined) {
+    p.push("<p class='muted'>" + (left.compared === 0
+      ? "None of the dropped rows has a published score either: the index left " +
+        "them out too, so this audit covers the same field it does."
+      : "Only " + left.compared + " dropped rows have a published score, too few " +
+        "to compare.") + "</p>");
+  } else {
+    const side = left.gapInSd < 0 ? "lower" : "higher";
+    const how = "Compared on the published score, the " + left.compared +
+      " dropped rows that have one sit at the " + ordinal(left.droppedMeanPct) +
+      " percentile on average and the kept rows at the " +
+      ordinal(left.keptMeanPct) + " (" + Math.abs(left.gapInSd).toFixed(2) +
+      " SD " + side + ").";
+    p.push(left.selective
+      ? "<div class='warn' id='left-out-verdict'><strong>The dropping is selective.</strong> " +
+        how + " Everything below describes the index where it is complete, " +
+        "which is not the whole field.</div>"
+      : "<p class='muted' id='left-out-verdict'>" + how + " That is close, which " +
+        "is evidence against the dropping biasing what follows, not proof.</p>");
+  }
+  return p.join("");
+}
+
+function envelopeBlock(env, kind, oneDim) {
+  const p = [];
+  const pc = (x) => Math.round(100 * x) + "%";
+  p.push("<h3>How much of a rank is the entity, and how much the weighting?</h3>");
+  p.push("<p class='verdict' id='envelope'>The median rank moves " +
+    env.medianSpread.toFixed(0) + " places of " + env.spread.length + " (" +
+    pc(env.medianSpreadShare) + " of the field)</p>");
+  p.push("<p class='muted'>" + env.draws.toLocaleString() + " weightings drawn " +
+    "evenly from every possible weighting of these sub-scores. The page has no " +
+    "way to enter an index's own weights, so this is the permissive reading: an " +
+    "upper bound on how far a rank could move, not the movement under small " +
+    "disagreements about the published weights (the Python engine reports that " +
+    "when a spec gives them). Places are not comparable between indices of " +
+    "different sizes; the share of the field is.</p>");
+  p.push("<table><tbody>" +
+    "<tr><td>90th percentile spread</td><td class='num'>" + env.p90Spread.toFixed(0) +
+    " places (" + pc(env.p90SpreadShare) + ")</td></tr>" +
+    "<tr><td>Largest spread</td><td class='num'>" + env.maxSpread + " places (" +
+    pc(env.maxSpreadShare) + ")</td></tr>" +
+    "<tr><td>Top-" + env.topN + " churn</td><td class='num'>" +
+    env.meanTopChurn.toFixed(1) + " of " + env.topN + " leave on an average draw</td></tr>" +
+    "</tbody></table>");
+  if (env.flipped.length)
+    p.push("<p class='muted'>Turned round before weighting, because they run " +
+      "against the rest: " + env.flipped.map(esc).join(", ") + ". A country " +
+      "scoring well on these tends to score worse overall.</p>");
+  const order = env.spread.map((s, t) => t).sort((a, b) => env.spread[b] - env.spread[a]).slice(0, 10);
+  p.push("<p>Most weight-dependent:</p><table id='movable'><thead><tr><th>Entity</th>" +
+    "<th class='num'>Rank</th><th class='num'>Best</th><th class='num'>Worst</th></tr></thead><tbody>");
+  order.forEach((t) => p.push("<tr><td>" + esc(env.labels[t]) + "</td><td class='num'>" +
+    env.publishedRank[t] + "</td><td class='num'>" + env.best[t] + "</td><td class='num'>" +
+    env.worst[t] + "</td></tr>"));
+  p.push("</tbody></table>");
+  // assay/report.py's joint reading: stability beside one dimension is
+  // not robustness, and the page says so where it applies.
+  if (env.medianSpreadShare <= 0.05 && oneDim)
+    p.push("<div class='warn'><strong>This stability is not evidence of " +
+      "robustness.</strong> The sub-scores are close to one thing, so no " +
+      "weighting could have separated these entities. The stability and the " +
+      "redundancy are the same fact.</div>");
+  else if (env.medianSpreadShare > 0.05)
+    p.push("<p class='muted'>Rank differences smaller than this spread are " +
+      "differences between weightings as much as between entities. Read a place " +
+      "in the table as a band, not a position.</p>");
+  return p.join("");
+}
+
+function render(a, names, dropped, shared, hasPublished, suspect, left, env) {
+  const d = a.dimensions;
+  const parts = [];
+
+  if (shared) parts.push("<div class='warn'><strong>Shared construction " +
+    "declared, so the dimensional result below is not a finding.</strong> " +
+    "Sub-scores that contain each other correlate by arithmetic. Everything " +
+    "here describes the data faithfully; none of it is evidence about the " +
+    "world until the overlapping columns are separated.</div>");
+
+  if (suspect && !shared) parts.push("<div class='warn'><strong>“" +
+    esc(suspect.name) + "” correlates " + suspect.r.toFixed(3) + " with the " +
+    "average of the other sub-scores.</strong> Two things look like that, and " +
+    "they need opposite corrections. It may be the index's own published " +
+    "<em>total</em> left marked as a pillar — mark it as the published score " +
+    "and run again. Or it may genuinely share construction with the others, " +
+    "the way V-Dem's liberal index contains its electoral index — tick the " +
+    "shared-construction box, which stops the collapse below being read as a " +
+    "finding. Analysing a total as a pillar makes an index appear to measure " +
+    "fewer things than it does.</div>");
+
+  parts.push("<h2>3 · What the structure says</h2>");
+  parts.push("<p class='muted'>" + a.n + " complete rows, " + a.k +
+    " sub-scores" + (dropped ? ", " + dropped + " rows dropped for missing values" : "") +
+    ".</p>");
+  if (left) parts.push(leftOutBlock(left));
+
+  /* Q1 dimensions */
+  const range = d.low === d.high ? String(d.low) : d.low + "–" + d.high;
+  parts.push("<h3>How many dimensions are really there?</h3>");
+  parts.push("<p class='verdict'>" + range + " of " + a.k + "</p>");
+  parts.push("<p class='muted'>Horn's parallel analysis retains " + d.parallel +
+    ". " + (d.mapUsable
+      ? "Velicer's MAP retains " + d.map + "."
+      : "Velicer's MAP is not reported: it is unreliable below " +
+        Assay.MIN_COLUMNS_FOR_MAP + " columns, because there is almost " +
+        "nothing left to partial out.") + "</p>");
+  /* One retained component is not one thing measured. What the sub-scores
+     share is read from how alike they are, the same way assay/report.py
+     reads it; this used to say "a single underlying quantity" whenever one
+     component was kept, whatever it explained. */
+  const alike = a.pairwise, kind = Assay.grade(alike.mean);
+  const likeness = "The sub-scores correlate " + alike.mean.toFixed(2) +
+    " with each other on average and " + alike.min.toFixed(2) +
+    " at the least alike pair.";
+  if (!shared && d.high === 1 && a.k >= 3) {
+    if (kind === "one")
+      parts.push("<div class='warn'>One component. The named pillars are not " +
+        "separable in this data — whatever they are called, the entities are " +
+        "ordered on a single underlying quantity. " + likeness + "</div>");
+    else if (kind === "overlap")
+      parts.push("<div class='warn'>One component retained, and the pillars " +
+        "are still not one thing. They overlap heavily: " + likeness +
+        " Each carries something the others do not, but not enough to stand " +
+        "as a dimension of its own.</div>");
+    else
+      parts.push("<div class='warn'>One component retained, and it does not " +
+        "explain much. " + likeness + " The claimed structure is not there " +
+        "and neither is a single clean alternative: these look like loosely " +
+        "related measurements that do not resolve into named dimensions.</div>");
+  }
+
+  /* Q2 first component share */
+  parts.push("<h3>How much is one component?</h3>");
+  parts.push("<p class='verdict'>" + pct(a.pc1Share) +
+    " of variance on the first component</p>");
+  parts.push("<table><thead><tr><th>Component</th><th class='num'>Variance</th>" +
+    "<th class='num'>Cumulative</th></tr></thead><tbody>");
+  let cum = 0;
+  a.varianceExplained.forEach((v, i) => {
+    cum += v;
+    if (i < 6) parts.push("<tr><td>" + (i + 1) + "</td><td class='num'>" +
+      pct(v) + "</td><td class='num'>" + pct(cum) + "</td></tr>");
+  });
+  parts.push("</tbody></table>");
+
+  /* Q3 redundancy */
+  parts.push("<h3>Which pillars are the same pillar?</h3>");
+  if (!a.redundant.length) {
+    parts.push("<p>No pair correlates at 0.90 or above.</p>");
+  } else {
+    parts.push("<p class='verdict'>" + a.redundant.length +
+      " pair" + (a.redundant.length === 1 ? "" : "s") + " at |r| ≥ 0.90</p>");
+    parts.push("<table><thead><tr><th>Pair</th><th class='num'>r</th></tr></thead><tbody>");
+    a.redundant.slice(0, 12).forEach((p) => {
+      parts.push("<tr><td>" + esc(p.a) + " &amp; " + esc(p.b) +
+        "</td><td class='num'>" + p.r.toFixed(3) + "</td></tr>");
+    });
+    parts.push("</tbody></table>");
+    if (!shared) parts.push("<p class='muted'>A pair this close is one thing " +
+      "counted twice, and so weighted twice, unless the index says why not.</p>");
+  }
+
+  /* Q4 weights */
+  parts.push("<h3>Do the weights beat one unweighted component?</h3>");
+  if (!hasPublished) {
+    parts.push("<p class='muted'>No published-score column was marked, so this " +
+      "question was not asked.</p>");
+  } else {
+    const r = a.weightsVsPc1;
+    parts.push("<p class='verdict'>r(published, PC1) = " + r.toFixed(4) + "</p>");
+    parts.push(Math.abs(r) >= 0.99
+      ? "<div class='warn'>The published score is all but identical to an " +
+        "unweighted first component. Whatever the weighting scheme was " +
+        "deliberating about, it did not change the ordering.</div>"
+      : "<p class='muted'>The weighting moves the result away from a plain " +
+        "first component by a visible amount.</p>");
+  }
+
+  /* Q5 the envelope */
+  if (env) parts.push(envelopeBlock(env, Assay.grade(a.pairwise.mean),
+    a.dimensions.high === 1 && Assay.grade(a.pairwise.mean) === "one"));
+
+  /* The trap */
+  parts.push("<h3>Before you use any of this</h3>");
+  parts.push("<div class='warn'><strong>A ranking that barely moves under " +
+    "reweighting looks robust, and has a second explanation that looks " +
+    "identical: the sub-scores are so correlated that no weighting could have " +
+    "separated them.</strong> Stability is evidence of robustness only when " +
+    "the pillars were distinguishable in the first place. Read the " +
+    "dimensional result above before reading stability as strength.</div>");
+
+  $("#results").innerHTML = parts.join("\n");
+  $("#results").classList.remove("hidden");
+  $("#results").scrollIntoView({ behavior: "smooth" });
+}
+
+function esc(s) {
+  return String(s).replace(/[<>&"']/g, (c) =>
+    ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+/* ---------- worked examples ---------- */
+document.querySelectorAll("[data-example]").forEach((b) => {
+  b.addEventListener("click", async () => {
+    const name = { hdi: "hdi-2022", vdem: "vdem-2024", epi: "epi-2024" }[b.dataset.example];
+    b.disabled = true;
+    try {
+      const res = await fetch("examples/" + name + ".csv");
+      if (!res.ok) throw new Error(res.status);
+      $("#csv").value = await res.text();
+      $("#parse").click();
+      // Set either way. It used to be ticked for V-Dem and never unticked, so
+      // EPI loaded after V-Dem reported its structure as "not a finding".
+      $("#shared").checked = b.dataset.example === "vdem";   // four of five contain the fifth
+    } catch (e) {
+      alert("Could not load the example (" + e.message + "). Paste a CSV instead.");
+    } finally { b.disabled = false; }
+  });
+});

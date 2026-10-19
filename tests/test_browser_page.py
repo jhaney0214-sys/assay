@@ -204,6 +204,113 @@ class TestAuditPage(unittest.TestCase):
         self.assertIn("Read a place in the table as a band", text)
         self.assertEqual(self.errors, [])
 
+    def test_a_hostile_file_runs_no_script_and_shows_its_text(self):
+        """Found by the product test of 2026-10-19: a CSV ran script here.
+
+        The column-mapping table wrote each column's first values into the
+        page as HTML, so an entity named <img src=x onerror=...> executed.
+        Every place a file's text reaches the page is exercised: headers,
+        first values, left-out columns, redundant pairs and the envelope's
+        entity names.
+        """
+        hostile = '<img src=q onerror="window.__pwn=(window.__pwn||0)+1">'
+        rows = ["name,%s,b,c,d,total" % hostile.replace('"', "'")]
+        for i in range(24):
+            name = hostile.replace('"', "'") if i < 3 else "e%d" % i
+            a = (i * 37) % 23 / 23
+            vals = [a, a + 0.01 * (i % 5), a + 0.02 * (i % 3), (i * 11) % 17 / 17]
+            if i == 5:
+                vals[1] = ""
+            rows.append(",".join([name] + [str(v) for v in vals] + [str(sum(
+                v for v in vals if v != "") / 4)]))
+        page = self.browser.new_page()
+        errors = []
+        page.on("pageerror", lambda e: errors.append(str(e)))
+        page.goto(self.url, wait_until="networkidle")
+        page.fill("#csv", "\n".join(rows))
+        page.click("#parse")
+        page.wait_for_selector("#mapping:not(.hidden)", timeout=20000)
+        page.query_selector_all("#maptable select")[-1].select_option("published")
+        page.click("#run")
+        page.wait_for_selector("#results:not(.hidden)", timeout=40000)
+        page.wait_for_timeout(500)
+        ran = page.evaluate("window.__pwn || 0")
+        injected = page.evaluate("document.querySelectorAll('img').length")
+        mapping = page.inner_text("#maptable")
+        results = page.inner_text("#results")
+        page.close()
+        self.assertEqual(ran, 0)
+        self.assertEqual(injected, 0)
+        self.assertIn("<img src=q", mapping)       # shown as text, not dropped
+        self.assertIn("<img src=q", results)
+        self.assertEqual(errors, [])
+
+    def test_the_policy_blocks_an_inline_handler_that_gets_in(self):
+        """The second line of defence: script only from this site's files.
+
+        Put an inline handler into the page directly, as an escaping bug
+        would, and it must not run.
+        """
+        page = self.browser.new_page()
+        violations = []
+        page.on("console", lambda m: violations.append(m.text)
+                if "Content Security Policy" in m.text else None)
+        page.goto(self.url, wait_until="networkidle")
+        page.evaluate("""() => { document.querySelector('#results').innerHTML =
+            '<img src=nowhere onerror="window.__inline=1">'; }""")
+        page.wait_for_timeout(500)
+        ran = page.evaluate("window.__inline || 0")
+        page.close()
+        self.assertEqual(ran, 0)
+        self.assertTrue(violations, "no CSP violation was reported")
+
+    def test_it_still_works_opened_from_disk(self):
+        """The page says it works from a file with the network off."""
+        page = self.browser.new_page()
+        errors = []
+        page.on("pageerror", lambda e: errors.append(str(e)))
+        page.goto((DOCS / "audit.html").as_uri())
+        page.fill("#csv", "name,a,b,c,total\n" + "\n".join(
+            "e%d,%d,%d,%d,%d" % (i, i, i + (i % 3), i + (i % 5), 3 * i) for i in range(30)))
+        page.click("#parse")
+        page.wait_for_selector("#mapping:not(.hidden)", timeout=20000)
+        page.query_selector_all("#maptable select")[-1].select_option("published")
+        page.click("#run")
+        page.wait_for_selector("#envelope", timeout=40000)
+        text = page.inner_text("#results")
+        page.close()
+        self.assertIn("30 complete rows", text)
+        self.assertEqual(errors, [])
+
+    def test_one_examples_declaration_does_not_carry_to_the_next(self):
+        """Found by the product test of 2026-10-19.
+
+        V-Dem's example ticks shared construction; loading EPI after it in the
+        same page left the box ticked, and EPI's structure was reported as
+        "not a finding". Reading new data now clears it.
+        """
+        page = self.browser.new_page()
+        page.goto(self.url, wait_until="networkidle")
+        page.click("[data-example='vdem']")
+        page.wait_for_selector("#mapping:not(.hidden)", timeout=20000)
+        # Selector waits, not wait_for_function: a string predicate runs
+        # through eval, which the page's content security policy refuses.
+        page.wait_for_selector("#shared:checked", state="attached")
+        page.click("[data-example='epi']")
+        page.wait_for_selector("#maptable td:has-text('Forests')", timeout=20000)
+        page.wait_for_timeout(300)
+        epi_shared = page.is_checked("#shared")
+        # And a visitor's own file pasted after V-Dem's example.
+        page.click("[data-example='vdem']")
+        page.wait_for_selector("#shared:checked", state="attached")
+        page.fill("#csv", "name,a,b,c\n" + "\n".join(
+            "e%d,%d,%d,%d" % (i, i, (i * 7) % 13, (i * 5) % 11) for i in range(20)))
+        page.click("#parse")
+        pasted_shared = page.is_checked("#shared")
+        page.close()
+        self.assertFalse(epi_shared)
+        self.assertFalse(pasted_shared)
+
     def test_the_envelope_names_entities_from_the_identifier_column(self):
         page = self.browser.new_page()
         page.goto(self.url, wait_until="networkidle")

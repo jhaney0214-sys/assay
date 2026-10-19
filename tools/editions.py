@@ -132,7 +132,8 @@ def indices():
          "candidates": epi_candidates(fetch_epi.RESULTS),
          "edition_pages": epi_pages(fetch_epi.RESULTS),
          "rerun": ["open the new edition's downloads page and pick the results and weights files",
-                   "check their format: fetch_epi.py reads CSV, and the 2026 edition's results are .xlsx",
+                   "check their column names: fetch_epi.py reads CSV or .xlsx (tools/table.py), "
+                   "and the 2026 edition's results are .xlsx",
                    "set RESULTS and WEIGHTS in tools/fetch_epi.py and tools/build_epi_panel.py",
                    "read the new edition's errata first (2024 had a weights corrigendum)",
                    "py tools/build_epi_panel.py",

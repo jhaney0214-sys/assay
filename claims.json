@@ -101,7 +101,7 @@
     {
       "id": "test_count",
       "claim": "Tests in the suite, Python and browser together",
-      "value": "180 tests",
+      "value": "184 tests",
       "format": "%d tests",
       "derive": {
         "files": [
@@ -124,9 +124,9 @@
     {
       "id": "standalone_tests",
       "claim": "Tests a fresh clone runs without a sibling checkout: the nine files CI runs",
-      "value": "runs 121 of its",
+      "value": "runs 125 of its",
       "also_written": [
-        "runs the 121"
+        "runs the 125"
       ],
       "format": "runs %d of its",
       "status": "measured",
