@@ -29,7 +29,21 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 if HERE not in sys.path:
     sys.path.insert(0, HERE)
 
-from assay import aggregation, drift, driftreport, load, report, structure
+from assay import aggregation, drift, driftreport, load
+# `report` and `structure` import Sextant's factor machinery from a sibling
+# checkout, so they are imported by the command that needs them: a clone
+# without Sextant can still list columns and draft a spec with `init`.
+
+
+def _cell(text):
+    """A name safe to open in a spreadsheet.
+
+    Entity names come from whatever file was audited, and a cell beginning
+    with = + - @ (or a tab or carriage return) runs as a formula in Excel and
+    its relatives. A leading apostrophe makes it text.
+    """
+    text = str(text)
+    return "'" + text if text[:1] in ("=", "+", "-", "@", "\t", "\r") else text
 
 
 def cmd_columns(args):
@@ -57,7 +71,28 @@ def cmd_columns(args):
     return 0
 
 
+def cmd_init(args):
+    """Draft a spec beside a CSV, never over an existing one."""
+    out = args.out or os.path.splitext(args.path)[0] + ".json"
+    if os.path.exists(out):
+        print("%s exists; not overwritten (pass --out for another name)" % out)
+        return 1
+    spec, checks = load.draft_spec(args.path)
+    if os.path.dirname(os.path.abspath(out)) != os.path.dirname(os.path.abspath(args.path)):
+        spec["data"] = os.path.abspath(args.path)
+    with open(out, "w", encoding="utf-8") as fh:
+        json.dump(spec, fh, indent=2)
+        fh.write("\n")
+    print("wrote %s: %d sub-scores, entity column %r, published total %r\n"
+          % (out, len(spec["score_cols"]), spec["entity_col"], spec["published_col"]))
+    print("check before auditing:")
+    for c in checks:
+        print("  - " + c)
+    return 0
+
+
 def cmd_audit(args):
+    from assay import report, structure
     idx = load.from_spec(args.spec)
     struct = structure.analyse(idx, seed=args.seed)
     pc1 = structure.pc1_scores(idx)
@@ -72,7 +107,9 @@ def cmd_audit(args):
 
     left = load.left_out(idx)
     pairs = aggregation.pairwise_robustness(idx)
-    text = report.render(idx, struct, agg, env, movable, left=left, pairs=pairs)
+    loo = aggregation.leave_one_out(idx)
+    text = report.render(idx, struct, agg, env, movable, left=left, pairs=pairs,
+                         loo=loo)
     print(text)
 
     if args.out:
@@ -80,6 +117,25 @@ def cmd_audit(args):
         with open(args.out, "w", encoding="utf-8") as fh:
             fh.write(text + "\n")
         print("\nwritten to %s" % args.out)
+
+    if args.bands:
+        # One row per entity, in published order: the band a rank belongs to.
+        # The envelope's own settings go in the header so a copied file still
+        # says what kind of weighting the band is a band over.
+        os.makedirs(os.path.dirname(os.path.abspath(args.bands)), exist_ok=True)
+        order = sorted(range(idx.n), key=lambda i: int(env["published_rank"][i]))
+        with open(args.bands, "w", newline="", encoding="utf-8") as fh:
+            w = csv.writer(fh)
+            w.writerow(["# %s; %d draws, %s weighting%s, seed %d" % (
+                idx.name, env["draws"], env["mode"],
+                ", concentration %g" % env["concentration"] if env["concentration"] else "",
+                args.seed)])
+            w.writerow(["entity", "published_rank", "best_rank", "worst_rank", "spread"])
+            for i in order:
+                w.writerow([_cell(idx.entities[i]), int(env["published_rank"][i]),
+                            int(env["best"][i]), int(env["worst"][i]),
+                            int(env["spread"][i])])
+        print("bands written to %s" % args.bands)
 
     if args.json:
         payload = {
@@ -100,6 +156,7 @@ def cmd_audit(args):
             "dropped_rows": idx.dropped,
             "left_out": left,
             "pairwise_robustness": pairs,
+            "leave_one_out": loo,
         }
         os.makedirs(os.path.dirname(os.path.abspath(args.json)), exist_ok=True)
         with open(args.json, "w", encoding="utf-8") as fh:
@@ -193,11 +250,18 @@ def main(argv=None):
     a.add_argument("--seed", type=int, default=0)
     a.add_argument("--out", help="write the text report here")
     a.add_argument("--json", help="write machine-readable results here")
+    a.add_argument("--bands", help="write each entity's published, best and worst "
+                                   "rank here, as CSV")
     a.set_defaults(func=cmd_audit)
 
     c = sub.add_parser("columns", help="list a CSV's columns")
     c.add_argument("path")
     c.set_defaults(func=cmd_columns)
+
+    i = sub.add_parser("init", help="draft a spec for a CSV, listing what to check")
+    i.add_argument("path")
+    i.add_argument("--out", help="where to write the spec (default: beside the CSV)")
+    i.set_defaults(func=cmd_init)
 
     d = sub.add_parser("drift", help="are year-over-year rank changes robust?")
     d.add_argument("spec")

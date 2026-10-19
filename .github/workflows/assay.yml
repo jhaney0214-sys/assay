@@ -62,7 +62,7 @@ jobs:
       - name: Test what does not need the sibling
         run: |
           python -m unittest tests.test_drift tests.test_browser_page \
-                             tests.test_claims_ledger tests.test_fetch_svi tests.test_editions tests.test_table tests.test_load tests.test_pairwise -v
+                             tests.test_claims_ledger tests.test_fetch_svi tests.test_editions tests.test_table tests.test_load tests.test_pairwise tests.test_leave_one_out -v
 
       # A skip prints as a dot. The one class in test_claims_ledger that needs
       # the engine skips itself here, and a suite that goes green having never

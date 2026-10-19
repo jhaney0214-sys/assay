@@ -95,7 +95,47 @@ def _left_out(w, left, index):
     w("")
 
 
-def render(index, struct, agg, env, movable, left=None, pairs=None):
+def _leave_one_out(w, loo):
+    w("WHICH SUB-SCORE DOES THE RANKING LEAN ON?")
+    w("")
+    w("  Each sub-score left out in turn, the other weights rescaled, against")
+    w("  the ranking with all of them (%s)." % loo["scale"])
+    w("")
+    w("    %-34s weight  median move  90th pct  top-%d out"
+      % ("", loo["top"]))
+    for r in loo["rows"]:
+        w("    %-34s %5.1f%%  %5.0f (%2.0f%%)   %6.0f   %5d"
+          % (r["column"][:34], 100 * r["weight"], r["median_shift"],
+             100 * r["median_shift"] / loo["n"], r["p90_shift"], r["top_changed"]))
+    w("")
+    rows = loo["rows"]
+    most = rows[0]
+    heaviest = max(rows, key=lambda r: r["weight"])
+    meds = [r["median_shift"] for r in rows]
+    if (most["column"] != heaviest["column"]
+            and most["median_shift"] > heaviest["median_shift"]):
+        # EPI 2024: Biodiversity & Habitat at 25% moves the median country 7
+        # places, Climate Change Mitigation at 30% only 4. A pillar matters by
+        # how much it disagrees with the rest, not by its weight alone.
+        text = ("The ranking leans hardest on %s (%.0f%% of the weight), not on "
+                "%s, the heaviest at %.0f%%. Leaving out the first moves the "
+                "median entity %.0f places, the second %.0f. A sub-score counts "
+                "by how far it disagrees with the others as well as by its weight."
+                % (most["column"], 100 * most["weight"], heaviest["column"],
+                   100 * heaviest["weight"], most["median_shift"],
+                   heaviest["median_shift"]))
+    elif len(meds) > 1 and meds[0] - meds[1] <= max(1.0, 0.1 * meds[0]):
+        # HDI 2022: three of four at 5 places. Naming one would be a tie-break.
+        text = ("No one sub-score carries the ranking: leaving out any one moves "
+                "the median entity %.0f to %.0f places." % (min(meds), max(meds)))
+    else:
+        text = "The sub-score that moves the ranking most is %s." % most["column"]
+    for i, line in enumerate(_wrap(text, 66)):
+        w(("  >> " if i == 0 else "     ") + line.strip())
+    w("")
+
+
+def render(index, struct, agg, env, movable, left=None, pairs=None, loo=None):
     L = []
     w = L.append
 
@@ -327,6 +367,10 @@ def render(index, struct, agg, env, movable, left=None, pairs=None):
     for name, pub, best, worst, spread in movable:
         w("    %-34s %6d   %5d  %5d  %6d" % (name[:34], pub, best, worst, spread))
     w("")
+
+    # ---- leave one out --------------------------------------------------
+    if loo is not None and loo["rows"]:
+        _leave_one_out(w, loo)
 
     # ---- pairwise robustness, exact -------------------------------------
     if pairs is not None:

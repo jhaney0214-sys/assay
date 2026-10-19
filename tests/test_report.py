@@ -210,6 +210,45 @@ class TestReproductionNuance(unittest.TestCase):
         self.assertIn("The stated method is the actual method", txt)
 
 
+class TestRankBands(unittest.TestCase):
+    """ax.py audit --bands: one row per entity, safe to open in a spreadsheet."""
+
+    def test_bands_are_written_in_published_order_and_formulas_are_disarmed(self):
+        import csv
+        import subprocess
+        import sys
+        import tempfile
+        root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        with tempfile.TemporaryDirectory() as tmp:
+            rows = ["name,a,b,c,total"]
+            for i in range(30):
+                name = "=HYPERLINK(\"x\")" if i == 0 else "e%d" % i
+                rows.append('"%s",%d,%d,%d,%d' % (name.replace('"', '""'),
+                                                  i, (i * 7) % 30, (i * 3) % 11, i))
+            with open(os.path.join(tmp, "t.csv"), "w", encoding="utf-8") as fh:
+                fh.write("\n".join(rows) + "\n")
+            with open(os.path.join(tmp, "t.json"), "w", encoding="utf-8") as fh:
+                fh.write('{"data": "t.csv", "entity_col": "name", '
+                         '"score_cols": ["a", "b", "c"], "published_col": "total"}')
+            out = os.path.join(tmp, "bands.csv")
+            run = subprocess.run([sys.executable, os.path.join(root, "ax.py"), "audit",
+                                  os.path.join(tmp, "t.json"), "--draws", "50",
+                                  "--bands", out], capture_output=True, text=True)
+            self.assertEqual(run.returncode, 0, run.stderr)
+            with open(out, encoding="utf-8") as fh:
+                got = list(csv.reader(fh))
+        self.assertTrue(got[0][0].startswith("# "))
+        self.assertEqual(got[1], ["entity", "published_rank", "best_rank",
+                                  "worst_rank", "spread"])
+        body = got[2:]
+        self.assertEqual(len(body), 30)
+        self.assertEqual([int(r[1]) for r in body], list(range(1, 31)))
+        for r in body:
+            self.assertLessEqual(int(r[2]), int(r[3]))
+            self.assertEqual(int(r[4]), int(r[3]) - int(r[2]))
+        self.assertIn("'=HYPERLINK(\"x\")", [r[0] for r in body])
+
+
 class TestWhoWasLeftOut(unittest.TestCase):
     """The dropped rows are reported before any number computed without them."""
 

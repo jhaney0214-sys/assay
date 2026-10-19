@@ -129,6 +129,69 @@ class TestSpecs(unittest.TestCase):
                 load.from_spec(path)
 
 
+class TestDraftSpec(unittest.TestCase):
+    """ax.py init: what it guesses, and that it never guesses a claim."""
+
+    def draft(self, name):
+        import shutil
+        with tempfile.TemporaryDirectory() as tmp:
+            path = os.path.join(tmp, name + ".csv")
+            shutil.copy(ROOT / "data" / (name + ".csv"), path)
+            return load.draft_spec(path)
+
+    def test_hdi_total_is_found_and_flagged_for_checking(self):
+        spec, checks = self.draft("hdi-2022")
+        self.assertEqual(spec["entity_col"], "country")
+        self.assertEqual(spec["published_col"], "HDI")
+        self.assertEqual(len(spec["score_cols"]), 4)
+        self.assertTrue(any("correlates 0.983" in c for c in checks))
+
+    def test_a_loose_total_is_named_as_the_closest_not_chosen(self):
+        spec, checks = self.draft("epi-2024")
+        self.assertIsNone(spec["published_col"])
+        self.assertIn("EPI", spec["score_cols"])
+        self.assertTrue(any("most like a total is 'EPI'" in c for c in checks))
+
+    def test_shared_construction_is_named_as_the_other_reading(self):
+        # V-Dem has no total; its liberal index contains its electoral index.
+        spec, checks = self.draft("vdem-2024")
+        self.assertIsNotNone(spec["published_col"])
+        self.assertTrue(any("shared_construction" in c for c in checks))
+
+    def test_it_never_writes_a_claim(self):
+        spec, checks = self.draft("svi-2022")
+        self.assertNotIn("weights", spec)
+        self.assertIsNone(spec["claimed_dimensions"])
+        self.assertTrue(any(c.startswith("weights:") for c in checks))
+        load.check_spec(spec, "draft")
+
+    def test_without_an_entity_column_it_says_so(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = os.path.join(tmp, "n.csv")
+            with open(path, "w", encoding="utf-8") as fh:
+                fh.write("a,b\n" + "".join("%d,%d\n" % (i, i * 2) for i in range(12)))
+            with self.assertRaises(ValueError) as cm:
+                load.draft_spec(path)
+        self.assertIn("entity column", str(cm.exception))
+
+    def test_the_cli_will_not_overwrite_a_spec(self):
+        import subprocess
+        with tempfile.TemporaryDirectory() as tmp:
+            path = os.path.join(tmp, "hdi.csv")
+            import shutil
+            shutil.copy(ROOT / "data" / "hdi-2022.csv", path)
+            run = lambda: subprocess.run([sys.executable, str(ROOT / "ax.py"), "init", path],
+                                         capture_output=True, text=True)
+            self.assertEqual(run().returncode, 0)
+            with open(os.path.join(tmp, "hdi.json"), encoding="utf-8") as fh:
+                first = fh.read()
+            second = run()
+            self.assertEqual(second.returncode, 1)
+            self.assertIn("not overwritten", second.stdout)
+            with open(os.path.join(tmp, "hdi.json"), encoding="utf-8") as fh:
+                self.assertEqual(fh.read(), first)
+
+
 class TestLeftOut(unittest.TestCase):
 
     def test_nothing_dropped_is_nothing_to_report(self):

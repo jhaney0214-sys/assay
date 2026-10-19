@@ -356,6 +356,90 @@ def orient(index):
     return index
 
 
+# docs/audit.html's AGGREGATE_AT: a column correlating this closely with the
+# mean of the others is the index's own total, or shares construction with them.
+AGGREGATE_AT = 0.95
+
+
+def draft_spec(csv_path):
+    """A first spec for a CSV, and the list of things a person must check.
+
+    Guesses only what the file can show: the entity column (text, one value
+    per row), the numeric columns, and a published total if one column tracks
+    the mean of the rest the way a total must. It never guesses weights or
+    a claimed dimension count; those are the index's claims, read from its
+    documentation, and a guessed claim would make the audit test itself.
+    """
+    import numpy as np
+    with open(csv_path, newline="", encoding="utf-8-sig") as fh:
+        rows = list(csv.DictReader(fh))
+    if not rows:
+        raise ValueError("no rows in %s" % csv_path)
+    cols = list(rows[0])
+    numeric, text = [], []
+    for c in cols:
+        cells = [r[c] for r in rows if not _is_blank(r[c])]
+        ok = sum(1 for s in cells if _to_float(s) is not None)
+        (numeric if cells and ok / len(cells) > 0.8 else text).append(c)
+    unique = [c for c in text if len({r[c].strip() for r in rows}) == len(rows)]
+    if not unique:
+        raise ValueError("no text column names every row once; an entity column "
+                         "is needed (columns: %s)" % ", ".join(cols))
+    entity = unique[0]
+    checks = []
+    if len(unique) > 1:
+        checks.append("entity_col is %r; %s also name every row once"
+                      % (entity, ", ".join(repr(c) for c in unique[1:])))
+    ignored = [c for c in text if c != entity]
+    if ignored:
+        checks.append("left out as text: %s" % ", ".join(ignored))
+
+    published, why, closest = None, None, None
+    complete =[r for r in rows if all(_to_float(r[c]) is not None for c in numeric)]
+    if len(numeric) >= 4 and len(complete) >= 10:
+        X = np.array([[_to_float(r[c]) for c in numeric] for r in complete])
+        best = closest = None
+        for j, c in enumerate(numeric):
+            rest = np.delete(X, j, axis=1).mean(axis=1)
+            r_ = abs(float(np.corrcoef(X[:, j], rest)[0, 1]))
+            if closest is None or r_ > closest[1]:
+                closest = (c, r_)
+            if r_ >= AGGREGATE_AT and (best is None or r_ > best[1]):
+                best = (c, r_)
+        if best is None and closest is not None:
+            # EPI 2024: its total correlates 0.92 with eleven loosely related
+            # pillars, under the line, and was left among them unremarked.
+            checks.append(
+                "the column most like a total is %r (r = %.3f with the mean of the "
+                "others, under %.2f); a total over loosely related pillars can sit "
+                "there, so if %r is the index's own score, make it published_col"
+                % (closest[0], closest[1], AGGREGATE_AT, closest[0]))
+        if best:
+            published, why = best
+            checks.append(
+                "published_col is %r because it correlates %.3f with the mean of "
+                "the others, as a total does. A sub-score that shares construction "
+                "with the rest looks the same: if it is a pillar, move it back to "
+                "score_cols and set shared_construction" % (published, why))
+    scores = [c for c in numeric if c != published]
+    if published is None and closest is None:
+        checks.append("no column looks like a published total; if the index "
+                      "publishes one, set published_col")
+    checks.append("weights: add the index's published weights, or leave them out")
+    checks.append("claimed_dimensions: how many dimensions the index says it has")
+    spec = {
+        "name": os.path.splitext(os.path.basename(csv_path))[0],
+        "data": os.path.basename(csv_path),
+        "entity_col": entity,
+        "score_cols": scores,
+        "published_col": published,
+        "claimed_dimensions": None,
+        "orient": True,
+        "note": "Drafted by ax.py init; check every guess before auditing.",
+    }
+    return spec, checks
+
+
 def from_spec(path):
     """Load an index from a JSON spec beside its data file.
 

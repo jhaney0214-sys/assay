@@ -207,6 +207,69 @@ def rank_envelope(index, draws=DEFAULT_DRAWS, mode=None, concentration=50.0, see
     }
 
 
+def composite_basis(index):
+    """(values, weights summing to 1, description) for recomputing a composite.
+
+    The published sub-scores with the published weights when the index is a
+    weighted sum of them, which is what the index itself computes; otherwise
+    z-scores with equal weights, and the description says so, because a sum
+    of raw sub-scores on unrelated scales is not a composite of anything.
+    Shared by `pairwise_robustness` and `leave_one_out` so the two always
+    describe the same composite.
+    """
+    linear = getattr(index, "aggregation_form", "linear") == "linear"
+    if index.weights and linear:
+        X = index.as_published()
+        w0 = np.array([index.weights.get(c, 0.0) for c in index.columns], float)
+        scale = "published sub-scores, published weights"
+    else:
+        X = index.standardised()
+        w0 = np.ones(index.k)
+        scale = "z-scores, equal weights"
+    return X, w0 / w0.sum(), scale
+
+
+def leave_one_out(index, top=10):
+    """How far the ranking moves when each sub-score is left out in turn.
+
+    The other weights are rescaled to sum to one, so the question is the one
+    an index's critics ask: what if this pillar were not in it? The answer
+    names the pillar the ranking leans on, which the weights alone do not.
+    A pillar can carry a small weight and still move the ranking a long way
+    if it is the one the others disagree with, and a heavy one can move it
+    little if it repeats them.
+
+    Compared against the composite recomputed with every sub-score, not the
+    published score, so that what is measured is the pillar and not whatever
+    separates the recomputation from the published number (that is
+    `reproduces_published`'s question).
+    """
+    X, w0, scale = composite_basis(index)
+    base = _ranks(X @ w0)
+    n = index.n
+    top = min(top, n)
+    base_top = set(np.argsort(base)[:top])
+    rows = []
+    for j, col in enumerate(index.columns):
+        w = w0.copy()
+        w[j] = 0.0
+        if w.sum() <= 0:
+            continue
+        ranks = _ranks(X @ (w / w.sum()))
+        moved = np.abs(ranks - base)
+        rows.append({
+            "column": col,
+            "weight": float(w0[j]),
+            "median_shift": float(np.median(moved)),
+            "p90_shift": float(np.percentile(moved, 90)),
+            "max_shift": int(moved.max()),
+            "rank_r": float(np.corrcoef(ranks, base)[0, 1]),
+            "top_changed": len(base_top - set(np.argsort(ranks)[:top])),
+        })
+    rows.sort(key=lambda r: (-r["median_shift"], -r["max_shift"]))
+    return {"scale": scale, "n": n, "top": top, "rows": rows}
+
+
 def pairwise_robustness(index, orders=(1.0, 0.25)):
     """Which pairwise comparisons no defensible weighting reverses.
 
@@ -224,21 +287,9 @@ def pairwise_robustness(index, orders=(1.0, 0.25)):
     HDI 2004 the paper reports 69.8% of 15,576 comparisons robust at r = 1
     and 91.8% at r = 0.25 (tools/fetch_hdr2006.py, tests/test_pairwise.py).
 
-    Scale: the published sub-scores with the published weights when the index
-    is a weighted sum of them (what FMS test, and what the index computes);
-    otherwise z-scores with equal weights, said in the result, because a sum
-    of raw sub-scores on unrelated scales is not a composite of anything.
+    Scale: see `composite_basis`.
     """
-    linear = getattr(index, "aggregation_form", "linear") == "linear"
-    if index.weights and linear:
-        X = index.as_published()
-        w0 = np.array([index.weights.get(c, 0.0) for c in index.columns], float)
-        scale = "published sub-scores, published weights"
-    else:
-        X = index.standardised()
-        w0 = np.ones(index.k)
-        scale = "z-scores, equal weights"
-    w0 = w0 / w0.sum()
+    X, w0, scale = composite_basis(index)
     c0 = X @ w0
     n = index.n
     total = n * (n - 1) // 2
