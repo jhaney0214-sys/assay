@@ -49,7 +49,7 @@ def render(name, fidelity, structure_rows, pair_rows, bins, threshold,
         w("DOES THE MODEL REPRODUCE THE PUBLISHED *CHANGE*?")
         w("")
         w("  r(model change, published change)  %.4f" % c["r"])
-        w("  same direction                     %.1f%% of %d countries"
+        w("  same direction                     %.1f%% of %d entities"
           % (100 * c["same_direction"], c["n"]))
         w("  median disagreement                %.1f places" % c["median_gap"])
         w("  largest disagreement               %d places" % c["max_gap"])
@@ -187,7 +187,7 @@ def render(name, fidelity, structure_rows, pair_rows, bins, threshold,
         w("")
         w("  DOES THE GAP BETWEEN THE COMPARED YEARS MATTER?")
         w("")
-        w("  Same index, same countries. Each row is shown at its worst and")
+        w("  Same index, same entities. Each row is shown at its worst and")
         w("  best corner of the parameter surface above, so the gradient is")
         w("  not itself a single-setting claim.")
         w("")
@@ -215,7 +215,7 @@ def render(name, fidelity, structure_rows, pair_rows, bins, threshold,
         w("")
 
     w("  What this does NOT say: that the underlying indicators did not move,")
-    w("  or that no progress occurred. Rank is positional - a country can")
+    w("  or that no progress occurred. Rank is positional - an entity can")
     w("  improve and still not move reliably, because everyone else moved too.")
     w("  The claim is about reporting a rank change as news.")
     w("=" * 74)

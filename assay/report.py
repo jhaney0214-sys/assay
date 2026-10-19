@@ -272,7 +272,7 @@ def render(index, struct, agg, env, movable, left=None, pairs=None, loo=None):
         w("")
         w("  These correlate NEGATIVELY with the published composite, and were")
         w("  turned round so the structure below is readable. That is a")
-        w("  substantive fact rather than a formatting step: a country scoring")
+        w("  substantive fact rather than a formatting step: an entity scoring")
         w("  well here tends to score worse overall. Either the sub-score")
         w("  measures something in tension with the rest of the index, or its")
         w("  direction is not what its name suggests. Worth checking against")
@@ -310,7 +310,7 @@ def render(index, struct, agg, env, movable, left=None, pairs=None, loo=None):
             # called it broken. It is neither.
             w("  >> The ORDERING follows from the published weights (r %.4f),"
               % rep["r"])
-            w("     but the SCORE does not: a typical country lands %.1f points"
+            w("     but the SCORE does not: a typical entity lands %.1f points"
               % rep["median_abs_score_error"])
             w("     from its published value and the worst is %.1f, with rank"
               % rep["max_abs_score_error"])
